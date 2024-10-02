@@ -147,13 +147,13 @@ def simulate_projections(image_data, angles, beam_radius = None,dose = None,inte
 
 if __name__=='__main__':
     size_x, size_y, n_slice = 256, 256, 128  # Custom size: 256x256x128
-    phantom_3d = create_3d_shepp_logan(n_slice = n_slice,size_x=size_x, size_y=size_y,flat=True)
+    phantom_3d = create_3d_shepp_logan(n_slice = n_slice,size_x=size_x, size_y=size_y,flat=False)
     phantom_3d.reorder('astra')
     
-    angles = np.linspace(0, 360, 100, endpoint=False, dtype=np.float32)
+    angles = np.linspace(0, 360, 400, endpoint=False, dtype=np.float32)
     angles = np.repeat(angles,3) # Take 3 measurements per angle.
 
-    ndata, data = simulate_projections(phantom_3d, angles, dose = None,dose_variation=5,intensity=1e2,beam_radius=0.85)
+    ndata, data = simulate_projections(phantom_3d, angles, dose = None,dose_variation=0,intensity=1e6,beam_radius=0.85)
     ndata.reorder(('angle','horizontal','vertical'))
     data.reorder(('angle','horizontal','vertical'))
     print(ndata)
@@ -163,13 +163,13 @@ if __name__=='__main__':
     current_image = show2D(ndata.log(),slice_list = ('angle',120))
     current_image.save('/work3/msaca/current_figures/current2.png')
     
-    path1 = '/work3/msaca/simulation_data/experiment_1/flats/'
+    path1 = '/work3/msaca/simulation_data/experiment_1/projections/'
 
-    save = True
+    save = False
     if save == True:
         ndata = ndata.as_array()
         for i_angle in range(len(angles)):
             # Create a FITS file for each slice
             hdu = fits.PrimaryHDU(ndata[i_angle])  # Create a PrimaryHDU object with the 2D slice
-            filename = 'flat_simx3_'+ f'{i_angle+1:05}.fits'  # Filename for each FITS file
-            hdu.writeto(path1 + filename, overwrite=False) 
+            filename = 'proj_simx3_'+ f'{i_angle+1:05}.fits'  # Filename for each FITS file
+            hdu.writeto(path1 + filename, overwrite=True) 

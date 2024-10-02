@@ -22,7 +22,7 @@ N_pixels = 256
 OB_reg_TL = (150, 150)
 OB_reg_BR = (170 , 170)
 
-N_OB = 300 # Number of flats
+N_OB = 1200 # Number of flats
 file_count = 0 # flat index offset
 OB = np.zeros((N_pixels, N_pixels))
 for i_OB in range(N_OB):
@@ -39,7 +39,7 @@ OB_mean = OB
 
 # Settings for the projection file loader
 N_slices = N_pixels
-N_projections = 100 # Number of projections
+N_projections = 400 # Number of projections
 batch_size = 32
 N_batches = int(np.ceil(N_slices/batch_size))
 
