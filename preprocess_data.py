@@ -9,29 +9,32 @@ from cil.processors import Normaliser
 from cil.framework import AcquisitionGeometry, AcquisitionData
 from cil.utilities.display import show2D, show_geometry
 from cil.io import TIFFWriter
+import imageutils as iu
 
 # Specify settings
 upper_path = '/work3/msaca/Mars_data_1/02_rawdata/'
 subfolder_projections = 'ct_3x1126_60s/'
 subfolder_flats = 'OB2_DC2/'
 folder_normalizations = '/work3/msaca/Mars_data_1/02_filtereddata/normalizations/'
+folder_filter = '/work3/msaca/Mars_data_1/02_filtereddata/filtered_projections/'
 filename_prefix_projections = 'ct_3x1126_60s_'
 filename_prefix_flats = 'OB2_DC2_'
 filename_suffix = '.fits'
 N_pixels = 2048
 N_slices = 64
+slice_offset = 1000
 OB_reg_TL = (1061, 1570)
 OB_reg_BR = (1274 , 1714)
 N_projections = 1125 # Number of projections
 batch_size = 32
 
-N_OB = 24 # Number of flats
+N_OB = 240 # Number of flats
 file_count = 2 # flat index offset
 OB = np.zeros((N_pixels, N_pixels))
 for i_OB in range(N_OB):
     file_count = file_count + 1
     path_load_OB = upper_path + subfolder_flats + filename_prefix_flats + f"{file_count:05}" + '.fits'
-    OB = OB + fits.open(path_load_OB)[0].data/N_OB # Load data
+    OB = OB + fits.open(path_load_OB)[0].data.astype(float)/N_OB # Load data
     if not np.mod(file_count,50):
         string_progress = '. Loaded file ' + str(file_count) + ' out of ' + str(N_OB)
         print(string_progress)
@@ -55,8 +58,8 @@ for i_batch in range(N_batches):
     .set_panel(num_pixels=[N_pixels,updated_batch_size])        \
     .set_angles(angles=np.linspace(0,360,N_projections,endpoint=False))
     ag.set_labels(['angle','horizontal','vertical'])
-    i_from = i_batch*batch_size
-    i_to = i_batch*batch_size+updated_batch_size
+    i_from = i_batch*batch_size + slice_offset
+    i_to = i_batch*batch_size+updated_batch_size + slice_offset
 
     OB_batch = OB_mean[:,i_from:i_to] # Select the OB means for the current batch
 
@@ -72,15 +75,32 @@ for i_batch in range(N_batches):
             string_progress = 'Batch ' + str(i_batch+1) + ' out of ' + str(N_batches) + '. Loaded file ' + str(file_count) + ' out of ' + str(N_projections)
             print(string_progress)
 
-        projection1 = fits.open(path_1)[0].data
-        projection2 = fits.open(path_2)[0].data
-        projection3 = fits.open(path_3)[0].data
+        projection1 = fits.open(path_1)[0].data.astype(float)
+        projection2 = fits.open(path_2)[0].data.astype(float)
+        projection3 = fits.open(path_3)[0].data.astype(float)
         projection_mean = (projection1 + projection2 + projection3)/3
         D[i_proj] = np.median(projection_mean[OB_reg_TL[0]:OB_reg_BR[0], OB_reg_TL[1]:OB_reg_BR[1]])
-        projection_mean_batch = projection_mean[:,i_from:i_to]
-        projection_lognormalized = -(np.log(projection_mean_batch) - np.log(OB_batch) + np.log(D0) - np.log(D[i_proj]))
+        dose_filename = folder_filter + 'dose.npy'
+        np.save(dose_filename, np.append(D,D0))
+        filter_filename = folder_filter + 'filter_proj' + f"{file_count:05}" + '.npy'
 
-        A[i_proj] = projection_lognormalized
+
+        projection_mean_batch = projection_mean[:,i_from:i_to]
+
+        #Case 1
+        #projection_lognormalized = -(np.log(projection_mean_batch) - np.log(OB_batch) + np.log(D0) - np.log(D[i_proj]))
+        #filtered_projection_lognormalized = iu.spotclean(projection_lognormalized, size=10)
+        
+        #Case 2
+        projection_lognormalized = -(np.log(projection_mean) - np.log(OB_mean) + np.log(D0) - np.log(D[i_proj]))
+
+        filtered_projection_lognormalized = iu.spotclean(projection_lognormalized, size=10)
+        %np.save(filter_filename, filtered_projection_lognormalized)
+        filtered_projection_lognormalized = filtered_projection_lognormalized[:,i_from:i_to]
+
+
+        # Save the array
+        A[i_proj] = filtered_projection_lognormalized
 
     A_slices = AcquisitionData(A, geometry=ag, deep_copy=False)
     A_slices.reorder(('vertical', 'angle','horizontal'))

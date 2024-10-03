@@ -15,7 +15,7 @@ subfolder_normalizations = 'normalizations/'
 
 N_pixels = 2048
 N_angles = 1125
-filename = file_name=upper_path + subfolder_normalizations + 'sinogram_normalized_idx_1000.tiff'
+filename = file_name=upper_path + subfolder_normalizations + 'sinogram_normalized_idx_0032.tiff'
 reader = TIFFStackReader(file_name=filename)
 sin1 = reader.read()
 
@@ -42,7 +42,7 @@ temp[:,-530:-1] = 0
 sin2.fill(temp)
 sin2.reorder('tigre')
 fbp2 = FBP(sin2, ig, backend='tigre')
-fbp2.set_filter(filter = 'ram-lak', cutoff=0.5)
+fbp2.set_filter(filter = 'ram-lak', cutoff=0.1)
 recon_fbp2 = fbp2.run()
 
 
