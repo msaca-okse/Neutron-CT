@@ -76,7 +76,7 @@ for i_batch in range(N_batches):
         projection2 = fits.open(path_2)[0].data
         projection3 = fits.open(path_3)[0].data
         projection_mean = (projection1 + projection2 + projection3)/3
-        D[i_proj] = np.mean(projection_mean[OB_reg_TL[0]:OB_reg_BR[0], OB_reg_TL[1]:OB_reg_BR[1]])
+        D[i_proj] = np.median(projection_mean[OB_reg_TL[0]:OB_reg_BR[0], OB_reg_TL[1]:OB_reg_BR[1]])
         projection_mean_batch = projection_mean[:,i_from:i_to]
         projection_lognormalized = -(np.log(projection_mean_batch) - np.log(OB_batch) + np.log(D0) - np.log(D[i_proj]))
 
