@@ -86,3 +86,4 @@ for i_batch in range(N_batches):
     A_slices.reorder(('vertical', 'angle','horizontal'))
     A_write = TIFFWriter(data=A_slices, file_name = upper_path + subfolder_normalizations + 'sinogram_normalized', counter_offset=i_batch*batch_size+1)
     A_write.write()
+    np.save()
