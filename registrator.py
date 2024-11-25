@@ -38,7 +38,7 @@ class Registrator():
         self.fixed = None
         self.moving = None
 
-    def load_images(self, fixed_array: str, moving_array: str):
+    def load_images(self, fixed_array, moving_array):
         """
         Loads two images from numpy arrays and converts them to SimpleITK images.
         
@@ -50,6 +50,21 @@ class Registrator():
         # Convert numpy arrays to SimpleITK images
         self.fixed = sitk.GetImageFromArray(fixed_array)
         self.moving = sitk.GetImageFromArray(moving_array)
+        size_fixed = self.fixed.GetSize()
+        size_moving = self.moving.GetSize()
+
+        spacing_fixed = self.fixed.GetSpacing()
+        spacing_moving = self.moving.GetSpacing()
+
+        # Compute the new origin (shift it to -N/2)
+        new_origin_fixed = [-0.5 * (size_fixed[i] - 1) * spacing_fixed[i] for i in range(len(size_fixed))]
+        new_origin_moving = [-0.5 * (size_moving[i] - 1) * spacing_moving[i] for i in range(len(size_moving))]
+
+        # Set the origin to be the new center (-N/2)
+        self.fixed.SetOrigin(new_origin_fixed)
+        self.moving.SetOrigin(new_origin_moving)
+
+
 
     def copy(self):
         """
@@ -94,7 +109,7 @@ class Registrator():
         registrator.moving = sitk.ReadImage(f"{path}_moving.nii")
         return registrator
 
-    def filter_threshold(self, fixed_threshold: float = 0.0, moving_threshold: float = 0.0):
+    def filter_threshold(self, fixed_threshold: float = 0.0, moving_threshold: float = 0.0, cast = True):
         """
         Applies thresholding to both fixed and moving images. Everything above the threshold is set to 1, and below is set to 0.
         
@@ -103,10 +118,15 @@ class Registrator():
             moving_threshold (float, optional): Threshold for the moving image. Default is 0.0.
         """
         # Apply thresholding to both fixed and moving images (inplace)
-        self.fixed = self.fixed > fixed_threshold
-        self.moving = self.moving > moving_threshold
+        self.fixed = sitk.BinaryThreshold(self.fixed, lowerThreshold=fixed_threshold, upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        self.moving = sitk.BinaryThreshold(self.moving, lowerThreshold=moving_threshold, upperThreshold=float("inf"), insideValue=1, outsideValue=0)
 
-    def downsizing(self, fixed_factor: int, moving_factor: int):
+        if cast:
+            self.fixed =sitk.Cast(self.fixed, sitk.sitkFloat32)
+            print('hello')
+            self.moving =sitk.Cast(self.moving, sitk.sitkFloat32)
+
+    def downsizing(self, fixed_factor = 2, moving_factor = 2, smooth = False):
         """
         Downsizes both the fixed and moving images by a specified factor.
         
@@ -116,11 +136,11 @@ class Registrator():
         """
         # Resample the images (downsize) by the given factor, preserving the original grid structure
         # This will be done inplace, reducing the number of pixels
-        self.fixed = self._downsample_image(self.fixed, fixed_factor)
-        self.moving = self._downsample_image(self.moving, moving_factor)
+        self.fixed = self._downsample_image(input_image=self.fixed, factor = fixed_factor,smooth = smooth)
+        self.moving = self._downsample_image(input_image=self.moving, factor = moving_factor, smooth = smooth)
 
 
-    def _downsample_image(self, input_image, factor=10):
+    def _downsample_image(self, input_image, factor=10,smooth=False):
         """
         Downsamples a 3D volume by reducing its resolution by a specified factor in each dimension,
         effectively averaging values over blocks (e.g., 2x2x2 cubes when factor=2).
@@ -153,9 +173,17 @@ class Registrator():
             # Save the downsampled image
             sitk.WriteImage(downsampled_image, 'downsampled_image.nii')
         """
+        if smooth:
+            mean_filter = sitk.MeanImageFilter()
+            mean_filter.SetRadius(factor)  # Adjust the radius as needed
+            image = mean_filter.Execute(input_image)
+        else:
+            image = input_image
+
+
         # Get the original size and spacing of the image
-        size = input_image.GetSize()
-        spacing = input_image.GetSpacing()
+        size = image.GetSize()
+        spacing = image.GetSpacing()
 
         # Calculate the new size (downsampling by factor)
         new_size = [int(size[0] / factor), int(size[1] / factor), int(size[2] / factor)]
@@ -167,19 +195,36 @@ class Registrator():
         transform = sitk.Transform(3, sitk.sitkIdentity)
 
         # Perform the resampling (using average interpolation for downsampling)
-        downsampled_image = sitk.Resample(input_image,
+        downsampled_image = sitk.Resample(image,
                                         new_size,
                                         transform,
-                                        sitk.sitkBSpline,  # BSpline interpolation is good for downsampling
-                                        input_image.GetOrigin(),
+                                        sitk.sitkLinear,  # BSpline interpolation is good for downsampling
+                                        image.GetOrigin(),
                                         new_spacing,
-                                        input_image.GetDirection(),
+                                        image.GetDirection(),
                                         0)  # 0 is the background value for the resampling
         
         return downsampled_image
 
 
-    def transformation(self, type='Similarity3Dtransform', matrix=None):
+    def center_transform(self):
+        thresholds = [0.5, 0.5]
+        binary_fixed = sitk.BinaryThreshold(self.fixed, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        binary_moving = sitk.BinaryThreshold(self.moving, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_moving = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_fixed.Execute(binary_fixed)
+        label_shape_filter_moving.Execute(binary_moving)
+        centroid_fixed = np.array(label_shape_filter_fixed.GetCentroid(1))
+        centroid_moving = np.array(label_shape_filter_moving.GetCentroid(1))
+        self.fixed.SetOrigin(-centroid_fixed)
+        self.moving.SetOrigin(-centroid_moving)
+        return -centroid_fixed, -centroid_moving
+
+
+
+
+    def transformation(self, type='Similarity3Dtransform', matrix=None,translation=(0,0,0)):
         """
         Returns a transformation object based on the provided transformation parameters.
         
@@ -189,10 +234,27 @@ class Registrator():
         Returns:
             SimpleITK.Transform: The transformation object.
         """
-        # Transformation creation logic will go here (in the future)
-        pass
+        if type == 'Centroid':
+            transform = sitk.CenteredTransformInitializer(
+            self.fixed,                  # Reference (fixed) image
+            self.moving,                     # Moving (adjust) image
+            sitk.Similarity3DTransform(),    # Use similarity transformation (translation, rotation, scaling)
+            sitk.CenteredTransformInitializerFilter.GEOMETRY  # Align the centroids (geometry)
+            )
+        elif type == 'Similarity3DTransform':
+            if (translation is None) or (matrix is None):
+                raise ValueError('Specify Matrix and Translation')
+            transform = sitk.Similarity3DTransform()
+            transform.SetMatrix(matrix)
+            transform.SetTranslation(translation)
+        elif type == 'Euler3DTransform':
+            transform = sitk.Euler3DTransform()
+            transform.SetMatrix(matrix)
+            transform.SetTranslation(translation)
 
-    def register(self, transform_params, metric_type: str, optimizer_type: str):
+        return transform
+
+    def register(self, transform_params=None, metric_type: str=None, optimizer_type: str=None,inPlace=False):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -205,9 +267,28 @@ class Registrator():
             SimpleITK.Transform: The resulting transformation after registration.
         """
         # Registration algorithm logic will go here (in the future)
-        pass
+        registration = sitk.ImageRegistrationMethod()
+        registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=100)
+        registration.SetMetricSamplingStrategy(registration.RANDOM)
+        registration.SetMetricSamplingPercentage(0.1)
 
-    def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True):
+        # Use a multi-resolution pyramid
+        registration.SetShrinkFactorsPerLevel([2, 2, 1])
+        registration.SetSmoothingSigmasPerLevel([10, 5, 0])
+
+        registration.SetInitialTransform(sitk.AffineTransform(3), inPlace=inPlace)
+        registration.SetOptimizerAsGradientDescent(learningRate=0.1,
+                                        numberOfIterations=2000,
+                                        convergenceMinimumValue=1e-6,
+                                            convergenceWindowSize=10)
+        
+        registration.SetOptimizerScalesFromPhysicalShift()
+        registration.SetInterpolator(sitk.sitkLinear)
+        transform = registration.Execute(self.fixed, self.moving)
+
+        return transform.GetNthTransform(0)
+
+    def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True,fixed=False):
         """
         Resample the moving image using the given transformation object.
         
@@ -219,5 +300,108 @@ class Registrator():
         Returns:
             SimpleITK.Image: The resampled image (if inplace=False).
         """
-        # Resampling logic will go here (in the future)
-        pass
+        if interpolation_type == 'linear':
+            interpolation_method = sitk.sitkLinear
+        elif interpolation_type == 'nearest':
+            interpolation_method = sitk.sitk.NearestNeighbor
+
+        resampler = sitk.ResampleImageFilter()
+        resampler.SetReferenceImage(self.fixed)  # Reference image (fixed)
+        resampler.SetInterpolator(interpolation_method)   # Interpolation method
+        resampler.SetTransform(transform)    # Apply the initial transform (aligned centroids)
+        resampler.SetOutputPixelType(self.fixed.GetPixelID())
+        resampler.SetOutputSpacing(self.fixed.GetSpacing())  # Ensure the spacing is preserved
+        resampler.SetOutputOrigin(self.fixed.GetOrigin())  # Preserve origin
+        resampler.SetOutputDirection(self.fixed.GetDirection())
+        
+        if fixed:
+            if inplace:
+                self.fixed = resampler.Execute(self.fixed)  # Resample the moving image
+            else:
+                return resampler.Execute(self.fixed)
+        else:
+            if inplace:
+                self.moving = resampler.Execute(self.moving)  # Resample the moving image
+            else:
+                return resampler.Execute(self.moving)
+        
+        
+
+    def compute_principal_moments_and_axes(self, thresholds):
+        """
+        Compute the principal moments and axes of inertia for a 3D image.
+
+        Args:
+            image (sitk.Image): The input 3D image (non-zero values are considered part of the region).
+
+        Returns:
+            tuple: A tuple containing:
+                - principal_moments (list of float): The eigenvalues of the inertia matrix.
+                - principal_axes (list of list of float): The eigenvectors of the inertia matrix.
+        """
+        # Create a binary mask of the region
+        binary_fixed = sitk.BinaryThreshold(self.fixed, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        binary_moving = sitk.BinaryThreshold(self.moving, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+
+        # Use LabelShapeStatisticsImageFilter to calculate shape properties
+        label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_moving = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_fixed.Execute(binary_fixed)
+        label_shape_filter_moving.Execute(binary_moving)
+
+        if label_shape_filter_fixed.GetNumberOfLabels() == 0:
+            raise ValueError("The image has no non-zero pixels to calculate moments of inertia.")
+
+        # Get principal moments and axes for label 1 (the only label in this case)
+        principal_moments_fixed = label_shape_filter_fixed.GetPrincipalMoments(1)  # Eigenvalues
+        principal_moments_moving = label_shape_filter_moving.GetPrincipalMoments(1)  # Eigenvalues
+        
+
+        principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+        principal_axes_moving = label_shape_filter_moving.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+
+        # Reshape principal axes into a 3x3 matrix
+        principal_axes_matrix_fixed = np.array(principal_axes_fixed).reshape((3, 3))
+        principal_axes_matrix_moving = np.array(principal_axes_moving).reshape((3, 3))
+
+        centroid_fixed = np.array(label_shape_filter_fixed.GetCentroid(1))
+        centroid_moving = np.array(label_shape_filter_moving.GetCentroid(1))
+
+        out = {'fixed': {"moment": principal_moments_fixed, "axes": principal_axes_matrix_fixed, 'centroid': centroid_fixed} , 'moving': {'moment': principal_moments_moving, 'axes': principal_axes_matrix_moving, 'centroid': centroid_moving}}
+
+        return out
+    
+
+
+    def transform_mirror(self,point, vector1, vector2):
+        """
+        Create a mirroring transformation around a plane specified by a point and two vectors.
+
+        Args:
+            point (tuple): A point on the plane (x0, y0, z0).
+            vector1 (tuple): First vector spanning the plane (v1x, v1y, v1z).
+            vector2 (tuple): Second vector spanning the plane (v2x, v2y, v2z).
+
+        Returns:
+            sitk.AffineTransform: A SimpleITK affine transformation for mirroring around the plane.
+        """
+        # Convert inputs to NumPy arrays
+        point = np.array(point)
+        vector1 = np.array(vector1)
+        vector2 = np.array(vector2)
+
+        # Calculate the normal vector of the plane
+        normal = np.cross(vector1, vector2)
+        normal = normal / np.linalg.norm(normal)  # Normalize the normal vector
+
+        # Construct the reflection matrix
+        n = normal.reshape(3, 1)  # Make the normal a column vector
+        reflection_matrix = np.eye(3) - 2 * (n @ n.T)  # Reflection formula: I - 2 * (n * n^T)
+
+        b = point - reflection_matrix@point
+
+        # Convert to a SimpleITK affine transform
+        transform = sitk.AffineTransform(3)
+        transform.SetMatrix(reflection_matrix.flatten())  # Set the 3x3 matrix
+        transform.SetTranslation(b)  # Set the translation vector
+        return transform
