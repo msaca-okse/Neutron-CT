@@ -1,6 +1,8 @@
 import numpy as np
 import SimpleITK as sitk
 import copy
+import matplotlib.pyplot as plt
+previous_metric_value = None
 
 class Registrator():
     # Class to load in two images: A fixed and a moving image. The class uses simple ITK. These are the things that should be implemented in the class: A loader, to load in two volumes. Read them as numpy files, save them as itk images.
@@ -21,6 +23,8 @@ class Registrator():
 
     # Resample: Takes as input a transformation object and does resampling of the moving image. There should be an argument to this class specifying if linear of nearest neighbor interpoilation is used. Per default, the class overwrites the .moving variable
     # but if inplace=False, the class instead outputs the resampled image.
+    
+    # Skeleton code for this class was generated using chatGPT, by prompting the description above.
 
     """
     A class to load two images (fixed and moving), apply transformations, and perform image registration.
@@ -254,7 +258,7 @@ class Registrator():
 
         return transform
 
-    def register(self, transform_params=None, metric_type: str=None, optimizer_type: str=None,inPlace=False):
+    def register(self, learning_rate = 0.1, sampling_percentage = 0.1, convergence_window_size = 10, max_iter = 500, metric_type = 'mattes', optimizer_type = 'gd',inPlace=False, callback = False, smoothing = [0], shrinking = [1]):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -268,23 +272,47 @@ class Registrator():
         """
         # Registration algorithm logic will go here (in the future)
         registration = sitk.ImageRegistrationMethod()
-        registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=100)
+        if metric_type == 'mattes':
+            registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=100)
+        elif metric_type == 'mean_squares':
+            registration.SetMetricAsMeanSquares()
+
         registration.SetMetricSamplingStrategy(registration.RANDOM)
-        registration.SetMetricSamplingPercentage(0.1)
+        registration.SetMetricSamplingPercentage(sampling_percentage)
 
         # Use a multi-resolution pyramid
-        registration.SetShrinkFactorsPerLevel([2, 2, 1])
-        registration.SetSmoothingSigmasPerLevel([10, 5, 0])
+        registration.SetShrinkFactorsPerLevel(shrinking)
+        registration.SetSmoothingSigmasPerLevel(smoothing)
 
-        registration.SetInitialTransform(sitk.AffineTransform(3), inPlace=inPlace)
-        registration.SetOptimizerAsGradientDescent(learningRate=0.1,
-                                        numberOfIterations=2000,
+        registration.SetInitialTransform(sitk.Similarity3DTransform(), inPlace=inPlace)
+        if optimizer_type == 'gd':
+            registration.SetOptimizerAsGradientDescent(learningRate=learning_rate,
+                                        numberOfIterations=max_iter,
                                         convergenceMinimumValue=1e-6,
-                                            convergenceWindowSize=10)
+                                            convergenceWindowSize=convergence_window_size)
+        elif optimizer_type == 'bfgs':
+            registration.SetOptimizerAsLBFGSB(gradientConvergenceTolerance=1e-16,
+                                                      numberOfIterations=max_iter)
+
         
         registration.SetOptimizerScalesFromPhysicalShift()
         registration.SetInterpolator(sitk.sitkLinear)
+
+        self.metric_values = []
+        self.iterations = []
+        if callback:
+            self.metric_values = []
+            self.iterations = []
+            registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
+            registration.GetOptimizerIteration(),
+            registration.GetMetricValue()
+))
+            
+
         transform = registration.Execute(self.fixed, self.moving)
+        if callback:
+            plt.plot(self.iterations, self.metric_values)
+            plt.show()
 
         return transform.GetNthTransform(0)
 
@@ -405,3 +433,17 @@ class Registrator():
         transform.SetMatrix(reflection_matrix.flatten())  # Set the 3x3 matrix
         transform.SetTranslation(b)  # Set the translation vector
         return transform
+    
+    def registration_callback(self,iteration, metric_value):
+        global previous_metric_value
+        if not iteration % 10:
+            self.metric_values.append(metric_value)
+            self.iterations.append(iteration)
+            if previous_metric_value is not None:
+                metric_difference = abs(previous_metric_value - metric_value)
+                print(f"Iteration {iteration}: Metric Value = {metric_value}, Metric Difference = {metric_difference}")
+            else:
+                print(f"Iteration {iteration}: Metric Value = {metric_value}")
+
+            # Update previous_metric_value for the next iteration
+            previous_metric_value = metric_value
