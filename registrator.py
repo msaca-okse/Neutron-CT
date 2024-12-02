@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 previous_metric_value = None
 import plotly.graph_objects as go
 import plot_library as pl
+import random
 
 class Registrator():
     # Class to load in two images: A fixed and a moving image. The class uses simple ITK. These are the things that should be implemented in the class: A loader, to load in two volumes. Read them as numpy files, save them as itk images.
@@ -43,6 +44,7 @@ class Registrator():
         """
         self.fixed = None
         self.moving = None
+        self.called_inputs = set()
 
     def load_images(self, fixed_array, moving_array):
         """
@@ -129,7 +131,6 @@ class Registrator():
 
         if cast:
             self.fixed =sitk.Cast(self.fixed, sitk.sitkFloat32)
-            print('hello')
             self.moving =sitk.Cast(self.moving, sitk.sitkFloat32)
 
     def downsizing(self, fixed_factor = 2, moving_factor = 2, smooth = False):
@@ -181,7 +182,7 @@ class Registrator():
         """
         if smooth:
             mean_filter = sitk.MeanImageFilter()
-            mean_filter.SetRadius(factor)  # Adjust the radius as needed
+            mean_filter.SetRadius(smooth)  # Adjust the radius as needed
             image = mean_filter.Execute(input_image)
         else:
             image = input_image
@@ -258,9 +259,16 @@ class Registrator():
             transform.SetMatrix(matrix)
             transform.SetTranslation(translation)
 
+        random_integer = random.randint(1, 1000000)
+        transform.ID = random_integer
+
         return transform
 
-    def register(self, learning_rate = 0.1, sampling_percentage = 0.1, convergence_window_size = 10, max_iter = 500, metric_type = 'mattes', optimizer_type = 'gd',inPlace=False, callback = None, smoothing = [0], shrinking = [1]):
+    def register(self, learning_rate = [0.1], sampling_percentage = [0.1],
+                  convergence_window_size = 10, max_iter = [50],
+                    metric_type = ['mattes'], optimizer_type = ['gd'],
+                    inPlace=False, callback = None, smoothing = [0],
+                      shrinking = [1], thresholds=None, histogram_bins = 50):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -272,51 +280,112 @@ class Registrator():
         Returns:
             SimpleITK.Transform: The resulting transformation after registration.
         """
-        # Registration algorithm logic will go here (in the future)
-        registration = sitk.ImageRegistrationMethod()
-        if metric_type == 'mattes':
-            registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=100)
-        elif metric_type == 'mean_squares':
-            registration.SetMetricAsMeanSquares()
+        if isinstance(shrinking, list):
+            len_shrinking = len(shrinking)
+            if isinstance(learning_rate, int) or isinstance(learning_rate, float):
+                learning_rate = np.ones(len_shrinking)*learning_rate
+            if isinstance(sampling_percentage, int) or isinstance(sampling_percentage, float):
+                sampling_percentage = np.ones(len_shrinking)*sampling_percentage
+            if isinstance(max_iter, int) or isinstance(max_iter, float):
+                max_iter = np.ones(len_shrinking)*max_iter
+            if isinstance(metric_type, str):
+                metric_type = np.full((len_shrinking,), metric_type)
+            if isinstance(optimizer_type, str):
+                optimizer_type = np.full((len_shrinking,), optimizer_type)
+        else:
+            len_shrinking = 1
 
-        registration.SetMetricSamplingStrategy(registration.RANDOM)
-        registration.SetMetricSamplingPercentage(sampling_percentage)
 
-        # Use a multi-resolution pyramid
-        registration.SetShrinkFactorsPerLevel(shrinking)
-        registration.SetSmoothingSigmasPerLevel(smoothing)
+        initial_transform = sitk.Similarity3DTransform()
 
-        registration.SetInitialTransform(sitk.Similarity3DTransform(), inPlace=inPlace)
-        if optimizer_type == 'gd':
-            registration.SetOptimizerAsGradientDescent(learningRate=learning_rate,
-                                        numberOfIterations=max_iter,
-                                        convergenceMinimumValue=1e-6,
-                                            convergenceWindowSize=convergence_window_size)
-        elif optimizer_type == 'bfgs':
-            registration.SetOptimizerAsLBFGSB(gradientConvergenceTolerance=1e-16,
-                                                      numberOfIterations=max_iter)
+        # Explicitly set the matrix to the identity matrix
+        initial_transform.SetMatrix([1.0, 0.0, 0.0,
+                                    0.0, 1.0, 0.0,
+                                    0.0, 0.0, 1.0])
 
+        # Set the translation to zero
+        initial_transform.SetTranslation([0.0, 0.0, 0.0])
+
+        # Set the scale to 1.0
+        initial_transform.SetScale(1.0)
         
-        registration.SetOptimizerScalesFromPhysicalShift()
-        registration.SetInterpolator(sitk.sitkLinear)
 
-        self.metric_values = []
-        self.iterations = []
-        if (callback==1) or (callback==2):
+        for i in range(len_shrinking):
+            # Registration algorithm logic will go here (in the future)
+            registration = sitk.ImageRegistrationMethod()
+            registration.SetInitialTransform(initial_transform, inPlace=False)
+
+            if (shrinking[i] is not None):
+                fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=smoothing[i])
+                moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=smoothing[i])
+            else:
+                fixed_d = self.fixed
+                moving_d = self.moving
+
+            if metric_type[i] == 'mmi':
+                registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=histogram_bins)
+            elif metric_type[i] == 'ms' or metric_type[i] == 'ls':
+                registration.SetMetricAsMeanSquares()
+                fixed_d = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+                moving_d = sitk.BinaryThreshold(moving_d, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+                fixed_d =sitk.Cast(fixed_d, sitk.sitkFloat32)
+                moving_d =sitk.Cast(moving_d, sitk.sitkFloat32)
+
+            else:
+                raise ValueError('Specify metric type: Either "mmi" or "ms"/"ls"')
+
+
+            registration.SetMetricSamplingStrategy(registration.RANDOM)
+            registration.SetMetricSamplingPercentage(sampling_percentage[i])
+
+            if optimizer_type[i] == 'gd':
+                registration.SetOptimizerAsGradientDescent(learningRate=learning_rate[i],
+                                            numberOfIterations=max_iter[i],
+                                            convergenceMinimumValue=1e-8,
+                                                convergenceWindowSize=convergence_window_size)
+            elif optimizer_type[i] == 'bfgs':
+                m1 = max(fixed_d.GetSize())
+                m2 = max(moving_d.GetSize())
+                if max(m1,m2)>200:
+                    print('BFGS not recommended. Image too large (', fixed_d.GetSize(), '). Using gradient descent')
+                    registration.SetOptimizerAsGradientDescent(learningRate=learning_rate[i],
+                                            numberOfIterations=max_iter[i],
+                                            convergenceMinimumValue=1e-8,
+                                                convergenceWindowSize=convergence_window_size)
+                else:
+                    registration.SetOptimizerAsLBFGSB(gradientConvergenceTolerance=1e-16,
+                                                            numberOfIterations=max_iter[i])
+            else:
+                raise ValueError('Specify optimization algorithm: Either "gd" or "bfgs"')
+                    
+
+            
+            registration.SetOptimizerScalesFromPhysicalShift()
+            #registration.SetOptimizerScalesFromJacobian()
+
+            registration.SetInterpolator(sitk.sitkLinear)
+
             self.metric_values = []
             self.iterations = []
-            registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
-            registration.GetOptimizerIteration(),
-            registration.GetMetricValue()
-))
-            
+            if (callback==1) or (callback==2):
+                self.metric_values = []
+                self.iterations = []
+                registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
+                registration.GetOptimizerIteration(),
+                registration.GetMetricValue(), every_N = max_iter[i]//10
+    ))
+                
+            transform = registration.Execute(fixed_d, moving_d)
+            if callback==2:
+                plt.plot(self.iterations, self.metric_values)
+                plt.show()
 
-        transform = registration.Execute(self.fixed, self.moving)
-        if callback==2:
-            plt.plot(self.iterations, self.metric_values)
-            plt.show()
+            initial_transform = transform
 
-        return transform.GetNthTransform(0)
+        random_integer = random.randint(1, 1000000)
+        out_transform = transform
+        out_transform.ID = random_integer
+        return out_transform
 
     def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True,fixed=False):
         """
@@ -330,6 +399,15 @@ class Registrator():
         Returns:
             SimpleITK.Image: The resampled image (if inplace=False).
         """
+
+        if transform.ID in self.called_inputs:
+            print(f"Method already called with ID: {transform.ID}")
+            return
+        self.called_inputs.add(transform.ID)
+        
+        # Perform the operation
+        print(f"Resampling the transformation: {transform.ID}")
+
         if interpolation_type == 'linear':
             interpolation_method = sitk.sitkLinear
         elif interpolation_type == 'nearest':
@@ -436,9 +514,9 @@ class Registrator():
         transform.SetTranslation(b)  # Set the translation vector
         return transform
     
-    def registration_callback(self,iteration, metric_value):
+    def registration_callback(self,iteration, metric_value,every_N):
         global previous_metric_value
-        if not iteration % 10:
+        if not iteration % every_N:
             self.metric_values.append(metric_value)
             self.iterations.append(iteration)
             if previous_metric_value is not None:
