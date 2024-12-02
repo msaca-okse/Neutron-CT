@@ -3,6 +3,8 @@ import SimpleITK as sitk
 import copy
 import matplotlib.pyplot as plt
 previous_metric_value = None
+import plotly.graph_objects as go
+import plot_library as pl
 
 class Registrator():
     # Class to load in two images: A fixed and a moving image. The class uses simple ITK. These are the things that should be implemented in the class: A loader, to load in two volumes. Read them as numpy files, save them as itk images.
@@ -258,7 +260,7 @@ class Registrator():
 
         return transform
 
-    def register(self, learning_rate = 0.1, sampling_percentage = 0.1, convergence_window_size = 10, max_iter = 500, metric_type = 'mattes', optimizer_type = 'gd',inPlace=False, callback = False, smoothing = [0], shrinking = [1]):
+    def register(self, learning_rate = 0.1, sampling_percentage = 0.1, convergence_window_size = 10, max_iter = 500, metric_type = 'mattes', optimizer_type = 'gd',inPlace=False, callback = None, smoothing = [0], shrinking = [1]):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -300,7 +302,7 @@ class Registrator():
 
         self.metric_values = []
         self.iterations = []
-        if callback:
+        if (callback==1) or (callback==2):
             self.metric_values = []
             self.iterations = []
             registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
@@ -310,7 +312,7 @@ class Registrator():
             
 
         transform = registration.Execute(self.fixed, self.moving)
-        if callback:
+        if callback==2:
             plt.plot(self.iterations, self.metric_values)
             plt.show()
 
@@ -447,3 +449,107 @@ class Registrator():
 
             # Update previous_metric_value for the next iteration
             previous_metric_value = metric_value
+
+
+    def plot2d(self, thresholds):
+        fixed_d = self._downsample_image(self.fixed,factor = 5)
+        moving_d = self._downsample_image(self.moving,factor = 5)
+        binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_fixed.Execute(binary_fixed)
+        principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+        matrix = np.array(principal_axes_fixed).reshape((3, 3)).T.flatten()
+        transform_coordinate_axes = self.transformation(type='Euler3DTransform',matrix=matrix)
+
+        # Resample
+        resampler = sitk.ResampleImageFilter()
+        resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
+        resampler.SetInterpolator(sitk.sitkLinear)   # Interpolation method
+        resampler.SetTransform(transform_coordinate_axes)    # Apply the initial transform (aligned centroids)
+        resampler.SetOutputPixelType(fixed_d.GetPixelID())
+        resampler.SetOutputSpacing(fixed_d.GetSpacing())  # Ensure the spacing is preserved
+        resampler.SetOutputOrigin(fixed_d.GetOrigin())  # Preserve origin
+        resampler.SetOutputDirection(fixed_d.GetDirection())
+        fixed_d = resampler.Execute(fixed_d)  # Resample the moving image
+        moving_d = resampler.Execute(moving_d)  # Resample the moving image
+        #fixed_d = fixed_d>thresholds[0]
+        #moving_d = moving_d > thresholds[1]
+        fixed_d = sitk.GetArrayFromImage(fixed_d)
+        moving_d = sitk.GetArrayFromImage(moving_d)
+
+        index = np.argmax(np.sum(fixed_d,axis=(0,1)))
+        plt.figure()
+        plt.imshow(fixed_d[:,:,index], cmap='viridis', alpha=0.5)
+        plt.imshow(moving_d[:,:,index], cmap='plasma', alpha=0.5)
+        plt.show()
+
+
+
+    def plot3d(self, thresholds, smooth = [False, False]):
+        n1,n2,n3 = np.shape(sitk.GetArrayFromImage(self.fixed))
+        m1, m2, m3 = n1//50, n2//50, n3//50
+        m = np.max((m1,m2,m3))
+        
+        fixed_d = self._downsample_image(self.fixed, factor=m)
+        moving_d = self._downsample_image(self.moving,factor=m)
+
+        mean_filter = sitk.MeanImageFilter()
+        mean_filter.SetRadius(3)  # Adjust the radius as needed
+        if smooth[0]:
+            mean_filter = sitk.MeanImageFilter()
+            mean_filter.SetRadius(smooth[0])  # Adjust the radius as needed
+            fixed_d = mean_filter.Execute(fixed_d)
+        if smooth[1]:
+            mean_filter = sitk.MeanImageFilter()
+            mean_filter.SetRadius(smooth[1])  # Adjust the radius as needed
+            moving_d = mean_filter.Execute(moving_d)
+
+        fixed_d = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        moving_d = sitk.BinaryThreshold(moving_d, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+
+        fixed_d = sitk.GetArrayFromImage(fixed_d)
+        moving_d = sitk.GetArrayFromImage(moving_d)
+
+        #pl.render_3d(fixed_d, isomin = thresholds[0], isomax = 1.0, opacity = 0.1)
+        #pl.render_3d(moving_d, isomin = thresholds[1], isomax = 1.0, opacity = 0.1)
+
+        data = [go.Volume(
+        x=np.repeat(np.arange(fixed_d.shape[0]), fixed_d.shape[1] * fixed_d.shape[2]),
+        y=np.tile(np.repeat(np.arange(fixed_d.shape[1]), fixed_d.shape[2]), fixed_d.shape[0]),
+        z=np.tile(np.arange(fixed_d.shape[2]), fixed_d.shape[0] * fixed_d.shape[1]),
+        value=(fixed_d-moving_d).flatten(),  # Flatten the matrix to get values
+        opacity=0.2,  # Lower opacity for a better 3D effect
+        isomin=thresholds[0],   # Minimum threshold for volume rendering
+        isomax=1.0,   # Maximum threshold for volume rendering
+        surface_count=40,  # Number of surfaces in the volume rendering
+        colorscale="Viridis")
+        #go.Volume(
+        #    x=np.repeat(np.arange(moving_d.shape[0]), moving_d.shape[1] * moving_d.shape[2]),
+        #    y=np.tile(np.repeat(np.arange(moving_d.shape[1]), moving_d.shape[2]), moving_d.shape[0]),
+        #    z=np.tile(np.arange(moving_d.shape[2]), moving_d.shape[0] * moving_d.shape[1]),
+        #    value=moving_d.flatten(),  # Flatten the matrix to get values
+        #    opacity=0.2,  # Lower opacity for a better 3D effect
+        #    isomin=thresholds[1],   # Minimum threshold for volume rendering
+        ##    isomax=1.0,   # Maximum threshold for volume rendering
+         #   surface_count=40,  # Number of surfaces in the volume rendering
+         #   colorscale="thermal"
+        #)
+        ]
+        fig = go.Figure(data=data)
+
+        fig.update_layout(
+            scene=dict(
+                xaxis=dict(nticks=4, range=[0, fixed_d.shape[0]], title='X Axis'),
+                yaxis=dict(nticks=4, range=[0, fixed_d.shape[1]], title='Y Axis'),
+                zaxis=dict(nticks=4, range=[0, fixed_d.shape[2]], title='Z Axis'),
+                aspectmode='manual',  # Set manual aspect ratio
+                aspectratio=dict(
+                    x=fixed_d.shape[0] / fixed_d.shape[2],
+                    y=fixed_d.shape[1] / fixed_d.shape[2],
+                    z=1  # Use 1 as the reference dimension for scaling
+                )
+            ),
+            title="3D rendering"
+        )
+
+        fig.show()
