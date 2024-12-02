@@ -45,6 +45,8 @@ class Registrator():
         self.fixed = None
         self.moving = None
         self.called_inputs = set()
+        self.fixed_smooth = {}
+        self.moving_smooth = {}
 
     def load_images(self, fixed_array, moving_array):
         """
@@ -146,6 +148,12 @@ class Registrator():
         self.fixed = self._downsample_image(input_image=self.fixed, factor = fixed_factor,smooth = smooth)
         self.moving = self._downsample_image(input_image=self.moving, factor = moving_factor, smooth = smooth)
 
+
+    def apply_mean(self, input_image, smooth):
+            mean_filter = sitk.MeanImageFilter()
+            mean_filter.SetRadius(smooth)  # Adjust the radius as needed
+            image = mean_filter.Execute(input_image)
+            return image
 
     def _downsample_image(self, input_image, factor=10,smooth=False):
         """
@@ -268,7 +276,8 @@ class Registrator():
                   convergence_window_size = 10, max_iter = [50],
                     metric_type = ['mattes'], optimizer_type = ['gd'],
                     inPlace=False, callback = None, smoothing = [0],
-                      shrinking = [1], thresholds=None, histogram_bins = 50):
+                      shrinking = [1], thresholds=None, histogram_bins = 50,
+                      smooth_fixed = False, smooth_moving = False):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -315,10 +324,33 @@ class Registrator():
             registration = sitk.ImageRegistrationMethod()
             registration.SetInitialTransform(initial_transform, inPlace=False)
 
-            if (shrinking[i] is not None):
-                fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=smoothing[i])
-                moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=smoothing[i])
-            else:
+            if (shrinking[i] is not None) and smooth_fixed:
+                if str(smoothing[i]) in self.fixed_smooth:
+                    print('Using precalculated smoothed fixed image with shrinking')
+                    fixed_d = self._downsample_image(self.fixed_smooth[str(smoothing[i])], factor=shrinking[i],smooth = 0)
+                else:
+                    print('Calculating smoothed fixed image with shrinking')
+                    fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=smoothing[i])
+
+            if (shrinking[i] is not None) and smooth_moving:
+                if str(smoothing[i]) in self.moving_smooth:
+                    print('Using precalculated smoothed moving image with shrinking')
+                    moving_d = self._downsample_image(self.moving_smooth[str(smoothing[i])], factor=shrinking[i],smooth = 0)
+                else:
+                    print('Calculating smoothed moving image with shrinking')
+                    moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=smoothing[i])
+
+
+            if (shrinking[i] is not None) and (not smooth_fixed):
+                print('Using non-smoothed fixed image with shrinking')
+                fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=0)
+
+            if (shrinking[i] is not None) and (not smooth_moving):
+                    print('Using non-smoothed moving image with shrinking')
+                    moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=0)
+
+            if (shrinking[i] is None):
+                print('Using non-smoothed moving image without shrinking')
                 fixed_d = self.fixed
                 moving_d = self.moving
 
@@ -367,6 +399,7 @@ class Registrator():
 
             self.metric_values = []
             self.iterations = []
+            print(max_iter[i])
             if (callback==1) or (callback==2):
                 self.metric_values = []
                 self.iterations = []
@@ -383,7 +416,7 @@ class Registrator():
             initial_transform = transform
 
         random_integer = random.randint(1, 1000000)
-        out_transform = transform
+        out_transform = transform.GetNthTransform(0)
         out_transform.ID = random_integer
         return out_transform
 
@@ -424,14 +457,26 @@ class Registrator():
         
         if fixed:
             if inplace:
+                print('Resampling fixed image')
                 self.fixed = resampler.Execute(self.fixed)  # Resample the moving image
+                for key, value in self.fixed_smooth.items():
+                    print('Resampling smoothed fixed images')
+                    self.fixed_smooth[key] = resampler.Execute(self.fixed_smooth[key])
             else:
+                print('Returning resampled fixed image')
                 return resampler.Execute(self.fixed)
         else:
+            
             if inplace:
+                print('Resampling moving image')
                 self.moving = resampler.Execute(self.moving)  # Resample the moving image
+                for key, value in self.moving_smooth.items():
+                    self.moving_smooth[key] = resampler.Execute(self.moving_smooth[key])
+                    print('Resampling smoothed moving images')
             else:
+                print('Returning resampled moving image')
                 return resampler.Execute(self.moving)
+            
         
         
 
@@ -529,15 +574,17 @@ class Registrator():
             previous_metric_value = metric_value
 
 
-    def plot2d(self, thresholds):
-        fixed_d = self._downsample_image(self.fixed,factor = 5)
-        moving_d = self._downsample_image(self.moving,factor = 5)
+    def plot2d(self, thresholds, difference=False):
+        factor = 5
+        fixed_d = self._downsample_image(self.fixed,factor = factor)
+        moving_d = self._downsample_image(self.moving,factor = factor)
         binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
         label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
         label_shape_filter_fixed.Execute(binary_fixed)
         principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
         matrix = np.array(principal_axes_fixed).reshape((3, 3)).T.flatten()
         transform_coordinate_axes = self.transformation(type='Euler3DTransform',matrix=matrix)
+
 
         # Resample
         resampler = sitk.ResampleImageFilter()
@@ -550,16 +597,38 @@ class Registrator():
         resampler.SetOutputDirection(fixed_d.GetDirection())
         fixed_d = resampler.Execute(fixed_d)  # Resample the moving image
         moving_d = resampler.Execute(moving_d)  # Resample the moving image
-        #fixed_d = fixed_d>thresholds[0]
-        #moving_d = moving_d > thresholds[1]
+        fixed_d = sitk.GetArrayFromImage(fixed_d)
+        moving_d = sitk.GetArrayFromImage(moving_d)
+        index = np.argmax(np.sum(fixed_d,axis=(0,1)))
+
+        fixed_d = self._downsample_image(self.fixed,factor = 2)
+        moving_d = self._downsample_image(self.moving,factor = 2)
+
+        resampler = sitk.ResampleImageFilter()
+        resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
+        resampler.SetInterpolator(sitk.sitkLinear)   # Interpolation method
+        resampler.SetTransform(transform_coordinate_axes)    # Apply the initial transform (aligned centroids)
+        resampler.SetOutputPixelType(fixed_d.GetPixelID())
+        resampler.SetOutputSpacing(fixed_d.GetSpacing())  # Ensure the spacing is preserved
+        resampler.SetOutputOrigin(fixed_d.GetOrigin())  # Preserve origin
+        resampler.SetOutputDirection(fixed_d.GetDirection())
+        fixed_d = resampler.Execute(fixed_d)  # Resample the moving image
+        moving_d = resampler.Execute(moving_d)  # Resample the moving image
         fixed_d = sitk.GetArrayFromImage(fixed_d)
         moving_d = sitk.GetArrayFromImage(moving_d)
 
-        index = np.argmax(np.sum(fixed_d,axis=(0,1)))
-        plt.figure()
-        plt.imshow(fixed_d[:,:,index], cmap='viridis', alpha=0.5)
-        plt.imshow(moving_d[:,:,index], cmap='plasma', alpha=0.5)
-        plt.show()
+        binary_fixed= (fixed_d>thresholds[0])*1
+        binary_moving = (moving_d > thresholds[1])*1
+        if difference:
+            plt.figure()
+            plt.imshow(binary_fixed[:,:,factor*index//2] - binary_moving[:,:,factor*index//2], cmap='viridis', alpha=0.5)
+            plt.show()
+        else:
+            plt.figure()
+            plt.imshow(fixed_d[:,:,factor*index//2], cmap='viridis', alpha=0.5)
+            plt.imshow(moving_d[:,:,factor*index//2], cmap='plasma', alpha=0.5)
+            plt.show()
+
 
 
 
