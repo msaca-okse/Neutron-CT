@@ -379,7 +379,7 @@ class Registrator():
             else:
                 raise ValueError('Specify optimization algorithm: Either "gd" or "bfgs"')
                                
-            registration.SetOptimizerScalesFromPhysicalShift(smallParameterVariation = 0.01)
+            #registration.SetOptimizerScalesFromPhysicalShift(smallParameterVariation = 0.01)
             #registration.SetOptimizerScalesFromJacobian()
 
             registration.SetInterpolator(sitk.sitkLinear)
@@ -393,7 +393,7 @@ class Registrator():
                 registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
                 registration.GetOptimizerIteration(),
                 registration.GetMetricValue(), every_N = max_iter[i]//10,
-                learning_rate =registration.GetOptimizerScales()))
+                learning_rate =registration.GetOptimizerLearningRate()))
                 
             registration.Execute(fixed_d, moving_d)
             transform = registration.GetInitialTransform()
