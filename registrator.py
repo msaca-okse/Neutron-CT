@@ -60,6 +60,18 @@ class Registrator():
         # Convert numpy arrays to SimpleITK images
         self.fixed = sitk.GetImageFromArray(fixed_array)
         self.moving = sitk.GetImageFromArray(moving_array)
+
+
+        f_size = self.fixed.GetSize()
+        m_size = self.moving.GetSize()
+        max_f = max(f_size)
+        max_m = max(m_size)
+        max_size = max(max_f,max_m)
+
+        self.fixed.SetSpacing((1.5/max_size,1.5/max_size,1.5/max_size))
+        self.moving.SetSpacing((1.5/max_size,1.5/max_size,1.5/max_size))
+
+
         size_fixed = self.fixed.GetSize()
         size_moving = self.moving.GetSize()
 
@@ -344,12 +356,14 @@ class Registrator():
             registration.SetMetricSamplingPercentage(sampling_percentage[i])
 
             if optimizer_type[i] == 'gd':
-                registration.SetOptimizerAsGradientDescent(learningRate=learning_rate,
-                                            numberOfIterations=max_iter[i],
-                                            convergenceMinimumValue=1e-8,
-                                                convergenceWindowSize=convergence_window_size)
-                learning_rate = registration.GetOptimizerLearningRate()
-                print('Learning rate after execution:', f"{learning_rate:.15f}")
+                registration.SetOptimizerAsGradientDescent(
+                learningRate=learning_rate,
+                numberOfIterations=max_iter[i],
+                convergenceMinimumValue=-1e-16,
+                convergenceWindowSize=1000
+            )
+
+
             elif optimizer_type[i] == 'bfgs':
                 m1 = max(fixed_d.GetSize())
                 m2 = max(moving_d.GetSize())
@@ -364,10 +378,8 @@ class Registrator():
                                                             numberOfIterations=max_iter[i])
             else:
                 raise ValueError('Specify optimization algorithm: Either "gd" or "bfgs"')
-                    
-
-            
-            registration.SetOptimizerScalesFromPhysicalShift()
+                               
+            registration.SetOptimizerScalesFromPhysicalShift(smallParameterVariation = 0.01)
             #registration.SetOptimizerScalesFromJacobian()
 
             registration.SetInterpolator(sitk.sitkLinear)
@@ -375,19 +387,15 @@ class Registrator():
 
             self.metric_values = []
             self.iterations = []
-            print(max_iter[i])
             if (callback==1) or (callback==2):
                 self.metric_values = []
                 self.iterations = []
                 registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
                 registration.GetOptimizerIteration(),
-                registration.GetMetricValue(), every_N = max_iter[i]//10))
+                registration.GetMetricValue(), every_N = max_iter[i]//10,
+                learning_rate =registration.GetOptimizerScales()))
                 
-            learning_rate = registration.GetOptimizerLearningRate()
-            print('Learning rate after execution:', f"{learning_rate:.15f}")
             registration.Execute(fixed_d, moving_d)
-            learning_rate = registration.GetOptimizerLearningRate()
-            print('Learning rate after execution:', f"{learning_rate:.15f}")
             transform = registration.GetInitialTransform()
             initial_transform = sitk.Similarity3DTransform(transform)
 
@@ -404,7 +412,7 @@ class Registrator():
         out_transform = transform#.GetNthTransform(0)
         out_transform.ID = random_integer
         self.learning_rate = learning_rate
-        return out_transform
+        return out_transform, registration
 
     def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True,fixed=False):
         """
@@ -545,7 +553,7 @@ class Registrator():
         transform.SetTranslation(b)  # Set the translation vector
         return transform
     
-    def registration_callback(self,iteration, metric_value,every_N):
+    def registration_callback(self,iteration, metric_value,every_N, learning_rate):
         global previous_metric_value
         if not iteration % every_N:
             self.metric_values.append(metric_value)
@@ -555,6 +563,8 @@ class Registrator():
                 print(f"Iteration {iteration}: Metric Value = {metric_value}, Metric Difference = {metric_difference}")
             else:
                 print(f"Iteration {iteration}: Metric Value = {metric_value}")
+
+            print('The current learning rate is', learning_rate)
 
             # Update previous_metric_value for the next iteration
             previous_metric_value = metric_value
@@ -587,8 +597,9 @@ class Registrator():
         moving_d = sitk.GetArrayFromImage(moving_d)
         index = np.argmax(np.sum(fixed_d,axis=(0,1)))
 
-        fixed_d = self._downsample_image(self.fixed,factor = 2)
-        moving_d = self._downsample_image(self.moving,factor = 2)
+        show_factor = 4
+        fixed_d = self._downsample_image(self.fixed,factor = show_factor)
+        moving_d = self._downsample_image(self.moving,factor = show_factor)
 
         resampler = sitk.ResampleImageFilter()
         resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
@@ -607,12 +618,12 @@ class Registrator():
         binary_moving = (moving_d > thresholds[1])*1
         if difference:
             plt.figure()
-            plt.imshow(binary_fixed[:,:,factor*index//2] - binary_moving[:,:,factor*index//2], cmap='viridis', alpha=0.5)
+            plt.imshow(binary_fixed[:,:,factor*index//show_factor] - binary_moving[:,:,factor*index//show_factor], cmap='viridis', alpha=0.5)
             plt.show()
         else:
             plt.figure()
-            plt.imshow(fixed_d[:,:,factor*index//2], cmap='viridis', alpha=0.5)
-            plt.imshow(moving_d[:,:,factor*index//2], cmap='plasma', alpha=0.5)
+            plt.imshow(fixed_d[:,:,factor*index//show_factor], cmap='viridis', alpha=0.5)
+            plt.imshow(moving_d[:,:,factor*index//show_factor], cmap='plasma', alpha=0.5)
             plt.show()
 
 
@@ -720,3 +731,34 @@ class Registrator():
             moving_d = self.moving
 
         return fixed_d, moving_d
+
+
+    def resample_to_unit_spacing(self, image):
+        current_spacing = image.GetSpacing()
+        current_size = image.GetSize()
+
+        # Compute the average physical spacing
+        average_spacing = sum(current_spacing) / len(current_spacing)
+
+        # Normalize spacing to 1.0
+        desired_spacing = [1.0] * len(current_spacing)
+
+        # Compute the new size to maintain the resolution
+        new_size = [
+            int(round(current_size[i] * (current_spacing[i] / desired_spacing[i])))
+            for i in range(len(current_spacing))
+        ]
+
+        # Resample the image with normalized spacing
+        resampled_image = sitk.Resample(
+            image,
+            new_size,
+            sitk.Transform(),
+            sitk.sitkLinear,  # Interpolation method
+            image.GetOrigin(),
+            desired_spacing,
+            image.GetDirection(),
+            0,  # Default pixel value for areas outside original image
+            image.GetPixelID(),
+        )
+        return resampled_image
