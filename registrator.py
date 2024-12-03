@@ -272,7 +272,7 @@ class Registrator():
 
         return transform
 
-    def register(self, learning_rate = [0.1], sampling_percentage = [0.1],
+    def register(self, learning_rate = 0.1, sampling_percentage = [0.1],
                   convergence_window_size = 10, max_iter = [50],
                     metric_type = ['mattes'], optimizer_type = ['gd'],
                     inPlace=False, callback = None, smoothing = [0],
@@ -291,8 +291,6 @@ class Registrator():
         """
         if isinstance(shrinking, list):
             len_shrinking = len(shrinking)
-            if isinstance(learning_rate, int) or isinstance(learning_rate, float):
-                learning_rate = np.ones(len_shrinking)*learning_rate
             if isinstance(sampling_percentage, int) or isinstance(sampling_percentage, float):
                 sampling_percentage = np.ones(len_shrinking)*sampling_percentage
             if isinstance(max_iter, int) or isinstance(max_iter, float):
@@ -317,42 +315,17 @@ class Registrator():
 
         # Set the scale to 1.0
         initial_transform.SetScale(1.0)
+
+        registration = sitk.ImageRegistrationMethod()
+
         
 
         for i in range(len_shrinking):
-            # Registration algorithm logic will go here (in the future)
-            registration = sitk.ImageRegistrationMethod()
-            registration.SetInitialTransform(initial_transform, inPlace=False)
-
-            if (shrinking[i] is not None) and smooth_fixed:
-                if str(smoothing[i]) in self.fixed_smooth:
-                    print('Using precalculated smoothed fixed image with shrinking')
-                    fixed_d = self._downsample_image(self.fixed_smooth[str(smoothing[i])], factor=shrinking[i],smooth = 0)
-                else:
-                    print('Calculating smoothed fixed image with shrinking')
-                    fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=smoothing[i])
-
-            if (shrinking[i] is not None) and smooth_moving:
-                if str(smoothing[i]) in self.moving_smooth:
-                    print('Using precalculated smoothed moving image with shrinking')
-                    moving_d = self._downsample_image(self.moving_smooth[str(smoothing[i])], factor=shrinking[i],smooth = 0)
-                else:
-                    print('Calculating smoothed moving image with shrinking')
-                    moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=smoothing[i])
-
-
-            if (shrinking[i] is not None) and (not smooth_fixed):
-                print('Using non-smoothed fixed image with shrinking')
-                fixed_d = self._downsample_image(self.fixed, factor=shrinking[i],smooth=0)
-
-            if (shrinking[i] is not None) and (not smooth_moving):
-                    print('Using non-smoothed moving image with shrinking')
-                    moving_d = self._downsample_image(self.moving, factor=shrinking[i],smooth=0)
-
-            if (shrinking[i] is None):
-                print('Using non-smoothed moving image without shrinking')
-                fixed_d = self.fixed
-                moving_d = self.moving
+            registration.SetInitialTransform(initial_transform)
+            # Registration algorithm logic will go here
+            smoothing_i = smoothing[i]
+            shrinking_i = shrinking[i]
+            fixed_d, moving_d = self.choose_registration_images(smoothing_i, shrinking_i, smooth_fixed, smooth_moving)
 
             if metric_type[i] == 'mmi':
                 registration.SetMetricAsMattesMutualInformation(numberOfHistogramBins=histogram_bins)
@@ -371,16 +344,18 @@ class Registrator():
             registration.SetMetricSamplingPercentage(sampling_percentage[i])
 
             if optimizer_type[i] == 'gd':
-                registration.SetOptimizerAsGradientDescent(learningRate=learning_rate[i],
+                registration.SetOptimizerAsGradientDescent(learningRate=learning_rate,
                                             numberOfIterations=max_iter[i],
                                             convergenceMinimumValue=1e-8,
                                                 convergenceWindowSize=convergence_window_size)
+                learning_rate = registration.GetOptimizerLearningRate()
+                print('Learning rate after execution:', f"{learning_rate:.15f}")
             elif optimizer_type[i] == 'bfgs':
                 m1 = max(fixed_d.GetSize())
                 m2 = max(moving_d.GetSize())
                 if max(m1,m2)>200:
                     print('BFGS not recommended. Image too large (', fixed_d.GetSize(), '). Using gradient descent')
-                    registration.SetOptimizerAsGradientDescent(learningRate=learning_rate[i],
+                    registration.SetOptimizerAsGradientDescent(learningRate=learning_rate,
                                             numberOfIterations=max_iter[i],
                                             convergenceMinimumValue=1e-8,
                                                 convergenceWindowSize=convergence_window_size)
@@ -397,6 +372,7 @@ class Registrator():
 
             registration.SetInterpolator(sitk.sitkLinear)
 
+
             self.metric_values = []
             self.iterations = []
             print(max_iter[i])
@@ -405,19 +381,29 @@ class Registrator():
                 self.iterations = []
                 registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
                 registration.GetOptimizerIteration(),
-                registration.GetMetricValue(), every_N = max_iter[i]//10
-    ))
+                registration.GetMetricValue(), every_N = max_iter[i]//10))
                 
-            transform = registration.Execute(fixed_d, moving_d)
+            learning_rate = registration.GetOptimizerLearningRate()
+            print('Learning rate after execution:', f"{learning_rate:.15f}")
+            registration.Execute(fixed_d, moving_d)
+            learning_rate = registration.GetOptimizerLearningRate()
+            print('Learning rate after execution:', f"{learning_rate:.15f}")
+            transform = registration.GetInitialTransform()
+            initial_transform = sitk.Similarity3DTransform(transform)
+
+
+            if callback == 1:
+                print('Transformation has matrix', initial_transform.GetMatrix(),' and translation', initial_transform.GetTranslation())
+                print('Learning rate after execution:', f"{learning_rate:.15f}")
+
             if callback==2:
                 plt.plot(self.iterations, self.metric_values)
                 plt.show()
 
-            initial_transform = transform
-
         random_integer = random.randint(1, 1000000)
-        out_transform = transform.GetNthTransform(0)
+        out_transform = transform#.GetNthTransform(0)
         out_transform.ID = random_integer
+        self.learning_rate = learning_rate
         return out_transform
 
     def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True,fixed=False):
@@ -700,3 +686,37 @@ class Registrator():
         )
 
         fig.show()
+
+
+    def choose_registration_images(self, smoothing_i, shrinking_i, smooth_fixed, smooth_moving):
+        if (shrinking_i is not None) and smooth_fixed:
+            if str(smoothing_i) in self.fixed_smooth:
+                print('Using precalculated smoothed fixed image with shrinking')
+                fixed_d = self._downsample_image(self.fixed_smooth[str(smoothing_i)], factor=shrinking_i,smooth = 0)
+            else:
+                print('Calculating smoothed fixed image with shrinking')
+                fixed_d = self._downsample_image(self.fixed, factor=shrinking_i,smooth=smoothing_i)
+
+        if (shrinking_i is not None) and smooth_moving:
+            if str(smoothing_i) in self.moving_smooth:
+                print('Using precalculated smoothed moving image with shrinking')
+                moving_d = self._downsample_image(self.moving_smooth[str(smoothing_i)], factor=shrinking_i,smooth = 0)
+            else:
+                print('Calculating smoothed moving image with shrinking')
+                moving_d = self._downsample_image(self.moving, factor=shrinking_i,smooth=smoothing_i)
+
+
+        if (shrinking_i is not None) and (not smooth_fixed):
+            print('Using non-smoothed fixed image with shrinking')
+            fixed_d = self._downsample_image(self.fixed, factor=shrinking_i,smooth=0)
+
+        if (shrinking_i is not None) and (not smooth_moving):
+                print('Using non-smoothed moving image with shrinking')
+                moving_d = self._downsample_image(self.moving, factor=shrinking_i,smooth=0)
+
+        if (shrinking_i is None):
+            print('Using non-smoothed moving image without shrinking')
+            fixed_d = self.fixed
+            moving_d = self.moving
+
+        return fixed_d, moving_d
