@@ -252,7 +252,8 @@ class Registrator():
 
 
 
-    def transformation(self, type='Similarity3Dtransform', matrix=None,translation=(0,0,0)):
+    def transformation(self, type='Similarity3Dtransform', matrix=None,translation=(0,0,0),
+     thresholds = [0.5, 0.5], principal_inverse=False, principal_fixed=True):
         """
         Returns a transformation object based on the provided transformation parameters.
         
@@ -280,6 +281,37 @@ class Registrator():
             transform = sitk.Euler3DTransform()
             transform.SetMatrix(matrix)
             transform.SetTranslation(translation)
+        elif type == 'Affine':
+            transform = sitk.AffineTransform(3)
+            transform.SetMatrix(matrix)
+            transform.SetTranslation(translation)
+        elif type == 'Principal':
+            transform = sitk.Euler3DTransform()
+            factor = 5
+            if not principal_inverse:
+                if principal_fixed:
+                    fixed_d = self._downsample_image(self.fixed,factor = factor)
+                    binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+                    label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+                    label_shape_filter_fixed.Execute(binary_fixed)
+                    principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+                    matrix = np.array(principal_axes_fixed).reshape((3, 3)).T.flatten()
+                    translation = -GetCentroid(1)
+                    transform.SetMatrix(matrix)
+                    transform.SetTranslation(translation)
+            else:
+                if principal_fixed:
+                    fixed_d = self._downsample_image(self.fixed,factor = factor)
+                    binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+                    label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+                    label_shape_filter_fixed.Execute(binary_fixed)
+                    principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+                    matrix = np.array(principal_axes_fixed).reshape((3, 3)).flatten()
+                    translation = GetCentroid(1)
+                    transform.SetMatrix(matrix)
+                    transform.SetTranslation(translation)
+
+
 
         random_integer = random.randint(1, 1000000)
         transform.ID = random_integer
@@ -288,9 +320,9 @@ class Registrator():
         return transform
 
     def register(self, learning_rate = 0.1, sampling_percentage = 0.1,
-                  convergence_window_size = 10, max_iter = 50,
+                     max_iter = 50,
                     metric_type = 'ms', optimizer_type = 'gd',
-                    inPlace=False, callback = None, smoothing = 0,
+                     smoothing = 0,
                       shrinking = 1, thresholds=None, histogram_bins = 50,
                       smooth_fixed = False, smooth_moving = False):
         """
