@@ -296,7 +296,7 @@ class Registrator():
                     label_shape_filter_fixed.Execute(binary_fixed)
                     principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
                     matrix = np.array(principal_axes_fixed).reshape((3, 3)).T.flatten()
-                    translation = -GetCentroid(1)
+                    translation = -np.array(label_shape_filter_fixed.GetCentroid(1))
                     transform.SetMatrix(matrix)
                     transform.SetTranslation(translation)
             else:
@@ -307,7 +307,7 @@ class Registrator():
                     label_shape_filter_fixed.Execute(binary_fixed)
                     principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
                     matrix = np.array(principal_axes_fixed).reshape((3, 3)).flatten()
-                    translation = GetCentroid(1)
+                    translation = np.array(label_shape_filter_fixed.GetCentroid(1))
                     transform.SetMatrix(matrix)
                     transform.SetTranslation(translation)
 
