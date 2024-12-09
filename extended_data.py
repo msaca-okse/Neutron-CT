@@ -103,12 +103,24 @@ class ExtendedData:
             raise ValueError("GPU is not available.")
         
         if subdata:
-            print(np.shape(self.subdata.as_array()))
-            ig = self.subdata.geometry.get_ImageGeometry(resolution=1)
-            self.subdata.reorder('astra')
-            device = 'gpu'
-            fbp = FBP(ig,self.subdata.geometry,device)
-            reconstruction = fbp(self.subdata)
+            #print(np.shape(self.subdata.as_array()))
+            #ig = self.subdata.geometry.get_ImageGeometry(resolution=1)
+            #print(ig)
+            #self.subdata.reorder('astra')
+            #device = 'gpu'
+            #fbp = FBP(ig,self.subdata.geometry,device)
+            #reconstruction = fbp(self.subdata)
+            reconstruction = np.empty((len(self.subslices), self.subdata.shape[2],self.subdata.shape[2]))
+            for i in range(len(self.subslices)):
+                data2D = self.subdata.get_slice(vertical=i)
+                data2D.reorder('astra')
+                ag2D = data2D.geometry
+                ag2D.set_angles(ag2D.angles, initial_angle=0.0)
+                ig2D = ag2D.get_ImageGeometry()
+                device = 'gpu'
+                fbp = FBP(ig2D,ag2D,device)
+                reconstruction[i] = fbp(data2D)
+
         else:
             ig = self.data.geometry.get_ImageGeometry(resolution=1)
             self.data.reorder('astra')
