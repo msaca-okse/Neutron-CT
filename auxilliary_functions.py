@@ -16,6 +16,7 @@
 
 import numpy as np
 import SimpleITK as sitk
+import os
 
 def compute_threshold(image, n_classes=1):
     if isinstance(image,np.ndarray):
@@ -69,3 +70,18 @@ def downsample_direct(image, factor):
 
     return downsampled_image
 
+def generate_paths(path, A):
+    # Extract the folder and filename pattern
+    folder, filename_pattern = os.path.split(path)
+    
+    # Determine the number of digits in the zero-padding
+    num_digits = filename_pattern.count('#')
+    filename_base = filename_pattern.replace('#' * num_digits, '{}')
+
+    # Generate the list of paths
+    paths = [
+        os.path.join(folder, filename_base.format(str(num).zfill(num_digits)))
+        for num in A
+    ]
+    
+    return paths
