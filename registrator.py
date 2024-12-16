@@ -424,7 +424,7 @@ class Registrator():
         transform.FLAG = self.metric_value > self.first_metric_value
         return transform
 
-    def resample(self, transform, interpolation_type: str = 'linear', inplace: bool = True,fixed=False):
+    def resample(self, transform=None, interpolation_type: str = 'linear', inplace: bool = True,fixed=False, padding = None):
         """
         Resample the moving image using the given transformation object.
         
@@ -437,14 +437,24 @@ class Registrator():
             SimpleITK.Image: The resampled image (if inplace=False).
         """
 
-        if transform.FLAG:
-            print("Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite")
-            return
+        if transform is None:
+            transform = sitk.Similarity3DTransform()
+            rotation_matrix = [
+                [1, 0, 0],
+                [0, 1, 0],
+                [0, 0, 1]
+            ]
+            matrix = [elem for row in rotation_matrix for elem in row]
+            transform.SetMatrix(matrix)
+        else:
+            if transform.FLAG:
+                print("Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite")
+                return
 
-        if transform.ID in self.called_inputs:
-            print(f"Method already called with ID: {transform.ID}")
-            return
-        self.called_inputs.add(transform.ID)
+            if transform.ID in self.called_inputs:
+                print(f"Method already called with ID: {transform.ID}")
+                return
+            self.called_inputs.add(transform.ID)
         
         # Perform the operation
         print(f"Resampling the transformation: {transform.ID}")
@@ -462,6 +472,16 @@ class Registrator():
         resampler.SetOutputSpacing(self.fixed.GetSpacing())  # Ensure the spacing is preserved
         resampler.SetOutputOrigin(self.fixed.GetOrigin())  # Preserve origin
         resampler.SetOutputDirection(self.fixed.GetDirection())
+
+        if padding is not None:
+            origin = self.fixed.GetOrigin()
+            spacing = self.fixed.GetSpacing()
+            direction = self.fixed.GetDirection()
+            size = self.fixed.GetSize()
+            new_size = [size[i] + 2 * padding[i] for i in range(3)]
+            new_origin = [origin[i] - padding[i] * spacing[i] for i in range(3)]
+            resampler.SetSize(new_size)
+            resampler.SetOutputOrigin(new_origin)
         
         if fixed:
             if inplace:
@@ -591,10 +611,15 @@ class Registrator():
             self
 
 
-    def plot2d(self, thresholds, difference=False, show_factor = 4):
+    def plot2d(self, thresholds, difference=False, show_factor = 4,moving=False):
         factor = 5
         fixed_d = self._downsample_image(self.fixed,factor = factor)
         moving_d = self._downsample_image(self.moving,factor = factor)
+        if moving:
+            temp = fixed_d
+            fixed_d = moving_d
+            moving_d = temp
+
         binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
         label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
         label_shape_filter_fixed.Execute(binary_fixed)
@@ -636,10 +661,20 @@ class Registrator():
 
         binary_fixed= (fixed_d>thresholds[0])*1
         binary_moving = (moving_d > thresholds[1])*1
+        ny, nx,nz = np.shape(binary_moving)
         if difference:
             plt.figure()
+            print(ny, nx)
+            np.set_printoptions(precision=2)
             plt.imshow(binary_fixed[:,:,factor*index//show_factor] - binary_moving[:,:,factor*index//show_factor], cmap='viridis', alpha=0.5)
+            x, y = 0.95*nx, 0.94*ny  # Coordinates (in data units)
+            plt.text(x, y, 'v_1 ->' + str(matrix[0::3]), color='black', fontsize=8, ha='right', va='bottom')
+            x, y = 0.05*nx, 0.04*ny  # Coordinates (in data units)
+            plt.text(x, y, 'v_2 ->' + str(matrix[1::3]), color='black', fontsize=8, ha='left', va='bottom')
+            x, y = 0.05*nx, 0.97*ny  # Coordinates (in data units)
+            plt.text(x, y, 'Yellow: Fixed, Purple: Moving', color='black', fontsize=8, ha='left', va='bottom')
             plt.show()
+
         else:
             plt.figure()
             plt.imshow(fixed_d[:,:,factor*index//show_factor], cmap='viridis', alpha=0.5)
