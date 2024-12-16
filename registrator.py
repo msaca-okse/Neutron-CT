@@ -311,8 +311,6 @@ class Registrator():
                     transform.SetMatrix(matrix)
                     transform.SetTranslation(translation)
 
-
-
         random_integer = random.randint(1, 1000000)
         transform.ID = random_integer
         transform.FLAG = False
@@ -436,7 +434,7 @@ class Registrator():
         Returns:
             SimpleITK.Image: The resampled image (if inplace=False).
         """
-
+        print(transform)
         if transform is None:
             transform = sitk.Similarity3DTransform()
             rotation_matrix = [
@@ -457,7 +455,7 @@ class Registrator():
             self.called_inputs.add(transform.ID)
         
         # Perform the operation
-        print(f"Resampling the transformation: {transform.ID}")
+        print(f"Resampling the transformation")
 
         if interpolation_type == 'linear':
             interpolation_method = sitk.sitkLinear
@@ -508,7 +506,7 @@ class Registrator():
         
         
 
-    def compute_principal_moments_and_axes(self, thresholds):
+    def compute_principal_moments_and_axes(self, thresholds,factor = 5):
         """
         Compute the principal moments and axes of inertia for a 3D image.
 
@@ -519,10 +517,17 @@ class Registrator():
             tuple: A tuple containing:
                 - principal_moments (list of float): The eigenvalues of the inertia matrix.
                 - principal_axes (list of list of float): The eigenvectors of the inertia matrix.
+                
         """
+
+        fixed_d = self._downsample_image(self.fixed,factor = factor)
+        moving_d = self._downsample_image(self.moving,factor = factor)
+
+
+
         # Create a binary mask of the region
-        binary_fixed = sitk.BinaryThreshold(self.fixed, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
-        binary_moving = sitk.BinaryThreshold(self.moving, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        binary_fixed = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        binary_moving = sitk.BinaryThreshold(moving_d, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
 
         # Use LabelShapeStatisticsImageFilter to calculate shape properties
         label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
@@ -629,16 +634,44 @@ class Registrator():
 
 
         # Resample
-        resampler = sitk.ResampleImageFilter()
-        resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
-        resampler.SetInterpolator(sitk.sitkLinear)   # Interpolation method
-        resampler.SetTransform(transform_coordinate_axes)    # Apply the initial transform (aligned centroids)
-        resampler.SetOutputPixelType(fixed_d.GetPixelID())
-        resampler.SetOutputSpacing(fixed_d.GetSpacing())  # Ensure the spacing is preserved
-        resampler.SetOutputOrigin(fixed_d.GetOrigin())  # Preserve origin
-        resampler.SetOutputDirection(fixed_d.GetDirection())
-        fixed_d = resampler.Execute(fixed_d)  # Resample the moving image
-        moving_d = resampler.Execute(moving_d)  # Resample the moving image
+
+        # Get the original image bounds (physical corners)
+        original_size = np.array(fixed_d.GetSize())
+        original_spacing = np.array(fixed_d.GetSpacing())
+        original_origin = np.array(fixed_d.GetOrigin())
+        bounds = [
+            original_origin + np.multiply(original_spacing, [0, 0, 0]),
+            original_origin + np.multiply(original_spacing, [original_size[0], 0, 0]),
+            original_origin + np.multiply(original_spacing, [0, original_size[1], 0]),
+            original_origin + np.multiply(original_spacing, [original_size[0], original_size[1], 0]),
+            original_origin + np.multiply(original_spacing, [0, 0, original_size[2]]),
+            original_origin + np.multiply(original_spacing, [original_size[0], 0, original_size[2]]),
+            original_origin + np.multiply(original_spacing, [0, original_size[1], original_size[2]]),
+            original_origin + np.multiply(original_spacing, original_size)
+        ]
+
+        # Transform the bounds using the rotation transform
+        transformed_bounds = [transform_coordinate_axes.TransformPoint(pt) for pt in bounds]
+
+        # Compute the new size and origin
+        transformed_bounds = np.array(transformed_bounds)
+        min_bounds = np.min(transformed_bounds, axis=0)
+        max_bounds = np.max(transformed_bounds, axis=0)
+
+        new_origin = min_bounds
+        new_spacing = original_spacing
+        new_size = np.ceil((max_bounds - min_bounds) / new_spacing).astype(int)
+
+        # Resample the fixed_d
+        resample = sitk.ResampleImageFilter()
+        resample.SetSize(new_size.tolist())
+        resample.SetOutputSpacing(new_spacing.tolist())
+        resample.SetOutputOrigin(new_origin.tolist())
+        resample.SetOutputDirection(fixed_d.GetDirection())
+        resample.SetTransform(transform_coordinate_axes)
+        resample.SetDefaultPixelValue(0)
+        fixed_d = resample.Execute(fixed_d)  # Resample the moving image
+        moving_d = resample.Execute(moving_d)  # Resample the moving image
         fixed_d = sitk.GetArrayFromImage(fixed_d)
         moving_d = sitk.GetArrayFromImage(moving_d)
         index = np.argmax(np.sum(fixed_d,axis=(0,1)))
@@ -646,16 +679,55 @@ class Registrator():
         fixed_d = self._downsample_image(self.fixed,factor = show_factor)
         moving_d = self._downsample_image(self.moving,factor = show_factor)
 
-        resampler = sitk.ResampleImageFilter()
-        resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
-        resampler.SetInterpolator(sitk.sitkLinear)   # Interpolation method
-        resampler.SetTransform(transform_coordinate_axes)    # Apply the initial transform (aligned centroids)
-        resampler.SetOutputPixelType(fixed_d.GetPixelID())
-        resampler.SetOutputSpacing(fixed_d.GetSpacing())  # Ensure the spacing is preserved
-        resampler.SetOutputOrigin(fixed_d.GetOrigin())  # Preserve origin
-        resampler.SetOutputDirection(fixed_d.GetDirection())
-        fixed_d = resampler.Execute(fixed_d)  # Resample the moving image
-        moving_d = resampler.Execute(moving_d)  # Resample the moving image
+        # Get the original image bounds (physical corners)
+        original_size = np.array(fixed_d.GetSize())
+        original_spacing = np.array(fixed_d.GetSpacing())
+        original_origin = np.array(fixed_d.GetOrigin())
+        bounds = [
+            original_origin + np.multiply(original_spacing, [0, 0, 0]),
+            original_origin + np.multiply(original_spacing, [original_size[0], 0, 0]),
+            original_origin + np.multiply(original_spacing, [0, original_size[1], 0]),
+            original_origin + np.multiply(original_spacing, [original_size[0], original_size[1], 0]),
+            original_origin + np.multiply(original_spacing, [0, 0, original_size[2]]),
+            original_origin + np.multiply(original_spacing, [original_size[0], 0, original_size[2]]),
+            original_origin + np.multiply(original_spacing, [0, original_size[1], original_size[2]]),
+            original_origin + np.multiply(original_spacing, original_size)
+        ]
+
+        # Transform the bounds using the rotation transform
+        transformed_bounds = [transform_coordinate_axes.TransformPoint(pt) for pt in bounds]
+
+        # Compute the new size and origin
+        transformed_bounds = np.array(transformed_bounds)
+        min_bounds = np.min(transformed_bounds, axis=0)
+        max_bounds = np.max(transformed_bounds, axis=0)
+
+        new_origin = min_bounds
+        new_spacing = original_spacing
+        new_size = np.ceil((max_bounds - min_bounds) / new_spacing).astype(int)
+
+        # Resample the fixed_d
+        resample = sitk.ResampleImageFilter()
+        resample.SetSize(new_size.tolist())
+        resample.SetOutputSpacing(new_spacing.tolist())
+        resample.SetOutputOrigin(new_origin.tolist())
+        resample.SetOutputDirection(fixed_d.GetDirection())
+        resample.SetTransform(transform_coordinate_axes)
+        resample.SetDefaultPixelValue(0)
+
+        #resampler = sitk.ResampleImageFilter()
+        #resampler.SetReferenceImage(fixed_d)  # Reference image (fixed)
+        #resampler.SetInterpolator(sitk.sitkLinear)   # Interpolation method
+        #resampler.SetTransform(transform_coordinate_axes)    # Apply the initial transform (aligned centroids)
+        #resampler.SetOutputPixelType(fixed_d.GetPixelID())
+        #resampler.SetOutputSpacing(fixed_d.GetSpacing())  # Ensure the spacing is preserved
+        #resampler.SetOutputOrigin(fixed_d.GetOrigin())  # Preserve origin
+        #resampler.SetOutputDirection(fixed_d.GetDirection())
+        fixed_d = resample.Execute(fixed_d)  # Resample the fixed image
+        moving_d = resample.Execute(moving_d)  # Resample the moving image
+
+
+
         fixed_d = sitk.GetArrayFromImage(fixed_d)
         moving_d = sitk.GetArrayFromImage(moving_d)
 
