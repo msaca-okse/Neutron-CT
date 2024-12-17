@@ -97,20 +97,22 @@ class ExtendedData:
             ringrmv.set_input(self.subdata)
             self.subdata = ringrmv.get_output()
 
-    def fbp(self, subdata = False):
+    def fbp(self, subdata = False, ig=None):
 
         if not cuda.is_available():
             raise ValueError("GPU is not available.")
         
         if subdata:
             print(np.shape(self.subdata.as_array()))
-            ig = self.subdata.geometry.get_ImageGeometry(resolution=1)
+            if ig is None:
+                ig = self.subdata.geometry.get_ImageGeometry(resolution=1)
             self.subdata.reorder('astra')
             device = 'gpu'
             fbp = FBP(ig,self.subdata.geometry,device)
             reconstruction = fbp(self.subdata)
         else:
-            ig = self.data.geometry.get_ImageGeometry(resolution=1)
+            if ig is None:
+                ig = self.data.geometry.get_ImageGeometry(resolution=1)
             self.data.reorder('astra')
             device = 'gpu'
             fbp = FBP(ig,self.data.geometry,device)

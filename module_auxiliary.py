@@ -145,3 +145,36 @@ def gaussian_padding(sin1,out_indices, sigma = 30, cutoff=4, pad_mean_window_siz
             sin2[i,:,out_index[1]:] = np.mean(sin1[i,:,out_index[1]-pad_mean_window_size:out_index[1]],axis=1)[:,np.newaxis]*mask2[np.newaxis,:]
 
     return sin2
+
+
+
+def rearrange_3d_block_matrix(A, split_row, split_col):
+    """
+    Rearrange a 3D block matrix A into the format:
+    [A11, mean(A12, flip(A22)), flip(A21)]
+    
+    Parameters:
+        A (numpy.ndarray): Input 3D array with shape (rows, depth, columns).
+        split_row (int): Index along axis=0 to split the rows into two blocks.
+        split_col (int): Index along axis=2 to split the columns into two blocks.
+        
+    Returns:
+        numpy.ndarray: Rearranged 3D array.
+    """
+    # Step 1: Split along rows (axis=0) and columns (axis=2)
+    A11 = A[:split_row, :, :split_col]                # Top-left block
+    A12 = A[:split_row, :, split_col:]                # Top-right block
+    A21 = A[split_row:, :, :split_col]                # Bottom-left block
+    A22 = A[split_row:, :, split_col:]                # Bottom-right block
+
+    # Step 2: Flip A22 and A21 along axis=2 (reverse columns)
+    A22_flipped = A22[:, :, ::-1]                     # Flip columns of A22
+    A21_flipped = A21[:, :, ::-1]                     # Flip columns of A21
+
+    # Step 3: Compute mean of A12 and flipped A22
+    mean_block = (A12 + A22_flipped) / 2
+
+    # Step 4: Concatenate blocks along axis=2 (columns)
+    rearranged_matrix = np.concatenate((A11, mean_block, A21_flipped), axis=2)
+
+    return rearranged_matrix
