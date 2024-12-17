@@ -889,3 +889,53 @@ class Registrator():
             image.GetPixelID(),
         )
         return resampled_image
+
+    def compute_stone_boundaries(self,thresholds = [0.5,0.5], factor = 2,connected_size = 20):
+        fixed_d = self._downsample_image(self.fixed, factor=factor)
+        moving_d = self._downsample_image(self.moving,factor=factor)
+        fixed_d = sitk.SmoothingRecursiveGaussian(fixed_d, sigma=0.01)
+        moving_d = sitk.SmoothingRecursiveGaussian(moving_d, sigma=0.01)
+
+
+        # Step 2: Threshold to generate markers for background and foreground
+        foreground_marker_fixed = fixed_d > thresholds[0]+0.0  # High intensity for the blob
+        foreground_marker_moving = moving_d > thresholds[1]+0.0  # High intensity for the blob
+
+
+
+        labeled_image_fixed = sitk.ConnectedComponent(foreground_marker_fixed)
+        labeled_image_moving = sitk.ConnectedComponent(foreground_marker_moving)
+
+
+
+        relabeled_image = sitk.RelabelComponent(labeled_image_fixed, sortByObjectSize=True)
+        # Step 3: Create a binary mask for components larger than the minimum size
+        stats = sitk.LabelShapeStatisticsImageFilter()
+        stats.Execute(relabeled_image)
+
+        # Create a new binary image
+        cleaned_binary_image = sitk.Image(foreground_marker_fixed.GetSize(), sitk.sitkUInt8)
+        cleaned_binary_image.CopyInformation(foreground_marker_fixed)
+
+        for label in stats.GetLabels():
+            if stats.GetPhysicalSize(label) >= connected_size:
+                cleaned_binary_image = cleaned_binary_image | (relabeled_image == label)
+
+        cleaned_binary_image_fixed = cleaned_binary_image
+
+        relabeled_image = sitk.RelabelComponent(labeled_image_moving, sortByObjectSize=True)
+        # Step 3: Create a binary mask for components larger than the minimum size
+        stats = sitk.LabelShapeStatisticsImageFilter()
+        stats.Execute(relabeled_image)
+
+        # Create a new binary image
+        cleaned_binary_image = sitk.Image(foreground_marker_moving.GetSize(), sitk.sitkUInt8)
+        cleaned_binary_image.CopyInformation(foreground_marker_moving)
+
+        for label in stats.GetLabels():
+            if stats.GetPhysicalSize(label) >= connected_size:
+                cleaned_binary_image = cleaned_binary_image | (relabeled_image == label)
+
+        cleaned_binary_image_moving = cleaned_binary_image
+
+        return cleaned_binary_image_fixed, cleaned_binary_image_moving
