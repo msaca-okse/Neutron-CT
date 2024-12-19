@@ -556,6 +556,19 @@ class Registrator():
         out = {'fixed': {"moment": principal_moments_fixed, "axes": principal_axes_matrix_fixed, 'centroid': centroid_fixed} , 'moving': {'moment': principal_moments_moving, 'axes': principal_axes_matrix_moving, 'centroid': centroid_moving}}
 
         return out
+
+    def compute_moments(self, image):
+        #binary_fixed = sitk.BinaryThreshold(image, lowerThreshold=thresholds0.5, upperThreshold=float("inf"), insideValue=1, outsideValue=0)
+        label_shape_filter_fixed = sitk.LabelShapeStatisticsImageFilter()
+        label_shape_filter_fixed.Execute(image)
+        principal_moments_fixed = label_shape_filter_fixed.GetPrincipalMoments(1)  # Eigenvalues
+        principal_axes_fixed = label_shape_filter_fixed.GetPrincipalAxes(1)  # Eigenvectors (flattened)
+        principal_axes_matrix_fixed = np.array(principal_axes_fixed).reshape((3, 3))
+        centroid_fixed = np.array(label_shape_filter_fixed.GetCentroid(1))
+
+        out = {"moment": principal_moments_fixed, "axes": principal_axes_matrix_fixed, 'centroid': centroid_fixed}
+
+        return out
     
 
 
@@ -755,77 +768,6 @@ class Registrator():
 
 
 
-
-    def plot3d(self, thresholds, smooth = [False, False]):
-        n1,n2,n3 = np.shape(sitk.GetArrayFromImage(self.fixed))
-        m1, m2, m3 = n1//50, n2//50, n3//50
-        m = np.max((m1,m2,m3))
-        
-        fixed_d = self._downsample_image(self.fixed, factor=m)
-        moving_d = self._downsample_image(self.moving,factor=m)
-
-        mean_filter = sitk.MeanImageFilter()
-        mean_filter.SetRadius(3)  # Adjust the radius as needed
-        if smooth[0]:
-            mean_filter = sitk.MeanImageFilter()
-            mean_filter.SetRadius(smooth[0])  # Adjust the radius as needed
-            fixed_d = mean_filter.Execute(fixed_d)
-        if smooth[1]:
-            mean_filter = sitk.MeanImageFilter()
-            mean_filter.SetRadius(smooth[1])  # Adjust the radius as needed
-            moving_d = mean_filter.Execute(moving_d)
-
-        fixed_d = sitk.BinaryThreshold(fixed_d, lowerThreshold=thresholds[0], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
-        moving_d = sitk.BinaryThreshold(moving_d, lowerThreshold=thresholds[1], upperThreshold=float("inf"), insideValue=1, outsideValue=0)
-
-        fixed_d = sitk.GetArrayFromImage(fixed_d)
-        moving_d = sitk.GetArrayFromImage(moving_d)
-
-        #pl.render_3d(fixed_d, isomin = thresholds[0], isomax = 1.0, opacity = 0.1)
-        #pl.render_3d(moving_d, isomin = thresholds[1], isomax = 1.0, opacity = 0.1)
-
-        data = [go.Volume(
-        x=np.repeat(np.arange(fixed_d.shape[0]), fixed_d.shape[1] * fixed_d.shape[2]),
-        y=np.tile(np.repeat(np.arange(fixed_d.shape[1]), fixed_d.shape[2]), fixed_d.shape[0]),
-        z=np.tile(np.arange(fixed_d.shape[2]), fixed_d.shape[0] * fixed_d.shape[1]),
-        value=(fixed_d-moving_d).flatten(),  # Flatten the matrix to get values
-        opacity=0.2,  # Lower opacity for a better 3D effect
-        isomin=thresholds[0],   # Minimum threshold for volume rendering
-        isomax=1.0,   # Maximum threshold for volume rendering
-        surface_count=40,  # Number of surfaces in the volume rendering
-        colorscale="Viridis")
-        #go.Volume(
-        #    x=np.repeat(np.arange(moving_d.shape[0]), moving_d.shape[1] * moving_d.shape[2]),
-        #    y=np.tile(np.repeat(np.arange(moving_d.shape[1]), moving_d.shape[2]), moving_d.shape[0]),
-        #    z=np.tile(np.arange(moving_d.shape[2]), moving_d.shape[0] * moving_d.shape[1]),
-        #    value=moving_d.flatten(),  # Flatten the matrix to get values
-        #    opacity=0.2,  # Lower opacity for a better 3D effect
-        #    isomin=thresholds[1],   # Minimum threshold for volume rendering
-        ##    isomax=1.0,   # Maximum threshold for volume rendering
-         #   surface_count=40,  # Number of surfaces in the volume rendering
-         #   colorscale="thermal"
-        #)
-        ]
-        fig = go.Figure(data=data)
-
-        fig.update_layout(
-            scene=dict(
-                xaxis=dict(nticks=4, range=[0, fixed_d.shape[0]], title='X Axis'),
-                yaxis=dict(nticks=4, range=[0, fixed_d.shape[1]], title='Y Axis'),
-                zaxis=dict(nticks=4, range=[0, fixed_d.shape[2]], title='Z Axis'),
-                aspectmode='manual',  # Set manual aspect ratio
-                aspectratio=dict(
-                    x=fixed_d.shape[0] / fixed_d.shape[2],
-                    y=fixed_d.shape[1] / fixed_d.shape[2],
-                    z=1  # Use 1 as the reference dimension for scaling
-                )
-            ),
-            title="3D rendering"
-        )
-
-        fig.show()
-
-
     def choose_registration_images(self, smoothing_i, shrinking_i, smooth_fixed, smooth_moving):
         if (shrinking_i is not None) and smooth_fixed:
             if str(smoothing_i) in self.fixed_smooth:
@@ -890,7 +832,7 @@ class Registrator():
         )
         return resampled_image
 
-    def compute_stone_boundaries(self,thresholds = [0.5,0.5], factor = 2,connected_size = 20):
+    def compute_stone_boundaries(self,thresholds = [0.5,0.5], factor = 2,connected_size = 0.01):
         fixed_d = self._downsample_image(self.fixed, factor=factor)
         moving_d = self._downsample_image(self.moving,factor=factor)
         fixed_d = sitk.SmoothingRecursiveGaussian(fixed_d, sigma=0.01)
@@ -939,3 +881,90 @@ class Registrator():
         cleaned_binary_image_moving = cleaned_binary_image
 
         return cleaned_binary_image_fixed, cleaned_binary_image_moving
+
+
+    def plot3d(self,image, moments=None):
+
+        size = image.GetSize()            # Image size (number of pixels in each dimension)
+        origin = image.GetOrigin()        # Physical coordinate of the first voxel
+        spacing = image.GetSpacing()      # Physical size of each voxel
+        direction = image.GetDirection()  # Image direction cosines
+        min_physical = origin
+
+        # Compute the physical coordinates of the image corners
+        # Min corner (always the origin)
+
+        # Max corner (computed as origin + size * spacing in each direction)
+        # Incorporating direction cosines for non-orthogonal axes
+        max_physical = [
+            origin[i] + spacing[i] * (size[i] - 1) * direction[i * 3 + i]
+            for i in range(3)
+        ]
+
+        volume_np = sitk.GetArrayFromImage(image)
+        nx,ny,nz = volume_np.shape
+        N = max(nx,ny,nz)
+        stride = int(N//60)+1
+
+        matrix_d = volume_np[::stride,::stride,::stride]
+
+        x = np.linspace(origin[0], max_physical[0], matrix_d.shape[0])
+        y = np.linspace(origin[1], max_physical[1], matrix_d.shape[1])
+        z = np.linspace(origin[2], max_physical[2], matrix_d.shape[2])
+
+        data = go.Volume(
+        x=np.repeat(x, matrix_d.shape[1] * matrix_d.shape[2]),
+        y=np.tile(np.repeat(y, matrix_d.shape[2]), matrix_d.shape[0]),
+        z=np.tile(z, matrix_d.shape[0] * matrix_d.shape[1]),
+        value=matrix_d.flatten(),  # Flatten the matrix to get values
+        opacity=0.2,  # Lower opacity for a better 3D effect
+        isomin=0.5,   # Minimum threshold for volume rendering
+        isomax=1,   # Maximum threshold for volume rendering
+        surface_count=15,  # Number of surfaces in the volume rendering
+        colorscale="Viridis")
+
+        fig = go.Figure(data=data)
+
+        fig.update_layout(
+            scene=dict(
+                xaxis=dict(nticks=4, range=[origin[0], max_physical[0]], title='X Axis'),
+                yaxis=dict(nticks=4, range=[origin[1], max_physical[1]], title='Y Axis'),
+                zaxis=dict(nticks=4, range=[origin[2], max_physical[2]], title='Z Axis'),
+                aspectmode='manual',  # Set manual aspect ratio
+                aspectratio=dict(
+                    x=matrix_d.shape[0] / matrix_d.shape[2],
+                    y=matrix_d.shape[1] / matrix_d.shape[2],
+                    z=1  # Use 1 as the reference dimension for scaling
+                )
+            ),
+            title="3D rendering"
+        )
+        if moments is not None:
+            # Define the start point for all arrows (x, y, z)
+            x = moments['centroid']
+
+            # Define the direction vectors for the 3 arrows (you can customize these)
+            directions = moments['axes']
+
+            # Define scaling factors for the arrow lengths
+            scales = np.array(moments['moment'])  # Length of each arrow, can be adjusted
+
+            # Create the arrows by scaling the direction vectors
+            arrow_endpoints = [x + scale * direction for scale, direction in zip(scales, directions)]
+
+            # Create a 3D scatter plot for the arrows
+
+
+            # Add each arrow as a line segment
+            for endpoint in arrow_endpoints:
+                fig.add_trace(go.Scatter3d(
+                    x=[x[0], endpoint[0]],
+                    y=[x[1], endpoint[1]],
+                    z=[x[2], endpoint[2]],
+                    mode='lines+text',
+                    line=dict(color='red', width=5),
+                    text=["", "Arrow"],
+                    textposition="top center"
+                ))
+
+        fig.show()
