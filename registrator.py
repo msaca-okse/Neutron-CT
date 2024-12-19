@@ -437,7 +437,6 @@ class Registrator():
         Returns:
             SimpleITK.Image: The resampled image (if inplace=False).
         """
-        print(transform)
         if transform is None:
             transform = sitk.Similarity3DTransform()
             rotation_matrix = [
@@ -690,7 +689,8 @@ class Registrator():
         moving_d = resample.Execute(moving_d)  # Resample the moving image
         fixed_d = self.as_array(fixed_d)
         moving_d = self.as_array(moving_d)
-        index = np.argmax(np.sum(fixed_d,axis=(0,1)))
+        index1 = np.argmax(np.sum(fixed_d,axis=(0,1)))
+        index2 = np.argmax(np.sum(fixed_d,axis=(2,1)))
 
         fixed_d = self._downsample_image(self.fixed,factor = show_factor)
         moving_d = self._downsample_image(self.moving,factor = show_factor)
@@ -754,7 +754,20 @@ class Registrator():
             plt.figure()
             print(ny, nx)
             np.set_printoptions(precision=2)
-            plt.imshow(binary_fixed[:,:,factor*index//show_factor] - binary_moving[:,:,factor*index//show_factor], cmap='viridis', alpha=0.5)
+            plt.imshow(binary_fixed[:,:,factor*index1//show_factor] - binary_moving[:,:,factor*index1//show_factor], cmap='viridis', alpha=0.5)
+            x, y = 0.95*nx, 0.94*ny  # Coordinates (in data units)
+            plt.text(x, y, 'v_1 ->' + str(matrix[0::3]), color='black', fontsize=8, ha='right', va='bottom')
+            x, y = 0.05*nx, 0.04*ny  # Coordinates (in data units)
+            plt.text(x, y, 'v_2 ->' + str(matrix[1::3]), color='black', fontsize=8, ha='left', va='bottom')
+            x, y = 0.05*nx, 0.97*ny  # Coordinates (in data units)
+            plt.text(x, y, 'Yellow: Fixed, Purple: Moving', color='black', fontsize=8, ha='left', va='bottom')
+            plt.show()
+
+
+            plt.figure()
+            print(ny, nx)
+            np.set_printoptions(precision=2)
+            plt.imshow(binary_fixed[factor*index2//show_factor,:,:] - binary_moving[factor*index2//show_factor,:,:], cmap='viridis', alpha=0.5)
             x, y = 0.95*nx, 0.94*ny  # Coordinates (in data units)
             plt.text(x, y, 'v_1 ->' + str(matrix[0::3]), color='black', fontsize=8, ha='right', va='bottom')
             x, y = 0.05*nx, 0.04*ny  # Coordinates (in data units)
@@ -890,7 +903,7 @@ class Registrator():
         self.moving_bounding_box = self.get_bounding_box_in_physical_coordinates(self.moving_seg)
 
 
-    def self.as_array(self,image):
+    def as_array(self,image):
         image = sitk.GetArrayFromImage(image)
         return image.transpose(2,1,0)
 
@@ -1057,3 +1070,75 @@ class Registrator():
             for i in range(3)
         ]
         return (min_physical[0],min_physical[1],min_physical[2], max_physical[0],max_physical[1],max_physical[2])
+
+    def transformed_bounding_box(self,transform, bounding_box):
+        (min_x, min_y, min_z, max_x, max_y, max_z) = bounding_box
+        corners = np.array([
+            [min_x, min_y, min_z],
+            [max_x, min_y, min_z],
+            [min_x, max_y, min_z],
+            [max_x, max_y, min_z],
+            [min_x, min_y, max_z],
+            [max_x, min_y, max_z],
+            [min_x, max_y, max_x],
+            [max_x, max_y, max_z]
+        ])
+    
+        # Apply the transformation to each corner
+        transformed_corners = np.array([transform.TransformPoint(corner) for corner in corners])
+        
+        # Get the new bounding box from the transformed corners
+        new_min = np.min(transformed_corners, axis=0)
+        new_max = np.max(transformed_corners, axis=0)
+        
+
+        
+        # Return the new bounding box (min_x, min_y, min_z, size_x, size_y, size_z)
+        return tuple(np.concatenate([new_min, new_max]))
+
+    
+
+    def zero_pad(self, image, amount):
+        mi_x, mi_y, mi_z, ma_x, ma_y, ma_z = amount
+
+        # Get the original size, spacing, and origin
+        original_size = image.GetSize()
+        original_spacing = image.GetSpacing()
+        original_origin = image.GetOrigin()
+
+        mi_x = int(mi_x/original_spacing[0])
+        ma_x = int(ma_x/original_spacing[0])
+        mi_y = int(mi_y/original_spacing[1])
+        ma_y = int(ma_y/original_spacing[1])
+        mi_z = int(mi_z/original_spacing[2])
+        ma_z = int(ma_z/original_spacing[2])
+
+        print(mi_x, mi_y, mi_z, ma_x, ma_y, ma_z)
+
+        # Calculate the new size based on the padding
+        new_size = [
+            original_size[0] + mi_x + ma_x,  # Add total padding in x direction (negative + positive)
+            original_size[1] + mi_y + ma_y,  # Add total padding in y direction (negative + positive)
+            original_size[2] + mi_z + ma_z   # Add total padding in z direction (negative + positive)
+        ]
+        
+        # Calculate the new origin, shifting by the negative padding amounts (to move image into padded space)
+        new_origin = [
+            original_origin[0] - mi_x * original_spacing[0],  # Shift origin by negative padding in x
+            original_origin[1] - mi_y * original_spacing[1],  # Shift origin by negative padding in y
+            original_origin[2] - mi_z * original_spacing[2]   # Shift origin by negative padding in z
+        ]
+        
+        # Perform the resampling (the resampling will zero pad the image outside the original bounds)
+        resampler = sitk.ResampleImageFilter()
+        
+        # Set the new size, but keep the same origin and spacing
+        resampler.SetSize(new_size)
+        resampler.SetOutputSpacing(original_spacing)  # Keep original spacing
+        resampler.SetOutputOrigin(new_origin)         # Keep new origin, shifted by negative padding
+        resampler.SetDefaultPixelValue(0)  # Set the default value outside the original image to 0
+        
+        # Resample the image (the padding will be applied automatically)
+        padded_image = resampler.Execute(image)
+        
+        return padded_image
