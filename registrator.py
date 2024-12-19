@@ -87,6 +87,9 @@ class Registrator():
         self.fixed.SetOrigin(new_origin_fixed)
         self.moving.SetOrigin(new_origin_moving)
 
+        self.fixed_box = self.get_physical_box(self.fixed)
+        self.moving_box = self.get_physical_box(self.moving)
+
 
 
     def copy(self):
@@ -685,8 +688,8 @@ class Registrator():
         resample.SetDefaultPixelValue(0)
         fixed_d = resample.Execute(fixed_d)  # Resample the moving image
         moving_d = resample.Execute(moving_d)  # Resample the moving image
-        fixed_d = sitk.GetArrayFromImage(fixed_d)
-        moving_d = sitk.GetArrayFromImage(moving_d)
+        fixed_d = self.as_array(fixed_d)
+        moving_d = self.as_array(moving_d)
         index = np.argmax(np.sum(fixed_d,axis=(0,1)))
 
         fixed_d = self._downsample_image(self.fixed,factor = show_factor)
@@ -741,8 +744,8 @@ class Registrator():
 
 
 
-        fixed_d = sitk.GetArrayFromImage(fixed_d)
-        moving_d = sitk.GetArrayFromImage(moving_d)
+        fixed_d = self.as_array(fixed_d)
+        moving_d = self.as_array(moving_d)
 
         binary_fixed= (fixed_d>thresholds[0])*1
         binary_moving = (moving_d > thresholds[1])*1
@@ -880,7 +883,17 @@ class Registrator():
 
         cleaned_binary_image_moving = cleaned_binary_image
 
-        return cleaned_binary_image_fixed, cleaned_binary_image_moving
+        self.fixed_seg = cleaned_binary_image_fixed
+        self.moving_seg = cleaned_binary_image_moving
+
+        self.fixed_bounding_box = self.get_bounding_box_in_physical_coordinates(self.fixed_seg)
+        self.moving_bounding_box = self.get_bounding_box_in_physical_coordinates(self.moving_seg)
+
+
+    def self.as_array(self,image):
+        image = sitk.GetArrayFromImage(image)
+        return image.transpose(2,1,0)
+
 
 
     def plot3d(self,image, moments=None):
@@ -901,23 +914,23 @@ class Registrator():
             for i in range(3)
         ]
 
-        volume_np = sitk.GetArrayFromImage(image)
+        volume_np = self.as_array(image)
         nx,ny,nz = volume_np.shape
         N = max(nx,ny,nz)
         stride = int(N//60)+1
 
         matrix_d = volume_np[::stride,::stride,::stride]
 
-        x = np.linspace(origin[0], max_physical[0], matrix_d.shape[0])
-        y = np.linspace(origin[1], max_physical[1], matrix_d.shape[1])
-        z = np.linspace(origin[2], max_physical[2], matrix_d.shape[2])
+        X = np.linspace(origin[0], max_physical[0], matrix_d.shape[0])
+        Y = np.linspace(origin[1], max_physical[1], matrix_d.shape[1])
+        Z = np.linspace(origin[2], max_physical[2], matrix_d.shape[2])
 
         data = go.Volume(
-        x=np.repeat(x, matrix_d.shape[1] * matrix_d.shape[2]),
-        y=np.tile(np.repeat(y, matrix_d.shape[2]), matrix_d.shape[0]),
-        z=np.tile(z, matrix_d.shape[0] * matrix_d.shape[1]),
+        x=np.repeat(X, matrix_d.shape[1] * matrix_d.shape[2]),
+        y=np.tile(np.repeat(Y, matrix_d.shape[2]), matrix_d.shape[0]),
+        z=np.tile(Z, matrix_d.shape[0] * matrix_d.shape[1]),
         value=matrix_d.flatten(),  # Flatten the matrix to get values
-        opacity=0.2,  # Lower opacity for a better 3D effect
+        opacity=0.1,  # Lower opacity for a better 3D effect
         isomin=0.5,   # Minimum threshold for volume rendering
         isomax=1,   # Maximum threshold for volume rendering
         surface_count=15,  # Number of surfaces in the volume rendering
@@ -947,7 +960,7 @@ class Registrator():
             directions = moments['axes']
 
             # Define scaling factors for the arrow lengths
-            scales = np.array(moments['moment'])  # Length of each arrow, can be adjusted
+            scales = np.array([0.3,0.3,0.3])  # Length of each arrow, can be adjusted
 
             # Create the arrows by scaling the direction vectors
             arrow_endpoints = [x + scale * direction for scale, direction in zip(scales, directions)]
@@ -956,15 +969,91 @@ class Registrator():
 
 
             # Add each arrow as a line segment
+            color = ['red','blue','orange']
+            count = -1
             for endpoint in arrow_endpoints:
+                count = count+1
                 fig.add_trace(go.Scatter3d(
                     x=[x[0], endpoint[0]],
                     y=[x[1], endpoint[1]],
                     z=[x[2], endpoint[2]],
                     mode='lines+text',
-                    line=dict(color='red', width=5),
-                    text=["", "Arrow"],
-                    textposition="top center"
+                    line=dict(color=color[count], width=5),
                 ))
 
         fig.show()
+
+
+    def apply_transform_to_bounding_box(self, bounding_box, transform):
+        # Extract bounding box details: (min_x, min_y, min_z, size_x, size_y, size_z)
+        min_x, min_y, min_z, size_x, size_y, size_z = bounding_box
+        
+        # Define the 8 corners of the bounding box
+        corners = np.array([
+            [min_x, min_y, min_z],
+            [min_x + size_x, min_y, min_z],
+            [min_x, min_y + size_y, min_z],
+            [min_x + size_x, min_y + size_y, min_z],
+            [min_x, min_y, min_z + size_z],
+            [min_x + size_x, min_y, min_z + size_z],
+            [min_x, min_y + size_y, min_z + size_z],
+            [min_x + size_x, min_y + size_y, min_z + size_z]
+        ])
+        
+        # Apply the transformation to each corner
+        transformed_corners = np.array([transform.TransformPoint(corner) for corner in corners])
+        
+        # Get the new bounding box from the transformed corners
+        new_min = np.min(transformed_corners, axis=0)
+        new_max = np.max(transformed_corners, axis=0)
+        
+        # Calculate the new bounding box size
+        new_size = new_max - new_min
+        
+        # Return the new bounding box (min_x, min_y, min_z, size_x, size_y, size_z)
+        return tuple(np.concatenate([new_min, new_size]))
+
+
+    def get_bounding_box_in_physical_coordinates(self,mask):
+        non_zero_indices = np.nonzero(np.sum(self.as_array(mask),axis=(1,2)))[0]
+        min_x, max_x = (non_zero_indices[0], non_zero_indices[-1])
+        non_zero_indices = np.nonzero(np.sum(self.as_array(mask),axis=(0,2)))[0]
+        min_y, max_y = (non_zero_indices[0], non_zero_indices[-1])
+        non_zero_indices = np.nonzero(np.sum(self.as_array(mask),axis=(1,0)))[0]
+        min_z, max_z = (non_zero_indices[0], non_zero_indices[-1])
+        
+        # Get image properties: origin and spacing
+        origin = mask.GetOrigin()
+        spacing = mask.GetSpacing()
+        
+        # Convert min coordinates to physical space
+        min_x_phys = origin[0] + min_x * spacing[0]
+        min_y_phys = origin[1] + min_y * spacing[1]
+        min_z_phys = origin[2] + min_z * spacing[2]
+        
+        max_x_phys = origin[0] + max_x * spacing[0]
+        max_y_phys = origin[1] + max_y * spacing[1]
+        max_z_phys = origin[2] + max_z * spacing[2]
+        
+        # Return the bounding box in physical coordinates
+        return (min_x_phys, min_y_phys, min_z_phys, max_x_phys, max_y_phys, max_z_phys)
+
+    # Example usage:
+
+    def get_physical_box(self, image):
+        size = image.GetSize()            # Image size (number of pixels in each dimension)
+        origin = image.GetOrigin()        # Physical coordinate of the first voxel
+        spacing = image.GetSpacing()      # Physical size of each voxel
+        direction = image.GetDirection()  # Image direction cosines
+        min_physical = origin
+
+        # Compute the physical coordinates of the image corners
+        # Min corner (always the origin)
+
+        # Max corner (computed as origin + size * spacing in each direction)
+        # Incorporating direction cosines for non-orthogonal axes
+        max_physical = [
+            origin[i] + spacing[i] * (size[i] - 1) * direction[i * 3 + i]
+            for i in range(3)
+        ]
+        return (min_physical[0],min_physical[1],min_physical[2], max_physical[0],max_physical[1],max_physical[2])
