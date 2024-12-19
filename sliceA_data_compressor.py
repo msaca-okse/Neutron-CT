@@ -20,7 +20,7 @@ def folder_processor(i):
     p_post1 = '_####.edf'
     q_post1 = '_####.tiff'
 
-    q_post_dark = '_/dark/dark.edf'
+    q_post_dark = '_/dark/dark.tiff'
     q_post_dark2 = '_/dark/darkend0000.tiff'
     q_post_obeam = '_/obeam/refHST6000.tiff'
 
