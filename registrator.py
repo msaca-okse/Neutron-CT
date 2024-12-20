@@ -6,6 +6,7 @@ previous_metric_value = None
 import plotly.graph_objects as go
 import plot_library as pl
 import random
+import json
 
 class Registrator():
     # Class to load in two images: A fixed and a moving image. The class uses simple ITK. These are the things that should be implemented in the class: A loader, to load in two volumes. Read them as numpy files, save them as itk images.
@@ -48,6 +49,9 @@ class Registrator():
         self.fixed_smooth = {}
         self.moving_smooth = {}
         self.callback = 1
+        self.transformation_history = sitk.CompositeTransform(3)
+        self.transformation_history.FLAG = False
+        self.transformation_history.ID = 1
 
     def load_images(self, fixed_array, moving_array):
         """
@@ -501,7 +505,7 @@ class Registrator():
                 print('Returning resampled fixed image')
                 return resampler.Execute(self.fixed)
         else:
-            
+            self.transformation_history.AddTransform(transform)
             if inplace:
                 print('Resampling moving image')
                 self.moving = resampler.Execute(self.moving)  # Resample the moving image
@@ -1176,3 +1180,82 @@ class Registrator():
         mask = sitk.GetImageFromArray(mask_array)
         mask.CopyInformation(image)  # Copy the metadata
         return mask
+
+def save_registration_data(filename, image1, image2, transform):
+    metadata_image1 = {
+        "origin": image1.GetOrigin(),
+        "spacing": image1.GetSpacing(),
+        "direction": image1.GetDirection(),
+        "size": image1.GetSize(),
+        "pixel_id": image1.GetPixelID(),
+        "metadata_dict": {key: image1.GetMetaData(key) for key in image1.GetMetaDataKeys()},
+    }
+
+    # Extract metadata for image2
+    metadata_image2 = {
+        "origin": image2.GetOrigin(),
+        "spacing": image2.GetSpacing(),
+        "direction": image2.GetDirection(),
+        "size": image2.GetSize(),
+        "pixel_id": image2.GetPixelID(),
+        "metadata_dict": {key: image2.GetMetaData(key) for key in image2.GetMetaDataKeys()},
+    }
+
+    # Save transformation as a string
+    transform_filename = 'transform.tfm'
+    sitk.WriteTransform(transform, transform_filename)
+
+    # Combine all information into a single dictionary
+    combined_data = {
+        "image1_metadata": metadata_image1,
+        "image2_metadata": metadata_image2,
+        "transformation_file": transform_filename,  # Save transformation path
+    }
+
+    # Save combined data to a JSON file
+    with open(filename, 'w') as f:
+        json.dump(combined_data, f, indent=4)
+
+    def load_data(filename):
+    with open('filename', 'r') as f:
+        combined_data = json.load(f)
+
+    # Restore metadata for image1
+    image1_metadata = combined_data["image1_metadata"]
+    restored_image1 = sitk.Image(image1_metadata["size"], image1_metadata["pixel_id"])
+    restored_image1.SetOrigin(image1_metadata["origin"])
+    restored_image1.SetSpacing(image1_metadata["spacing"])
+    restored_image1.SetDirection(image1_metadata["direction"])
+    for key, value in image1_metadata["metadata_dict"].items():
+        restored_image1.SetMetaData(key, value)
+
+    # Restore metadata for image2
+    image2_metadata = combined_data["image2_metadata"]
+    restored_image2 = sitk.Image(image2_metadata["size"], image2_metadata["pixel_id"])
+    restored_image2.SetOrigin(image2_metadata["origin"])
+    restored_image2.SetSpacing(image2_metadata["spacing"])
+    restored_image2.SetDirection(image2_metadata["direction"])
+    for key, value in image2_metadata["metadata_dict"].items():
+        restored_image2.SetMetaData(key, value)
+
+    # Load the transformation
+    restored_transform = sitk.ReadTransform(combined_data["transformation_file"])
+    return restored_image1, restored_image2, restored_transform
+
+
+
+
+def resample(fixed, moving,transform):
+    interpolation_method = sitk.sitkLinear
+
+    resampler = sitk.ResampleImageFilter()
+    resampler.SetReferenceImage(fixed)  # Reference image (fixed)
+    resampler.SetInterpolator(interpolation_method)   # Interpolation method
+    resampler.SetTransform(transform)    # Apply the initial transform (aligned centroids)
+    resampler.SetOutputPixelType(fixed.GetPixelID())
+    resampler.SetOutputSpacing(fixed.GetSpacing())  # Ensure the spacing is preserved
+    resampler.SetOutputOrigin(fixed.GetOrigin())  # Preserve origin
+    resampler.SetOutputDirection(fixed.GetDirection())
+
+    out_moving = resampler.Execute(self.moving)  # Resample the moving image
+    return out_moving
