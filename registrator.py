@@ -321,11 +321,12 @@ class Registrator():
         return transform
 
     def register(self, learning_rate = 0.1, sampling_percentage = 0.1,
-                     max_iter = 50,
+                    max_iter = 50,
                     metric_type = 'ms', optimizer_type = 'gd',
-                     smoothing = 0,
-                      shrinking = 1, thresholds=None, histogram_bins = 50,
-                      smooth_fixed = False, smooth_moving = False):
+                    smoothing = 0,
+                    shrinking = 1, thresholds=None, histogram_bins = 50,
+                    smooth_fixed = False, smooth_moving = False,mask = None,
+                    mask_box = None, unit = 'index'):
         """
         Perform the image registration using the provided transformation parameters.
         
@@ -380,6 +381,12 @@ class Registrator():
         else:
             raise ValueError('Specify metric type: Either "mmi" or "ms"/"ls"')
 
+        if mask == 'fixed':
+            mask = self.get_registration_mask(mask_box, which_image = 'fixed', unit = unit)
+            registration.SetMetricFixedMask(mask)
+        elif mask == 'moving':
+            mask = self.get_registration_mask(mask_box, which_image = 'moving', unit = unit)
+            registration.SetMetricFixedMask(mask)
 
         registration.SetMetricSamplingStrategy(registration.RANDOM)
         registration.SetMetricSamplingPercentage(sampling_percentage)
@@ -1142,3 +1149,30 @@ class Registrator():
         padded_image = resampler.Execute(image)
         
         return padded_image
+
+
+    def get_registration_mask(self,box, which_image = 'fixed', unit = 'physical'):
+        (x_min, y_min, z_min, x_max, y_max, z_max) = box
+        if which_image == 'fixed':
+            image = self.fixed
+        elif which_image == 'moving':
+            image = self.moving
+
+        if unit == 'physical':
+            min_index = fixed_image.TransformPhysicalPointToIndex((x_min, y_min, z_min))
+            max_index = fixed_image.TransformPhysicalPointToIndex((x_max, y_max, z_max))
+        elif unit == 'index':
+            min_index = (x_min, y_min, z_min)
+            max_index = ( x_max, y_max, z_max)
+
+        mask_array = np.zeros(image.GetSize()[::-1], dtype=np.uint8)  # Reverse size for z, y, x
+
+        # Set the voxels within the bounding box to 1
+        mask_array[min_index[2]:max_index[2]+1,  # Z range
+                min_index[1]:max_index[1]+1,  # Y range
+                min_index[0]:max_index[0]+1] = 1  # X range
+
+        # Convert the numpy array to a SimpleITK image
+        mask = sitk.GetImageFromArray(mask_array)
+        mask.CopyInformation(image)  # Copy the metadata
+        return mask
