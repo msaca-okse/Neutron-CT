@@ -436,7 +436,7 @@ class Registrator():
         transform.FLAG = self.metric_value > self.first_metric_value
         return transform
 
-    def resample(self, transform=None, interpolation_type: str = 'linear', inplace: bool = True,fixed=False, padding = None):
+    def resample(self, transform=None, interpolation_type: str = 'linear', inplace: bool = True,fixed=False, padding = None,ignore_flag = False):
         """
         Resample the moving image using the given transformation object.
         
@@ -458,14 +458,14 @@ class Registrator():
             matrix = [elem for row in rotation_matrix for elem in row]
             transform.SetMatrix(matrix)
         else:
-            if transform.FLAG:
-                print("Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite")
-                return
+            if ignore_flag == False:
+                if transform.FLAG:
+                    print("Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite")
+                    return
 
-            if transform.ID in self.called_inputs:
-                print(f"Method already called with ID: {transform.ID}")
-                return
-            self.called_inputs.add(transform.ID)
+                if transform.ID in self.called_inputs:
+                    print(f"Method already called with ID: {transform.ID}")
+                    return
         
         # Perform the operation
         print(f"Resampling the transformation")
@@ -1216,8 +1216,8 @@ def save_registration_data(filename, image1, image2, transform):
     with open(filename, 'w') as f:
         json.dump(combined_data, f, indent=4)
 
-    def load_data(filename):
-    with open('filename', 'r') as f:
+def load_data(filename):
+    with open(filename, 'r') as f:
         combined_data = json.load(f)
 
     # Restore metadata for image1
@@ -1244,7 +1244,6 @@ def save_registration_data(filename, image1, image2, transform):
 
 
 
-
 def resample(fixed, moving,transform):
     interpolation_method = sitk.sitkLinear
 
@@ -1259,3 +1258,27 @@ def resample(fixed, moving,transform):
 
     out_moving = resampler.Execute(self.moving)  # Resample the moving image
     return out_moving
+
+def attach_metadata(pixel_values, sitk_image):
+    """
+    Converts a NumPy array to a SimpleITK image and applies metadata.
+
+    Parameters:
+    - array (np.ndarray): The NumPy array to convert to a SimpleITK image.
+    - metadata (dict): A dictionary containing metadata for the image.
+
+    Returns:
+    - sitk_image (sitk.Image): The resulting SimpleITK image with metadata applied.
+    """
+    print(sitk_image.GetSize())
+    print(pixel_values.shape)
+    # Ensure the size of the image matches the NumPy array dimensions
+    if sitk_image.GetSize() != tuple(reversed(pixel_values.shape)):
+        raise ValueError("The dimensions of the NumPy array do not match the SimpleITK image size.")
+
+    # Create a SimpleITK image from the NumPy array
+    pixel_image = sitk.GetImageFromArray(pixel_values)
+
+    # Copy the metadata from the original image to the new one
+    pixel_image.CopyInformation(sitk_image)
+    return pixel_image
