@@ -9,7 +9,7 @@
 #BSUB -M 128000
 #BSUB -R "rusage[mem=128000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
+#BSUB -W 24:00 
 # -- Number of cores requested -- 
 #BSUB -n 1
 # -- Specify the distribution of the cores: on a separate nodes --
