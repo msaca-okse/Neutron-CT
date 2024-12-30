@@ -3854,3 +3854,327 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499269: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 14:58:51 2024
+Job was executed on host(s) <n-62-11-65>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 14:58:53 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 14:58:53 2024
+Terminated at Mon Dec 30 15:38:24 2024
+Results reported at Mon Dec 30 15:38:24 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   2316.00 sec.
+    Max Memory :                                 101971 MB
+    Average Memory :                             92623.70 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               26029.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                36
+    Run time :                                   2433 sec.
+    Turnaround time :                            2373 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499274: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 15:24:40 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 15:24:41 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 15:24:41 2024
+Terminated at Mon Dec 30 15:38:27 2024
+Results reported at Mon Dec 30 15:38:27 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   782.00 sec.
+    Max Memory :                                 115583 MB
+    Average Memory :                             94320.88 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               12417.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   835 sec.
+    Turnaround time :                            827 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499277: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 15:37:47 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 15:37:47 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 15:37:47 2024
+Terminated at Mon Dec 30 15:45:02 2024
+Results reported at Mon Dec 30 15:45:02 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   419.22 sec.
+    Max Memory :                                 101945 MB
+    Average Memory :                             69131.60 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               26055.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   513 sec.
+    Turnaround time :                            435 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499281: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 15:52:33 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 15:52:33 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 15:52:33 2024
+Terminated at Mon Dec 30 15:59:01 2024
+Results reported at Mon Dec 30 15:59:01 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   346.26 sec.
+    Max Memory :                                 76485 MB
+    Average Memory :                             60176.40 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               51515.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   479 sec.
+    Turnaround time :                            388 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499285: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 16:04:21 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 16:04:22 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 16:04:22 2024
+Terminated at Mon Dec 30 17:04:13 2024
+Results reported at Mon Dec 30 17:04:13 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+TERM_RUNLIMIT: job killed after reaching LSF run time limit.
+Exited with exit code 140.
+
+Resource usage summary:
+
+    CPU time :                                   3584.00 sec.
+    Max Memory :                                 88716 MB
+    Average Memory :                             83570.97 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               39284.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   3672 sec.
+    Turnaround time :                            3592 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

@@ -48,3 +48,16 @@ Traceback (most recent call last):
   File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/SimpleITK/SimpleITK.py", line 4295, in __getitem__
     raise IndexError("too many indices for image")
 IndexError: too many indices for image
+Terminated
+Terminated
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 105, in <module>
+    fixed_values = reg_median.fixed[mask]
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/SimpleITK/SimpleITK.py", line 4295, in __getitem__
+    raise IndexError("too many indices for image")
+IndexError: too many indices for image
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 100, in <module>
+    fixed_filtered = reg_median.as_array(fixed_filtered_)
+NameError: name 'reg_median' is not defined
+User defined signal 2
