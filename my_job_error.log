@@ -1,0 +1,10 @@
+/zhome/71/c/146676/.lsbatch/1735484319.23498859.shell: line 21: 3762350 Killed                  python registrateXA_NA.py
+/zhome/71/c/146676/.lsbatch/1735484561.23498862.shell: line 21: 25099 Killed                  python registrateXA_NA.py
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/registrateXA_NA.py", line 128, in <module>
+    file.write(custom_string)
+NameError: name 'custom_string' is not defined
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/registrateXA_NA.py", line 142, in <module>
+    file.write(custom_string)
+NameError: name 'custom_string' is not defined

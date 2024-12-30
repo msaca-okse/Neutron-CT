@@ -73,8 +73,8 @@ class Registrator():
         max_m = max(m_size)
         max_size = max(max_f,max_m)
 
-        self.fixed.SetSpacing((1.5/max_size,1.5/max_size,1.5/max_size))
-        self.moving.SetSpacing((1.5/max_size,1.5/max_size,1.5/max_size))
+        self.fixed.SetSpacing((1.5/max_f,1.5/max_f,1.5/max_f))
+        self.moving.SetSpacing((1.5/max_m,1.5/max_m,1.5/max_m))
 
 
         size_fixed = self.fixed.GetSize()
@@ -920,7 +920,7 @@ class Registrator():
 
 
 
-    def plot3d(self,image, moments=None):
+    def plot3d(self,image, moments=None, path=None):
 
         size = image.GetSize()            # Image size (number of pixels in each dimension)
         origin = image.GetOrigin()        # Physical coordinate of the first voxel
@@ -1005,7 +1005,10 @@ class Registrator():
                     line=dict(color=color[count], width=5),
                 ))
 
-        fig.show()
+        if path is None:
+            fig.show()
+        else:
+            fig.write_html(path)
 
 
     def apply_transform_to_bounding_box(self, bounding_box, transform):

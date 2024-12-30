@@ -1,0 +1,2950 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498661: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 11:48:42 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 11:48:43 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 11:48:43 2024
+Terminated at Sun Dec 29 11:52:50 2024
+Results reported at Sun Dec 29 11:52:50 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   116.54 sec.
+    Max Memory :                                 49249 MB
+    Average Memory :                             36945.75 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               78751.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   254 sec.
+    Turnaround time :                            248 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+531 265 531 265 265 265
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.12607960232052506
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.12266710607771686, Metric Difference = 0.003412496242808205
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498677: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:12:46 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:12:47 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:12:47 2024
+Terminated at Sun Dec 29 12:25:59 2024
+Results reported at Sun Dec 29 12:25:59 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   789.00 sec.
+    Max Memory :                                 114146 MB
+    Average Memory :                             87366.12 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               13854.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   854 sec.
+    Turnaround time :                            793 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+531 265 531 265 265 265
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.1261911104167637
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.12303912777377998, Metric Difference = 0.0031519826429837194
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.12063907208702232, Metric Difference = 0.002400055686757663
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.11811240417860418, Metric Difference = 0.0025266679084181426
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.11573514177096, Metric Difference = 0.0023772624076441734
+The current learning rate is 1.0
+Iteration 100: Metric Value = 0.1132162784246642, Metric Difference = 0.0025188633462958077
+The current learning rate is 1.0
+Iteration 120: Metric Value = 0.11039666645138173, Metric Difference = 0.002819611973282468
+The current learning rate is 1.0
+Iteration 140: Metric Value = 0.1080946643319177, Metric Difference = 0.0023020021194640333
+The current learning rate is 1.0
+Iteration 160: Metric Value = 0.10630447424474315, Metric Difference = 0.0017901900871745424
+The current learning rate is 1.0
+Iteration 180: Metric Value = 0.10482321124168205, Metric Difference = 0.0014812630030611035
+The current learning rate is 1.0
+Transformation has matrix (0.9795086937431416, -0.006352829072504013, -0.01850272468101932, 0.0068221766055488915, 0.9793638859307979, 0.024896329390724104, 0.018334861990447458, -0.02502020930256738, 0.9792128534381525)  and translation (-0.004922530930938529, -0.0015111289126754875, -0.098837313810076)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.09234236616531728, Metric Difference = 0.012480845076364766
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.09166012992121349, Metric Difference = 0.0006822362441037955
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.09108671357675097, Metric Difference = 0.0005734163444625212
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.09071872430760435, Metric Difference = 0.0003679892691466208
+The current learning rate is 0.5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498664: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:01:11 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:01:13 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:01:13 2024
+Terminated at Sun Dec 29 12:29:00 2024
+Results reported at Sun Dec 29 12:29:00 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1657.81 sec.
+    Max Memory :                                 113050 MB
+    Average Memory :                             88930.20 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               14950.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   1774 sec.
+    Turnaround time :                            1669 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498702: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:29:32 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:29:32 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:29:32 2024
+Terminated at Sun Dec 29 12:37:17 2024
+Results reported at Sun Dec 29 12:37:17 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   462.00 sec.
+    Max Memory :                                 120495 MB
+    Average Memory :                             89372.16 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               7505.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   489 sec.
+    Turnaround time :                            465 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498712: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:37:13 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:37:14 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:37:14 2024
+Terminated at Sun Dec 29 12:47:06 2024
+Results reported at Sun Dec 29 12:47:06 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   589.00 sec.
+    Max Memory :                                 116293 MB
+    Average Memory :                             89845.99 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               11707.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   639 sec.
+    Turnaround time :                            593 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498716: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:48:54 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:48:55 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:48:55 2024
+Terminated at Sun Dec 29 12:55:47 2024
+Results reported at Sun Dec 29 12:55:47 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   408.00 sec.
+    Max Memory :                                 120530 MB
+    Average Memory :                             88846.60 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               7470.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   512 sec.
+    Turnaround time :                            413 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498727: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 12:57:00 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 12:57:01 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 12:57:01 2024
+Terminated at Sun Dec 29 13:03:40 2024
+Results reported at Sun Dec 29 13:03:40 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   395.00 sec.
+    Max Memory :                                 119377 MB
+    Average Memory :                             89673.20 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               8623.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                27
+    Run time :                                   464 sec.
+    Turnaround time :                            400 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+531 265 531 265 265 265
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.19388328130491048
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498729: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:05:33 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:05:33 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:05:33 2024
+Terminated at Sun Dec 29 13:15:56 2024
+Results reported at Sun Dec 29 13:15:56 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   619.59 sec.
+    Max Memory :                                 119746 MB
+    Average Memory :                             88339.01 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               8254.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   727 sec.
+    Turnaround time :                            623 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498736: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:15:58 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:15:58 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:15:58 2024
+Terminated at Sun Dec 29 13:23:33 2024
+Results reported at Sun Dec 29 13:23:33 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   450.00 sec.
+    Max Memory :                                 114377 MB
+    Average Memory :                             89489.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               13623.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   457 sec.
+    Turnaround time :                            455 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+531 265 531 265 265 265
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498738: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:23:28 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:23:29 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:23:29 2024
+Terminated at Sun Dec 29 13:26:53 2024
+Results reported at Sun Dec 29 13:26:53 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   201.08 sec.
+    Max Memory :                                 101896 MB
+    Average Memory :                             76731.25 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               26104.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   282 sec.
+    Turnaround time :                            205 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498746: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:37:01 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:37:02 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:37:02 2024
+Terminated at Sun Dec 29 13:44:02 2024
+Results reported at Sun Dec 29 13:44:02 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   416.00 sec.
+    Max Memory :                                 114376 MB
+    Average Memory :                             87112.34 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               13624.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   525 sec.
+    Turnaround time :                            421 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+188 94 188 94 94 94
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.44255232000000005 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.14663927908376584
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498749: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:43:57 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:43:58 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:43:58 2024
+Terminated at Sun Dec 29 13:48:01 2024
+Results reported at Sun Dec 29 13:48:01 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   209.44 sec.
+    Max Memory :                                 26375 MB
+    Average Memory :                             18867.75 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               101625.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   286 sec.
+    Turnaround time :                            244 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+188 94 188 94 94 94
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.44255232000000005 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.14637517851969242
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498751: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:48:02 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:48:03 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:48:03 2024
+Terminated at Sun Dec 29 13:51:55 2024
+Results reported at Sun Dec 29 13:51:55 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   227.49 sec.
+    Max Memory :                                 29881 MB
+    Average Memory :                             21278.75 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               98119.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   234 sec.
+    Turnaround time :                            233 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+188 94 188 94 94 94
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.44255232000000005 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.12425615707601648
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.11876798144376274, Metric Difference = 0.005488175632253733
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.11103763160596229, Metric Difference = 0.0077303498378004515
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.1014283190223269, Metric Difference = 0.009609312583635399
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498753: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:51:56 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:51:56 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:51:56 2024
+Terminated at Sun Dec 29 13:56:47 2024
+Results reported at Sun Dec 29 13:56:47 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   286.94 sec.
+    Max Memory :                                 29922 MB
+    Average Memory :                             21854.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               98078.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   292 sec.
+    Turnaround time :                            291 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498757: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:56:49 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:56:49 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:56:49 2024
+Terminated at Sun Dec 29 13:59:52 2024
+Results reported at Sun Dec 29 13:59:52 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   179.00 sec.
+    Max Memory :                                 102171 MB
+    Average Memory :                             78307.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               25829.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   185 sec.
+    Turnaround time :                            183 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+531 265 531 265 265 265
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.19289714397592023
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.19279542180963516, Metric Difference = 0.00010172216628506758
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.19314341214175382, Metric Difference = 0.0003479903321186584
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.19341006694180476, Metric Difference = 0.0002666548000509472
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.19366261736980198, Metric Difference = 0.0002525504279972113
+The current learning rate is 1.0
+Iteration 100: Metric Value = 0.19391393972892565, Metric Difference = 0.0002513223591236735
+The current learning rate is 1.0
+Iteration 120: Metric Value = 0.1943663027194474, Metric Difference = 0.00045236299052175966
+The current learning rate is 1.0
+Iteration 140: Metric Value = 0.194707341841541, Metric Difference = 0.00034103912209360043
+The current learning rate is 1.0
+Iteration 160: Metric Value = 0.1950886388567753, Metric Difference = 0.0003812970152342887
+The current learning rate is 1.0
+Iteration 180: Metric Value = 0.1955564694378469, Metric Difference = 0.0004678305810716099
+The current learning rate is 1.0
+Transformation has matrix (1.0583175686093043, 0.004962543279713139, 0.007441573984236857, -0.004857999993450309, 1.0582404987655925, -0.014816426515502733, -0.007510239359004055, 0.014781739505979316, 1.0582254846525967)  and translation (-0.02442046841346033, 0.047260308696898665, -0.007105790571534862)
+Learning rate after execution: 1.000000000000000
+Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.10754432 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.19348868750260087, Metric Difference = 0.002067781935246038
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.193226500964496, Metric Difference = 0.0002621865381048638
+The current learning rate is 0.5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498760: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 13:59:45 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 13:59:46 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 13:59:46 2024
+Terminated at Sun Dec 29 14:20:52 2024
+Results reported at Sun Dec 29 14:20:52 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1261.00 sec.
+    Max Memory :                                 118988 MB
+    Average Memory :                             89563.30 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               9012.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   1311 sec.
+    Turnaround time :                            1267 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498783: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 14:20:53 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 14:20:53 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 14:20:53 2024
+Terminated at Sun Dec 29 14:29:49 2024
+Results reported at Sun Dec 29 14:29:49 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   532.00 sec.
+    Max Memory :                                 114462 MB
+    Average Memory :                             89631.57 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               13538.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   536 sec.
+    Turnaround time :                            536 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+186 93 186 93 93 93
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.439922 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.13670312067450469
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.1375661574932367, Metric Difference = 0.0008630368187320103
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.13871377996596895, Metric Difference = 0.001147622472732257
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.13990557548361002, Metric Difference = 0.0011917955176410644
+The current learning rate is 1.0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498795: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 14:29:44 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 14:29:45 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 14:29:45 2024
+Terminated at Sun Dec 29 14:36:00 2024
+Results reported at Sun Dec 29 14:36:00 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   370.68 sec.
+    Max Memory :                                 91255 MB
+    Average Memory :                             60690.67 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               36745.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   413 sec.
+    Turnaround time :                            376 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+186 93 186 93 93 93
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.439922 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.11697549088881372
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.11143505992155832, Metric Difference = 0.0055404309672554
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.10626173865277869, Metric Difference = 0.005173321268779632
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.1024361274156285, Metric Difference = 0.003825611237150181
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.09898829353484634, Metric Difference = 0.003447833880782167
+The current learning rate is 1.0
+Iteration 100: Metric Value = 0.09566566950412611, Metric Difference = 0.003322624030720228
+The current learning rate is 1.0
+Iteration 120: Metric Value = 0.09232922279641124, Metric Difference = 0.0033364467077148657
+The current learning rate is 1.0
+Iteration 140: Metric Value = 0.08908018491342733, Metric Difference = 0.0032490378829839184
+The current learning rate is 1.0
+Iteration 160: Metric Value = 0.08585732231232869, Metric Difference = 0.003222862601098636
+The current learning rate is 1.0
+Iteration 180: Metric Value = 0.08279927163315669, Metric Difference = 0.003058050679172003
+The current learning rate is 1.0
+Transformation has matrix (0.9511810877574935, 0.20266458691117123, 9.730551480191364e-05, -0.20013560947736744, 0.9393849663033071, -0.15270896786444654, -0.031916799265614665, 0.14933638625340523, 0.9604677858362454)  and translation (0.022264251975997854, -0.08267354207213751, 0.021705732045042826)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.439922 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.06917891054568248, Metric Difference = 0.013620361087474206
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.06801886549502557, Metric Difference = 0.0011600450506569077
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.06718951566957378, Metric Difference = 0.0008293498254517973
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.06647308876798182, Metric Difference = 0.00071642690159196
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.06568225900553892, Metric Difference = 0.0007908297624428934
+The current learning rate is 0.5
+Iteration 100: Metric Value = 0.06512288697653278, Metric Difference = 0.0005593720290061471
+The current learning rate is 0.5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498797: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 14:36:03 2024
+Job was executed on host(s) <n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 14:36:04 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 14:36:04 2024
+Terminated at Sun Dec 29 14:48:09 2024
+Results reported at Sun Dec 29 14:48:09 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   721.42 sec.
+    Max Memory :                                 93049 MB
+    Average Memory :                             63415.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               34951.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   729 sec.
+    Turnaround time :                            726 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+186 93 186 93 93 93
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.439922 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.09476165509181789
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.08297321935006892, Metric Difference = 0.011788435741748968
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.078386718103957, Metric Difference = 0.004586501246111915
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.07505167110252818, Metric Difference = 0.003335047001428823
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.07239974655986024, Metric Difference = 0.0026519245426679383
+The current learning rate is 1.0
+Iteration 100: Metric Value = 0.0702585639494516, Metric Difference = 0.0021411826104086457
+The current learning rate is 1.0
+Iteration 120: Metric Value = 0.06819030482333324, Metric Difference = 0.0020682591261183547
+The current learning rate is 1.0
+Iteration 140: Metric Value = 0.06657319596389022, Metric Difference = 0.0016171088594430227
+The current learning rate is 1.0
+Iteration 160: Metric Value = 0.06500854405488196, Metric Difference = 0.0015646519090082578
+The current learning rate is 1.0
+Iteration 180: Metric Value = 0.06365712888329345, Metric Difference = 0.0013514151715885159
+The current learning rate is 1.0
+Transformation has matrix (0.907140728352583, 0.02457111246470437, -0.0023196232430469908, -0.023938319556027796, 0.8967288504458646, 0.13717779299387076, 0.006006419613740918, -0.13706586178214697, 0.8970453130768471)  and translation (-0.017581161467134947, -0.06179813665650902, 0.02334826311027148)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.439922 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.058550223998625105, Metric Difference = 0.005106904884668341
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.05772827322084631, Metric Difference = 0.0008219507777787946
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.05719740141406267, Metric Difference = 0.0005308718067836421
+The current learning rate is 0.5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498807: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 14:48:10 2024
+Job was executed on host(s) <n-62-11-61>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 14:48:10 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 14:48:10 2024
+Terminated at Sun Dec 29 14:59:54 2024
+Results reported at Sun Dec 29 14:59:54 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   604.27 sec.
+    Max Memory :                                 96685 MB
+    Average Memory :                             59698.72 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               31315.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                36
+    Run time :                                   779 sec.
+    Turnaround time :                            704 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+186 93 186 93 93 93
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.219961 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.09381434453452622
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.08670721802459168, Metric Difference = 0.007107126509934544
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.08260402410831083, Metric Difference = 0.004103193916280848
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.07956375010734999, Metric Difference = 0.003040274000960838
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.07782089463400861, Metric Difference = 0.0017428554733413815
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.07616243219367123, Metric Difference = 0.0016584624403373771
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.0747133766157383, Metric Difference = 0.0014490555779329284
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.07337128148106571, Metric Difference = 0.001342095134672594
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.0721207139806008, Metric Difference = 0.0012505675004649136
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.07096718366479562, Metric Difference = 0.0011535303158051735
+The current learning rate is 1.0
+Transformation has matrix (0.9618397836854721, 0.010365198874080443, -0.007081010994802688, -0.009545073613302634, 0.9563105723893596, 0.10330696128807303, 0.008152891151265839, -0.10322789997456865, 0.9563319918193888)  and translation (0.0026415065430654243, -0.0597978310240675, 0.009298868882877625)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.219961 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.06575024844259922, Metric Difference = 0.005216935222196406
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.06509702212857935, Metric Difference = 0.0006532263140198724
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.06463894063255217, Metric Difference = 0.00045808149602717674
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.06433992198094142, Metric Difference = 0.0002990186516107496
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.06401483958438754, Metric Difference = 0.0003250823965538774
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.06372877685204584, Metric Difference = 0.00028606273234170476
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.0634272437057574, Metric Difference = 0.0003015331462884324
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.06313142523882456, Metric Difference = 0.00029581846693284286
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.06283045978382774, Metric Difference = 0.00030096545499681826
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.06251443211761035, Metric Difference = 0.0003160276662173972
+The current learning rate is 0.5
+Transformation has matrix (0.975873869391334, 0.00523668413515669, -0.00010400985507437859, -0.005232359808146243, 0.9755597705390665, 0.0247588197658454, 0.00023683247127488684, -0.02475790549760054, 0.9755737966270661)  and translation (-0.00862666325885197, -0.0020677231584861782, 0.0050747160985227975)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.0207712666666666 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.06326789541744486, Metric Difference = 0.0007534632998345142
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.0631521199054229, Metric Difference = 0.00011577551202196501
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.06297353531846385, Metric Difference = 0.00017858458695904633
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.06280767716553352, Metric Difference = 0.00016585815293032602
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.0627028680576401, Metric Difference = 0.00010480910789342768
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.06264746658138305, Metric Difference = 5.540147625704428e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.06259520096518531, Metric Difference = 5.2265616197741394e-05
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.06252193485339665, Metric Difference = 7.326611178866405e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.0624351110948556, Metric Difference = 8.682375854104918e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.06235356676450288, Metric Difference = 8.154433035272024e-05
+The current learning rate is 0.2
+Transformation has matrix (0.9945956502374153, 0.001602305636513279, 0.0007705985388359626, -0.0016055388608894072, 0.9945871143734671, 0.0041908046809085815, -0.0007638392677993777, -0.004192041931392041, 0.9945881117380531)  and translation (-0.0024204764300135013, 0.0004206170458021843, 0.001539271454984832)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498835: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 14:59:58 2024
+Job was executed on host(s) <n-62-11-64>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 15:00:00 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 15:00:00 2024
+Terminated at Sun Dec 29 15:20:49 2024
+Results reported at Sun Dec 29 15:20:49 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1191.48 sec.
+    Max Memory :                                 85967 MB
+    Average Memory :                             65848.92 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               42033.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                36
+    Run time :                                   1250 sec.
+    Turnaround time :                            1251 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498849: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 15:43:53 2024
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 15:43:54 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 15:43:54 2024
+Terminated at Sun Dec 29 15:44:02 2024
+Results reported at Sun Dec 29 15:44:02 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 64000
+#BSUB -R "rusage[mem=64000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   3.73 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   125 sec.
+    Turnaround time :                            9 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498853: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 15:50:19 2024
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 15:50:21 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 15:50:21 2024
+Terminated at Sun Dec 29 15:52:02 2024
+Results reported at Sun Dec 29 15:52:02 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 64000
+#BSUB -R "rusage[mem=64000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   70.31 sec.
+    Max Memory :                                 64000 MB
+    Average Memory :                             43457.00 MB
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   108 sec.
+    Turnaround time :                            103 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498858: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 15:54:44 2024
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 15:54:46 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 15:54:46 2024
+Terminated at Sun Dec 29 15:56:27 2024
+Results reported at Sun Dec 29 15:56:27 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 64000
+#BSUB -R "rusage[mem=64000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   71.29 sec.
+    Max Memory :                                 64000 MB
+    Average Memory :                             43461.00 MB
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   103 sec.
+    Turnaround time :                            103 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498859: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 15:58:39 2024
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 15:58:39 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 15:58:39 2024
+Terminated at Sun Dec 29 16:00:19 2024
+Results reported at Sun Dec 29 16:00:19 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 64000
+#BSUB -R "rusage[mem=64000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   70.56 sec.
+    Max Memory :                                 64000 MB
+    Average Memory :                             42667.34 MB
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   219 sec.
+    Turnaround time :                            100 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498862: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 16:02:41 2024
+Job was executed on host(s) <n-62-11-63>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 16:02:43 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 16:02:43 2024
+Terminated at Sun Dec 29 16:05:08 2024
+Results reported at Sun Dec 29 16:05:08 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 64000
+#BSUB -R "rusage[mem=64000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   76.26 sec.
+    Max Memory :                                 64000 MB
+    Average Memory :                             44652.00 MB
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   199 sec.
+    Turnaround time :                            147 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+186 46 186 93 46 93
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.06930681333333333 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.16947497554043328
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.17053706646332417, Metric Difference = 0.0010620909228908904
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.17187187492709052, Metric Difference = 0.0013348084637663515
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.17327207857768953, Metric Difference = 0.0014002036505990079
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.1747379325015122, Metric Difference = 0.0014658539238226742
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.17618419905127683, Metric Difference = 0.0014462665497646243
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.1774533655949203, Metric Difference = 0.0012691665436434796
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.17874837351045766, Metric Difference = 0.001295007915537355
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.1800226913160602, Metric Difference = 0.0012743178056025262
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.1815380407961038, Metric Difference = 0.0015153494800436151
+The current learning rate is 1.0
+Transformation has matrix (1.0412689299854296, 0.0027024428796161523, -0.0006439419274639807, -0.0027022018155752584, 1.0412690565621616, 0.0003903373139533445, 0.0006449527668254838, -0.00038866483398230335, 1.0412723636913161)  and translation (0.01812992238274785, -0.0018486856549959406, 0.006265673035146366)
+Learning rate after execution: 1.000000000000000
+Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.06930681333333333 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.17012733199035043, Metric Difference = 0.011410708805753372
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.17050994330047992, Metric Difference = 0.0003826113101294826
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.17116211553746102, Metric Difference = 0.0006521722369811078
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.1718677008030797, Metric Difference = 0.0007055852656186745
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.17250837601049138, Metric Difference = 0.0006406752074116784
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.1731788630327065, Metric Difference = 0.000670487022215116
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.17385569143329177, Metric Difference = 0.0006768284005852776
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.17450926314616388, Metric Difference = 0.0006535717128721141
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.1751075223236327, Metric Difference = 0.0005982591774688073
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.17573909159175477, Metric Difference = 0.0006315692681220786
+The current learning rate is 0.5
+Transformation has matrix (1.0204053616965107, 0.00035093029849314936, -0.0011187546918593487, -0.0003518488514144788, 1.0204056308021061, -0.0008377188452832837, 0.0011184661464327425, 0.0008381040529575998, 1.0204050781715062)  and translation (0.0077125542399318755, -0.0006982572870373175, -0.0005921363783022213)
+Learning rate after execution: 0.500000000000000
+Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.19153066666666665 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.16993815814534124, Metric Difference = 0.005800933446413525
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.17001476492669648, Metric Difference = 7.660678135523735e-05
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.1701436950745194, Metric Difference = 0.0001289301478229199
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.17030949807290252, Metric Difference = 0.00016580299838311885
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.1705132603828049, Metric Difference = 0.00020376230990237776
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.1707491027265085, Metric Difference = 0.00023584234370360724
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.17095768800366642, Metric Difference = 0.00020858527715791886
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.171173328128622, Metric Difference = 0.00021564012495556284
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.17136937902607208, Metric Difference = 0.00019605089745008963
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.1715641763533134, Metric Difference = 0.00019479732724131393
+The current learning rate is 0.2
+Transformation has matrix (1.0066479141698979, 0.0003889410643870298, 0.00033799125160647827, -0.00038895910781792497, 1.006647969473733, 5.3675567211908624e-05, -0.0003379704871353609, -5.380615674363562e-05, 1.0066479878769394)  and translation (0.0020720470226071905, 0.0001433191711082596, -0.0005599682253166584)
+Learning rate after execution: 0.200000000000000
+Refusing to apply transformation with worse loss. Set transform.FLAG=False and resample again to overwrite
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498867: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 16:09:01 2024
+Job was executed on host(s) <n-62-11-61>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 16:09:01 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 16:09:01 2024
+Terminated at Sun Dec 29 16:17:29 2024
+Results reported at Sun Dec 29 16:17:29 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   430.77 sec.
+    Max Memory :                                 70031 MB
+    Average Memory :                             48398.33 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               57969.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                36
+    Run time :                                   579 sec.
+    Turnaround time :                            508 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.1568817185611456
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.13471055894130238, Metric Difference = 0.022171159619843228
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.11416670896465532, Metric Difference = 0.020543849976647058
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.09913861791163246, Metric Difference = 0.015028091053022857
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.09639950498216836, Metric Difference = 0.002739112929464105
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.09527029272631404, Metric Difference = 0.0011292122558543144
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.0935693308030124, Metric Difference = 0.0017009619233016443
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.09260632719913661, Metric Difference = 0.0009630036038757867
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.09173136731921756, Metric Difference = 0.0008749598799190489
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.09099429659813243, Metric Difference = 0.0007370707210851285
+The current learning rate is 1.0
+Transformation has matrix (0.9731425806431282, 0.16642489210872982, -0.03428373985683549, -0.16677688225116236, 0.9736572447250242, -0.007492872199435665, 0.032528311953672846, 0.013169163747664088, 0.9872424139188776)  and translation (0.010175567012701926, -0.009010209244287715, 0.11231507934483945)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.07769885285283057, Metric Difference = 0.013295443745301866
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.07691163210558964, Metric Difference = 0.0007872207472409271
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.0767733467221283, Metric Difference = 0.0001382853834613479
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.07660895252956021, Metric Difference = 0.00016439419256808474
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.07666160122123183, Metric Difference = 5.2648691671625114e-05
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.0766130702721593, Metric Difference = 4.853094907253386e-05
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.07654669953825882, Metric Difference = 6.637073390047821e-05
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.07652276007528808, Metric Difference = 2.3939462970745673e-05
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.07640525855159522, Metric Difference = 0.00011750152369285893
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.07645169343302284, Metric Difference = 4.643488142762331e-05
+The current learning rate is 0.5
+Transformation has matrix (0.9979798591235576, 0.0007603016585919076, -0.01741513187963094, -0.0008289016490062374, 0.9981240266419148, -0.003924851011102238, 0.017412001580900175, 0.003938714865412057, 0.9979724308914694)  and translation (0.00438501986428426, 0.0015065689236745388, 0.018884268691721332)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.114576 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.07785624045612557, Metric Difference = 0.001404547023102734
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.07774227866669993, Metric Difference = 0.00011396178942564561
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.0776026805600457, Metric Difference = 0.00013959810665423178
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.07747769298214138, Metric Difference = 0.0001249875779043147
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.07739056321500613, Metric Difference = 8.712976713524945e-05
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.07734582444479182, Metric Difference = 4.4738770214311496e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.07734018185481452, Metric Difference = 5.6425899773032695e-06
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.07732525690811803, Metric Difference = 1.4924946696484587e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.07726834357792148, Metric Difference = 5.691333019655631e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.0771959177458622, Metric Difference = 7.242583205928355e-05
+The current learning rate is 0.2
+Transformation has matrix (0.9998314849694329, -0.001237372288586451, -0.005952968104897706, 0.0012243035683235785, 0.999846806517279, -0.00219814321448067, 0.005955669585452271, 0.002190813236726396, 0.9998298343182056)  and translation (0.0006914107248496326, -0.00015386167649201568, 0.0033594474467529105)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23498887: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Dec 29 16:26:10 2024
+Job was executed on host(s) <n-62-11-61>, in queue <hpc>, as user <msaca> in cluster <dcc> at Sun Dec 29 16:26:11 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Sun Dec 29 16:26:11 2024
+Terminated at Sun Dec 29 16:32:03 2024
+Results reported at Sun Dec 29 16:32:03 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   347.11 sec.
+    Max Memory :                                 49245 MB
+    Average Memory :                             41500.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               78755.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                36
+    Run time :                                   365 sec.
+    Turnaround time :                            353 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.12681363843630117
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.08617137898423387, Metric Difference = 0.0406422594520673
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.06243561413136328, Metric Difference = 0.023735764852870586
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.06079196261199707, Metric Difference = 0.0016436515193662127
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.060530699864356864, Metric Difference = 0.0002612627476402049
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.060288740768195764, Metric Difference = 0.00024195909616109984
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.06010354906522097, Metric Difference = 0.00018519170297479765
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.059984987928422544, Metric Difference = 0.00011856113679842295
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.059979510265891, Metric Difference = 5.477662531540306e-06
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.06000129227209535, Metric Difference = 2.1782006204347504e-05
+The current learning rate is 1.0
+Transformation has matrix (0.9628345644158319, 0.12812525324107263, 0.004000339039773426, -0.1281389561585502, 0.9628355050176954, 0.003268004936279589, -0.003534281414839737, -0.003767150591282696, 0.9713165287874237)  and translation (0.01980774511894929, -0.02686871400427165, -0.0361434542096244)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.056239995481732925, Metric Difference = 0.0037612967903624256
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.05621186238827648, Metric Difference = 2.8133093456443603e-05
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.05616144419235228, Metric Difference = 5.0418195924203935e-05
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.056102706490238595, Metric Difference = 5.8737702113682844e-05
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.056051726776340155, Metric Difference = 5.097971389843997e-05
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.056012701380001015, Metric Difference = 3.902539633914015e-05
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.055985439047998437, Metric Difference = 2.7262332002578327e-05
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.05596248809692091, Metric Difference = 2.295095107752998e-05
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.055944674311787526, Metric Difference = 1.781378513338039e-05
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.05593118153906726, Metric Difference = 1.349277272026661e-05
+The current learning rate is 0.5
+Transformation has matrix (1.0001578301295944, 0.000818518890607305, -0.00020040393747651638, -0.0008184740829738574, 1.0001578252489933, 0.00022360194685913578, 0.0002005868588347899, -0.00022343786800379053, 1.0001581400683004)  and translation (-0.0002077773094502429, -4.5050094524659215e-05, -0.002349166163664151)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.114576 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.05757291679504447, Metric Difference = 0.00164173525597721
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.057513280395397055, Metric Difference = 5.9636399647414184e-05
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.0574615257566096, Metric Difference = 5.1754638787454565e-05
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.05740371694411202, Metric Difference = 5.7808812497582573e-05
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.05735075331421442, Metric Difference = 5.296362989759551e-05
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.057299384708265656, Metric Difference = 5.136860594876641e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.05725455144608734, Metric Difference = 4.483326217831485e-05
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.0572169842472892, Metric Difference = 3.756719879813991e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.05718403008158576, Metric Difference = 3.295416570343879e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.05716487288933109, Metric Difference = 1.915719225466933e-05
+The current learning rate is 0.2
+Transformation has matrix (1.002037079374592, 0.0001123589198672412, 0.001539112215514752, -0.00011344498720611194, 1.002038011850319, 0.0007070147071224076, -0.0015390325447170593, -0.0007071881180674952, 1.0020368362471976)  and translation (0.00017705516547251014, 0.0002926018258863024, -0.0013976032486355788)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499149: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 11:58:19 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 11:58:21 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 11:58:21 2024
+Terminated at Mon Dec 30 12:07:10 2024
+Results reported at Mon Dec 30 12:07:10 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   386.76 sec.
+    Max Memory :                                 68939 MB
+    Average Memory :                             39617.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               59061.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   603 sec.
+    Turnaround time :                            531 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.13536458283092723
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.1069470363277084, Metric Difference = 0.02841754650321883
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.07510616165222185, Metric Difference = 0.03184087467548655
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.060665294717699395, Metric Difference = 0.014440866934522456
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.05909520928943485, Metric Difference = 0.0015700854282645477
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.05777909312944769, Metric Difference = 0.0013161161599871546
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.05690319882240528, Metric Difference = 0.0008758943070424144
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.05628989062898736, Metric Difference = 0.0006133081934179205
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.05519009232657897, Metric Difference = 0.001099798302408389
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.054728250374331315, Metric Difference = 0.0004618419522476533
+The current learning rate is 1.0
+Transformation has matrix (0.9556534505490141, 0.16606189490431306, 0.008699713477186542, -0.1655187543854645, 0.9548014251459924, -0.043399723338971026, -0.01599312041099328, 0.04127276462758264, 0.9690028557747128)  and translation (0.015808208905320736, -0.010061943155748793, -0.06306765930510665)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.050705060166487625, Metric Difference = 0.00402319020784369
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.05057842942767925, Metric Difference = 0.00012663073880837816
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.050369942101246935, Metric Difference = 0.000208487326432312
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.050235463943488746, Metric Difference = 0.00013447815775818883
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.05018632829018989, Metric Difference = 4.913565329885822e-05
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.05019471457611469, Metric Difference = 8.386285924803782e-06
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.05019968149487216, Metric Difference = 4.96691875746802e-06
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.05018706601795501, Metric Difference = 1.2615476917152146e-05
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.05016322649075891, Metric Difference = 2.3839527196097e-05
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.050132694942965676, Metric Difference = 3.053154779323469e-05
+The current learning rate is 0.5
+Transformation has matrix (1.002670119236203, 0.00013525420174016121, 0.007443565472519646, -0.00014275368146176817, 1.0026972389902165, 0.0010097091499684926, -0.0074434254230968215, -0.0010107410558657522, 1.0026696199597718)  and translation (0.0012873040888984495, 0.00016628355016891846, -0.004017312495682105)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.114576 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.05092838996879971, Metric Difference = 0.0007956950258340353
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.05081367292896126, Metric Difference = 0.00011471703983845227
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.05065975104284654, Metric Difference = 0.00015392188611471763
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.050512933006267795, Metric Difference = 0.00014681803657874692
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.05040166262342631, Metric Difference = 0.00011127038284148433
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.05033432347690361, Metric Difference = 6.733914652270329e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.05029015283687509, Metric Difference = 4.417064002851939e-05
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.05026367253714523, Metric Difference = 2.6480299729854384e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.05023955931914947, Metric Difference = 2.411321799576649e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.050208784534465575, Metric Difference = 3.0774784683891554e-05
+The current learning rate is 0.2
+Transformation has matrix (1.0019660888533533, 0.0002301351900257252, 0.0030215989052758403, -0.0002287706241090546, 1.001970542901475, -0.000452831050915076, -0.003021702525331884, 0.0004521390863881621, 1.0019660129556942)  and translation (0.0005893746148097425, -0.0002529353067023902, -0.0035531712058157424)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499161: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 12:10:21 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 12:10:21 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 12:10:21 2024
+Terminated at Mon Dec 30 12:16:25 2024
+Results reported at Mon Dec 30 12:16:25 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   360.41 sec.
+    Max Memory :                                 52579 MB
+    Average Memory :                             43921.60 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               75421.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   423 sec.
+    Turnaround time :                            364 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.13231318716642299
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.10484843175004457, Metric Difference = 0.02746475541637841
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.07636030437071194, Metric Difference = 0.028488127379332637
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.05977309547297734, Metric Difference = 0.016587208897734594
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.05831484199228477, Metric Difference = 0.0014582534806925757
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.0575571936709142, Metric Difference = 0.0007576483213705687
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.05682983056449488, Metric Difference = 0.0007273631064193195
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.055658016037912005, Metric Difference = 0.0011718145265828747
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.05437241379527743, Metric Difference = 0.001285602242634576
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.05346546708295521, Metric Difference = 0.0009069467123222208
+The current learning rate is 1.0
+Transformation has matrix (0.9586893338799652, 0.1673657745364366, 0.01187781092042379, -0.16668286565280074, 0.957882960253047, -0.043757062610330334, -0.019214764537018317, 0.04106769709068979, 0.9722046393908581)  and translation (0.016125491956767334, -0.009921546897989925, -0.06674341589152831)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04981954334245081, Metric Difference = 0.003645923740504396
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.049441793280027437, Metric Difference = 0.0003777500624233751
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.049132928301366736, Metric Difference = 0.00030886497866070006
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.049026783840561125, Metric Difference = 0.00010614446080561141
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.04899174529934897, Metric Difference = 3.503854121215261e-05
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.048983898026106434, Metric Difference = 7.847273242538033e-06
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.048971442034134297, Metric Difference = 1.245599197213787e-05
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.048942129728649766, Metric Difference = 2.931230548453012e-05
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.048926653909177026, Metric Difference = 1.547581947274057e-05
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.0489172435950555, Metric Difference = 9.410314121528762e-06
+The current learning rate is 0.5
+Transformation has matrix (1.002858124734797, -0.0005603860503037558, 0.0077052784627359835, 0.0005489090909275182, 1.002886616178244, 0.0014958224054993253, -0.007706104562201006, -0.0014915607039345123, 1.002857165749166)  and translation (0.0015876846062523602, 5.427653141730363e-05, -0.004433554310597954)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.114576 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04904813489376891, Metric Difference = 0.00013089129871341615
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.048976838615358176, Metric Difference = 7.129627841073738e-05
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.04887658977846668, Metric Difference = 0.00010024883689149777
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.04877119394744046, Metric Difference = 0.00010539583102622124
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.04867746952222928, Metric Difference = 9.372442521117519e-05
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.048599082134755694, Metric Difference = 7.838738747358714e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.04854158462746595, Metric Difference = 5.749750728974157e-05
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.048497921100143095, Metric Difference = 4.366352732285833e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.04846899466056853, Metric Difference = 2.8926439574562812e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.04845261372465706, Metric Difference = 1.638093591146972e-05
+The current learning rate is 0.2
+Transformation has matrix (1.0014603360095953, 0.00020419498363126324, 0.0020334804587787757, -0.0002019022029596375, 1.0014617642444203, -0.001129305438011688, -0.002033709386322283, 0.0011288931218421667, 1.0014597200912627)  and translation (0.00020297723465898475, -0.00033104521041104647, -0.002319015505767286)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499169: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 12:31:33 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 12:31:33 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 12:31:33 2024
+Terminated at Mon Dec 30 12:37:34 2024
+Results reported at Mon Dec 30 12:37:34 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   357.17 sec.
+    Max Memory :                                 48696 MB
+    Average Memory :                             42744.80 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               79304.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   364 sec.
+    Turnaround time :                            361 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.12891506499238695
+The current learning rate is 1.0
+Iteration 10: Metric Value = 0.09681514372773063, Metric Difference = 0.032099921264656314
+The current learning rate is 1.0
+Iteration 20: Metric Value = 0.061518656100780576, Metric Difference = 0.035296487626950056
+The current learning rate is 1.0
+Iteration 30: Metric Value = 0.0477004880265087, Metric Difference = 0.013818168074271879
+The current learning rate is 1.0
+Iteration 40: Metric Value = 0.04625774144257136, Metric Difference = 0.0014427465839373377
+The current learning rate is 1.0
+Iteration 50: Metric Value = 0.04552908555560521, Metric Difference = 0.000728655886966148
+The current learning rate is 1.0
+Iteration 60: Metric Value = 0.04522438922044372, Metric Difference = 0.000304696335161489
+The current learning rate is 1.0
+Iteration 70: Metric Value = 0.04494222657638777, Metric Difference = 0.00028216264405594993
+The current learning rate is 1.0
+Iteration 80: Metric Value = 0.04481719410131719, Metric Difference = 0.00012503247507058418
+The current learning rate is 1.0
+Iteration 90: Metric Value = 0.04475051129851615, Metric Difference = 6.668280280103939e-05
+The current learning rate is 1.0
+Transformation has matrix (0.9639703222496312, 0.16832185534925184, 0.02072488512841305, -0.16722145533958424, 0.9632994919498687, -0.045734272849736635, -0.02826221374754308, 0.04150170901021138, 0.9774862686775595)  and translation (0.01738716280279976, -0.009872517352205165, -0.03297740951164081)
+Learning rate after execution: 1.000000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.041392 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04101218858617126, Metric Difference = 0.0037383227123448867
+The current learning rate is 0.5
+Iteration 10: Metric Value = 0.040933246939486204, Metric Difference = 7.894164668505871e-05
+The current learning rate is 0.5
+Iteration 20: Metric Value = 0.040881455634039054, Metric Difference = 5.179130544714916e-05
+The current learning rate is 0.5
+Iteration 30: Metric Value = 0.040857440194987674, Metric Difference = 2.4015439051380816e-05
+The current learning rate is 0.5
+Iteration 40: Metric Value = 0.040843742891582435, Metric Difference = 1.3697303405238448e-05
+The current learning rate is 0.5
+Iteration 50: Metric Value = 0.04083659421791375, Metric Difference = 7.148673668681826e-06
+The current learning rate is 0.5
+Iteration 60: Metric Value = 0.040831008301164956, Metric Difference = 5.585916748797326e-06
+The current learning rate is 0.5
+Iteration 70: Metric Value = 0.040827772903779834, Metric Difference = 3.235397385122074e-06
+The current learning rate is 0.5
+Iteration 80: Metric Value = 0.04082549658275136, Metric Difference = 2.2763210284770796e-06
+The current learning rate is 0.5
+Iteration 90: Metric Value = 0.040824239793534924, Metric Difference = 1.2567892164333516e-06
+The current learning rate is 0.5
+Transformation has matrix (1.0005999242991472, -0.00043706226320531653, 0.0009196519083177853, 0.0004365050166299432, 1.000600163412815, 0.0006064092116281954, -0.0009199165314568439, -0.0006060077058688964, 1.0005998359977624)  and translation (0.0007730966333577862, 0.0002604473709071002, 0.0005707931365039693)
+Learning rate after execution: 0.500000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.114576 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04196862313883827, Metric Difference = 0.0011443833453033472
+The current learning rate is 0.2
+Iteration 10: Metric Value = 0.04186203107096781, Metric Difference = 0.00010659206787046183
+The current learning rate is 0.2
+Iteration 20: Metric Value = 0.04175862121406336, Metric Difference = 0.00010340985690444893
+The current learning rate is 0.2
+Iteration 30: Metric Value = 0.041660563609783194, Metric Difference = 9.805760428016619e-05
+The current learning rate is 0.2
+Iteration 40: Metric Value = 0.041574997849186286, Metric Difference = 8.556576059690763e-05
+The current learning rate is 0.2
+Iteration 50: Metric Value = 0.041504663128705425, Metric Difference = 7.033472048086076e-05
+The current learning rate is 0.2
+Iteration 60: Metric Value = 0.041444378157982714, Metric Difference = 6.028497072271127e-05
+The current learning rate is 0.2
+Iteration 70: Metric Value = 0.04139568261302392, Metric Difference = 4.8695544958794745e-05
+The current learning rate is 0.2
+Iteration 80: Metric Value = 0.041361085315035455, Metric Difference = 3.459729798846456e-05
+The current learning rate is 0.2
+Iteration 90: Metric Value = 0.0413375474421462, Metric Difference = 2.353787288925796e-05
+The current learning rate is 0.2
+Transformation has matrix (1.0006738375018487, 0.0003058576608555247, 0.0012181988756541438, -0.0003047295200696769, 1.0006741501835568, -0.0009267752811758585, -0.001218481566929569, 0.0009264035802480871, 1.0006734550777108)  and translation (4.122311934129595e-05, -0.0004897592391670377, -0.0021179555501775575)
+Learning rate after execution: 0.200000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 0.4462546666666667 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04249839912077452, Metric Difference = 0.0011608516786283246
+The current learning rate is 0.1
+Iteration 10: Metric Value = 0.04246896110728301, Metric Difference = 2.943801349151315e-05
+The current learning rate is 0.1
+Iteration 20: Metric Value = 0.042439429331075806, Metric Difference = 2.9531776207201987e-05
+The current learning rate is 0.1
+Iteration 30: Metric Value = 0.042406356166081925, Metric Difference = 3.307316499388119e-05
+The current learning rate is 0.1
+Iteration 40: Metric Value = 0.042372695916588356, Metric Difference = 3.3660249493569494e-05
+The current learning rate is 0.1
+Iteration 50: Metric Value = 0.042338607485941246, Metric Difference = 3.408843064710981e-05
+The current learning rate is 0.1
+Iteration 60: Metric Value = 0.04230481404648785, Metric Difference = 3.3793439453394525e-05
+The current learning rate is 0.1
+Iteration 70: Metric Value = 0.042271503360128526, Metric Difference = 3.3310686359325214e-05
+The current learning rate is 0.1
+Iteration 80: Metric Value = 0.04223924277156979, Metric Difference = 3.22605885587357e-05
+The current learning rate is 0.1
+Iteration 90: Metric Value = 0.04220898990422152, Metric Difference = 3.025286734827104e-05
+The current learning rate is 0.1
+Transformation has matrix (1.000354576246925, -6.639782814324718e-05, 0.0006132929463767733, 6.678678591720726e-05, 1.000354563033816, -0.0006344383524516783, -0.0006132507112792393, 0.0006344791771623483, 1.0003543772657837)  and translation (2.5578270453979756e-05, -0.00026393431506334825, -0.000837454736107823)
+Learning rate after execution: 0.100000000000000
+Resampling the transformation
+Resampling moving image
+Using non-smoothed fixed image with shrinking
+Using non-smoothed moving image with shrinking
+Estimated time for registration optimization 1.05972128 min. Calculated on hpc, linuxsh node with Gradient Descent
+Iteration 0: Metric Value = 0.04398954487777227, Metric Difference = 0.0017805549735507506
+The current learning rate is 0.1
+Iteration 10: Metric Value = 0.04396023115724459, Metric Difference = 2.931372052768222e-05
+The current learning rate is 0.1
+Iteration 20: Metric Value = 0.04392071272731959, Metric Difference = 3.951842992500065e-05
+The current learning rate is 0.1
+Iteration 30: Metric Value = 0.0438736853381435, Metric Difference = 4.702738917608529e-05
+The current learning rate is 0.1
+Iteration 40: Metric Value = 0.04382346953612924, Metric Difference = 5.021580201425985e-05
+The current learning rate is 0.1
+Iteration 50: Metric Value = 0.04377274702892158, Metric Difference = 5.072250720766086e-05
+The current learning rate is 0.1
+Iteration 60: Metric Value = 0.043723962988482114, Metric Difference = 4.878404043946738e-05
+The current learning rate is 0.1
+Iteration 70: Metric Value = 0.04367796615546006, Metric Difference = 4.599683302205365e-05
+The current learning rate is 0.1
+Iteration 80: Metric Value = 0.04363515346348003, Metric Difference = 4.2812691980032014e-05
+The current learning rate is 0.1
+Iteration 90: Metric Value = 0.04359669637528024, Metric Difference = 3.845708819978644e-05
+The current learning rate is 0.1
+Transformation has matrix (1.0004009534886968, 0.0001287000732729331, 0.00045074456023197696, -0.00012842826955215017, 1.0004008731983087, -0.0006032293943031604, -0.0004508220791166033, 0.0006031714629448736, 1.0004007798972872)  and translation (5.6259311855631655e-05, -0.00023084612796858567, -0.0009979249822733203)
+Learning rate after execution: 0.100000000000000
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499173: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 12:44:39 2024
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 12:44:39 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 12:44:39 2024
+Terminated at Mon Dec 30 13:05:59 2024
+Results reported at Mon Dec 30 13:05:59 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrateXA_NA.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1275.66 sec.
+    Max Memory :                                 53712 MB
+    Average Memory :                             48654.42 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               74288.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   1290 sec.
+    Turnaround time :                            1280 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
