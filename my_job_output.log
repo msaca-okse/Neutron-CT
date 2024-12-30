@@ -62,3 +62,390 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499604: <Reconstructions> in cluster <dcc> Exited
+
+Job <Reconstructions> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:18:34 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:18:34 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:18:34 2024
+Terminated at Mon Dec 30 23:18:37 2024
+Results reported at Mon Dec 30 23:18:37 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Reconstructions
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   2.23 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     256000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   119 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499607: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:20:54 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:20:54 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:20:54 2024
+Terminated at Mon Dec 30 23:22:54 2024
+Results reported at Mon Dec 30 23:22:54 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   84.90 sec.
+    Max Memory :                                 932 MB
+    Average Memory :                             932.00 MB
+    Total Requested Memory :                     256000.00 MB
+    Delta Memory :                               255068.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   137 sec.
+    Turnaround time :                            120 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499609: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:22:40 2024
+Job was executed on host(s) <16*n-62-31-21>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:22:41 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:22:41 2024
+Terminated at Mon Dec 30 23:23:30 2024
+Results reported at Mon Dec 30 23:23:30 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 143.
+
+Resource usage summary:
+
+    CPU time :                                   33.00 sec.
+    Max Memory :                                 3915 MB
+    Average Memory :                             590.00 MB
+    Total Requested Memory :                     256000.00 MB
+    Delta Memory :                               252085.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   75 sec.
+    Turnaround time :                            50 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499611: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:24:23 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:24:24 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:24:24 2024
+Terminated at Mon Dec 30 23:29:03 2024
+Results reported at Mon Dec 30 23:29:03 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   2982.78 sec.
+    Max Memory :                                 73198 MB
+    Average Memory :                             55876.00 MB
+    Total Requested Memory :                     256000.00 MB
+    Delta Memory :                               182802.00 MB
+    Max Swap :                                   -
+    Max Processes :                              20
+    Max Threads :                                24
+    Run time :                                   369 sec.
+    Turnaround time :                            280 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499613: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:34:59 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:34:59 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:34:59 2024
+Terminated at Mon Dec 30 23:37:12 2024
+Results reported at Mon Dec 30 23:37:12 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   915.26 sec.
+    Max Memory :                                 64000 MB
+    Average Memory :                             23902.75 MB
+    Total Requested Memory :                     64000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              20
+    Max Threads :                                101
+    Run time :                                   249 sec.
+    Turnaround time :                            133 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499616: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:39:55 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:39:56 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:39:56 2024
+Terminated at Mon Dec 30 23:50:57 2024
+Results reported at Mon Dec 30 23:50:57 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   8930.00 sec.
+    Max Memory :                                 11024 MB
+    Average Memory :                             10006.14 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               116976.00 MB
+    Max Swap :                                   -
+    Max Processes :                              20
+    Max Threads :                                323
+    Run time :                                   705 sec.
+    Turnaround time :                            662 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

@@ -21,6 +21,7 @@ import numpy as np
 from astropy.io import fits
 import module_auxiliary as ma
 import tifffile
+from multiprocessing import Pool
 
 
 ##########################################################
@@ -30,14 +31,30 @@ import tifffile
 path = '/dtu-compute/msaca/sliceA_neutron_psi/OB2_DC2/OB2_DC2_#####.fits'
 A = range(1,241)
 ob_paths = ma.generate_paths(path, A)
-ob = ma.fits_loader(ob_paths)
-ob = median_arr = np.median(ob, axis=0)
+
+def load_file(path):
+    with fits.open(path) as hdul:
+        # Assume the data is in the primary HDU
+        return hdul[0].data
+with Pool() as pool:
+    ob_data = pool.map(load_file, ob_paths)
+
+# Now compute the mean across all loaded files
+# Convert list of arrays to a single array, assuming the arrays are of the same shape
+ob = np.stack(ob_data)
+ob = np.mean(ob, axis=0)
+
 
 path = '/dtu-compute/msaca/sliceA_neutron_psi/OB2_DC2/OB2_DC2_#####.fits'
 A = range(243,483)
 dc_paths = ma.generate_paths(path, A)
-dc = ma.fits_loader(dc_paths)
-dc = median_arr = np.median(dc, axis=0)
+with Pool() as pool:
+    dc_data = pool.map(load_file, dc_paths)
+
+# Now compute the mean across all loaded files
+# Convert list of arrays to a single array, assuming the arrays are of the same shape
+dc = np.stack(dc_data)
+dc = np.mean(dc, axis=0)
 
 path = '/dtu-compute/msaca/sliceA_neutron_psi/ct_3x1126_60s/ct_3x1126_60s_#####.fits'
 path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
@@ -45,15 +62,19 @@ path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 def preprocess_projection(i):
     A = [3*i-2, 3*i-1, 3*i]
     data_paths = ma.generate_paths(path, A)
-    data = ma.fits_loader(dc_paths)
-    data = median_arr = np.median(data, axis=0)
+    data = ma.fits_loader(data_paths)
+    data = np.median(data, axis=0)
     norm = imgalg.NormalizeImage(True) # True for use logarithm
     norm.setReferences(ob,dc)
     norm.process(data)
     msc = imgalg.MorphSpotClean()
     msc.setCleanMethod(detectionMethod=imgalg.MorphDetectAllSpots, cleanMethod=imgalg.MorphCleanReplace);
-    msc.setLimits([-0.1,12])
-    msc.setMaxArea(30)
+    msc.setLimits(
+        applyClamp=True,  # Apply clamping
+        vmin=-0.1,         # Minimum pixel value (e.g., for normalization)
+        vmax=12,       # Maximum pixel value (e.g., for normalization)
+        maxarea=30       # Maximum blob area (e.g., to filter out large blobs)
+    )
     msc.setEdgeConditioning(5)
     msc.process(data,th=[0.0, 0.0],sigma=[0.01, 0.01])
     A = [i]
@@ -62,7 +83,6 @@ def preprocess_projection(i):
 
 
 
-num_procs = int(os.getenv("NUM_PROCS", 1))
 # IMPORTaNT, set the environment variable "export NUM_PROCS=$LSB_DJOB_NUMPROC" in the job script. It should be the number of cores.
-with Pool(processes=num_procs) as pool:
+with Pool() as pool:
     pool.map(preprocess_projection, range(1, 1126))

@@ -1,13 +1,13 @@
 #!/bin/bash
 # embedded options to bsub - start with #BSUB
 # -- name ---
-#BSUB -J Reconstructions
+#BSUB -J Recon
 # -- choose queue --
 #BSUB -q hpc
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 16000
-#BSUB -R "rusage[mem=16000]"
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 4:00 
 # -- Number of cores requested -- 

@@ -21,8 +21,7 @@ def generate_paths(path, A):
 def fits_loader(paths):
     fits_data = []
     for file in paths:
-        file_path = os.path.join(fits_dir, file)
-        with fits.open(file_path) as hdul:
+        with fits.open(file) as hdul:
             # Assume the data is in the primary HDU
             data = hdul[0].data
             fits_data.append(data)
