@@ -8,3 +8,43 @@ Traceback (most recent call last):
   File "/zhome/71/c/146676/Desktop/msaca/main/registrateXA_NA.py", line 142, in <module>
     file.write(custom_string)
 NameError: name 'custom_string' is not defined
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/loader_fullXA_NA.py", line 20, in <module>
+    reader = TIFFStackReader(reconpath_neutron)
+NameError: name 'TIFFStackReader' is not defined
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/loader_fullXA_NA.py", line 34, in <module>
+    plt.imshow(1*(reg.as_array(reg.moving)[430]>threshold[1]) - 1*(reg.as_array(reg.fixed)[430]>threshold[0]))
+NameError: name 'threshold' is not defined
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 46
+    sampling rate = 0.01  # Probability of True (30%)
+             ^^^^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 35, in <module>
+    reg.compute_stone_boundaries(thresholds = threshold, factor = factor) # saved in reg.fixed_seg and reg.moving_seg
+NameError: name 'threshold' is not defined
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 39, in <module>
+    mask = sitk.Resample(
+NameError: name 'sitk' is not defined
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 51, in <module>
+    shape = mask_array.shape()
+TypeError: 'tuple' object is not callable
+Terminated
+Terminated
+Terminated
+Terminated
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 89, in <module>
+    plt.close()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/SimpleITK/SimpleITK.py", line 4295, in __getitem__
+    raise IndexError("too many indices for image")
+IndexError: too many indices for image
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/segmentationXA_NA.py", line 101, in <module>
+    moving_median = reg_median.as_array(reg_median.moving)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/SimpleITK/SimpleITK.py", line 4295, in __getitem__
+    raise IndexError("too many indices for image")
+IndexError: too many indices for image

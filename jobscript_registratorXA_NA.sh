@@ -18,4 +18,4 @@
 # -- end of LSF options -- 
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python registrateXA_NA.py
+python segmentationXA_NA.py
