@@ -1,0 +1,64 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23499602: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Dec 30 23:16:29 2024
+Job was executed on host(s) <16*n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Dec 30 23:16:29 2024
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/Desktop/msaca/main> was used as the working directory.
+Started at Mon Dec 30 23:16:29 2024
+Terminated at Mon Dec 30 23:16:38 2024
+Results reported at Mon Dec 30 23:16:38 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   2.75 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     256000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   23 sec.
+    Turnaround time :                            9 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

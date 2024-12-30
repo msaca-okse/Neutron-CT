@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/Desktop/msaca/main/reconstructor_NA_fbp.py", line 22, in <module>
+    import module_auxiliary as ma
+ModuleNotFoundError: No module named 'module_auxiliary'
