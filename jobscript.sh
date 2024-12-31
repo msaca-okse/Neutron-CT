@@ -6,12 +6,12 @@
 #BSUB -q hpc
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 8000
-#BSUB -R "rusage[mem=8000]"
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 4:00 
+#BSUB -W 1:00 
 # -- Number of cores requested -- 
-#BSUB -n 16
+#BSUB -n 32
 # -- Specify the distribution of the cores: on a separate nodes --
 #BSUB -R "span[hosts=1]"
 
