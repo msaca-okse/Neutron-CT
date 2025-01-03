@@ -1,0 +1,39 @@
+/zhome/71/c/146676/.lsbatch/1735902875.23503372.shell: line 1: syntax error near unexpected token `newline'
+/zhome/71/c/146676/.lsbatch/1735902875.23503372.shell: line 1: `bsub> '
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23503372: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 12:14:35 2025
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 12:14:35 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 12:14:35 2025
+Terminated at Fri Jan  3 12:14:40 2025
+Results reported at Fri Jan  3 12:14:40 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+bsub> 
+------------------------------------------------------------
+
+Exited with exit code 2.
+
+Resource usage summary:
+
+    CPU time :                                   2.17 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   120 sec.
+    Turnaround time :                            5 sec.
+
+The output (if any) is above this job summary.
+
