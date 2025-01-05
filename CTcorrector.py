@@ -1,4 +1,4 @@
-mport numpy as np
+import numpy as np
 import SimpleITK as sitk
 import matplotlib.pyplot as plt
 previous_metric_value = None
@@ -215,7 +215,7 @@ class CTcorrector():
             alpha = np.rad2deg(parameters[0])  # Convert to degrees
             t = parameters[1]
             scale = self.fixed.GetSpacing()[0]
-            print('The parameters are: \n  t  = ', t/scale, ' pixels, \nalpha = ', alpha, ' degrees')
+            print('The parameters are: \n  t  = ', t/scale, ' pixels, \nalpha = ', alpha, ' degrees', t)
 
             # Update previous_metric_value for the next iteration
             previous_metric_value = metric_value

@@ -25,6 +25,12 @@ import tifffile
 from multiprocessing import Pool
 import matplotlib.pyplot as plt
 import image_utils as iu
+import extended_data as ed
+import CTcorrector as ctc
+from cil.plugins.astra import FBP
+from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData, BlockDataContainer
+
+
 
 start_time = time.time()
 ##########################################################
@@ -47,7 +53,7 @@ with Pool() as pool:
 # Convert list of arrays to a single array, assuming the arrays are of the same shape
 ob = np.stack(ob_data)
 ob = np.mean(ob, axis=0)
-ob = ob[180:1760,240:1820]
+ob = ob[50:1910,90:1970]
 
 path = '//dtu-compute/msaca/sliceA_neutron_psi/DC/DC_#####.fits'
 A = range(1,31)
@@ -60,7 +66,7 @@ with Pool() as pool:
 # Convert list of arrays to a single array, assuming the arrays are of the same shape
 dc = np.stack(dc_data)
 dc = np.mean(dc, axis=0)
-dc = dc[180:1760,240:1820]
+dc = dc[50:1910,90:1970]
 
 end_time = time.time()
 elapsed_time = end_time - start_time
@@ -71,31 +77,46 @@ path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 
 batch = np.linspace(1,1127,200).astype(np.uint16)
 
-def preprocess_projection(batch_idx, save=False):
+def preprocess_projection(batch_idx):
+    mode = 'save'
+    size = 25
+
     a = range(batch[batch_idx],batch[batch_idx+1])
+
+    if mode == 'load':
+        count = 0
+        Data = []
+        for i in a:
+            A = [i]
+            temp_path = ma.generate_paths(path_cache,A)[0]
+            Data.append(tifffile.imread(temp_path))
+        Data = np.stack(Data)
+        return Data.astype(np.float32)
+
     Data = []
     for i in a:
         A = [3*i-2, 3*i-1, 3*i]
         data_paths = ma.generate_paths(path, A)
         data = ma.fits_loader(data_paths)
-        data = data[:,180:1760,240:1820]
+        data = data[:,50:1910,90:1970]
         data = np.median(data, axis=0)
         Data.append(data)
 
     Data = np.stack(Data)    
     Data = (-np.log((np.abs(Data-dc[np.newaxis])+1)/(1+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
    
+    th = 0.9
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
 
-  #  Data = iu.morph_spot_clean(Data,th_peaks=0.999,th_holes=0.999,method=0)
-
-    if save:
+    if mode == 'save':
         count = 0
         for i in a:
             A = [i]
             temp_path = ma.generate_paths(path_cache, A)[0]
             tifffile.imwrite(temp_path, Data[count].astype(np.float32))
             count = count+1
-    else:
+        return Data.astype(np.float32)
+    if mode is None:
         return Data.astype(np.float32)
 
 
@@ -104,27 +125,25 @@ with Pool() as pool:
    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
 
 Data = np.vstack(Data_)
-N_angles, N_slices, N_pixels = np.shape(Data)
+Data = np.transpose(Data, [1,0,2])
+N_slices, N_angles, N_pixels = np.shape(Data)
 
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Preprocess time: {elapsed_time:.2f} seconds")
-
 
 ################################################################################
 #
 # Part II, Beam padding,  Cor estimation, tilt-correction and sinogram based preprocessing
 #
 #################################################################################
-import extended_data as ed
-
 # Add beam padding with gaussian blur
 angles = np.linspace(0, 360, N_angles, endpoint=True, dtype=np.float32)
 slices = np.arange(0, N_slices)
 ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
                             .set_angles(angles)\
                             .set_panel((N_pixels,N_slices), pixel_size=(1,1))\
-                            .set_labels(labels=('angle','vertical','horizontal'))
+                            .set_labels(labels=('vertical','angle','horizontal'))
 
 sinograms = ed.ExtendedData()
 sinograms.set_data(data = Data)
@@ -136,7 +155,6 @@ input_data = sinograms.data*100
 
 
 # Cor estimation
-import CTcorrector as ctc
 corrector = ctc.CTcorrector()
 angles = np.linspace(0,360,num=N_angles)
 corrector.set_angles(angles = angles)
@@ -145,31 +163,28 @@ corrector.set_labels()
 k_angle = 20
 corrector.get_projection_and_opposite(k_angle)
 corrector.register(learning_rate = 1, sampling_percentage = 0.1,
-                   max_iter = 200, matric_type = 'cor',
+                   max_iter = 200, metric_type = 'cor',
                    optimizer_type = 'gd', smoothing = 0,
                    shrinking = 1)
 
 print('Estimated Cor: ', corrector.t, 'Estimated tilt: ', corrector.alpha)
 
 ############## Now do the cor and tilt correction printing the result
-from cil.plugins.astra import FBP
-from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData, BlockDataContainer
-
 
 def show_slices(angle, translation, return_data = False, skip = 100, fig_path=None):
     angle_radians = np.deg2rad(angle)
     rotation_matrix = [
-                    [1, 0,0],
-                    [0, np.cos(angle_radians),  -np.sin(angle_radians)],
-                    [0, np.sin(angle_radians),  np.cos(angle_radians)]
+                    [np.cos(angle_radians),0,  -np.sin(angle_radians)],
+                    [0,1,0],
+                    [np.sin(angle_radians), 0,  np.cos(angle_radians)]
                 ]
     matrix = [elem for row in rotation_matrix for elem in row]
-    translation = [0, 0, translation]
+    translation = [-translation, 0, 0]
     transform = corrector.transformation(matrix = matrix, translation = translation)
     data2 = corrector.resample(data=corrector.data, transform=transform)
     if return_data:
         return data2
-    subslices = np.arange(0, n1, skip)
+    subslices = np.arange(0, N_slices, skip)
     sinograms.set_data(data2)
     sinograms.acquisition_data(geometry=ag)
     sinograms.set_subdata(subslices=subslices)
@@ -196,11 +211,12 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
 
 
 angle = 0.325
-translation = corrector.t
+scale = corrector.fixed.GetSpacing()[0]
+translation = -23
 return_data = False
 skip = 100
 fig_path = '/dtu-compute/msaca/output/tilt_cor_corrector_slices/rec_slice'
-show_slices(angle=angle, translation=translation, return_data = False, skip = 100, fig_path=fig_path)
+show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
 
 
 end_time = time.time()
@@ -208,8 +224,23 @@ elapsed_time = end_time - start_time
 print(f"Total time: Including cor correction and plotting: {elapsed_time:.2f} seconds")
 
 
+#return_data = True
+#skip = None
+#data = show_slices(angle, translation = translation, return_data = return_data, skip = skip, fig_path = fig_path)
 
 
+###########################
+#
+# Part 3: Do the reconstruction (FBB, CGLS, TV...)
+#
+##################
 
-
-
+#### FBP
+#skip = 1
+#subslices = np.arange(0, N_slices, skip)
+#sinograms.set_data(data)
+#sinograms.acquisition_data(geometry=ag)
+#sinograms.set_subdata(subslices=subslices)
+#sinograms.remove_ring(subdata = False)
+#recon = sinograms.fbp(subdata = False)
+#recon.as_array()

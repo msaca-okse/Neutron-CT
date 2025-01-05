@@ -3,11 +3,11 @@
 # -- name ---
 #BSUB -J Recon
 # -- choose queue --
-#BSUB -q hpc
+#BSUB -q gpuv100
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 1:00 
 # -- Number of cores requested -- 

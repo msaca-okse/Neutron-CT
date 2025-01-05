@@ -1,15 +1,15 @@
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503379: <Recon> in cluster <dcc> Exited
+Subject: Job 23504014: <Recon> in cluster <dcc> Exited
 
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 12:19:14 2025
-Job was executed on host(s) <16*n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 12:19:15 2025
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 19:39:39 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 19:39:40 2025
 </zhome/71/c/146676> was used as the home directory.
 </zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 12:19:15 2025
-Terminated at Fri Jan  3 12:19:28 2025
-Results reported at Fri Jan  3 12:19:28 2025
+Started at Fri Jan  3 19:39:40 2025
+Terminated at Fri Jan  3 19:48:01 2025
+Results reported at Fri Jan  3 19:48:01 2025
 
 Your job looked like:
 
@@ -20,11 +20,11 @@ Your job looked like:
 # -- name ---
 #BSUB -J Recon
 # -- choose queue --
-#BSUB -q hpc
+#BSUB -q gpuv100
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 3000
+#BSUB -R "rusage[mem=3000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 1:00 
 # -- Number of cores requested -- 
@@ -40,282 +40,21 @@ python reconstructor_NA_fbp.py
 
 ------------------------------------------------------------
 
-Exited with exit code 1.
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
 
 Resource usage summary:
 
-    CPU time :                                   5.02 sec.
-    Max Memory :                                 8 MB
-    Average Memory :                             8.00 MB
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               31992.00 MB
-    Max Swap :                                   -
-    Max Processes :                              6
-    Max Threads :                                7
-    Run time :                                   107 sec.
-    Turnaround time :                            14 sec.
-
-The output (if any) is above this job summary.
-
-
-
-PS:
-
-Read file <my_job_error.log> for stderr output of this job.
-
-
-------------------------------------------------------------
-Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503384: <Recon> in cluster <dcc> Exited
-
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 12:26:10 2025
-Job was executed on host(s) <16*n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 12:26:10 2025
-</zhome/71/c/146676> was used as the home directory.
-</zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 12:26:10 2025
-Terminated at Fri Jan  3 12:26:21 2025
-Results reported at Fri Jan  3 12:26:21 2025
-
-Your job looked like:
-
-------------------------------------------------------------
-# LSBATCH: User input
-#!/bin/bash
-# embedded options to bsub - start with #BSUB
-# -- name ---
-#BSUB -J Recon
-# -- choose queue --
-#BSUB -q hpc
-#BSUB -e my_job_error.log
-#BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
-# -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
-# -- Number of cores requested -- 
-#BSUB -n 16
-# -- Specify the distribution of the cores: on a separate nodes --
-#BSUB -R "span[hosts=1]"
-
-# -- end of LSF options -- 
-export NUM_PROCS=$LSB_DJOB_NUMPROC
-
-source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python reconstructor_NA_fbp.py
-
-------------------------------------------------------------
-
-Exited with exit code 1.
-
-Resource usage summary:
-
-    CPU time :                                   4.95 sec.
-    Max Memory :                                 -
-    Average Memory :                             -
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               -
-    Max Swap :                                   -
-    Max Processes :                              -
-    Max Threads :                                -
-    Run time :                                   53 sec.
-    Turnaround time :                            11 sec.
-
-The output (if any) is above this job summary.
-
-
-
-PS:
-
-Read file <my_job_error.log> for stderr output of this job.
-
-
-------------------------------------------------------------
-Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503387: <Recon> in cluster <dcc> Exited
-
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 12:33:13 2025
-Job was executed on host(s) <16*n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 12:33:13 2025
-</zhome/71/c/146676> was used as the home directory.
-</zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 12:33:13 2025
-Terminated at Fri Jan  3 12:33:22 2025
-Results reported at Fri Jan  3 12:33:22 2025
-
-Your job looked like:
-
-------------------------------------------------------------
-# LSBATCH: User input
-#!/bin/bash
-# embedded options to bsub - start with #BSUB
-# -- name ---
-#BSUB -J Recon
-# -- choose queue --
-#BSUB -q hpc
-#BSUB -e my_job_error.log
-#BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
-# -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
-# -- Number of cores requested -- 
-#BSUB -n 16
-# -- Specify the distribution of the cores: on a separate nodes --
-#BSUB -R "span[hosts=1]"
-
-# -- end of LSF options -- 
-export NUM_PROCS=$LSB_DJOB_NUMPROC
-
-source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python reconstructor_NA_fbp.py
-
-------------------------------------------------------------
-
-Exited with exit code 1.
-
-Resource usage summary:
-
-    CPU time :                                   4.76 sec.
-    Max Memory :                                 1 MB
-    Average Memory :                             1.00 MB
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               31999.00 MB
-    Max Swap :                                   -
-    Max Processes :                              1
-    Max Threads :                                1
-    Run time :                                   116 sec.
-    Turnaround time :                            9 sec.
-
-The output (if any) is above this job summary.
-
-
-
-PS:
-
-Read file <my_job_error.log> for stderr output of this job.
-
-
-------------------------------------------------------------
-Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503388: <Recon> in cluster <dcc> Exited
-
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 12:35:15 2025
-Job was executed on host(s) <16*n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 12:35:15 2025
-</zhome/71/c/146676> was used as the home directory.
-</zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 12:35:15 2025
-Terminated at Fri Jan  3 12:35:22 2025
-Results reported at Fri Jan  3 12:35:22 2025
-
-Your job looked like:
-
-------------------------------------------------------------
-# LSBATCH: User input
-#!/bin/bash
-# embedded options to bsub - start with #BSUB
-# -- name ---
-#BSUB -J Recon
-# -- choose queue --
-#BSUB -q hpc
-#BSUB -e my_job_error.log
-#BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
-# -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
-# -- Number of cores requested -- 
-#BSUB -n 16
-# -- Specify the distribution of the cores: on a separate nodes --
-#BSUB -R "span[hosts=1]"
-
-# -- end of LSF options -- 
-export NUM_PROCS=$LSB_DJOB_NUMPROC
-
-source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python reconstructor_NA_fbp.py
-
-------------------------------------------------------------
-
-Exited with exit code 1.
-
-Resource usage summary:
-
-    CPU time :                                   4.55 sec.
-    Max Memory :                                 -
-    Average Memory :                             -
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               -
-    Max Swap :                                   -
-    Max Processes :                              -
-    Max Threads :                                -
-    Run time :                                   13 sec.
-    Turnaround time :                            7 sec.
-
-The output (if any) is above this job summary.
-
-
-
-PS:
-
-Read file <my_job_error.log> for stderr output of this job.
-
-Loading time: 3.31 seconds
-
-------------------------------------------------------------
-Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503437: <Recon> in cluster <dcc> Exited
-
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 13:28:11 2025
-Job was executed on host(s) <16*n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 13:28:12 2025
-</zhome/71/c/146676> was used as the home directory.
-</zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 13:28:12 2025
-Terminated at Fri Jan  3 13:31:39 2025
-Results reported at Fri Jan  3 13:31:39 2025
-
-Your job looked like:
-
-------------------------------------------------------------
-# LSBATCH: User input
-#!/bin/bash
-# embedded options to bsub - start with #BSUB
-# -- name ---
-#BSUB -J Recon
-# -- choose queue --
-#BSUB -q hpc
-#BSUB -e my_job_error.log
-#BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
-# -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
-# -- Number of cores requested -- 
-#BSUB -n 16
-# -- Specify the distribution of the cores: on a separate nodes --
-#BSUB -R "span[hosts=1]"
-
-# -- end of LSF options -- 
-export NUM_PROCS=$LSB_DJOB_NUMPROC
-
-source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python reconstructor_NA_fbp.py
-
-------------------------------------------------------------
-
-TERM_OWNER: job killed by owner.
-Exited with exit code 130.
-
-Resource usage summary:
-
-    CPU time :                                   2784.62 sec.
-    Max Memory :                                 12971 MB
-    Average Memory :                             9380.25 MB
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               19029.00 MB
+    CPU time :                                   6504.00 sec.
+    Max Memory :                                 48000 MB
+    Average Memory :                             25572.71 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               0.00 MB
     Max Swap :                                   -
     Max Processes :                              28
-    Max Threads :                                32
-    Run time :                                   208 sec.
-    Turnaround time :                            208 sec.
+    Max Threads :                                34
+    Run time :                                   586 sec.
+    Turnaround time :                            502 sec.
 
 The output (if any) is above this job summary.
 
@@ -325,19 +64,20 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
-Loading time: 1.81 seconds
+Loading time: 5.22 seconds
+Loading time: 5.86 seconds
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503447: <Recon> in cluster <dcc> Exited
+Subject: Job 23504018: <Recon> in cluster <dcc> Exited
 
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 13:31:55 2025
-Job was executed on host(s) <16*n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 13:31:56 2025
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 19:48:05 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 19:48:05 2025
 </zhome/71/c/146676> was used as the home directory.
 </zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 13:31:56 2025
-Terminated at Fri Jan  3 13:34:21 2025
-Results reported at Fri Jan  3 13:34:21 2025
+Started at Fri Jan  3 19:48:05 2025
+Terminated at Fri Jan  3 19:50:34 2025
+Results reported at Fri Jan  3 19:50:34 2025
 
 Your job looked like:
 
@@ -348,11 +88,11 @@ Your job looked like:
 # -- name ---
 #BSUB -J Recon
 # -- choose queue --
-#BSUB -q hpc
+#BSUB -q gpuv100
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 3000
+#BSUB -R "rusage[mem=3000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 1:00 
 # -- Number of cores requested -- 
@@ -368,21 +108,21 @@ python reconstructor_NA_fbp.py
 
 ------------------------------------------------------------
 
-TERM_OWNER: job killed by owner.
-Exited with exit code 143.
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
 
 Resource usage summary:
 
-    CPU time :                                   1949.00 sec.
-    Max Memory :                                 10746 MB
-    Average Memory :                             1957.75 MB
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               21254.00 MB
+    CPU time :                                   224.00 sec.
+    Max Memory :                                 48000 MB
+    Average Memory :                             32372.33 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               0.00 MB
     Max Swap :                                   -
     Max Processes :                              28
-    Max Threads :                                32
-    Run time :                                   152 sec.
-    Turnaround time :                            146 sec.
+    Max Threads :                                34
+    Run time :                                   153 sec.
+    Turnaround time :                            149 sec.
 
 The output (if any) is above this job summary.
 
@@ -392,20 +132,63 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
-Loading time: 3.77 seconds
-Preprocess time: 109.78 seconds
+Loading time: 5.12 seconds
+Preprocess time: 108.15 seconds
+Iteration 0: Metric Value = -0.4230171186118383
+The parameters are: 
+  t  =  -9.275331463790497  pixels, 
+alpha =  0.061619471979972446  degrees -0.008805694427649205
+Iteration 20: Metric Value = -0.7817, Metric Difference = 0.3587
+The parameters are: 
+  t  =  -39.78200420476791  pixels, 
+alpha =  -0.11792312817916974  degrees -0.03776772551085561
+Iteration 40: Metric Value = -0.7822, Metric Difference = 0.0005
+The parameters are: 
+  t  =  -42.7933831963038  pixels, 
+alpha =  -0.20154582546047412  degrees -0.04062662961674411
+Iteration 60: Metric Value = -0.7822, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.969367063757105  pixels, 
+alpha =  -0.2582337214634231  degrees -0.04079370290863016
+Iteration 80: Metric Value = -0.7822, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.961983962748256  pixels, 
+alpha =  -0.28682270863816184  degrees -0.040786693635520496
+Iteration 100: Metric Value = -0.7822, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.936515815874714  pixels, 
+alpha =  -0.30235495982219723  degrees -0.04076251501507093
+Iteration 120: Metric Value = -0.7821, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.92534285262761  pixels, 
+alpha =  -0.3122332310580339  degrees -0.0407519077714819
+Iteration 140: Metric Value = -0.7821, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.92096220415409  pixels, 
+alpha =  -0.3179416199334044  degrees -0.04074774892799438
+Iteration 160: Metric Value = -0.7821, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.91797546217649  pixels, 
+alpha =  -0.3209992439116833  degrees -0.04074491341345869
+Iteration 180: Metric Value = -0.7821, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.916888455222384  pixels, 
+alpha =  -0.32278715760095544  degrees -0.040743881444831376
+Estimated Cor:  -0.04074365822106296 Estimated tilt:  -0.32377134687139525
+Finish Ring Remover
+Total time: Including cor correction and plotting: 167.02 seconds
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 23503448: <Recon> in cluster <dcc> Exited
+Subject: Job 23504022: <Recon> in cluster <dcc> Done
 
-Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 13:34:06 2025
-Job was executed on host(s) <16*n-62-31-24>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan  3 13:34:08 2025
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 19:55:29 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 19:55:29 2025
 </zhome/71/c/146676> was used as the home directory.
 </zhome/71/c/146676/main> was used as the working directory.
-Started at Fri Jan  3 13:34:08 2025
-Terminated at Fri Jan  3 13:36:16 2025
-Results reported at Fri Jan  3 13:36:16 2025
+Started at Fri Jan  3 19:55:29 2025
+Terminated at Fri Jan  3 19:58:23 2025
+Results reported at Fri Jan  3 19:58:23 2025
 
 Your job looked like:
 
@@ -416,11 +199,11 @@ Your job looked like:
 # -- name ---
 #BSUB -J Recon
 # -- choose queue --
-#BSUB -q hpc
+#BSUB -q gpuv100
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 1:00 
 # -- Number of cores requested -- 
@@ -436,20 +219,899 @@ python reconstructor_NA_fbp.py
 
 ------------------------------------------------------------
 
-Exited with exit code 1.
+Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   362.66 sec.
-    Max Memory :                                 61 MB
-    Average Memory :                             61.00 MB
-    Total Requested Memory :                     32000.00 MB
-    Delta Memory :                               31939.00 MB
+    CPU time :                                   312.00 sec.
+    Max Memory :                                 49923 MB
+    Average Memory :                             35227.25 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               78077.00 MB
     Max Swap :                                   -
-    Max Processes :                              4
-    Max Threads :                                5
-    Run time :                                   224 sec.
-    Turnaround time :                            130 sec.
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   229 sec.
+    Turnaround time :                            174 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Preprocess time: 439.56 seconds
+Iteration 0: Metric Value = -0.41837832113408857
+The parameters are: 
+  t  =  -7.091212428329153  pixels, 
+alpha =  0.1286101791732805  degrees -0.006732163697780841
+Iteration 20: Metric Value = -0.7821, Metric Difference = 0.3638
+The parameters are: 
+  t  =  -39.8970876427209  pixels, 
+alpha =  -0.09524405957380808  degrees -0.03787698193929199
+Iteration 40: Metric Value = -0.7830, Metric Difference = 0.0009
+The parameters are: 
+  t  =  -42.01843198409954  pixels, 
+alpha =  -0.26788254893602176  degrees -0.03989091644060083
+Iteration 60: Metric Value = -0.7829, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.16418519373284  pixels, 
+alpha =  -0.3191239635924821  degrees -0.040029289740885605
+Iteration 80: Metric Value = -0.7828, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.17737170492473  pixels, 
+alpha =  -0.3369168898169045  degrees -0.04004180858062474
+Iteration 100: Metric Value = -0.7827, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.19007416012083  pixels, 
+alpha =  -0.34533340653668554  degrees -0.040053867873532434
+Iteration 120: Metric Value = -0.7827, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.19594094746288  pixels, 
+alpha =  -0.34870099525933  degrees -0.04005943760835083
+Iteration 140: Metric Value = -0.7827, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.19826296777822  pixels, 
+alpha =  -0.34984425639653066  degrees -0.040061642058017294
+Iteration 160: Metric Value = -0.7827, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.19895493233117  pixels, 
+alpha =  -0.35015564343882694  degrees -0.04006229898639035
+Iteration 180: Metric Value = -0.7827, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.199125884848364  pixels, 
+alpha =  -0.35023805776846495  degrees -0.04006246128308389
+Estimated Cor:  -0.04006250162594069 Estimated tilt:  -0.3502590822438021
+Finish Ring Remover
+Total time: Including cor correction and plotting: 503.41 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504019: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 19:50:18 2025
+Job was executed on host(s) <16*n-62-20-10>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 19:50:19 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 19:50:19 2025
+Terminated at Fri Jan  3 19:58:49 2025
+Results reported at Fri Jan  3 19:58:49 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   6513.00 sec.
+    Max Memory :                                 61921 MB
+    Average Memory :                             36698.17 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               66079.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   567 sec.
+    Turnaround time :                            511 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.79 seconds
+Preprocess time: 396.59 seconds
+Iteration 0: Metric Value = -0.4111992042767121
+The parameters are: 
+  t  =  -6.237440319675956  pixels, 
+alpha =  -0.0036094835881308757  degrees -0.005921620556654388
+Iteration 20: Metric Value = -0.7826, Metric Difference = 0.3714
+The parameters are: 
+  t  =  -40.46271229042856  pixels, 
+alpha =  -0.22918194140997838  degrees -0.03841396736433091
+Iteration 40: Metric Value = -0.7830, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -42.73162040334379  pixels, 
+alpha =  -0.2733569550053966  degrees -0.04056799405380739
+Iteration 60: Metric Value = -0.7830, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.75474229603935  pixels, 
+alpha =  -0.2848496808389053  degrees -0.040589945217758876
+Iteration 80: Metric Value = -0.7830, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.72143425205162  pixels, 
+alpha =  -0.2900052712057653  degrees -0.04055832365701103
+Iteration 100: Metric Value = -0.7829, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.711886765980374  pixels, 
+alpha =  -0.2919206078169547  degrees -0.04054925958795605
+Iteration 120: Metric Value = -0.7829, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70950189757461  pixels, 
+alpha =  -0.2925829511552504  degrees -0.040546995472380956
+Iteration 140: Metric Value = -0.7829, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70877908559094  pixels, 
+alpha =  -0.2928071243501393  degrees -0.04054630925847241
+Iteration 160: Metric Value = -0.7829, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.708528153090725  pixels, 
+alpha =  -0.29288655409472997  degrees -0.04054607103141524
+Iteration 180: Metric Value = -0.7829, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70844062235626  pixels, 
+alpha =  -0.2929151559933637  degrees -0.0405459879326167
+Estimated Cor:  -0.04054595799794572 Estimated tilt:  -0.2929252632315098
+Finish Ring Remover
+Total time: Including cor correction and plotting: 458.90 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504028: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:03:02 2025
+Job was executed on host(s) <16*n-62-20-10>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:03:02 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:03:02 2025
+Terminated at Fri Jan  3 20:10:47 2025
+Results reported at Fri Jan  3 20:10:47 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   6506.00 sec.
+    Max Memory :                                 54944 MB
+    Average Memory :                             34780.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               73056.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   504 sec.
+    Turnaround time :                            465 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.25 seconds
+Preprocess time: 107.91 seconds
+Iteration 0: Metric Value = -0.421809349103904
+The parameters are: 
+  t  =  -6.40954811576992  pixels, 
+alpha =  -0.010204666216708324  degrees -0.006085014033958784
+Iteration 20: Metric Value = -0.7831, Metric Difference = 0.3613
+The parameters are: 
+  t  =  -40.27778757509861  pixels, 
+alpha =  -0.26722249032079415  degrees -0.038238405925726526
+Iteration 40: Metric Value = -0.7839, Metric Difference = 0.0007
+The parameters are: 
+  t  =  -42.15966635185221  pixels, 
+alpha =  -0.30525762890808616  degrees -0.04002499970112551
+Iteration 60: Metric Value = -0.7838, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.181806180685626  pixels, 
+alpha =  -0.32256267681395046  degrees -0.04004601852596736
+Iteration 80: Metric Value = -0.7838, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.17954084800464  pixels, 
+alpha =  -0.33280472050668997  degrees -0.04004386789367529
+Iteration 100: Metric Value = -0.7838, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.17659317048683  pixels, 
+alpha =  -0.3414422737388014  degrees -0.04004106946565206
+Iteration 120: Metric Value = -0.7838, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.17259967163708  pixels, 
+alpha =  -0.351613344039058  degrees -0.04003727816927571
+Iteration 140: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.15558241035009  pixels, 
+alpha =  -0.36206072070651346  degrees -0.0400211225414716
+Iteration 160: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.1352442950546  pixels, 
+alpha =  -0.37088086598824865  degrees -0.04000181420416576
+Iteration 180: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.11274985679471  pixels, 
+alpha =  -0.3790850583570504  degrees -0.0399804587248051
+Estimated Cor:  -0.03996638449262034 Estimated tilt:  -0.38733725766898164
+Finish Ring Remover
+Total time: Including cor correction and plotting: 167.60 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504032: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:13:11 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:13:11 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:13:11 2025
+Terminated at Fri Jan  3 20:16:06 2025
+Results reported at Fri Jan  3 20:16:06 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   306.00 sec.
+    Max Memory :                                 43341 MB
+    Average Memory :                             31465.25 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               84659.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   218 sec.
+    Turnaround time :                            175 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.53 seconds
+Preprocess time: 384.49 seconds
+Iteration 0: Metric Value = -0.47913228832655186
+The parameters are: 
+  t  =  -1.8974255560592719  pixels, 
+alpha =  -0.0038624824301078027  degrees -0.0018013533760056378
+Iteration 20: Metric Value = -0.5049, Metric Difference = 0.0258
+The parameters are: 
+  t  =  -25.05350297092936  pixels, 
+alpha =  -0.14897734202888951  degrees -0.023784971174932938
+Iteration 40: Metric Value = -0.5119, Metric Difference = 0.0070
+The parameters are: 
+  t  =  -38.758602693673204  pixels, 
+alpha =  -0.35216090403914474  degrees -0.03679614179779102
+Iteration 60: Metric Value = -0.5159, Metric Difference = 0.0039
+The parameters are: 
+  t  =  -42.567087896000395  pixels, 
+alpha =  -0.44216873894349973  degrees -0.040411792306329485
+Iteration 80: Metric Value = -0.5161, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -42.592587027767934  pixels, 
+alpha =  -0.4491780835714891  degrees -0.040436000342817656
+Iteration 100: Metric Value = -0.5161, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.59258964750658  pixels, 
+alpha =  -0.4491788806944806  degrees -0.040436002829911305
+Iteration 120: Metric Value = -0.5161, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.59258963536838  pixels, 
+alpha =  -0.44917888030238007  degrees -0.0404360028183877
+Iteration 140: Metric Value = -0.5161, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.59258964526  pixels, 
+alpha =  -0.44917888061207656  degrees -0.040436002827778476
+Iteration 160: Metric Value = -0.5161, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.59258963986978  pixels, 
+alpha =  -0.4491788807000723  degrees -0.04043600282266118
+Iteration 180: Metric Value = -0.5161, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.59258964864366  pixels, 
+alpha =  -0.4491788803162645  degrees -0.040436002830990816
+Estimated Cor:  -0.04043600279992963 Estimated tilt:  -0.44917888029247266
+Finish Ring Remover
+Total time: Including cor correction and plotting: 457.13 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504033: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:19:22 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:19:22 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:19:22 2025
+Terminated at Fri Jan  3 20:27:05 2025
+Results reported at Fri Jan  3 20:27:05 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   5522.00 sec.
+    Max Memory :                                 72596 MB
+    Average Memory :                             41172.33 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               55404.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   527 sec.
+    Turnaround time :                            463 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.68 seconds
+Preprocess time: 362.63 seconds
+Iteration 0: Metric Value = -0.6493176632570227
+The parameters are: 
+  t  =  -1.4203108696058573  pixels, 
+alpha =  -0.02316260495063777  degrees -0.001348396395195434
+Iteration 20: Metric Value = -0.6956, Metric Difference = 0.0462
+The parameters are: 
+  t  =  -31.004042575258804  pixels, 
+alpha =  -0.31390885189900286  degrees -0.02943421763473937
+Iteration 40: Metric Value = -0.7055, Metric Difference = 0.0100
+The parameters are: 
+  t  =  -41.50287096676196  pixels, 
+alpha =  -0.47020312975823786  degrees -0.03940145977857148
+Iteration 60: Metric Value = -0.7056, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.727328200161  pixels, 
+alpha =  -0.49098958083873706  degrees -0.03961455208876044
+Iteration 80: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.73994612082053  pixels, 
+alpha =  -0.4925751760083488  degrees -0.03962653112736126
+Iteration 100: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.74136423650132  pixels, 
+alpha =  -0.4927412905110169  degrees -0.03962787743971644
+Iteration 120: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.741497508476506  pixels, 
+alpha =  -0.49275716047401713  degrees -0.03962800396374352
+Iteration 140: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.74151000961682  pixels, 
+alpha =  -0.4927586448176189  degrees -0.0396280158319147
+Iteration 160: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.74151117499951  pixels, 
+alpha =  -0.4927587850750964  degrees -0.03962801693829067
+Iteration 180: Metric Value = -0.7056, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.74151131103076  pixels, 
+alpha =  -0.4927587992426768  degrees -0.03962801706743427
+Estimated Cor:  -0.03962801707036642 Estimated tilt:  -0.4927587995404744
+Finish Ring Remover
+Total time: Including cor correction and plotting: 430.44 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504035: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:29:56 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:29:57 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:29:57 2025
+Terminated at Fri Jan  3 20:37:14 2025
+Results reported at Fri Jan  3 20:37:14 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   5526.00 sec.
+    Max Memory :                                 39317 MB
+    Average Memory :                             24577.83 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               88683.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   485 sec.
+    Turnaround time :                            438 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.72 seconds
+Preprocess time: 348.71 seconds
+Iteration 0: Metric Value = -0.6816019092608564
+The parameters are: 
+  t  =  -1.7984664313181948  pixels, 
+alpha =  -0.021803700377736157  degrees -0.0017074048398590456
+Iteration 20: Metric Value = -0.7243, Metric Difference = 0.0427
+The parameters are: 
+  t  =  -31.79084530225103  pixels, 
+alpha =  -0.29998134117846625  degrees -0.030181182248972493
+Iteration 40: Metric Value = -0.7319, Metric Difference = 0.0075
+The parameters are: 
+  t  =  -41.50540329292964  pixels, 
+alpha =  -0.4103761321776457  degrees -0.0394038638856927
+Iteration 60: Metric Value = -0.7309, Metric Difference = 0.0009
+The parameters are: 
+  t  =  -41.75860799184849  pixels, 
+alpha =  -0.4030622685060392  degrees -0.03964424809352705
+Iteration 80: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.75185401379054  pixels, 
+alpha =  -0.40215215060470266  degrees -0.03963783608904165
+Iteration 100: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.7518037560106  pixels, 
+alpha =  -0.4021495956832601  degrees -0.03963778837595943
+Iteration 120: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.751803681838446  pixels, 
+alpha =  -0.40214959094751135  degrees -0.03963778830554283
+Iteration 140: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.7518036839221  pixels, 
+alpha =  -0.4021495909442414  degrees -0.03963778830752098
+Iteration 160: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.75180368115367  pixels, 
+alpha =  -0.40214959077583895  degrees -0.03963778830489272
+Iteration 180: Metric Value = -0.7309, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.75180366152872  pixels, 
+alpha =  -0.4021495917126582  degrees -0.03963778828626144
+Estimated Cor:  -0.039198727665652036 Estimated tilt:  -0.4176960535026901
+Finish Ring Remover
+Total time: Including cor correction and plotting: 415.94 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504046: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:42:43 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:42:44 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:42:44 2025
+Terminated at Fri Jan  3 20:49:48 2025
+Results reported at Fri Jan  3 20:49:48 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   5500.00 sec.
+    Max Memory :                                 74532 MB
+    Average Memory :                             42211.84 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               53468.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   521 sec.
+    Turnaround time :                            425 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.20 seconds
+Preprocess time: 478.22 seconds
+Iteration 0: Metric Value = -0.7356402358336356
+The parameters are: 
+  t  =  -1.609736962521496  pixels, 
+alpha =  -0.005278191726024365  degrees -0.0013565199122372157
+Iteration 20: Metric Value = -0.7681, Metric Difference = 0.0324
+The parameters are: 
+  t  =  -28.3715582141551  pixels, 
+alpha =  -0.20586796686123168  degrees -0.023908616472602614
+Iteration 40: Metric Value = -0.7781, Metric Difference = 0.0101
+The parameters are: 
+  t  =  -42.4034861837622  pixels, 
+alpha =  -0.36756376268866015  degrees -0.03573327487395691
+Iteration 60: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.813653647688504  pixels, 
+alpha =  -0.38676618979283717  degrees -0.03607892161322065
+Iteration 80: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.81458561961066  pixels, 
+alpha =  -0.3903193272281234  degrees -0.036079706982817976
+Iteration 100: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.815102919133636  pixels, 
+alpha =  -0.39126004612243925  degrees -0.03608014290938228
+Iteration 120: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.815285357970396  pixels, 
+alpha =  -0.3915048514704046  degrees -0.03608029664997505
+Iteration 140: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.81533983642262  pixels, 
+alpha =  -0.3915679922982084  degrees -0.03608034255878311
+Iteration 160: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.815355553927546  pixels, 
+alpha =  -0.3915846885268311  degrees -0.036080355803871526
+Iteration 180: Metric Value = -0.7781, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.81535983755282  pixels, 
+alpha =  -0.3915891351002635  degrees -0.036080359413668106
+Estimated Cor:  -0.036080360344149194 Estimated tilt:  -0.39159029206750195
+Finish Ring Remover
+Total time: Including cor correction and plotting: 557.73 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504047: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 20:54:55 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 20:54:56 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 20:54:56 2025
+Terminated at Fri Jan  3 21:04:34 2025
+Results reported at Fri Jan  3 21:04:34 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   7017.00 sec.
+    Max Memory :                                 19480 MB
+    Average Memory :                             13211.17 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               108520.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   631 sec.
+    Turnaround time :                            579 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.12 seconds
+Preprocess time: 483.09 seconds
+Iteration 0: Metric Value = -0.7350428645296804
+The parameters are: 
+  t  =  -1.385306134730874  pixels, 
+alpha =  -0.006190401653947301  degrees -0.0011673928101664669
+Iteration 20: Metric Value = -0.7692, Metric Difference = 0.0341
+The parameters are: 
+  t  =  -28.5279505510804  pixels, 
+alpha =  -0.14843453070508947  degrees -0.024040407767764383
+Iteration 40: Metric Value = -0.7780, Metric Difference = 0.0088
+The parameters are: 
+  t  =  -41.621545898683195  pixels, 
+alpha =  -0.30057796385288255  degrees -0.035074336431474604
+Iteration 60: Metric Value = -0.7778, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.82307353507551  pixels, 
+alpha =  -0.32841878975356587  degrees -0.03608685972056925
+Iteration 80: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.869032276941795  pixels, 
+alpha =  -0.33398372481313787  degrees -0.03612558899742286
+Iteration 100: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.876044333386915  pixels, 
+alpha =  -0.33495276557830156  degrees -0.03613149803375302
+Iteration 120: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.87709300258766  pixels, 
+alpha =  -0.3350969985594823  degrees -0.03613238174375365
+Iteration 140: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.87725305469339  pixels, 
+alpha =  -0.33511907348899  degrees -0.036132516619123645
+Iteration 160: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.877277909997524  pixels, 
+alpha =  -0.33512252436877465  degrees -0.036132537564604654
+Iteration 180: Metric Value = -0.7778, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.87728183183433  pixels, 
+alpha =  -0.3351230644716893  degrees -0.03613254086952331
+Estimated Cor:  -0.03613254133294747 Estimated tilt:  -0.3351231476568273
+Finish Ring Remover
+Total time: Including cor correction and plotting: 566.29 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23504062: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan  3 21:05:39 2025
+Job was executed on host(s) <16*n-62-20-5>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Jan  3 21:05:41 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan  3 21:05:41 2025
+Terminated at Fri Jan  3 21:15:13 2025
+Results reported at Fri Jan  3 21:15:13 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python reconstructor_NA_fbp.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   7192.00 sec.
+    Max Memory :                                 88027 MB
+    Average Memory :                             44734.57 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               39973.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   623 sec.
+    Turnaround time :                            574 sec.
 
 The output (if any) is above this job summary.
 

@@ -56,13 +56,13 @@ def fill_spots2(img,size=5) :
     
     return res
 
-def _morph_spot_clean(img,th_peaks=0.95,th_holes=0.95,method=0) :
+def _morph_spot_clean(img,th_peaks=0.95,th_holes=0.95,method=0, size = 5) :
     if method==0 :
-        fp=-fill_spots(-img)
-        fh=fill_spots(img)
+        fp=-fill_spots(-img, size = size)
+        fh=fill_spots(img, size = size)
     else:
-        fp=-fill_spots2(-img)
-        fh=fill_spots2(img)
+        fp=-fill_spots2(-img, size = size)
+        fh=fill_spots2(img, size = size)
     
     dh=np.abs(img-fh)
     dp=np.abs(img-fp)
@@ -80,13 +80,13 @@ def _morph_spot_clean(img,th_peaks=0.95,th_holes=0.95,method=0) :
     
     return res
 
-def morph_spot_clean(img,th_peaks=0.95,th_holes=0.95,method=0) :
+def morph_spot_clean(img,th_peaks=0.95,th_holes=0.95,method=0, size = 5) :
     if (len(img.shape) == 2 ) :
-        res = _morph_spot_clean(img,th_peaks,th_holes,method)
+        res = _morph_spot_clean(img,th_peaks,th_holes,method, size = size)
     else :
         res = np.zeros(np.shape(img))
         for idx in range(img.shape[0]) :
-            res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method)
+            res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
     
     return res
 

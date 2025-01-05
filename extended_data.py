@@ -61,7 +61,7 @@ class ExtendedData:
         if self.slices is None:
             raise ValueError("Supply slices using add_slices")
         if isinstance(self.data, np.ndarray):
-            mask, indices, data = ma.determine_edge2(self.data,bias = 15,slices=self.slices)
+            mask, indices, data = ma.determine_edge2(self.data,bias = 20,slices=self.slices)
             self.data = ma.gaussian_padding(self.data,indices, sigma = 30, cutoff=4, pad_mean_window_size = 50)
 
         # Does not work ATM
@@ -79,7 +79,7 @@ class ExtendedData:
         self.set_subslices(subslices=subslices)
         skip = self.subslices_indices[1] - self.subslices_indices[0]
 
-        roi = {'vertical':(self.subslices_indices[0], self.subslices_indices[-1] + skip,skip)}
+        roi = {'vertical':(self.subslices_indices[0], None,skip)}
         processor = Slicer(roi)
         processor.set_input(self.data)
         self.subdata = processor.get_output()
