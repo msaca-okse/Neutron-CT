@@ -79,7 +79,7 @@ batch = np.linspace(1,1127,200).astype(np.uint16)
 
 def preprocess_projection(batch_idx):
     mode = 'save'
-    size = 25
+    size = 10
 
     a = range(batch[batch_idx],batch[batch_idx+1])
 
@@ -105,7 +105,7 @@ def preprocess_projection(batch_idx):
     Data = np.stack(Data)    
     Data = (-np.log((np.abs(Data-dc[np.newaxis])+1)/(1+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
    
-    th = 0.9
+    th = 0.2
     Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
 
     if mode == 'save':
@@ -212,7 +212,7 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
 
 angle = 0.325
 scale = corrector.fixed.GetSpacing()[0]
-translation = -23
+translation = -26
 return_data = False
 skip = 100
 fig_path = '/dtu-compute/msaca/output/tilt_cor_corrector_slices/rec_slice'
