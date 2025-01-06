@@ -109,7 +109,7 @@ fixed = reg.as_array(reg.fixed)
 moving = reg.as_array(reg.moving)
 
 
-sampling_rate = 0.2  # Probability of True (30%)
+sampling_rate = 1
 shape = np.shape(mask)
 random_mask = np.random.rand(*shape) < sampling_rate
 mask = mask*random_mask
@@ -153,12 +153,50 @@ create_heatmap(fixed_values, moving_values, path_image_log, path_image, path_mat
     range_fixed = [0.35,0.7], range_moving = [-2,5], title = title)
 
 
+k = 280
+path = '/dtu-compute/msaca/output/vert_slice_N.png'
+plt.imshow(fixed_filtered[:,k,:], cmap = 'gray')
+plt.clim([0.425,0.7])
+plt.title('Neutron reconstruction')
+plt.savefig(path)
+plt.close()
+
+path ='/dtu-compute/msaca/output/vert_slice_X.png'
+plt.imshow(moving_filtered[:,k,:], cmap = 'gray')
+plt.clim([-1.5,3.5])
+plt.title('X-ray reconstruction')
+plt.savefig(path)
+plt.close()
+
+
+def value_segmenter(neutron, xray, N_limits, X_limits):
+    seg_N = (neutron>N_limits[0]) * (neutron<N_limits[1])
+    seg_X = (xray>X_limits[0]) * (xray<X_limits[1])
+    out = seg_N * seg_X
+    return out
+
+segmentation = np.zeros(np.shape(fixed_filtered))
+g1 = value_segmenter(fixed_filtered, moving_filtered, [0,0.530], [0, 0.95])
+g2 = value_segmenter(fixed_filtered, moving_filtered, [0, 0.53], [0.95, 4])
+g3 = value_segmenter(fixed_filtered, moving_filtered, [0.53, 1], [0, 0.95])
+g4 = value_segmenter(fixed_filtered, moving_filtered, [0.53, 1], [0.95, 4])
+segmentation[g1*mask] = 1
+segmentation[g2*mask] = 2
+segmentation[g3*mask] = 3
+segmentation[g4*mask] = 4
+segmentation[~mask] = -1
+path = '/dtu-compute/msaca/output/vert_slice_segm.png'
+plt.imshow(segmentation[:,k,:])
+plt.colorbar()
+plt.title('Segmentation, see script for color explanation')
+plt.savefig(path)
+plt.close()
 
 
 
 
 
-
+"""
 
 # Apply gaussian filtering before making the heatmap
 fixed_filtered_ = sitk.SmoothingRecursiveGaussian(reg.fixed, sigma=0.005)
@@ -267,3 +305,5 @@ path_matrix = prefix + 'heatmap_matrix_07.npy'
 title = 'FBP recons, slice A, background masked, median filter, kernel size=[3,3,3]'
 create_heatmap(fixed_values, moving_values, path_image_log, path_image, path_matrix, bins = 400, nticks = 15,
     range_fixed = [0.4,0.7], range_moving = [-1,4], title = title)
+
+"""
