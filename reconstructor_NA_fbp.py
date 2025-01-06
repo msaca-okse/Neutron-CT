@@ -9,9 +9,11 @@ import time
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--param', type=str, help='Parameter passed from the shell script')
+parser.add_argument('--param1', type=float, help='First parameter')
+parser.add_argument('--param2', type=int, help='Second parameter')
 args = parser.parse_args()
-th = float(args.param)
+th = float(args.param1)
+size = int(args.param2)
 
 # Add the desired directory to the sys.path
 path_to_add = '/dtu-compute/msaca/muhrec_folder2/build-imagingsuite/Release/lib/'
@@ -83,7 +85,6 @@ path = '/dtu-compute/msaca/sliceA_neutron_psi/ct_3x1126_60s/ct_3x1126_60s_#####.
 path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 
 batch = np.linspace(1,1127,200).astype(np.uint16)
-size = 10
 
 def preprocess_projection(batch_idx):
     mode = None

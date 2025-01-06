@@ -857,3 +857,45 @@ Traceback (most recent call last):
   File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
     raise self._value
 numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 15
+    size = int(args.param2
+              ^
+SyntaxError: '(' was never closed
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.05 --param2 5
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 5
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 10
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 15
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 25
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 35
+usage: reconstructor_NA_fbp.py [-h] [--param PARAM]
+reconstructor_NA_fbp.py: error: unrecognized arguments: --param1 0.5 --param2 50

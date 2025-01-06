@@ -21,34 +21,30 @@ export NUM_PROCS=$LSB_DJOB_NUMPROC
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 
-PARAM=0.05
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.05
+PARAM2=5
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.1
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.5
+PARAM2=5
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.2
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.5
+PARAM2=10
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.4
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.5
+PARAM2=15
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.6
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.5
+PARAM2=25
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.8
-python reconstructor_NA_fbp.py --param "$PARAM"
+PARAM1=0.5
+PARAM2=35
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM=0.95
-python reconstructor_NA_fbp.py --param "$PARAM"
-
-PARAM=0.99
-python reconstructor_NA_fbp.py --param "$PARAM"
-
-PARAM=1
-python reconstructor_NA_fbp.py --param "$PARAM"
-
-PARAM=2
-python reconstructor_NA_fbp.py --param "$PARAM"
-
-
+PARAM1=0.5
+PARAM2=50
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
