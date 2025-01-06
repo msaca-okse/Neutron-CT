@@ -158,14 +158,14 @@ path = '/dtu-compute/msaca/output/vert_slice_N.png'
 plt.imshow(fixed_filtered[:,k,:], cmap = 'gray')
 plt.clim([0.425,0.7])
 plt.title('Neutron reconstruction')
-plt.savefig(path)
+plt.savefig(path, dpi=600)
 plt.close()
 
 path ='/dtu-compute/msaca/output/vert_slice_X.png'
 plt.imshow(moving_filtered[:,k,:], cmap = 'gray')
 plt.clim([-1.5,3.5])
 plt.title('X-ray reconstruction')
-plt.savefig(path)
+plt.savefig(path, dpi=600)
 plt.close()
 
 
@@ -176,20 +176,22 @@ def value_segmenter(neutron, xray, N_limits, X_limits):
     return out
 
 segmentation = np.zeros(np.shape(fixed_filtered))
-g1 = value_segmenter(fixed_filtered, moving_filtered, [0,0.530], [0, 0.95])
-g2 = value_segmenter(fixed_filtered, moving_filtered, [0, 0.53], [0.95, 4])
-g3 = value_segmenter(fixed_filtered, moving_filtered, [0.53, 1], [0, 0.95])
-g4 = value_segmenter(fixed_filtered, moving_filtered, [0.53, 1], [0.95, 4])
+g1 = value_segmenter(fixed_filtered, moving_filtered, [0.450, 0.49], [-0.75, 1])
+g2 = value_segmenter(fixed_filtered, moving_filtered, [0, 1], [-0.2, 0.2])
+g3 = value_segmenter(fixed_filtered, moving_filtered, [0.48, 0.53], [0.3, 0.7])
+g4 = value_segmenter(fixed_filtered, moving_filtered, [0.48, 0.55], [0.7, 1.5])
 segmentation[g1*mask] = 1
 segmentation[g2*mask] = 2
 segmentation[g3*mask] = 3
 segmentation[g4*mask] = 4
+segmentation[g5*mask] = 5
+segmentation[g6*mask] = 6
 segmentation[~mask] = -1
-path = '/dtu-compute/msaca/output/vert_slice_segm.png'
+path = '/dtu-compute/msaca/output/vert_slice_segm2.png'
 plt.imshow(segmentation[:,k,:])
 plt.colorbar()
 plt.title('Segmentation, see script for color explanation')
-plt.savefig(path)
+plt.savefig(path, dpi=600)
 plt.close()
 
 

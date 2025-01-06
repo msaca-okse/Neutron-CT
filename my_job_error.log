@@ -61,3 +61,4 @@ Traceback (most recent call last):
     fixed_filtered = reg_median.as_array(fixed_filtered_)
 NameError: name 'reg_median' is not defined
 User defined signal 2
+Terminated
