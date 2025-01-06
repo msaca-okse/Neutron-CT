@@ -153,19 +153,19 @@ create_heatmap(fixed_values, moving_values, path_image_log, path_image, path_mat
     range_fixed = [0.35,0.7], range_moving = [-2,5], title = title)
 
 
-k = 280
+k = 250
 path = '/dtu-compute/msaca/output/vert_slice_N.png'
 plt.imshow(fixed_filtered[:,k,:], cmap = 'gray')
 plt.clim([0.425,0.7])
 plt.title('Neutron reconstruction')
-plt.savefig(path, dpi=600)
+plt.savefig(path)
 plt.close()
 
 path ='/dtu-compute/msaca/output/vert_slice_X.png'
 plt.imshow(moving_filtered[:,k,:], cmap = 'gray')
 plt.clim([-1.5,3.5])
 plt.title('X-ray reconstruction')
-plt.savefig(path, dpi=600)
+plt.savefig(path)
 plt.close()
 
 
@@ -180,6 +180,8 @@ g1 = value_segmenter(fixed_filtered, moving_filtered, [0.450, 0.49], [-0.75, 1])
 g2 = value_segmenter(fixed_filtered, moving_filtered, [0, 1], [-0.2, 0.2])
 g3 = value_segmenter(fixed_filtered, moving_filtered, [0.48, 0.53], [0.3, 0.7])
 g4 = value_segmenter(fixed_filtered, moving_filtered, [0.48, 0.55], [0.7, 1.5])
+g5 = value_segmenter(fixed_filtered, moving_filtered, [0.4, 0.7], [1.5, 3.5])
+g6 = value_segmenter(fixed_filtered, moving_filtered, [0.55, 0.7], [0.5, 3.5])
 segmentation[g1*mask] = 1
 segmentation[g2*mask] = 2
 segmentation[g3*mask] = 3
@@ -187,11 +189,11 @@ segmentation[g4*mask] = 4
 segmentation[g5*mask] = 5
 segmentation[g6*mask] = 6
 segmentation[~mask] = -1
-path = '/dtu-compute/msaca/output/vert_slice_segm2.png'
-plt.imshow(segmentation[:,k,:])
-plt.colorbar()
+path = '/dtu-compute/msaca/output/vert_slice_segm.png'
+plt.imshow(segmentation[:,k,:], cmap = 'jet')
 plt.title('Segmentation, see script for color explanation')
-plt.savefig(path, dpi=600)
+plt.colorbar()
+plt.savefig(path)
 plt.close()
 
 

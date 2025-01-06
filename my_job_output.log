@@ -4698,3 +4698,162 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23523492: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Jan  6 16:06:09 2025
+Job was executed on host(s) <16*n-62-11-13>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Mon Jan  6 16:06:10 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Mon Jan  6 16:06:10 2025
+Terminated at Mon Jan  6 16:17:23 2025
+Results reported at Mon Jan  6 16:17:23 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM1=0.05
+PARAM2=5
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=5
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=10
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=15
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=25
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=35
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=50
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 120.
+
+Resource usage summary:
+
+    CPU time :                                   8315.00 sec.
+    Max Memory :                                 59629 MB
+    Average Memory :                             36637.66 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               68371.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   680 sec.
+    Turnaround time :                            674 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Resampling the transformation
+Resampling moving image
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23523510: <Registration> in cluster <dcc> Done
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Jan  6 16:10:16 2025
+Job was executed on host(s) <n-62-31-1>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Jan  6 16:10:17 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Mon Jan  6 16:10:17 2025
+Terminated at Mon Jan  6 16:17:30 2025
+Results reported at Mon Jan  6 16:17:30 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 128000
+#BSUB -R "rusage[mem=128000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 24:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python segmentationXA_NA.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   424.82 sec.
+    Max Memory :                                 101243 MB
+    Average Memory :                             78215.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               26757.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                28
+    Run time :                                   450 sec.
+    Turnaround time :                            434 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
