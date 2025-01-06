@@ -6,6 +6,13 @@ import sys
 import os
 import time
 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--param', type=str, help='Parameter passed from the shell script')
+args = parser.parse_args()
+th = float(args.param)
+
 # Add the desired directory to the sys.path
 path_to_add = '/dtu-compute/msaca/muhrec_folder2/build-imagingsuite/Release/lib/'
 sys.path.append(path_to_add)
@@ -76,10 +83,10 @@ path = '/dtu-compute/msaca/sliceA_neutron_psi/ct_3x1126_60s/ct_3x1126_60s_#####.
 path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 
 batch = np.linspace(1,1127,200).astype(np.uint16)
+size = 10
 
 def preprocess_projection(batch_idx):
-    mode = 'save'
-    size = 10
+    mode = None
 
     a = range(batch[batch_idx],batch[batch_idx+1])
 
@@ -104,8 +111,6 @@ def preprocess_projection(batch_idx):
 
     Data = np.stack(Data)    
     Data = (-np.log((np.abs(Data-dc[np.newaxis])+1)/(1+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
-   
-    th = 0.2
     Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
 
     if mode == 'save':
@@ -120,7 +125,6 @@ def preprocess_projection(batch_idx):
         return Data.astype(np.float32)
 
 
-# IMPORTaNT, set the environment variable "export NUM_PROCS=$LSB_DJOB_NUMPROC" in the job script. It should be the number of cores.
 with Pool() as pool:
    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
 
@@ -206,7 +210,9 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
         plt.figure(figsize=(10,10))
         plt.imshow(reconstruction[i])
         plt.clim([-0.1,0.1])
-        plt.savefig(fig_paths[i])
+        plt.title('Reconstruction FBP: Preproc pars: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation))
+        full_path = ma.generate_unique_filename(fig_paths[i])
+        plt.savefig(full_path)
         plt.close()
 
 
@@ -215,7 +221,7 @@ scale = corrector.fixed.GetSpacing()[0]
 translation = -26
 return_data = False
 skip = 100
-fig_path = '/dtu-compute/msaca/output/tilt_cor_corrector_slices/rec_slice'
+fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/rec_slice'
 show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
 
 

@@ -1,1 +1,859 @@
 /zhome/71/c/146676/.lsbatch/1735930085.23504018.shell: line 22: 1554388 Killed                  python reconstructor_NA_fbp.py
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 127, in <module>
+    
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 111, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 126, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+TypeError: '>' not supported between instances of 'float' and 'NoneType'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 116, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 131, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 117, in preprocess_projection
+    Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 89, in morph_spot_clean
+    res[idx] = _morph_spot_clean(img[idx],th_peaks,th_holes,method, size = size)
+  File "/zhome/71/c/146676/main/image_utils.py", line 74, in _morph_spot_clean
+    thh=ah[np.argmax(th_holes<chh/chh[-1])]
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 132, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+numpy.core._exceptions._UFuncNoLoopError: ufunc 'greater' did not contain a loop with signature matching types (<class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.StrDType'>) -> None

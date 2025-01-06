@@ -20,6 +20,23 @@ def generate_paths(path, A):
     
     return paths
 
+def generate_unique_filename(filepath):
+    """
+    Generate a unique filename by appending a number if the file already exists.
+    """
+    folder = os.path.dirname(filepath) or "."
+    base, ext = os.path.splitext(os.path.basename(filepath))  # Split into name and extension
+    counter = 1
+    unique_filename = filepath
+
+    # Check if file exists and generate a new name if needed
+    while os.path.exists(unique_filename):
+        unique_filename = os.path.join(folder, f"{base}_{counter}{ext}")
+        counter += 1
+
+    return unique_filename
+
+
 def fits_loader(paths):
     fits_data = []
     for file in paths:

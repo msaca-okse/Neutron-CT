@@ -1341,3 +1341,2473 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+Loading time: 6.45 seconds
+Loading time: 1.74 seconds
+Loading time: 1.66 seconds
+Loading time: 1.81 seconds
+Loading time: 1.64 seconds
+Loading time: 1.66 seconds
+Loading time: 1.73 seconds
+Loading time: 1.71 seconds
+Loading time: 1.76 seconds
+Loading time: 1.67 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506211: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 22:14:13 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 22:14:14 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 22:14:14 2025
+Terminated at Sun Jan  5 22:23:19 2025
+Results reported at Sun Jan  5 22:23:19 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM="0.05"
+python reconstructor_NA_fbp.py
+
+PARAM="0.1"
+python reconstructor_NA_fbp.py
+
+PARAM="0.2"
+python reconstructor_NA_fbp.py
+
+PARAM="0.4"
+python reconstructor_NA_fbp.py
+
+PARAM="0.6"
+python reconstructor_NA_fbp.py
+
+PARAM="0.8"
+python reconstructor_NA_fbp.py
+
+PARAM="0.95"
+python reconstructor_NA_fbp.py
+
+PARAM="0.99"
+python reconstructor_NA_fbp.py
+
+PARAM="1"
+python reconstructor_NA_fbp.py
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   6413.00 sec.
+    Max Memory :                                 11869 MB
+    Average Memory :                             4947.86 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               116131.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   593 sec.
+    Turnaround time :                            546 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.61 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.69 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.73 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.62 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.64 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.73 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.66 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.69 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.57 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Loading time: 1.83 seconds
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+Threshold: None
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506220: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 22:28:19 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 22:28:19 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 22:28:19 2025
+Terminated at Sun Jan  5 22:36:00 2025
+Results reported at Sun Jan  5 22:36:00 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM="0.05"
+python reconstructor_NA_fbp.py
+
+PARAM="0.1"
+python reconstructor_NA_fbp.py
+
+PARAM="0.2"
+python reconstructor_NA_fbp.py
+
+PARAM="0.4"
+python reconstructor_NA_fbp.py
+
+PARAM="0.6"
+python reconstructor_NA_fbp.py
+
+PARAM="0.8"
+python reconstructor_NA_fbp.py
+
+PARAM="0.95"
+python reconstructor_NA_fbp.py
+
+PARAM="0.99"
+python reconstructor_NA_fbp.py
+
+PARAM="1"
+python reconstructor_NA_fbp.py
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   6439.00 sec.
+    Max Memory :                                 11509 MB
+    Average Memory :                             9708.80 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               116491.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   578 sec.
+    Turnaround time :                            461 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+0.05
+Loading time: 1.63 seconds
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+0.1
+Loading time: 1.65 seconds
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+Threshold: 0.1
+0.2
+Loading time: 1.72 seconds
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+Threshold: 0.2
+0.4
+Loading time: 1.63 seconds
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+Threshold: 0.4
+0.6
+Loading time: 1.65 seconds
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+Threshold: 0.6
+0.8
+Loading time: 1.81 seconds
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+Threshold: 0.8
+0.95
+Loading time: 1.74 seconds
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+Threshold: 0.95
+0.99
+Loading time: 1.81 seconds
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+Threshold: 0.99
+1
+Loading time: 1.74 seconds
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+Threshold: 1
+2
+Loading time: 1.65 seconds
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+Threshold: 2
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506229: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 22:42:00 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 22:42:01 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 22:42:01 2025
+Terminated at Sun Jan  5 22:49:44 2025
+Results reported at Sun Jan  5 22:49:44 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM="0.05"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.1"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.2"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.4"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.6"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.8"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.95"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="0.99"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM="1"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   6433.00 sec.
+    Max Memory :                                 10659 MB
+    Average Memory :                             8233.67 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               117341.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   463 sec.
+    Turnaround time :                            464 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+0.05
+Loading time: 1.67 seconds
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506233: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 23:02:26 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 23:02:26 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 23:02:26 2025
+Terminated at Sun Jan  5 23:03:15 2025
+Results reported at Sun Jan  5 23:03:15 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM="0.05"
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.2"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.4"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.6"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.8"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.95"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.99"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   639.00 sec.
+    Max Memory :                                 7821 MB
+    Average Memory :                             7821.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               120179.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   64 sec.
+    Turnaround time :                            49 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+0.05
+Loading time: 1.62 seconds
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+Threshold: 0.05
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506236: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 23:07:18 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 23:07:19 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 23:07:19 2025
+Terminated at Sun Jan  5 23:08:08 2025
+Results reported at Sun Jan  5 23:08:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM=0.05
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.2"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.4"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.6"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.8"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.95"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.99"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   642.00 sec.
+    Max Memory :                                 7336 MB
+    Average Memory :                             7336.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               120664.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   155 sec.
+    Turnaround time :                            50 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+0.05
+Loading time: 1.57 seconds
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+Threshold: 0.05
+th type: <class 'str'>
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506240: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 23:21:33 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 23:21:35 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 23:21:35 2025
+Terminated at Sun Jan  5 23:22:27 2025
+Results reported at Sun Jan  5 23:22:27 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM=0.05
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.2"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.4"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.6"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.8"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.95"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="0.99"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+# PARAM="1"
+# python reconstructor_NA_fbp.py --param "$PARAM"
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   643.00 sec.
+    Max Memory :                                 7472 MB
+    Average Memory :                             4982.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               120528.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   166 sec.
+    Turnaround time :                            54 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.78 seconds
+Preprocess time: 619.88 seconds
+Iteration 0: Metric Value = -0.7884395671716338
+The parameters are: 
+  t  =  -1.7406481144584227  pixels, 
+alpha =  -0.0033589373985021594  degrees -0.0013888149849402309
+Iteration 20: Metric Value = -0.8237, Metric Difference = 0.0353
+The parameters are: 
+  t  =  -30.837151361396305  pixels, 
+alpha =  -0.08934159131192529  degrees -0.024604110128773646
+Iteration 40: Metric Value = -0.8290, Metric Difference = 0.0052
+The parameters are: 
+  t  =  -41.39845595138058  pixels, 
+alpha =  -0.18822354803213234  degrees -0.03303068293993131
+Iteration 60: Metric Value = -0.8291, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.2584834231984  pixels, 
+alpha =  -0.26166126144832696  degrees -0.03371687507170085
+Iteration 80: Metric Value = -0.8291, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.214255792703035  pixels, 
+alpha =  -0.2909404545430603  degrees -0.03368158706864604
+Iteration 100: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.231090427814685  pixels, 
+alpha =  -0.30262763502505236  degrees -0.03369501895836278
+Iteration 120: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.24264223259617  pixels, 
+alpha =  -0.3077859290055516  degrees -0.03370423582387992
+Iteration 140: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.24865361344438  pixels, 
+alpha =  -0.3101114982422188  degrees -0.033709032138386476
+Iteration 160: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.25131788005661  pixels, 
+alpha =  -0.3111130986293552  degrees -0.03371115788302389
+Iteration 180: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.25222869931268  pixels, 
+alpha =  -0.3115316834142633  degrees -0.033711884600515434
+Estimated Cor:  -0.033712168784164866 Estimated tilt:  -0.3117002075316877
+Finish Ring Remover
+Total time: Including cor correction and plotting: 716.90 seconds
+Loading time: 1.75 seconds
+Preprocess time: 637.42 seconds
+Iteration 0: Metric Value = -0.79032303222372
+The parameters are: 
+  t  =  -1.847818935034148  pixels, 
+alpha =  -0.007331936495177988  degrees -0.0014743236183783095
+Iteration 20: Metric Value = -0.8245, Metric Difference = 0.0341
+The parameters are: 
+  t  =  -30.485193283825648  pixels, 
+alpha =  -0.13002084740131745  degrees -0.024323292513690677
+Iteration 40: Metric Value = -0.8299, Metric Difference = 0.0055
+The parameters are: 
+  t  =  -41.08652660396585  pixels, 
+alpha =  -0.21257212273390916  degrees -0.03278180314146211
+Iteration 60: Metric Value = -0.8300, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.41172143328855  pixels, 
+alpha =  -0.26084133435663526  degrees -0.03383913944145363
+Iteration 80: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.339033569875575  pixels, 
+alpha =  -0.29383537560182355  degrees -0.033781143805751784
+Iteration 100: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.2466056406717  pixels, 
+alpha =  -0.31846946488653466  degrees -0.03370739811755721
+Iteration 120: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.20217189315091  pixels, 
+alpha =  -0.3320152173551509  degrees -0.033671945659428916
+Iteration 140: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.172976699519  pixels, 
+alpha =  -0.34067193640581084  degrees -0.03364865162195665
+Iteration 160: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.146046585743285  pixels, 
+alpha =  -0.3469025890810926  degrees -0.03362716482905049
+Iteration 180: Metric Value = -0.8301, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.12192749180436  pixels, 
+alpha =  -0.3519312197463752  degrees -0.033607920871120495
+Estimated Cor:  -0.03359334035939835 Estimated tilt:  -0.3561234105675746
+Finish Ring Remover
+Total time: Including cor correction and plotting: 733.49 seconds
+Loading time: 1.77 seconds
+Preprocess time: 643.76 seconds
+Iteration 0: Metric Value = -0.7886036073030089
+The parameters are: 
+  t  =  -1.9291809146599666  pixels, 
+alpha =  -0.0064523769029458215  degrees -0.0015392400914840158
+Iteration 20: Metric Value = -0.8248, Metric Difference = 0.0362
+The parameters are: 
+  t  =  -31.299529282658654  pixels, 
+alpha =  -0.12972963141561006  degrees -0.02497302868297233
+Iteration 40: Metric Value = -0.8296, Metric Difference = 0.0048
+The parameters are: 
+  t  =  -40.79565919005139  pixels, 
+alpha =  -0.21346373513935296  degrees -0.03254972807716866
+Iteration 60: Metric Value = -0.8298, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.77016234301663  pixels, 
+alpha =  -0.2935960025092599  degrees -0.0333272571885771
+Iteration 80: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.019267133025124  pixels, 
+alpha =  -0.34131744958189636  degrees -0.03352601101039238
+Iteration 100: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.99852395233566  pixels, 
+alpha =  -0.358635872206876  degrees -0.03350946060026781
+Iteration 120: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.99127072053157  pixels, 
+alpha =  -0.36369995049442916  degrees -0.03350367344723263
+Iteration 140: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.98858176127092  pixels, 
+alpha =  -0.3651318622885599  degrees -0.03350152800101403
+Iteration 160: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.987896394366814  pixels, 
+alpha =  -0.3655585146676002  degrees -0.0335009811657182
+Iteration 180: Metric Value = -0.8298, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.98768600598914  pixels, 
+alpha =  -0.3656854896276592  degrees -0.03350081330265091
+Estimated Cor:  -0.03350076118135155 Estimated tilt:  -0.3657231234920401
+Finish Ring Remover
+Total time: Including cor correction and plotting: 738.95 seconds
+Loading time: 1.64 seconds
+Preprocess time: 624.09 seconds
+Iteration 0: Metric Value = -0.7890359765554366
+The parameters are: 
+  t  =  -1.8842000855333159  pixels, 
+alpha =  -0.0075302623738468894  degrees -0.001503351132074454
+Iteration 20: Metric Value = -0.8234, Metric Difference = 0.0344
+The parameters are: 
+  t  =  -30.796203169114087  pixels, 
+alpha =  -0.11192539754046554  degrees -0.024571438698761237
+Iteration 40: Metric Value = -0.8288, Metric Difference = 0.0054
+The parameters are: 
+  t  =  -40.882154334135926  pixels, 
+alpha =  -0.23615026140321604  degrees -0.032618740160214835
+Iteration 60: Metric Value = -0.8289, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.63632803311271  pixels, 
+alpha =  -0.3099869958341018  degrees -0.03322047449450482
+Iteration 80: Metric Value = -0.8291, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.35785769736495  pixels, 
+alpha =  -0.35589839894271874  degrees -0.03299829071598267
+Iteration 100: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.250806197315576  pixels, 
+alpha =  -0.38111036990480823  degrees -0.032912877285092214
+Iteration 120: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.24143988353788  pixels, 
+alpha =  -0.39233082419680937  degrees -0.03290540416239724
+Iteration 140: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.23320972554836  pixels, 
+alpha =  -0.3971387436302962  degrees -0.03289883754698007
+Iteration 160: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.23038947805816  pixels, 
+alpha =  -0.399213443413223  degrees -0.032896587349514485
+Iteration 180: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.229024841437955  pixels, 
+alpha =  -0.4001184787187143  degrees -0.032895498543700497
+Estimated Cor:  -0.03289506342643422 Estimated tilt:  -0.4005140387474197
+Finish Ring Remover
+Total time: Including cor correction and plotting: 716.30 seconds
+Loading time: 1.81 seconds
+Preprocess time: 617.32 seconds
+Iteration 0: Metric Value = -0.7905898646600176
+The parameters are: 
+  t  =  -1.7220773199575363  pixels, 
+alpha =  -0.005221068330410418  degrees -0.001373997861668247
+Iteration 20: Metric Value = -0.8245, Metric Difference = 0.0339
+The parameters are: 
+  t  =  -30.36930585234039  pixels, 
+alpha =  -0.09493844619141369  degrees -0.024230829137505627
+Iteration 40: Metric Value = -0.8296, Metric Difference = 0.0051
+The parameters are: 
+  t  =  -40.76660648576953  pixels, 
+alpha =  -0.1858656411429832  degrees -0.0325265477280076
+Iteration 60: Metric Value = -0.8296, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.16940811861895  pixels, 
+alpha =  -0.24043172269909258  degrees -0.03364580434996193
+Iteration 80: Metric Value = -0.8297, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.204996804910245  pixels, 
+alpha =  -0.2744655504641327  degrees -0.033674199578385834
+Iteration 100: Metric Value = -0.8297, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.1728881893951  pixels, 
+alpha =  -0.292955336538606  degrees -0.03364858100217694
+Iteration 120: Metric Value = -0.8297, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.147792046442056  pixels, 
+alpha =  -0.303134451937435  degrees -0.03362855748386334
+Iteration 140: Metric Value = -0.8297, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.13550560741571  pixels, 
+alpha =  -0.30869514766796974  degrees -0.033618754474001894
+Iteration 160: Metric Value = -0.8297, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.126494317613165  pixels, 
+alpha =  -0.3121281724903181  degrees -0.033611564615116885
+Iteration 180: Metric Value = -0.8297, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.12058522070747  pixels, 
+alpha =  -0.3143714817491521  degrees -0.03360684991013894
+Estimated Cor:  -0.03360417942517043 Estimated tilt:  -0.3157765912815199
+Finish Ring Remover
+Total time: Including cor correction and plotting: 721.57 seconds
+Loading time: 1.74 seconds
+Preprocess time: 620.99 seconds
+Iteration 0: Metric Value = -0.7444262732257138
+The parameters are: 
+  t  =  -1.7108368114171904  pixels, 
+alpha =  -0.005168321320351262  degrees -0.001365029370811588
+Iteration 20: Metric Value = -0.7765, Metric Difference = 0.0321
+The parameters are: 
+  t  =  -29.71859043227067  pixels, 
+alpha =  -0.08290813688694483  degrees -0.023711641302343617
+Iteration 40: Metric Value = -0.7836, Metric Difference = 0.0071
+The parameters are: 
+  t  =  -40.931936258152426  pixels, 
+alpha =  -0.16860715643858312  degrees -0.03265845978044076
+Iteration 60: Metric Value = -0.7832, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -42.0644984138985  pixels, 
+alpha =  -0.23415245306013915  degrees -0.03356209979832327
+Iteration 80: Metric Value = -0.7835, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.59054627274115  pixels, 
+alpha =  -0.2981073202594092  degrees -0.033981818834633894
+Iteration 100: Metric Value = -0.7837, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -42.64107070717198  pixels, 
+alpha =  -0.3367844762358151  degrees -0.03402213088338189
+Iteration 120: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.64562655831085  pixels, 
+alpha =  -0.3476599213000223  degrees -0.0340257658709927
+Iteration 140: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.65299216892829  pixels, 
+alpha =  -0.3502192602499228  degrees -0.0340316426879747
+Iteration 160: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.65527619514861  pixels, 
+alpha =  -0.3509053926146725  degrees -0.0340334650493207
+Iteration 180: Metric Value = -0.7837, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.65585000335087  pixels, 
+alpha =  -0.35109825860292276  degrees -0.03403392287501399
+Estimated Cor:  -0.03403405868321943 Estimated tilt:  -0.3511541811652435
+Finish Ring Remover
+Total time: Including cor correction and plotting: 721.98 seconds
+Loading time: 1.74 seconds
+Preprocess time: 628.83 seconds
+Iteration 0: Metric Value = -0.5393537553027069
+The parameters are: 
+  t  =  -0.7169489639837885  pixels, 
+alpha =  -0.017878978791680926  degrees -0.0005720337478594057
+Iteration 20: Metric Value = -0.5505, Metric Difference = 0.0111
+The parameters are: 
+  t  =  -7.447696643455596  pixels, 
+alpha =  -0.1038876392910394  degrees -0.005942311151693295
+Iteration 40: Metric Value = -0.5505, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.4417976568259725  pixels, 
+alpha =  -0.10134286835262847  degrees -0.005937604513424978
+Iteration 60: Metric Value = -0.5504, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -7.441501079258068  pixels, 
+alpha =  -0.10185384203484181  degrees -0.005937367882386756
+Iteration 80: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.441670164230349  pixels, 
+alpha =  -0.10191229367649875  degrees -0.00593750279060932
+Iteration 100: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.44167593416349  pixels, 
+alpha =  -0.10191348468410218  degrees -0.00593750739427938
+Iteration 120: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.441675993220947  pixels, 
+alpha =  -0.10191349724700086  degrees -0.005937507441399692
+Iteration 140: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.441675994384653  pixels, 
+alpha =  -0.10191349655783413  degrees -0.00593750744232818
+Iteration 160: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.441676000170759  pixels, 
+alpha =  -0.10191349703174682  degrees -0.005937507446944754
+Iteration 180: Metric Value = -0.5504, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -7.441675996334795  pixels, 
+alpha =  -0.10191349667870322  degrees -0.005937507443884145
+Estimated Cor:  -0.005945739564227109 Estimated tilt:  -0.10015535651519544
+Finish Ring Remover
+Total time: Including cor correction and plotting: 727.80 seconds
+Loading time: 1.81 seconds
+Preprocess time: 621.54 seconds
+Iteration 0: Metric Value = -0.529502871040827
+The parameters are: 
+  t  =  -1.3137496577028651  pixels, 
+alpha =  -0.01475323984659238  degrees -0.0010482045141246264
+Iteration 20: Metric Value = -0.5427, Metric Difference = 0.0132
+The parameters are: 
+  t  =  -10.482427672624008  pixels, 
+alpha =  -0.03203577197919362  degrees -0.008363639100497878
+Iteration 40: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.483102690464818  pixels, 
+alpha =  -0.031748088429383  degrees -0.008364177678562354
+Iteration 60: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.483104951586833  pixels, 
+alpha =  -0.031747563759449295  degrees -0.00836417948264907
+Iteration 80: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.48310498480543  pixels, 
+alpha =  -0.03174756233900889  degrees -0.008364179509153268
+Iteration 100: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.48310496311132  pixels, 
+alpha =  -0.03174756343635747  degrees -0.008364179491844138
+Iteration 120: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.483104947630741  pixels, 
+alpha =  -0.03174756277218499  degrees -0.008364179479492612
+Iteration 140: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.48310496109276  pixels, 
+alpha =  -0.031747562555724675  degrees -0.008364179490233584
+Iteration 160: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.483104989499747  pixels, 
+alpha =  -0.03174756335561837  degrees -0.008364179512898733
+Iteration 180: Metric Value = -0.5428, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -10.483105002791829  pixels, 
+alpha =  -0.03174756419543242  degrees -0.008364179523504118
+Estimated Cor:  -0.008364179488789645 Estimated tilt:  -0.031747563353574586
+Finish Ring Remover
+Total time: Including cor correction and plotting: 713.66 seconds
+Loading time: 1.64 seconds
+Preprocess time: 629.70 seconds
+Iteration 0: Metric Value = -0.788513883027232
+The parameters are: 
+  t  =  -1.813724737087093  pixels, 
+alpha =  -0.004643579470208929  degrees -0.0014471208008673615
+Iteration 20: Metric Value = -0.8236, Metric Difference = 0.0351
+The parameters are: 
+  t  =  -30.730684746485828  pixels, 
+alpha =  -0.09754661194414431  degrees -0.02451916336155784
+Iteration 40: Metric Value = -0.8290, Metric Difference = 0.0054
+The parameters are: 
+  t  =  -41.33164477469269  pixels, 
+alpha =  -0.17589181521748914  degrees -0.03297737615002076
+Iteration 60: Metric Value = -0.8291, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.04169794893714  pixels, 
+alpha =  -0.2433328561062777  degrees -0.03354390793798176
+Iteration 80: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.12639423881469  pixels, 
+alpha =  -0.2838761156376104  degrees -0.03361148476501172
+Iteration 100: Metric Value = -0.8291, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.081636241759306  pixels, 
+alpha =  -0.3055289523706613  degrees -0.03357577359714838
+Iteration 120: Metric Value = -0.8290, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.05192990914191  pixels, 
+alpha =  -0.3176406629810084  degrees -0.03355207173601748
+Iteration 140: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.03236750442314  pixels, 
+alpha =  -0.32372519555665696  degrees -0.033536463434380166
+Iteration 160: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.02020011665926  pixels, 
+alpha =  -0.32677627038840956  degrees -0.03352675541222813
+Iteration 180: Metric Value = -0.8291, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.015222101458384  pixels, 
+alpha =  -0.328239724519647  degrees -0.03352278359158913
+Estimated Cor:  -0.03352107416248963 Estimated tilt:  -0.32894568287434967
+Finish Ring Remover
+Total time: Including cor correction and plotting: 730.80 seconds
+Loading time: 1.80 seconds
+Preprocess time: 643.68 seconds
+Iteration 0: Metric Value = -0.7898650351370656
+The parameters are: 
+  t  =  -1.8883721819640065  pixels, 
+alpha =  -0.005984012932159606  degrees -0.0015066799324180901
+Iteration 20: Metric Value = -0.8240, Metric Difference = 0.0342
+The parameters are: 
+  t  =  -30.550624111222174  pixels, 
+alpha =  -0.10601040960743982  degrees -0.02437549796108152
+Iteration 40: Metric Value = -0.8291, Metric Difference = 0.0050
+The parameters are: 
+  t  =  -40.83649695551412  pixels, 
+alpha =  -0.17996134003853176  degrees -0.03258231140067616
+Iteration 60: Metric Value = -0.8293, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -42.105721532501605  pixels, 
+alpha =  -0.24267472671067944  degrees -0.03359499058444277
+Iteration 80: Metric Value = -0.8294, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.08338453582213  pixels, 
+alpha =  -0.27667939006177295  degrees -0.03357716851262404
+Iteration 100: Metric Value = -0.8294, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.06700219266515  pixels, 
+alpha =  -0.29166108366721644  degrees -0.033564097494147724
+Iteration 120: Metric Value = -0.8294, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.061439933002816  pixels, 
+alpha =  -0.29730308958959467  degrees -0.033559659521012884
+Iteration 140: Metric Value = -0.8294, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.05938095194731  pixels, 
+alpha =  -0.2993872249073785  degrees -0.033558016716979236
+Iteration 160: Metric Value = -0.8294, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.057986095787605  pixels, 
+alpha =  -0.30024164808344467  degrees -0.033556903799830534
+Iteration 180: Metric Value = -0.8294, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.05724756696752  pixels, 
+alpha =  -0.3006198475746352  degrees -0.03355631454811238
+Estimated Cor:  -0.03355607653779528 Estimated tilt:  -0.3007829216673253
+Finish Ring Remover
+Total time: Including cor correction and plotting: 749.02 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23506241: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Sun Jan  5 23:25:37 2025
+Job was executed on host(s) <16*n-62-20-6>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Sun Jan  5 23:25:38 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Sun Jan  5 23:25:38 2025
+Terminated at Mon Jan  6 01:27:35 2025
+Results reported at Mon Jan  6 01:27:35 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+PARAM=0.05
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.1
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.2
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.4
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.6
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.8
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.95
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.99
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=1
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   95309.00 sec.
+    Max Memory :                                 69785 MB
+    Average Memory :                             21976.44 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               58215.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   7317 sec.
+    Turnaround time :                            7318 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

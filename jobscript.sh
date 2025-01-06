@@ -9,7 +9,7 @@
 #BSUB -M 8000
 #BSUB -R "rusage[mem=8000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
+#BSUB -W 3:00 
 # -- Number of cores requested -- 
 #BSUB -n 16
 # -- Specify the distribution of the cores: on a separate nodes --
@@ -19,4 +19,36 @@
 export NUM_PROCS=$LSB_DJOB_NUMPROC
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-python reconstructor_NA_fbp.py
+
+
+PARAM=0.05
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.1
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.2
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.4
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.6
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.8
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.95
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=0.99
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=1
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+PARAM=2
+python reconstructor_NA_fbp.py --param "$PARAM"
+
+
