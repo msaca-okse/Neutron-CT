@@ -6,14 +6,13 @@ import sys
 import os
 import time
 
-import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--param1', type=float, help='First parameter')
-parser.add_argument('--param2', type=int, help='Second parameter')
-args = parser.parse_args()
-th = float(args.param1)
-size = int(args.param2)
+
+th = float(os.getenv("THRESHOLD"))
+size = int(os.getenv("SIZE"))
+decNum = int(os.getenv("DECNUM"))
+wname = int(os.getenv("WNAME"))
+sigma = float(os.getenv("SIGMA"))
 
 # Add the desired directory to the sys.path
 path_to_add = '/dtu-compute/msaca/muhrec_folder2/build-imagingsuite/Release/lib/'
@@ -81,10 +80,7 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Loading time: {elapsed_time:.2f} seconds")
 
-path = '/dtu-compute/msaca/sliceA_neutron_psi/ct_3x1126_60s/ct_3x1126_60s_#####.fits'
-path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 
-batch = np.linspace(1,1127,200).astype(np.uint16)
 
 def preprocess_projection(batch_idx):
     mode = None
@@ -193,7 +189,7 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
     sinograms.set_data(data2)
     sinograms.acquisition_data(geometry=ag)
     sinograms.set_subdata(subslices=subslices)
-    sinograms.remove_ring(subdata = True)
+    sinograms.remove_ring(subdata = True, decNum = decNum, wname  = wname, sigma = sigma)
 
 
     reconstruction = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
@@ -211,7 +207,7 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
         plt.figure(figsize=(10,10))
         plt.imshow(reconstruction[i])
         plt.clim([-0.1,0.1])
-        plt.title('Reconstruction FBP: Preproc pars: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation))
+        plt.title('Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma)
         full_path = ma.generate_unique_filename(fig_paths[i])
         plt.savefig(full_path)
         plt.close()
@@ -222,7 +218,7 @@ scale = corrector.fixed.GetSpacing()[0]
 translation = -26
 return_data = False
 skip = 100
-fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/rec_slice'
+fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/C_rec_slice'
 show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
 
 
@@ -251,3 +247,4 @@ print(f"Total time: Including cor correction and plotting: {elapsed_time:.2f} se
 #sinograms.remove_ring(subdata = False)
 #recon = sinograms.fbp(subdata = False)
 #recon.as_array()
+

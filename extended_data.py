@@ -85,15 +85,16 @@ class ExtendedData:
         self.subdata = processor.get_output()
         self.subdata.geometry.config.system.detector.position[2] = 0
 
-    def remove_ring(self,subdata = False):
+    def remove_ring(self,subdata = False, decNum = 4, wname = 5,sigma = 0.1):
+        wname = 'db'+str(wname)
         if not subdata:
-            ringrmv = RingRemover(decNum=4, wname='db5', sigma=0.1, info=True)
+            ringrmv = RingRemover(decNum=decNum, wname=wname, sigma=sigma, info=True)
             ringrmv.set_input(self.data)
             self.data = ringrmv.get_output()
         else:
             if self.subdata is None:
                 raise ValueError('Specify subdata using .set_subdata()')
-            ringrmv = RingRemover(decNum=4, wname='db5', sigma=0.1, info=True)
+            ringrmv = RingRemover(decNum=decNum, wname=wname, sigma=sigma, info=True)
             ringrmv.set_input(self.subdata)
             self.subdata = ringrmv.get_output()
 

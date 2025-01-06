@@ -21,9 +21,22 @@ export NUM_PROCS=$LSB_DJOB_NUMPROC
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 
-PARAM1=0.05
-PARAM2=5
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+: <<'EOF'
 
 PARAM1=0.5
 PARAM2=5
@@ -48,3 +61,4 @@ python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 PARAM1=0.5
 PARAM2=50
 python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+EOF
