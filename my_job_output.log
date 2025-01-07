@@ -1985,3 +1985,1913 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526285: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:09:38 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:09:39 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:09:39 2025
+Terminated at Tue Jan  7 00:09:42 2025
+Results reported at Tue Jan  7 00:09:42 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+: <<'EOF'
+
+PARAM1=0.5
+PARAM2=5
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=10
+python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+
+PARAM1=0.5
+PARAM2=15
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.87 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   3 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526288: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:12:50 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:12:52 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:12:52 2025
+Terminated at Tue Jan  7 00:12:54 2025
+Results reported at Tue Jan  7 00:12:54 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.87 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   2 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+hello-1
+hello0
+hello1
+Loading time: 1.60 seconds
+hello2
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526290: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:13:59 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:13:59 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:13:59 2025
+Terminated at Tue Jan  7 00:14:06 2025
+Results reported at Tue Jan  7 00:14:06 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   6.56 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   7 sec.
+    Turnaround time :                            7 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.80 seconds
+                           Preprocess time: 547.53 seconds
+Iteration 0: Metric Value = -0.7601932364573945
+The parameters are: 
+  t  =  -1.7095024740386358  pixels, 
+alpha =  -0.005413133195210789  degrees -0.0013639647399244434
+Iteration 20: Metric Value = -0.7930, Metric Difference = 0.0328
+The parameters are: 
+  t  =  -30.13746937843883  pixels, 
+alpha =  -0.07254047108649544  degrees -0.02404585322747779
+Iteration 40: Metric Value = -0.8003, Metric Difference = 0.0073
+The parameters are: 
+  t  =  -42.023169576321514  pixels, 
+alpha =  -0.14799365993032385  degrees -0.033529124661958655
+Iteration 60: Metric Value = -0.8002, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.70756435340189  pixels, 
+alpha =  -0.18112464178177756  degrees -0.034075184324522785
+Iteration 80: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.700725973932926  pixels, 
+alpha =  -0.1970620124669468  degrees -0.03406972817069116
+Iteration 100: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70158332925316  pixels, 
+alpha =  -0.20565159274856923  degrees -0.03407041223078709
+Iteration 120: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70581946031262  pixels, 
+alpha =  -0.21013555254756525  degrees -0.034073792122589854
+Iteration 140: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.708249317909996  pixels, 
+alpha =  -0.21219627572773608  degrees -0.03407573083875797
+Iteration 160: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70915437802627  pixels, 
+alpha =  -0.2131525622418359  degrees -0.03407645296119117
+Iteration 180: Metric Value = -0.8002, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.70972435955154  pixels, 
+alpha =  -0.213613258760676  degrees -0.034076907733684735
+Estimated Cor:  -0.03407713094627476 Estimated tilt:  -0.21382927339284075
+Finish Ring Remover
+Total time: Including cor correction and plotting: 647.11 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526295: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:18:58 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:18:58 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:18:58 2025
+Terminated at Tue Jan  7 00:29:51 2025
+Results reported at Tue Jan  7 00:29:51 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   8742.00 sec.
+    Max Memory :                                 20446 MB
+    Average Memory :                             16424.14 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               107554.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   652 sec.
+    Turnaround time :                            653 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.66 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526307: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:35:47 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:35:49 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:35:49 2025
+Terminated at Tue Jan  7 00:36:07 2025
+Results reported at Tue Jan  7 00:36:07 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   32.00 sec.
+    Max Memory :                                 3907 MB
+    Average Memory :                             3504.67 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               124093.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   18 sec.
+    Turnaround time :                            20 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Preprocess time: 546.53 seconds
+Iteration 0: Metric Value = -0.7604733081864795
+The parameters are: 
+  t  =  -1.7013907090918057  pixels, 
+alpha =  -0.007609338424036844  degrees -0.0013574925870413342
+Iteration 20: Metric Value = -0.7940, Metric Difference = 0.0336
+The parameters are: 
+  t  =  -30.396031143252525  pixels, 
+alpha =  -0.12533122524060553  degrees -0.024252152507914248
+Iteration 40: Metric Value = -0.8006, Metric Difference = 0.0066
+The parameters are: 
+  t  =  -42.141217317699684  pixels, 
+alpha =  -0.2554932305716118  degrees -0.033623311689654004
+Iteration 60: Metric Value = -0.8007, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -43.12947128714786  pixels, 
+alpha =  -0.35009309125363197  degrees -0.034411812197192436
+Iteration 80: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.10360817126553  pixels, 
+alpha =  -0.39416444386449995  degrees -0.034391176732392705
+Iteration 100: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.06729161896826  pixels, 
+alpha =  -0.41554644462297946  degrees -0.0343622007598151
+Iteration 120: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.04453883828949  pixels, 
+alpha =  -0.42431600142178816  degrees -0.03434404694544374
+Iteration 140: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.03096893629503  pixels, 
+alpha =  -0.42747524138858256  degrees -0.03433321989598008
+Iteration 160: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.024341067743755  pixels, 
+alpha =  -0.42876913522901666  degrees -0.034327931702987036
+Iteration 180: Metric Value = -0.8007, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -43.02088061052233  pixels, 
+alpha =  -0.4293995889137187  degrees -0.03432517069988484
+Estimated Cor:  -0.034323790224043305 Estimated tilt:  -0.4297104203160634
+Finish Ring Remover
+Total time: Including cor correction and plotting: 633.69 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526299: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:25:48 2025
+Job was executed on host(s) <16*n-62-11-15>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:25:50 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:25:50 2025
+Terminated at Tue Jan  7 00:36:33 2025
+Results reported at Tue Jan  7 00:36:33 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   8606.00 sec.
+    Max Memory :                                 101375 MB
+    Average Memory :                             43214.43 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               26625.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   643 sec.
+    Turnaround time :                            645 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.66 seconds
+Preprocess time: 79.78 seconds
+Iteration 0: Metric Value = -0.7597488793771366
+The parameters are: 
+  t  =  -1.7115689852592968  pixels, 
+alpha =  -0.004503606431315571  degrees -0.0013656135520685878
+Iteration 5: Metric Value = -0.7698, Metric Difference = 0.0100
+The parameters are: 
+  t  =  -9.908750374865598  pixels, 
+alpha =  -0.03672234838895599  degrees -0.00790591785228638
+Iteration 10: Metric Value = -0.7793, Metric Difference = 0.0095
+The parameters are: 
+  t  =  -17.45894350347811  pixels, 
+alpha =  -0.06315543035765926  degrees -0.013930008114477215
+Iteration 15: Metric Value = -0.7872, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -24.245473154847012  pixels, 
+alpha =  -0.10272572471346311  degrees -0.01934479241078219
+Iteration 20: Metric Value = -0.7918, Metric Difference = 0.0046
+The parameters are: 
+  t  =  -29.750296286251082  pixels, 
+alpha =  -0.13070881838161563  degrees -0.02373693852626416
+Iteration 25: Metric Value = -0.7963, Metric Difference = 0.0045
+The parameters are: 
+  t  =  -34.72275320892269  pixels, 
+alpha =  -0.15742155962210908  degrees -0.027704324368821295
+Iteration 30: Metric Value = -0.7980, Metric Difference = 0.0017
+The parameters are: 
+  t  =  -38.214574193923056  pixels, 
+alpha =  -0.17269289587169345  degrees -0.03049035175047052
+Iteration 35: Metric Value = -0.7992, Metric Difference = 0.0012
+The parameters are: 
+  t  =  -40.88174059007736  pixels, 
+alpha =  -0.19550598214566156  degrees -0.032618410045274486
+Iteration 40: Metric Value = -0.7999, Metric Difference = 0.0007
+The parameters are: 
+  t  =  -42.378912074961285  pixels, 
+alpha =  -0.21062320782200486  degrees -0.033812961761937196
+Iteration 45: Metric Value = -0.7998, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.82040242126202  pixels, 
+alpha =  -0.21768500482154218  degrees -0.03416521469781544
+Estimated Cor:  -0.03423284762157764 Estimated tilt:  -0.22266262959321176
+Finish Ring Remover
+Total time: Including cor correction and plotting: 163.04 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526310: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:37:40 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:37:41 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:37:41 2025
+Terminated at Tue Jan  7 00:40:30 2025
+Results reported at Tue Jan  7 00:40:30 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   385.00 sec.
+    Max Memory :                                 85639 MB
+    Average Memory :                             64836.50 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               42361.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   169 sec.
+    Turnaround time :                            170 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 3.75 seconds
+Loading time: 1.59 seconds
+Loading time: 3.75 seconds
+Preprocess time: 63.56 seconds
+Iteration 0: Metric Value = -0.7606124621711446
+The parameters are: 
+  t  =  -1.812414454365367  pixels, 
+alpha =  -0.009679275882281239  degrees -0.0014460753625255588
+Iteration 5: Metric Value = -0.7712, Metric Difference = 0.0106
+The parameters are: 
+  t  =  -9.843886534587476  pixels, 
+alpha =  -0.0355064968928513  degrees -0.007854164788234688
+Iteration 10: Metric Value = -0.7806, Metric Difference = 0.0094
+The parameters are: 
+  t  =  -17.7824354820658  pixels, 
+alpha =  -0.0742350209680037  degrees -0.01418811341654186
+Iteration 15: Metric Value = -0.7890, Metric Difference = 0.0084
+The parameters are: 
+  t  =  -24.737392545558  pixels, 
+alpha =  -0.10602811954675836  degrees -0.019737281286349467
+Iteration 20: Metric Value = -0.7930, Metric Difference = 0.0039
+The parameters are: 
+  t  =  -29.926363342736057  pixels, 
+alpha =  -0.13896874997084324  degrees -0.02387741756069366
+Iteration 25: Metric Value = -0.7966, Metric Difference = 0.0037
+The parameters are: 
+  t  =  -34.41724804460581  pixels, 
+alpha =  -0.18222411190157628  degrees -0.0274605702483557
+Iteration 30: Metric Value = -0.7985, Metric Difference = 0.0018
+The parameters are: 
+  t  =  -37.893830876926216  pixels, 
+alpha =  -0.20120854419222128  degrees -0.030234439529462406
+Iteration 35: Metric Value = -0.7990, Metric Difference = 0.0005
+The parameters are: 
+  t  =  -39.89270218672007  pixels, 
+alpha =  -0.22214720674274416  degrees -0.031829283659617076
+Iteration 40: Metric Value = -0.7997, Metric Difference = 0.0007
+The parameters are: 
+  t  =  -41.75367035199535  pixels, 
+alpha =  -0.23519462669156907  degrees -0.033314098685102676
+Iteration 45: Metric Value = -0.8000, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.353595634959575  pixels, 
+alpha =  -0.24837054172909317  degrees -0.03379276247470179
+Estimated Cor:  -0.033836561259841885 Estimated tilt:  -0.25841178304981854
+Finish Ring Remover
+Total time: Including cor correction and plotting: 148.61 seconds
+Loading time: 2.01 seconds
+Preprocess time: 43.88 seconds
+Iteration 0: Metric Value = -0.7610616675984576
+The parameters are: 
+  t  =  -1.6164459907521729  pixels, 
+alpha =  -0.003708536204181339  degrees -0.001289717545812904
+Iteration 5: Metric Value = -0.7721, Metric Difference = 0.0110
+The parameters are: 
+  t  =  -9.921194127403124  pixels, 
+alpha =  -0.035639153498485  degrees -0.007915846378247174
+Iteration 10: Metric Value = -0.7811, Metric Difference = 0.0090
+The parameters are: 
+  t  =  -17.525325878622326  pixels, 
+alpha =  -0.07689817533768219  degrees -0.013982972775496537
+Iteration 15: Metric Value = -0.7888, Metric Difference = 0.0077
+The parameters are: 
+  t  =  -24.543206112544418  pixels, 
+alpha =  -0.12428644970704736  degrees -0.019582345302562035
+Iteration 20: Metric Value = -0.7940, Metric Difference = 0.0052
+The parameters are: 
+  t  =  -30.053466079210885  pixels, 
+alpha =  -0.15874228970157087  degrees -0.023978829318519322
+Iteration 25: Metric Value = -0.7976, Metric Difference = 0.0036
+The parameters are: 
+  t  =  -34.61404296525119  pixels, 
+alpha =  -0.17953127521755433  degrees -0.02761758747227488
+Iteration 30: Metric Value = -0.7994, Metric Difference = 0.0018
+The parameters are: 
+  t  =  -37.831544857114345  pixels, 
+alpha =  -0.21297831378198584  degrees -0.030184743237059317
+Iteration 35: Metric Value = -0.8002, Metric Difference = 0.0008
+The parameters are: 
+  t  =  -39.826920215392335  pixels, 
+alpha =  -0.2493892622009075  degrees -0.03177679804419601
+Iteration 40: Metric Value = -0.8004, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.38694887637856  pixels, 
+alpha =  -0.26991694003324157  degrees -0.033021501763068
+Iteration 45: Metric Value = -0.8006, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.9343082238633  pixels, 
+alpha =  -0.282818176140455  degrees -0.03345822464669944
+Estimated Cor:  -0.03352971515461659 Estimated tilt:  -0.28855586452745824
+Finish Ring Remover
+Total time: Including cor correction and plotting: 127.62 seconds
+Loading time: 1.78 seconds
+Preprocess time: 45.04 seconds
+Iteration 0: Metric Value = -0.7599433787517927
+The parameters are: 
+  t  =  -1.8340866510758  pixels, 
+alpha =  -0.006577926525926772  degrees -0.0014633670088370744
+Iteration 5: Metric Value = -0.7714, Metric Difference = 0.0115
+The parameters are: 
+  t  =  -10.129268845216238  pixels, 
+alpha =  -0.028268602935738768  degrees -0.008081863440332104
+Iteration 10: Metric Value = -0.7816, Metric Difference = 0.0102
+The parameters are: 
+  t  =  -18.07436535248058  pixels, 
+alpha =  -0.07565641323127849  degrees -0.014421036185489823
+Iteration 15: Metric Value = -0.7883, Metric Difference = 0.0067
+The parameters are: 
+  t  =  -24.68710767173149  pixels, 
+alpha =  -0.11546506645032906  degrees -0.019697160376381508
+Iteration 20: Metric Value = -0.7935, Metric Difference = 0.0052
+The parameters are: 
+  t  =  -30.020693459366854  pixels, 
+alpha =  -0.1335456018385889  degrees -0.02395268095162249
+Iteration 25: Metric Value = -0.7968, Metric Difference = 0.0033
+The parameters are: 
+  t  =  -34.665646216425856  pixels, 
+alpha =  -0.16044385978154904  degrees -0.027658760279063183
+Iteration 30: Metric Value = -0.7990, Metric Difference = 0.0022
+The parameters are: 
+  t  =  -38.081629395571966  pixels, 
+alpha =  -0.1862508030366072  degrees -0.03038427877306274
+Iteration 35: Metric Value = -0.7999, Metric Difference = 0.0009
+The parameters are: 
+  t  =  -40.725770982797215  pixels, 
+alpha =  -0.20581109235305303  degrees -0.03249396620967863
+Iteration 40: Metric Value = -0.8002, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.0393215992512  pixels, 
+alpha =  -0.22816096591201593  degrees -0.03354201191429617
+Iteration 45: Metric Value = -0.8004, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.53491299355343  pixels, 
+alpha =  -0.24900130365013537  degrees -0.03393743057996284
+Estimated Cor:  -0.034039424968410344 Estimated tilt:  -0.26259539250571445
+Finish Ring Remover
+Total time: Including cor correction and plotting: 127.87 seconds
+Loading time: 1.89 seconds
+Preprocess time: 76.59 seconds
+Iteration 0: Metric Value = -0.7597370081290564
+The parameters are: 
+  t  =  -1.7866169420311657  pixels, 
+alpha =  -0.00319698454665402  degrees -0.001425492240982313
+Iteration 5: Metric Value = -0.7707, Metric Difference = 0.0110
+The parameters are: 
+  t  =  -10.047883703525407  pixels, 
+alpha =  -0.030865343575943276  degrees -0.008016928486855378
+Iteration 10: Metric Value = -0.7800, Metric Difference = 0.0093
+The parameters are: 
+  t  =  -17.753959358255592  pixels, 
+alpha =  -0.06876883934930211  degrees -0.014165393104991163
+Iteration 15: Metric Value = -0.7869, Metric Difference = 0.0069
+The parameters are: 
+  t  =  -24.282640322791096  pixels, 
+alpha =  -0.10677217456078023  degrees -0.019374447066056726
+Iteration 20: Metric Value = -0.7923, Metric Difference = 0.0055
+The parameters are: 
+  t  =  -30.220016089511294  pixels, 
+alpha =  -0.1359279580940938  degrees -0.024111714965035606
+Iteration 25: Metric Value = -0.7965, Metric Difference = 0.0042
+The parameters are: 
+  t  =  -34.981223713754424  pixels, 
+alpha =  -0.16280079278648663  degrees -0.02791055083544236
+Iteration 30: Metric Value = -0.7981, Metric Difference = 0.0016
+The parameters are: 
+  t  =  -38.251141666934885  pixels, 
+alpha =  -0.19700384123894873  degrees -0.030519527925745915
+Iteration 35: Metric Value = -0.7996, Metric Difference = 0.0015
+The parameters are: 
+  t  =  -40.80657348078402  pixels, 
+alpha =  -0.22751793753938324  degrees -0.032558436287859586
+Iteration 40: Metric Value = -0.7994, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.26577814209893  pixels, 
+alpha =  -0.2516712838129845  degrees -0.03292482298571723
+Iteration 45: Metric Value = -0.7994, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.30408341954915  pixels, 
+alpha =  -0.27102618815462304  degrees -0.03295538570708709
+Estimated Cor:  -0.032968787241093346 Estimated tilt:  -0.28597961505339886
+Finish Ring Remover
+Total time: Including cor correction and plotting: 167.47 seconds
+Loading time: 1.99 seconds
+Preprocess time: 45.14 seconds
+Iteration 0: Metric Value = -0.7588447637648328
+The parameters are: 
+  t  =  -1.871906235576998  pixels, 
+alpha =  -0.005082522390193514  degrees -0.0014935422092369663
+Iteration 5: Metric Value = -0.7705, Metric Difference = 0.0116
+The parameters are: 
+  t  =  -10.191913424681072  pixels, 
+alpha =  -0.028085933331021357  degrees -0.008131845817564685
+Iteration 10: Metric Value = -0.7798, Metric Difference = 0.0093
+The parameters are: 
+  t  =  -17.985062465739215  pixels, 
+alpha =  -0.04787081826395522  degrees -0.014349783882238735
+Iteration 15: Metric Value = -0.7875, Metric Difference = 0.0077
+The parameters are: 
+  t  =  -24.95422739125889  pixels, 
+alpha =  -0.07862111393585286  degrees -0.019910287812174646
+Iteration 20: Metric Value = -0.7931, Metric Difference = 0.0056
+The parameters are: 
+  t  =  -30.832799448829554  pixels, 
+alpha =  -0.10516059576173223  degrees -0.024600637858108686
+Iteration 25: Metric Value = -0.7966, Metric Difference = 0.0035
+The parameters are: 
+  t  =  -35.273605208268684  pixels, 
+alpha =  -0.133826739718392  degrees -0.028143833942767565
+Iteration 30: Metric Value = -0.7990, Metric Difference = 0.0024
+The parameters are: 
+  t  =  -39.024002046546556  pixels, 
+alpha =  -0.15986239731629703  degrees -0.031136171845648847
+Iteration 35: Metric Value = -0.7996, Metric Difference = 0.0006
+The parameters are: 
+  t  =  -41.122227992675015  pixels, 
+alpha =  -0.1844441503902456  degrees -0.032810288292027937
+Iteration 40: Metric Value = -0.7999, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.20537687765769  pixels, 
+alpha =  -0.20757404003164961  degrees -0.03367450282791837
+Iteration 45: Metric Value = -0.7997, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -42.76907956933513  pixels, 
+alpha =  -0.22287200150006167  degrees -0.03412426561383122
+Estimated Cor:  -0.03426329020807751 Estimated tilt:  -0.23035807528818525
+Finish Ring Remover
+Total time: Including cor correction and plotting: 128.83 seconds
+Loading time: 1.86 seconds
+Preprocess time: 40.62 seconds
+Iteration 0: Metric Value = -0.7589717370001695
+The parameters are: 
+  t  =  -2.011537039962921  pixels, 
+alpha =  -0.002606717807261872  degrees -0.0016049497659278626
+Iteration 5: Metric Value = -0.7704, Metric Difference = 0.0114
+The parameters are: 
+  t  =  -10.260102882265906  pixels, 
+alpha =  -0.016333342470764955  degrees -0.008186252299680244
+Iteration 10: Metric Value = -0.7784, Metric Difference = 0.0080
+The parameters are: 
+  t  =  -17.62036787216935  pixels, 
+alpha =  -0.048857841968169974  degrees -0.014058804153326608
+Iteration 15: Metric Value = -0.7880, Metric Difference = 0.0096
+The parameters are: 
+  t  =  -24.916390262750774  pixels, 
+alpha =  -0.09463068901204101  degrees -0.019880098613896894
+Iteration 20: Metric Value = -0.7918, Metric Difference = 0.0038
+The parameters are: 
+  t  =  -30.01475508022294  pixels, 
+alpha =  -0.12676295252207634  degrees -0.0239479428831566
+Iteration 25: Metric Value = -0.7961, Metric Difference = 0.0044
+The parameters are: 
+  t  =  -34.96317381842871  pixels, 
+alpha =  -0.14741842714554867  degrees -0.02789614932321439
+Iteration 30: Metric Value = -0.7987, Metric Difference = 0.0026
+The parameters are: 
+  t  =  -38.60855202303741  pixels, 
+alpha =  -0.17455989480576176  degrees -0.030804695763061763
+Iteration 35: Metric Value = -0.7996, Metric Difference = 0.0009
+The parameters are: 
+  t  =  -41.22342213121732  pixels, 
+alpha =  -0.21007481007486814  degrees -0.03289102829618403
+Iteration 40: Metric Value = -0.8002, Metric Difference = 0.0006
+The parameters are: 
+  t  =  -42.52805527324928  pixels, 
+alpha =  -0.2229017735778362  degrees -0.033931958994613785
+Iteration 45: Metric Value = -0.8003, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.72851035870528  pixels, 
+alpha =  -0.23050870759507153  degrees -0.034091896562796764
+Estimated Cor:  -0.034099923190943925 Estimated tilt:  -0.23515500567728073
+Finish Ring Remover
+Total time: Including cor correction and plotting: 126.86 seconds
+Loading time: 1.84 seconds
+Preprocess time: 48.94 seconds
+Iteration 0: Metric Value = -0.7606001874821554
+The parameters are: 
+  t  =  -1.660647002275996  pixels, 
+alpha =  -0.003402891781507373  degrees -0.0013249843103265925
+Iteration 5: Metric Value = -0.7716, Metric Difference = 0.0110
+The parameters are: 
+  t  =  -10.01447267155854  pixels, 
+alpha =  -0.019545883771745463  degrees -0.00799027074858394
+Iteration 10: Metric Value = -0.7816, Metric Difference = 0.0100
+The parameters are: 
+  t  =  -17.902697454952442  pixels, 
+alpha =  -0.06181344779212061  degrees -0.014284067118313117
+Iteration 15: Metric Value = -0.7887, Metric Difference = 0.0071
+The parameters are: 
+  t  =  -24.46287903857301  pixels, 
+alpha =  -0.09759314647610326  degrees -0.019518254552052933
+Iteration 20: Metric Value = -0.7928, Metric Difference = 0.0041
+The parameters are: 
+  t  =  -29.7363015426855  pixels, 
+alpha =  -0.12662615688615467  degrees -0.023725772507461832
+Iteration 25: Metric Value = -0.7969, Metric Difference = 0.0041
+The parameters are: 
+  t  =  -34.702651659880026  pixels, 
+alpha =  -0.15845231299730833  degrees -0.027688285898840446
+Iteration 30: Metric Value = -0.7992, Metric Difference = 0.0024
+The parameters are: 
+  t  =  -38.198503976607206  pixels, 
+alpha =  -0.18764520419190342  degrees -0.03047752976856958
+Iteration 35: Metric Value = -0.7996, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -40.29130468705478  pixels, 
+alpha =  -0.2082150497167009  degrees -0.0321473175694586
+Iteration 40: Metric Value = -0.8000, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -41.72581480297809  pixels, 
+alpha =  -0.22347759250195737  degrees -0.033291873513014436
+Iteration 45: Metric Value = -0.8001, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.03286556182153  pixels, 
+alpha =  -0.23716966200042688  degrees -0.03353686082060228
+Estimated Cor:  -0.03354476883462667 Estimated tilt:  -0.24660852356408688
+Finish Ring Remover
+Total time: Including cor correction and plotting: 139.90 seconds
+Loading time: 1.95 seconds
+Preprocess time: 47.09 seconds
+Iteration 0: Metric Value = -0.760461990856708
+The parameters are: 
+  t  =  -1.746642189420963  pixels, 
+alpha =  -0.004877434847032377  degrees -0.0013935974915592788
+Iteration 5: Metric Value = -0.7715, Metric Difference = 0.0110
+The parameters are: 
+  t  =  -9.892115021319746  pixels, 
+alpha =  -0.03430363691036035  degrees -0.007892644963818946
+Iteration 10: Metric Value = -0.7803, Metric Difference = 0.0089
+The parameters are: 
+  t  =  -17.554750560207953  pixels, 
+alpha =  -0.06136207725917206  degrees -0.014006449915059538
+Iteration 15: Metric Value = -0.7876, Metric Difference = 0.0073
+The parameters are: 
+  t  =  -24.268407614261346  pixels, 
+alpha =  -0.0998126727538983  degrees -0.019363091181591498
+Iteration 20: Metric Value = -0.7924, Metric Difference = 0.0048
+The parameters are: 
+  t  =  -29.872025246857344  pixels, 
+alpha =  -0.13785422516269255  degrees -0.023834062696960645
+Iteration 25: Metric Value = -0.7967, Metric Difference = 0.0043
+The parameters are: 
+  t  =  -34.84074010896595  pixels, 
+alpha =  -0.16045858164370252  degrees -0.027798462852898366
+Iteration 30: Metric Value = -0.7990, Metric Difference = 0.0022
+The parameters are: 
+  t  =  -38.63596207633105  pixels, 
+alpha =  -0.18082386446067808  degrees -0.030826565486434344
+Iteration 35: Metric Value = -0.7998, Metric Difference = 0.0009
+The parameters are: 
+  t  =  -40.69367720379208  pixels, 
+alpha =  -0.2019102013835844  degrees -0.0324683594711107
+Iteration 40: Metric Value = -0.8002, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -41.983938029038406  pixels, 
+alpha =  -0.214525561058193  degrees -0.033497822895509365
+Iteration 45: Metric Value = -0.8002, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.32473609417542  pixels, 
+alpha =  -0.2228881528392525  degrees -0.033769736245352726
+Estimated Cor:  -0.033805898181204545 Estimated tilt:  -0.2291610999816323
+Finish Ring Remover
+Total time: Including cor correction and plotting: 138.01 seconds
+Loading time: 1.79 seconds
+Preprocess time: 45.82 seconds
+Iteration 0: Metric Value = -0.7582803010093505
+The parameters are: 
+  t  =  -1.6539150476490856  pixels, 
+alpha =  -0.009618898314252044  degrees -0.001319613069932781
+Iteration 5: Metric Value = -0.7694, Metric Difference = 0.0111
+The parameters are: 
+  t  =  -9.99456205859389  pixels, 
+alpha =  -0.04573384908192956  degrees -0.007974384621218529
+Iteration 10: Metric Value = -0.7787, Metric Difference = 0.0093
+The parameters are: 
+  t  =  -17.776173085793726  pixels, 
+alpha =  -0.08706642081624534  degrees -0.01418311682377159
+Iteration 15: Metric Value = -0.7869, Metric Difference = 0.0082
+The parameters are: 
+  t  =  -24.850696653422883  pixels, 
+alpha =  -0.1223104253970707  degrees -0.019827683500071448
+Iteration 20: Metric Value = -0.7929, Metric Difference = 0.0060
+The parameters are: 
+  t  =  -30.86573057218216  pixels, 
+alpha =  -0.1538755005402969  degrees -0.02462691269057087
+Iteration 25: Metric Value = -0.7960, Metric Difference = 0.0031
+The parameters are: 
+  t  =  -35.039968727553074  pixels, 
+alpha =  -0.18868771257127587  degrees -0.027957421857090214
+Iteration 30: Metric Value = -0.7976, Metric Difference = 0.0016
+The parameters are: 
+  t  =  -38.21590821232939  pixels, 
+alpha =  -0.21998491924040653  degrees -0.030491416126858555
+Iteration 35: Metric Value = -0.7991, Metric Difference = 0.0015
+The parameters are: 
+  t  =  -41.07749555860297  pixels, 
+alpha =  -0.24428974847224613  degrees -0.032774597520161944
+Iteration 40: Metric Value = -0.7995, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -41.80330509040871  pixels, 
+alpha =  -0.2610173917821891  degrees -0.03335370087000695
+Iteration 45: Metric Value = -0.7995, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.895825283801045  pixels, 
+alpha =  -0.27545263390387015  degrees -0.03342752017324551
+Estimated Cor:  -0.03344920797669575 Estimated tilt:  -0.2837630232957958
+Finish Ring Remover
+Total time: Including cor correction and plotting: 130.66 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526311: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:40:28 2025
+Job was executed on host(s) <16*n-62-11-15>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:40:30 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:40:30 2025
+Terminated at Tue Jan  7 00:49:39 2025
+Results reported at Tue Jan  7 00:49:39 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+DECNUM="4"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+DECNUM="7"
+export DECNUM
+python reconstructor_NA_fbp.p
+
+DECNUM="10"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1380.00 sec.
+    Max Memory :                                 93979 MB
+    Average Memory :                             61020.29 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               34021.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   549 sec.
+    Turnaround time :                            551 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Preprocess time: 48.36 seconds
+Iteration 0: Metric Value = -0.759699192236175
+The parameters are: 
+  t  =  -1.695068165077376  pixels, 
+alpha =  -0.0022064551444877342  degrees -0.0013524480040510978
+Iteration 5: Metric Value = -0.7713, Metric Difference = 0.0116
+The parameters are: 
+  t  =  -10.120090713221776  pixels, 
+alpha =  0.0002119343244431005  degrees -0.008074540462676949
+Iteration 10: Metric Value = -0.7793, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -17.244521388303678  pixels, 
+alpha =  -0.01943424407381219  degrees -0.013758926639603998
+Iteration 15: Metric Value = -0.7854, Metric Difference = 0.0061
+The parameters are: 
+  t  =  -23.741503844427342  pixels, 
+alpha =  -0.045355776496972804  degrees -0.018942689237575007
+Iteration 20: Metric Value = -0.7913, Metric Difference = 0.0059
+The parameters are: 
+  t  =  -29.57243208266931  pixels, 
+alpha =  -0.0646489037246106  degrees -0.023595025597874447
+Iteration 25: Metric Value = -0.7960, Metric Difference = 0.0047
+The parameters are: 
+  t  =  -34.83153164467692  pixels, 
+alpha =  -0.09496280840548751  degrees -0.02779111567394435
+Iteration 30: Metric Value = -0.7981, Metric Difference = 0.0021
+The parameters are: 
+  t  =  -38.31925112587506  pixels, 
+alpha =  -0.12681355895345076  degrees -0.030573870579155633
+Iteration 35: Metric Value = -0.7992, Metric Difference = 0.0011
+The parameters are: 
+  t  =  -40.90518200905704  pixels, 
+alpha =  -0.15549510153953416  degrees -0.032637113305098706
+Iteration 40: Metric Value = -0.7994, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.61032464737101  pixels, 
+alpha =  -0.17264295528757292  degrees -0.0331997271122641
+Iteration 45: Metric Value = -0.7994, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.72485625228961  pixels, 
+alpha =  -0.183380531903851  degrees -0.0332911087119332
+Estimated Cor:  -0.033308868509915074 Estimated tilt:  -0.19043633309338548
+Finish Ring Remover
+Total time: Including cor correction and plotting: 138.82 seconds
+Loading time: 1.97 seconds
+Preprocess time: 43.76 seconds
+Iteration 0: Metric Value = -0.7589380221369509
+The parameters are: 
+  t  =  -1.690673698894825  pixels, 
+alpha =  -0.005930421694533994  degrees -0.001348941781033105
+Iteration 5: Metric Value = -0.7692, Metric Difference = 0.0103
+The parameters are: 
+  t  =  -9.781364726854695  pixels, 
+alpha =  -0.018836080688659065  degrees -0.0078042803671713
+Iteration 10: Metric Value = -0.7783, Metric Difference = 0.0091
+The parameters are: 
+  t  =  -17.310445438218135  pixels, 
+alpha =  -0.053732037161419416  degrees -0.013811525615599575
+Iteration 15: Metric Value = -0.7860, Metric Difference = 0.0077
+The parameters are: 
+  t  =  -24.430421282273045  pixels, 
+alpha =  -0.08176526198221075  degrees -0.019492357406068916
+Iteration 20: Metric Value = -0.7919, Metric Difference = 0.0058
+The parameters are: 
+  t  =  -30.31860088137764  pixels, 
+alpha =  -0.10499861122550648  degrees -0.02419037304365237
+Iteration 25: Metric Value = -0.7951, Metric Difference = 0.0032
+The parameters are: 
+  t  =  -34.62652944452404  pixels, 
+alpha =  -0.1414377743982439  degrees -0.027627550088715987
+Iteration 30: Metric Value = -0.7976, Metric Difference = 0.0025
+The parameters are: 
+  t  =  -38.51227631627815  pixels, 
+alpha =  -0.15806216046580482  degrees -0.030727880039583627
+Iteration 35: Metric Value = -0.7987, Metric Difference = 0.0011
+The parameters are: 
+  t  =  -41.16205034241771  pixels, 
+alpha =  -0.18215032637860437  degrees -0.032842061443418384
+Iteration 40: Metric Value = -0.7992, Metric Difference = 0.0005
+The parameters are: 
+  t  =  -42.506395733470704  pixels, 
+alpha =  -0.20458913179531138  degrees -0.03391467744691811
+Iteration 45: Metric Value = -0.7993, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -42.78279316973537  pixels, 
+alpha =  -0.2311861559278509  degrees -0.03413520731627822
+Estimated Cor:  -0.03415602287039691 Estimated tilt:  -0.2514353224519463
+Finish Ring Remover
+Total time: Including cor correction and plotting: 134.76 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526312: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:41:47 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:41:48 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:41:48 2025
+Terminated at Tue Jan  7 00:50:52 2025
+Results reported at Tue Jan  7 00:50:52 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+WNAME="5"
+export WNAME
+python reconstructor_NA_fbp.py
+
+WNAME="10"
+export WNAME
+python reconstructor_NA_fbp.p
+
+WNAME="15"
+export WNAME
+python reconstructor_NA_fbp.py
+
+
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1471.00 sec.
+    Max Memory :                                 103184 MB
+    Average Memory :                             66868.71 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               24816.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   544 sec.
+    Turnaround time :                            545 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Preprocess time: 52.02 seconds
+Iteration 0: Metric Value = -0.7595462827564805
+The parameters are: 
+  t  =  -1.6522598085388445  pixels, 
+alpha =  -0.004143055905297499  degrees -0.001318292400429929
+Iteration 5: Metric Value = -0.7711, Metric Difference = 0.0116
+The parameters are: 
+  t  =  -9.91774798578655  pixels, 
+alpha =  -0.01186092199118642  degrees -0.00791309679717012
+Iteration 10: Metric Value = -0.7807, Metric Difference = 0.0096
+The parameters are: 
+  t  =  -17.87250463794089  pixels, 
+alpha =  -0.046473378125559496  degrees -0.014259977104740069
+Iteration 15: Metric Value = -0.7886, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -24.964499123339106  pixels, 
+alpha =  -0.08148820025008746  degrees -0.01991848334308971
+Iteration 20: Metric Value = -0.7933, Metric Difference = 0.0047
+The parameters are: 
+  t  =  -30.28266389099044  pixels, 
+alpha =  -0.1093816712474705  degrees -0.024161699913024286
+Iteration 25: Metric Value = -0.7970, Metric Difference = 0.0037
+The parameters are: 
+  t  =  -35.076981689826596  pixels, 
+alpha =  -0.14219887971442033  degrees -0.027986953475925475
+Iteration 30: Metric Value = -0.7986, Metric Difference = 0.0015
+The parameters are: 
+  t  =  -37.9246835304119  pixels, 
+alpha =  -0.18687186323089955  degrees -0.030259056008307365
+Iteration 35: Metric Value = -0.7997, Metric Difference = 0.0011
+The parameters are: 
+  t  =  -40.341502455825314  pixels, 
+alpha =  -0.22241027498205312  degrees -0.032187368980711686
+Iteration 40: Metric Value = -0.8000, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.06960221016535  pixels, 
+alpha =  -0.24474717103804694  degrees -0.033566171976195755
+Iteration 45: Metric Value = -0.8003, Metric Difference = 0.0003
+The parameters are: 
+  t  =  -42.894994488942835  pixels, 
+alpha =  -0.2565566303804701  degrees -0.03422472964543311
+Estimated Cor:  -0.03433991105079967 Estimated tilt:  -0.26528013760463626
+Finish Ring Remover
+Total time: Including cor correction and plotting: 143.26 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526313: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 00:42:48 2025
+Job was executed on host(s) <16*n-62-11-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 00:42:48 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 00:42:48 2025
+Terminated at Tue Jan  7 00:53:02 2025
+Results reported at Tue Jan  7 00:53:02 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="5"
+SIGMA="0.1"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+SIGMA="0.1"
+export SIGMA
+python reconstructor_NA_fbp.py
+
+SIGMA="0.2"
+export SIGMA
+python reconstructor_NA_fbp.p
+
+SIGMA="0.3"
+export SIGMA
+python reconstructor_NA_fbp.py
+
+
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1604.00 sec.
+    Max Memory :                                 76643 MB
+    Average Memory :                             44217.57 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               51357.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   658 sec.
+    Turnaround time :                            614 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 3.36 seconds
+Preprocess time: 81.76 seconds
+Iteration 0: Metric Value = -0.7611721269172209
+The parameters are: 
+  t  =  -1.7636352733383818  pixels, 
+alpha =  -0.005541855715613958  degrees -0.0014071558031955173
+Iteration 5: Metric Value = -0.7723, Metric Difference = 0.0112
+The parameters are: 
+  t  =  -9.872890428198644  pixels, 
+alpha =  -0.03159663068000995  degrees -0.007877306192711684
+Iteration 10: Metric Value = -0.7803, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -17.189226380254834  pixels, 
+alpha =  -0.05265105867172039  degrees -0.013714808282118216
+Iteration 15: Metric Value = -0.7887, Metric Difference = 0.0085
+The parameters are: 
+  t  =  -24.323809757626613  pixels, 
+alpha =  -0.07892081328592507  degrees -0.019407295019382934
+Iteration 20: Metric Value = -0.7926, Metric Difference = 0.0039
+The parameters are: 
+  t  =  -29.540965608063765  pixels, 
+alpha =  -0.11353477914107774  degrees -0.02356991936813598
+Iteration 25: Metric Value = -0.7981, Metric Difference = 0.0055
+The parameters are: 
+  t  =  -34.934099821843645  pixels, 
+alpha =  -0.1557209144096042  degrees -0.027872951985513546
+Iteration 30: Metric Value = -0.8001, Metric Difference = 0.0020
+The parameters are: 
+  t  =  -38.41758837347267  pixels, 
+alpha =  -0.18679064934114864  degrees -0.030652331149047342
+Iteration 35: Metric Value = -0.8011, Metric Difference = 0.0010
+The parameters are: 
+  t  =  -40.770062575698454  pixels, 
+alpha =  -0.21003125657952157  degrees -0.03252930524656791
+Iteration 40: Metric Value = -0.8013, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.44293287049959  pixels, 
+alpha =  -0.2279191470627618  degrees -0.03306616984348371
+Iteration 45: Metric Value = -0.8012, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.63182520840132  pixels, 
+alpha =  -0.24608237919323797  degrees -0.03321688181521382
+Estimated Cor:  -0.03326749006583318 Estimated tilt:  -0.2585067159252685
+Finish Ring Remover
+Total time: Including cor correction and plotting: 174.11 seconds
+Loading time: 1.84 seconds
+Preprocess time: 51.31 seconds
+Iteration 0: Metric Value = -0.7594244245440636
+The parameters are: 
+  t  =  -1.6260432963310056  pixels, 
+alpha =  -0.005432112309640678  degrees -0.0012973749704768662
+Iteration 5: Metric Value = -0.7694, Metric Difference = 0.0099
+The parameters are: 
+  t  =  -9.805270309924556  pixels, 
+alpha =  -0.02153122615655935  degrees -0.007823353970684486
+Iteration 10: Metric Value = -0.7802, Metric Difference = 0.0108
+The parameters are: 
+  t  =  -17.884647034386816  pixels, 
+alpha =  -0.048166573551635325  degrees -0.014269665187010757
+Iteration 15: Metric Value = -0.7880, Metric Difference = 0.0078
+The parameters are: 
+  t  =  -24.953601684081264  pixels, 
+alpha =  -0.07337296420806647  degrees -0.01990978857772441
+Iteration 20: Metric Value = -0.7940, Metric Difference = 0.0060
+The parameters are: 
+  t  =  -30.700409709862175  pixels, 
+alpha =  -0.10685702645303906  degrees -0.024495007747230457
+Iteration 25: Metric Value = -0.7967, Metric Difference = 0.0027
+The parameters are: 
+  t  =  -35.05497680334949  pixels, 
+alpha =  -0.1288697772059291  degrees -0.02796939638565119
+Iteration 30: Metric Value = -0.7987, Metric Difference = 0.0020
+The parameters are: 
+  t  =  -38.48885645073475  pixels, 
+alpha =  -0.1494965031846235  degrees -0.030709193976650066
+Iteration 35: Metric Value = -0.7991, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -40.80303833946419  pixels, 
+alpha =  -0.18295629199256927  degrees -0.032555615696381
+Iteration 40: Metric Value = -0.8004, Metric Difference = 0.0013
+The parameters are: 
+  t  =  -42.234534127262386  pixels, 
+alpha =  -0.22033338797588262  degrees -0.03369776659090084
+Iteration 45: Metric Value = -0.8004, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -42.30508593016201  pixels, 
+alpha =  -0.25022756964930987  degrees -0.0337540579230016
+Estimated Cor:  -0.033760445799212634 Estimated tilt:  -0.2670982666482948
+Finish Ring Remover
+Total time: Including cor correction and plotting: 162.90 seconds
+Loading time: 1.76 seconds
+Preprocess time: 44.23 seconds
+Iteration 0: Metric Value = -0.7605046693064484
+The parameters are: 
+  t  =  -1.7371214298416155  pixels, 
+alpha =  -0.005679785880169081  degrees -0.0013860011408310762
+Iteration 5: Metric Value = -0.7727, Metric Difference = 0.0122
+The parameters are: 
+  t  =  -10.25931965553785  pixels, 
+alpha =  -0.014086319661376032  degrees -0.008185627384737645
+Iteration 10: Metric Value = -0.7806, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -17.556845461973865  pixels, 
+alpha =  -0.03865723970074829  degrees -0.014008121379234465
+Iteration 15: Metric Value = -0.7871, Metric Difference = 0.0065
+The parameters are: 
+  t  =  -23.881449088150653  pixels, 
+alpha =  -0.06443172140447637  degrees -0.019054347676715946
+Iteration 20: Metric Value = -0.7935, Metric Difference = 0.0064
+The parameters are: 
+  t  =  -30.028466551295622  pixels, 
+alpha =  -0.09090457473287172  degrees -0.02395888288667204
+Iteration 25: Metric Value = -0.7968, Metric Difference = 0.0033
+The parameters are: 
+  t  =  -34.529101511563596  pixels, 
+alpha =  -0.1380429970196445  degrees -0.027549815035822017
+Iteration 30: Metric Value = -0.7984, Metric Difference = 0.0017
+The parameters are: 
+  t  =  -37.75562933969543  pixels, 
+alpha =  -0.17746932968893375  degrees -0.030124172345501674
+Iteration 35: Metric Value = -0.7998, Metric Difference = 0.0013
+The parameters are: 
+  t  =  -40.367006350457984  pixels, 
+alpha =  -0.22512438602755291  degrees -0.03220771783281222
+Iteration 40: Metric Value = -0.8002, Metric Difference = 0.0004
+The parameters are: 
+  t  =  -41.39902944127244  pixels, 
+alpha =  -0.25532817036191197  degrees -0.03303114051165354
+Iteration 45: Metric Value = -0.8001, Metric Difference = 0.0001
+The parameters are: 
+  t  =  -41.50233667028328  pixels, 
+alpha =  -0.27273111296693453  degrees -0.033113566492247296
+Estimated Cor:  -0.0330585555664226 Estimated tilt:  -0.28717188517744785
+Finish Ring Remover
+Loading time: 1.70 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526322: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 01:12:05 2025
+Job was executed on host(s) <16*n-62-11-15>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 01:12:05 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 01:12:05 2025
+Terminated at Tue Jan  7 01:12:08 2025
+Results reported at Tue Jan  7 01:12:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+DECNUM="5"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+DECNUM="6"
+export DECNUM
+python reconstructor_NA_fbp.p
+
+DECNUM="7"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.89 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   3 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Preprocess time: 45.17 seconds
+Iteration 0: Metric Value = -0.7609926109618866
+The parameters are: 
+  t  =  -1.808364115637546  pixels, 
+alpha =  -0.004129842817980784  degrees -0.001442843709285276
+Iteration 5: Metric Value = -0.7717, Metric Difference = 0.0107
+The parameters are: 
+  t  =  -9.905163376220102  pixels, 
+alpha =  -0.03122327304626814  degrees -0.007903055885281996
+Iteration 10: Metric Value = -0.7805, Metric Difference = 0.0087
+The parameters are: 
+  t  =  -17.5210906475593  pixels, 
+alpha =  -0.06736122940471144  degrees -0.013979593601776039
+Iteration 15: Metric Value = -0.7883, Metric Difference = 0.0079
+The parameters are: 
+  t  =  -24.50424233675589  pixels, 
+alpha =  -0.08637161969398359  degrees -0.019551257183581826
+Iteration 20: Metric Value = -0.7936, Metric Difference = 0.0053
+The parameters are: 
+  t  =  -30.087990894098784  pixels, 
+alpha =  -0.10847659865481986  degrees -0.024006375713376688
+Iteration 25: Metric Value = -0.7976, Metric Difference = 0.0040
+The parameters are: 
+  t  =  -35.16432848713005  pixels, 
+alpha =  -0.14306635553608205  degrees -0.028056645069518656
+Iteration 30: Metric Value = -0.7995, Metric Difference = 0.0019
+The parameters are: 
+  t  =  -38.24980943316587  pixels, 
+alpha =  -0.17312839781793218  degrees -0.030518464973270643
+Iteration 35: Metric Value = -0.8005, Metric Difference = 0.0011
+The parameters are: 
+  t  =  -40.49054130757812  pixels, 
+alpha =  -0.21455268524889995  degrees -0.03230628295817403
+Iteration 40: Metric Value = -0.8008, Metric Difference = 0.0002
+The parameters are: 
+  t  =  -41.46708063770449  pixels, 
+alpha =  -0.25355493933488454  degrees -0.03308543667901954
+Iteration 45: Metric Value = -0.8008, Metric Difference = 0.0000
+The parameters are: 
+  t  =  -41.87339650464197  pixels, 
+alpha =  -0.2815391818828688  degrees -0.03340962487072497
+Estimated Cor:  -0.033530774802069487 Estimated tilt:  -0.29922234717609075
+Finish Ring Remover
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23526318: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan  7 01:03:41 2025
+Job was executed on host(s) <16*n-62-20-14>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Tue Jan  7 01:03:42 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan  7 01:03:42 2025
+Terminated at Tue Jan  7 01:13:24 2025
+Results reported at Tue Jan  7 01:13:24 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 8000
+#BSUB -R "rusage[mem=8000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 3:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+export NUM_PROCS=$LSB_DJOB_NUMPROC
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="4"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+python reconstructor_NA_fbp.py
+
+DECNUM="5"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+DECNUM="6"
+export DECNUM
+python reconstructor_NA_fbp.p
+
+DECNUM="7"
+export DECNUM
+python reconstructor_NA_fbp.py
+
+
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1516.00 sec.
+    Max Memory :                                 95774 MB
+    Average Memory :                             69254.14 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               32226.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                34
+    Run time :                                   582 sec.
+    Turnaround time :                            583 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 1.69 seconds

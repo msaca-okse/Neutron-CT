@@ -7,12 +7,13 @@ import os
 import time
 
 
-
 th = float(os.getenv("THRESHOLD"))
 size = int(os.getenv("SIZE"))
 decNum = int(os.getenv("DECNUM"))
 wname = int(os.getenv("WNAME"))
 sigma = float(os.getenv("SIGMA"))
+
+
 
 # Add the desired directory to the sys.path
 path_to_add = '/dtu-compute/msaca/muhrec_folder2/build-imagingsuite/Release/lib/'
@@ -63,7 +64,7 @@ ob = np.stack(ob_data)
 ob = np.mean(ob, axis=0)
 ob = ob[50:1910,90:1970]
 
-path = '//dtu-compute/msaca/sliceA_neutron_psi/DC/DC_#####.fits'
+path = '/dtu-compute/msaca/sliceA_neutron_psi/DC/DC_#####.fits'
 A = range(1,31)
 dc_paths = ma.generate_paths(path, A)
 with Pool() as pool:
@@ -80,10 +81,13 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Loading time: {elapsed_time:.2f} seconds")
 
+path = '/dtu-compute/msaca/sliceA_neutron_psi/ct_3x1126_60s/ct_3x1126_60s_#####.fits'
+path_cache = '/dtu-compute/msaca/output/cache/spot_cleaned_#####.tiff'
 
+batch = np.linspace(1,1127,200).astype(np.uint16)
 
 def preprocess_projection(batch_idx):
-    mode = None
+    mode = 'load'
 
     a = range(batch[batch_idx],batch[batch_idx+1])
 
@@ -164,7 +168,7 @@ corrector.set_labels()
 k_angle = 20
 corrector.get_projection_and_opposite(k_angle)
 corrector.register(learning_rate = 1, sampling_percentage = 0.1,
-                   max_iter = 200, metric_type = 'cor',
+                   max_iter = 50, metric_type = 'cor',
                    optimizer_type = 'gd', smoothing = 0,
                    shrinking = 1)
 
@@ -207,18 +211,41 @@ def show_slices(angle, translation, return_data = False, skip = 100, fig_path=No
         plt.figure(figsize=(10,10))
         plt.imshow(reconstruction[i])
         plt.clim([-0.1,0.1])
-        plt.title('Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma)
+        plt.colorbar()
+        plt.title('FBP: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma))
         full_path = ma.generate_unique_filename(fig_paths[i])
-        plt.savefig(full_path)
+        plt.savefig(full_path, dpi = 600)
         plt.close()
+
+        
+        N_iter = 50
+        initial = ig2D.allocate(0)
+        A = ProjectionOperator(ig2D,ag2D,device)
+        b = data2D
+        alpha = 0.9
+        F = LeastSquares(A,b)
+        G = alpha*FGP_TV(device='gpu')
+        reconstructor = FISTA(f=F, g=G, initial=initial)
+        reconstructor.run(N_iter)
+        reconstruction[i] = reconstructor.solution.copy()
+        plt.figure(figsize=(10,10))
+        plt.imshow(reconstruction[i])
+        plt.clim([-0.1,0.1])
+        plt.colorbar()
+        plt.title('TV: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma))
+        full_path = ma.generate_unique_filename(fig_paths[i])
+        plt.savefig(full_path, dpi = 600)
+        plt.close()
+
+
 
 
 angle = 0.325
 scale = corrector.fixed.GetSpacing()[0]
 translation = -26
 return_data = False
-skip = 100
-fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/C_rec_slice'
+skip = 400
+fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/B_rec_slice'
 show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
 
 

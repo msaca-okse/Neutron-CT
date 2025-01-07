@@ -5,6 +5,17 @@ from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, I
 from cil.processors import Slicer, RingRemover, CentreOfRotationCorrector
 from numba import cuda
 from cil.plugins.astra import FBP
+from cil.plugins.ccpi_regularisation.functions import FGP_TV
+from cil.optimisation.functions import L2NormSquared, L1Norm, BlockFunction, MixedL21Norm, IndicatorBox, TotalVariation, LeastSquares
+from cil.optimisation.operators import BlockOperator, GradientOperator, IdentityOperator, FiniteDifferenceOperator
+from cil.optimisation.algorithms import CGLS, SIRT, GD, FISTA, ISTA, PDHG, SPDHG
+from cil.plugins.astra.operators import ProjectionOperator
+from cil.optimisation.functions import IndicatorBox, MixedL21Norm, L2NormSquared, \
+                                       BlockFunction, L1Norm, LeastSquares, \
+                                       OperatorCompositionFunction, TotalVariation, \
+                                       ZeroFunction
+from cil.optimisation.operators import BlockOperator, GradientOperator,\
+                                       GradientOperator
 
 
 class ExtendedData:
@@ -130,7 +141,8 @@ class ExtendedData:
             reconstruction = fbp(self.data)
 
         return reconstruction
-    
+
+
     def xcor_offset(self,slice_index, ang_tol = 0.2,n_projs = 10):
         projection_indices = np.arange(0,360, step=360//n_projs).astype(int)
         offsets = np.empty(len(projection_indices))
@@ -152,3 +164,66 @@ class ExtendedData:
         offsets = self.calculate_cor_axis(n_projs = n_projs)
         fit = np.polyfit(self.subslices, offsets,deg=1)
         return [fit[0], 0.0, 1], [fit[1], 0, 0.0]
+
+
+
+
+    def tv(self, subdata = False):
+        N_iter = 50
+        if not cuda.is_available():
+            raise ValueError("GPU is not available.")
+        
+        if subdata:
+            #print(np.shape(self.subdata.as_array()))
+            #ig = self.subdata.geometry.get_ImageGeometry(resolution=1)
+            #print(ig)
+            #self.subdata.reorder('astra')
+            #device = 'gpu'
+            #fbp = FBP(ig,self.subdata.geometry,device)
+            #reconstruction = fbp(self.subdata)
+            reconstruction = np.empty((len(self.subslices), self.subdata.shape[2],self.subdata.shape[2]))
+            for i in range(len(self.subslices)):
+                data2D = self.subdata.get_slice(vertical=i)
+                data2D.reorder('astra')
+                ag2D = data2D.geometry
+                ag2D.set_angles(ag2D.angles, initial_angle=0.0)
+                ig2D = ag2D.get_ImageGeometry()
+                device = 'gpu'
+                initial = ig2d.allocate(0)
+                A = ProjectionOperator(ig2d, ag2d, device)
+                b = data2D
+                alpha = 0.9
+                F = LeastSquares(A, b)
+                G = alpha*FGP_TV(device='gpu')
+
+
+                reconstructor = FISTA(f=F, g=G, initial=initial)
+                reconstructor.run(N_iter)
+                reconstruction[i] = reconstructor.solution.copy()
+
+        else:
+            ig = self.data.geometry.get_ImageGeometry(resolution=1)
+            self.data.reorder('astra')
+            device = 'gpu'
+            fbp = FBP(ig,self.data.geometry,device)
+            reconstruction = fbp(self.data)
+
+        return reconstruction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

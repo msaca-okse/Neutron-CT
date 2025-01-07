@@ -24,8 +24,8 @@ source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 THRESHOLD="0.5"
 SIZE="7"
 DECNUM="4"
-WNAME="5"
-SIGMA="0.1"
+WNAME="10"
+SIGMA="0.3"
 
 # Export variables to make them available to the Python script
 export THRESHOLD
@@ -35,30 +35,22 @@ export WNAME
 export SIGMA
 python reconstructor_NA_fbp.py
 
+DECNUM="5"
+export DECNUM
+python reconstructor_NA_fbp.py
 
-: <<'EOF'
+DECNUM="6"
+export DECNUM
+python reconstructor_NA_fbp.p
 
-PARAM1=0.5
-PARAM2=5
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+DECNUM="7"
+export DECNUM
+python reconstructor_NA_fbp.py
 
-PARAM1=0.5
-PARAM2=10
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM1=0.5
-PARAM2=15
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
+DECNUM="8"
+export DECNUM
+python reconstructor_NA_fbp.py
 
-PARAM1=0.5
-PARAM2=25
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM1=0.5
-PARAM2=35
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
 
-PARAM1=0.5
-PARAM2=50
-python reconstructor_NA_fbp.py --param1 "$PARAM1" --param2 "$PARAM2"
-EOF

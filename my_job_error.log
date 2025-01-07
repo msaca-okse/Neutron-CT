@@ -184,3 +184,53 @@ NameError: name 'batch' is not defined. Did you mean: 'path'?
     plt.title('Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma)
              ^
 SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 212
+    plt.title('Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma)
+             ^
+SyntaxError: '(' was never closed
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 212
+    plt.title('Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma)
+             ^
+SyntaxError: '(' was never closed
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 128, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+NameError: name 'batch' is not defined. Did you mean: 'path'?
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 130, in <module>
+    Data_ =  pool.map(preprocess_projection, range(len(batch)-1))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 768, in get
+    self.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 765, in wait
+    self._event.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 607, in wait
+    signaled = self._cond.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 329, in wait
+    self._acquire_restore(saved_state)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 277, in _acquire_restore
+    self._lock.acquire()           # Ignore saved state
+KeyboardInterrupt
+                                                                                                              python: can't open file '/zhome/71/c/146676/main/reconstructor_NA_fbp.p': [Errno 2] No such file or directory
+python: can't open file '/zhome/71/c/146676/main/reconstructor_NA_fbp.p': [Errno 2] No such file or directory
+python: can't open file '/zhome/71/c/146676/main/reconstructor_NA_fbp.p': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 232, in <module>
+    show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 221, in show_slices
+    initial = ig2s.allocate(0)
+NameError: name 'ig2s' is not defined. Did you mean: 'ig2D'?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 232, in <module>
+    plt.imshow(reconstruction[i])
+  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 221, in show_slices
+    N_iter = 50
+NameError: name 'ig2s' is not defined. Did you mean: 'ig2D'?
