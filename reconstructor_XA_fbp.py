@@ -61,6 +61,16 @@ A = range(1,31)
 ob_paths = ma.generate_paths(path, A)
 
 
+def file_loader(path):
+    obeam = tifffile.imread(path + 'obeam/refHST6000.tiff')
+    dark = tifffile.imread(path + 'dark/dark.tiff')
+    nz, nx = np.shape(dark)
+    data = np.empty((6000,nz,nx))
+    for i in range(6000):
+        end_path
+        data[i] = tifffile.imread(path)
+
+
 def load_file(path):
     with fits.open(path) as hdul:
         # Assume the data is in the primary HDU
@@ -182,12 +192,6 @@ print(f"Time after Paganin filtering: {elapsed_time:.2f} seconds")
 
 
 ############## Now do the cor and tilt correction printing the result
-
-corrector = ctc.CTcorrector()
-angles = np.linspace(0,360,num=N_angles)
-corrector.set_angles(angles = angles)
-corrector.load_data(input_data)
-corrector.set_labels()
 
 def show_slices(angle, translation, return_data = False, skip = 100, fig_path=None):
     angle_radians = np.deg2rad(angle)
