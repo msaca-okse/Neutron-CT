@@ -6,6 +6,7 @@ import sys
 import os
 import time
 import numpy as np
+from cil.processors import Slicer
 
 
 th = float(os.getenv("THRESHOLD"))
@@ -154,7 +155,7 @@ N_slices, N_angles, N_pixels = np.shape(Data)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Preprocess time: {elapsed_time:.2f} seconds")
-
+print(-1)
 ################################################################################
 #
 # Part II, Beam padding,  Cor estimation, tilt-correction and sinogram based preprocessing
@@ -228,11 +229,84 @@ fig_paths = ma.generate_paths(fig_path + '_##.png',A)
 # Part 3: Do the reconstruction (FBB, CGLS, TV...)
 #
 ##################
+
+print(0)
+batch_size = 3
+batches = subslices[::batch_size]
+batches = np.append(batches, 10000)
+batch_slices = [subslices[i:i+batch_size] for i in range(0, len(subslices), batch_size)]
+print(1)
+
+def FBP_batch_recon(i):
+    print(3,i)
+    roi = {'vertical':(batches[i],batches[i+1],skip)}
+    processor = Slicer(roi)
+    processor.set_input(sinograms.data)
+    data_batch = processor.get_output()
+    data_batch.reorder('astra')
+    ag_batch = data_batch.geometry
+    ig_batch = ag_batch.get_ImageGeometry()
+    device = 'gpu'
+    print(4,i)
+    fbp = FBP(ig_batch,ag_batch,device)
+    recon_slice_FBP = fbp(data_batch).as_array().astype(np.float32)
+    N_batch_slices = np.shape(recon_slice_FBP)[0]
+    print(5,i)
+    A = batch_slices[i]
+    paths = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',A)
+    print(6,i)
+    for j in range(N_batch_slices):
+        print(j)
+        print(len(paths))
+        print(np.shape(recon_slice_FBP))
+        tifffile.imwrite(paths[j], recon_slice_FBP[j])
+
+print(2)
+
+with Pool() as pool:
+   pool.map(FBP_batch_recon, range(len(batches)-1))
+
+
+def TV_batch_recon(i):
+    roi = {'vertical':(batches[i],batches[i+1],skip)}
+    processor = Slicer(roi)
+    processor.set_input(sinograms.data)
+    data_batch = processor.get_output()
+    data_batch.reorder('astra')
+    ag_batch = data_batch.geometry
+    ig_batch = ag_batch.get_ImageGeometry()
+    device = 'gpu'
+
+
+    N_iter = 100
+    initial = ig_batch.allocate(0)
+    A = ProjectionOperator(ig_batch,ag_batch,device)
+    b = data_batch
+    F = LeastSquares(A,b)
+    G = alpha*FGP_TV(device='gpu')
+    reconstructor = FISTA(f=F, g=G, initial=initial)
+    reconstructor.run(N_iter)
+    recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
+    N_batch_slices = np.shape(recon_slice_TV)[0]
+    A = np.arange(batches[i],batches[i+1],skip)
+    paths = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
+    for j in range(N_batch_slices):
+        tifffile.imwrite(paths[j], recon_slice_TV[j])
+
+
+
+with Pool() as pool:
+   pool.map(FBP_batch_recon, range(len(batches)-1))
+
+
+
 for i in range(len(sinograms.subslices)):
+
+
     data2D = sinograms.subdata.get_slice(vertical=i)
     data2D.reorder('astra')
     ag2D = data2D.geometry
-    ag2D.set_angles(ag2D.angles, initial_angle=-2)
+    ag2D.set_angles(ag2D.angles, initial_angle=+20)
     ig2D = ag2D.get_ImageGeometry()
     device = 'gpu'
     fbp = FBP(ig2D,ag2D,device)
@@ -276,19 +350,21 @@ if plot:
     plt.close()
 
 
-alpha_vec = [20, 50, 80, 10, 120, 150, 200, 300, 500, 1000]
-for alpha in alpha_vec:
+alpha_vec = [20, 50, 80, 100, 120, 150, 200, 300, 500, 1000]
+for i in range(len(alpha_vec)):
+    data2D = sinograms.subdata.get_slice(vertical=4)
+    data2D.reorder('astra')
     N_iter = 100
     initial = ig2D.allocate(0)
     A = ProjectionOperator(ig2D,ag2D,device)
     b = data2D
     F = LeastSquares(A,b)
-    G = alpha*FGP_TV(device='gpu')
+    G = alpha_vec[i]*FGP_TV(device='gpu')
     reconstructor = FISTA(f=F, g=G, initial=initial)
     reconstructor.run(N_iter)
     recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
     A = np.arange(len(alpha_vec))
-    paths = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
+    paths = ma.generate_paths(save_folder_tv + 'slice_ttv_####.tiff',A)
     tifffile.imwrite(paths[i], recon_slice_TV)
 
 end_time = time.time()
