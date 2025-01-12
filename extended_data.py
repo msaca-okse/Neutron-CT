@@ -73,7 +73,7 @@ class ExtendedData:
             raise ValueError("Supply slices using add_slices")
         if isinstance(self.data, np.ndarray):
             mask, indices, data = ma.determine_edge2(self.data,bias = 20,slices=self.slices)
-            self.data = ma.gaussian_padding(self.data,indices, sigma = 30, cutoff=4, pad_mean_window_size = 50)
+            self.data = ma.gaussian_padding(self.data,indices, sigma = 100, cutoff=10, pad_mean_window_size = 50)
 
         # Does not work ATM
         #if type(self.data) is AcquisitionData:

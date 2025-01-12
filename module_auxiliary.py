@@ -172,3 +172,86 @@ def gaussian_padding(sin1,out_indices, sigma = 30, cutoff=4, pad_mean_window_siz
 
     return sin2
 
+def integrate_rings_and_create_image_mean(image):
+    # Image dimensions
+    M, N = image.shape
+    center = (M // 2, N // 2)
+    
+    # Create distance matrix
+    y, x = np.ogrid[:M, :N]
+    distance = np.sqrt((x - center[1])**2 + (y - center[0])**2)
+    
+    # Round distances to nearest integer for binning
+    ring_indices = np.round(distance).astype(int)
+    
+    # Flatten the image and ring indices
+    flattened_image = image.ravel()
+    flattened_ring_indices = ring_indices.ravel()
+    
+    # Compute the sum and count of pixel values for each ring
+    ring_sums = np.bincount(flattened_ring_indices, weights=flattened_image)
+    ring_counts = np.bincount(flattened_ring_indices)
+    
+    # Avoid division by zero (if a ring has no pixels, count will be zero)
+    ring_means = np.zeros_like(ring_sums)
+    nonzero_mask = ring_counts > 0
+    ring_means[nonzero_mask] = ring_sums[nonzero_mask] / ring_counts[nonzero_mask]
+    
+    # Create a new image where each ring has the mean value
+    ring_image = ring_means[ring_indices]
+    
+    return image - ring_image
+
+import numpy as np
+
+def integrate_rings_in_sector(image, angle_min, angle_max):
+    # Convert angles to radians
+    angle_min_rad = np.deg2rad(angle_min)
+    angle_max_rad = np.deg2rad(angle_max)
+    
+    # Image dimensions
+    M, N = image.shape
+    center = (M // 2, N // 2)
+    
+    # Create coordinate grids
+    y, x = np.ogrid[:M, :N]
+    y_relative = y - center[0]
+    x_relative = x - center[1]
+    
+    # Compute distance matrix (radius)
+    distance = np.sqrt(x_relative**2 + y_relative**2)
+    
+    # Compute angle matrix
+    angles = np.arctan2(y_relative, x_relative)  # Angle in radians
+    angles = (angles + 2 * np.pi) % (2 * np.pi)  # Normalize to [0, 2π]
+    
+    # Mask pixels based on angular range
+    sector_mask = (angles >= angle_min_rad) & (angles <= angle_max_rad)
+    
+    # Round distances to nearest integer for binning
+    ring_indices = np.round(distance).astype(int)
+    
+    # Flatten arrays
+    flattened_image = image.ravel()
+    flattened_ring_indices = ring_indices.ravel()
+    flattened_sector_mask = sector_mask.ravel()
+    
+    # Apply the mask to keep only pixels in the sector
+    masked_image = flattened_image[flattened_sector_mask]
+    masked_ring_indices = flattened_ring_indices[flattened_sector_mask]
+    
+    # Compute the sum and count of pixel values for each ring in the sector
+    ring_sums = np.bincount(masked_ring_indices, weights=masked_image)
+    ring_counts = np.bincount(masked_ring_indices)
+    
+    # Avoid division by zero
+    ring_means = np.zeros_like(ring_sums)
+    nonzero_mask = ring_counts > 0
+    ring_means[nonzero_mask] = ring_sums[nonzero_mask] / ring_counts[nonzero_mask]
+    
+    # Create a new image for visualization
+    sector_ring_image = np.zeros_like(image, dtype=float)
+    ring_indices_clipped = np.clip(ring_indices, 0, len(ring_means) - 1)
+    sector_ring_image = ring_means[ring_indices_clipped]
+    
+    return image - sector_ring_image, sector_mask

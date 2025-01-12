@@ -5,6 +5,7 @@
 import sys
 import os
 import time
+import numpy as np
 
 
 th = float(os.getenv("THRESHOLD"))
@@ -13,6 +14,11 @@ decNum = int(os.getenv("DECNUM"))
 wname = int(os.getenv("WNAME"))
 sigma = float(os.getenv("SIGMA"))
 alpha = float(os.getenv("ALPHA"))
+plot = False
+skip = 200
+fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/A_rec_slice'
+save_folder_fbp ='/dtu-compute/msaca/output/fbp_recon/'
+save_folder_tv = '/dtu-compute/msaca/output/tv_recon/'
 
 
 # Add the desired directory to the sys.path
@@ -27,7 +33,6 @@ sys.path.append(path_to_add)
 
 import SimpleITK as sitk
 import imgalg
-import numpy as np
 from astropy.io import fits
 import module_auxiliary as ma
 import tifffile
@@ -122,6 +127,9 @@ def preprocess_projection(batch_idx):
 
     Data = np.stack(Data)    
     Data = (-np.log((np.abs(Data-dc[np.newaxis])+1)/(1+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
+    roi = [1700,1800,1000,1100] # [y_start, y_end, x_start, x_end]
+    Means = np.mean(Data, axis=(1,2))
+    Data = Data-Means[:,np.newaxis, np.newaxis]
     Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
 
     if mode == 'save':
@@ -153,6 +161,7 @@ print(f"Preprocess time: {elapsed_time:.2f} seconds")
 #
 #################################################################################
 # Add beam padding with gaussian blur
+subslices = np.arange(300, N_slices-300, skip)
 angles = np.linspace(0, 360, N_angles, endpoint=True, dtype=np.float32)
 slices = np.arange(0, N_slices)
 ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
@@ -166,15 +175,15 @@ sinograms.set_slices(slices)
 sinograms.pad_edges()
 sinograms.acquisition_data(geometry=ag)
 # Paganin filter
-
-sinograms.data.geometry.config.units = 'mm'
-processor = PaganinProcessor(delta=1, beta=0.01, energy=40000, energy_units='eV', full_retrieval=True, filter_type='paganin_method', pad=0, return_units=
-sinograms.data.geometry.config.units)
-processor.set_input(sinograms.data)
-sinograms.data = processor.get_output()
-
+#print(sinograms.data.as_array()[200:210,200:210,200:210])
+#sinograms.data.reorder('cil')
+#sinograms.data.geometry.config.units = 'um'
+#processor = PaganinProcessor(delta=delta,beta=beta, full_retrieval=False, energy=14, energy_units='keV')
+#processor.set_input(sinograms.data)
+#sinograms.data = processor.get_output()
+#print(sinograms.data.as_array()[200:210,200:210,200:210])
 input_data = sinograms.data*100
-
+sinograms.data.reorder('astra')
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Time after Paganin filtering: {elapsed_time:.2f} seconds")
@@ -189,133 +198,105 @@ corrector.set_angles(angles = angles)
 corrector.load_data(input_data)
 corrector.set_labels()
 
-def show_slices(angle, translation, return_data = False, skip = 100, fig_path=None):
-    angle_radians = np.deg2rad(angle)
-    rotation_matrix = [
-                    [np.cos(angle_radians),0,  -np.sin(angle_radians)],
-                    [0,1,0],
-                    [np.sin(angle_radians), 0,  np.cos(angle_radians)]
-                ]
-    matrix = [elem for row in rotation_matrix for elem in row]
-    translation = [-translation, 0, 0]
-    transform = corrector.transformation(matrix = matrix, translation = translation)
-    data2 = corrector.resample(data=corrector.data, transform=transform)
-    if return_data:
-        return data2
-    subslices = np.arange(250, N_slices, skip)
-    sinograms.set_data(data2)
-    sinograms.acquisition_data(geometry=ag)
-    sinograms.set_subdata(subslices=subslices)
-    sinograms.remove_ring(subdata = True, decNum = decNum, wname  = wname, sigma = sigma)
-
-
-    reconstruction1 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
-    reconstruction2 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
-    A = np.arange(len(sinograms.subslices))
-    fig_paths = ma.generate_paths(fig_path + '_##.png',A) 
-    for i in range(len(sinograms.subslices)):
-        data2D = sinograms.subdata.get_slice(vertical=i)
-        data2D.reorder('astra')
-        ag2D = data2D.geometry
-        ag2D.set_angles(ag2D.angles, initial_angle=0.0)
-        ig2D = ag2D.get_ImageGeometry()
-        device = 'gpu'
-        fbp = FBP(ig2D,ag2D,device)
-        reconstruction1[i] = fbp(data2D).as_array()
-        plt.figure(figsize=(10,10))
-        plt.imshow(reconstruction1[i])
-        plt.clim([-0.1,0.1])
-        plt.colorbar()
-        plt.title('FBP: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma))
-        full_path = ma.generate_unique_filename(fig_paths[i])
-        plt.savefig(full_path, dpi = 600)
-        plt.close()
-
-        
-        N_iter = 100
-        initial = ig2D.allocate(0)
-        A = ProjectionOperator(ig2D,ag2D,device)
-        b = data2D
-        F = LeastSquares(A,b)
-        G = alpha*FGP_TV(device='gpu')
-        reconstructor = FISTA(f=F, g=G, initial=initial)
-        reconstructor.run(N_iter)
-        reconstruction2[i] = reconstructor.solution.copy().as_array()
-        plt.figure(figsize=(10,10))
-        plt.imshow(reconstruction2[i])
-        plt.clim([-0.1,0.1])
-        plt.colorbar()
-        plt.title('TV: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma) + ' alpha:' + str(alpha))
-        full_path = ma.generate_unique_filename(fig_paths[i])
-        plt.savefig(full_path, dpi = 400)
-        plt.close()
-    return reconstruction1, reconstruction2
-
-
-
 angle = 0.325
 translation = -26
-return_data = False
-skip = 300
-fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/A_rec_slice'
-reconstruction1, reconstruction2 = show_slices(angle=angle, translation=translation, return_data = return_data, skip = skip, fig_path=fig_path)
+angle_radians = np.deg2rad(angle)
+rotation_matrix = [
+                [np.cos(angle_radians),0,  -np.sin(angle_radians)],
+                [0,1,0],
+                [np.sin(angle_radians), 0,  np.cos(angle_radians)]
+            ]
+matrix = [elem for row in rotation_matrix for elem in row]
+translation = [-translation, 0, 0]
+transform = corrector.transformation(matrix = matrix, translation = translation)
+data2 = corrector.resample(data=corrector.data, transform=transform)
+
+sinograms.set_data(data2)
+sinograms.acquisition_data(geometry=ag)
+sinograms.set_subdata(subslices=subslices)
+sinograms.remove_ring(subdata = True, decNum = decNum, wname  = wname, sigma = sigma)
 
 
-end_time = time.time()
-elapsed_time = end_time - start_time
-print(f"Total time: Including cor correction and plotting: {elapsed_time:.2f} seconds")
+reconstruction1 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
+reconstruction2 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
 
-
-fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/DD_seg_slice'
-subslices = np.arange(250, N_slices, skip)
-A = np.arange(len(subslices))
+A = np.arange(len(sinograms.subslices))
 fig_paths = ma.generate_paths(fig_path + '_##.png',A)
-for i in range(len(subslices)):
-    plt.figure(figsize=(10,10))
-    segm = np.zeros(np.shape(reconstruction1[i]))
-    segm[reconstruction1[i]>0.025] = 2
-    segm[reconstruction1[i]>0.040] = 3
-    plt.imshow(segm,cmap='jet')
-    plt.title('FB segm. Alpha: ')
-    full_path = ma.generate_unique_filename(fig_paths[i])
-    plt.savefig(full_path, dpi=400)
-    plt.close()
-
-
-fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/D_seg_slice'
-subslices = np.arange(250, N_slices, skip)
-A = np.arange(len(subslices))
-fig_paths = ma.generate_paths(fig_path + '_##.png',A)
-for i in range(len(subslices)):
-    plt.figure(figsize=(10,10))
-    segm = np.zeros(np.shape(reconstruction2[i]))
-    segm[reconstruction2[i]>0.025] = 2
-    segm[reconstruction2[i]>0.040] = 3
-    plt.imshow(segm,cmap='jet')
-    plt.title('TV segm. Alpha: ' + str(alpha))
-    full_path = ma.generate_unique_filename(fig_paths[i])
-    plt.savefig(full_path, dpi=400)
-    plt.close()
-
-
-#return_data = True
-#skip = None
-#data = show_slices(angle, translation = translation, return_data = return_data, skip = skip, fig_path = fig_path)
-
 
 ###########################
 #
 # Part 3: Do the reconstruction (FBB, CGLS, TV...)
 #
 ##################
+for i in range(len(sinograms.subslices)):
+    data2D = sinograms.subdata.get_slice(vertical=i)
+    data2D.reorder('astra')
+    ag2D = data2D.geometry
+    ag2D.set_angles(ag2D.angles, initial_angle=-2)
+    ig2D = ag2D.get_ImageGeometry()
+    device = 'gpu'
+    fbp = FBP(ig2D,ag2D,device)
+    recon_slice_FBP = fbp(data2D).as_array().astype(np.float32)
+    A = np.arange(len(sinograms.subslices))
+    paths = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',A)
+    tifffile.imwrite(paths[i], recon_slice_FBP)
 
-#### FBP
-#skip = 1
-#subslices = np.arange(0, N_slices, skip)
-#sinograms.set_data(data)
-#sinograms.acquisition_data(geometry=ag)
-#sinograms.set_subdata(subslices=subslices)
-#sinograms.remove_ring(subdata = False)
-#recon = sinograms.fbp(subdata = False)
-#recon.as_array()
+    
+    N_iter = 100
+    initial = ig2D.allocate(0)
+    A = ProjectionOperator(ig2D,ag2D,device)
+    b = data2D
+    F = LeastSquares(A,b)
+    G = alpha*FGP_TV(device='gpu')
+    reconstructor = FISTA(f=F, g=G, initial=initial)
+    reconstructor.run(N_iter)
+    recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
+    A = np.arange(len(sinograms.subslices))
+    paths = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
+    tifffile.imwrite(paths[i], recon_slice_TV)
 
+        
+if plot:
+    plt.figure(figsize=(10,10))
+    plt.imshow(reconstruction1[3])
+    plt.clim([-0.1,0.1])
+    plt.colorbar()
+    plt.title('FBP: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma))
+    full_path = ma.generate_unique_filename(fig_paths[i])
+    plt.savefig(full_path, dpi = 600)
+    plt.close()
+
+    plt.figure(figsize=(10,10))
+    plt.imshow(reconstruction2[3])
+    plt.clim([-0.1,0.1])
+    plt.colorbar()
+    plt.title('TV: Med-filter:' + str(size) + 'Threshold:' + str(th) + 'COR: ' + str(translation) + 'DECNUM: ' + str(decNum) + ' wname: ' + str(wname) + ' sigma: ' + str(sigma) + ' alpha:' + str(alpha))
+    full_path = ma.generate_unique_filename(fig_paths[i])
+    plt.savefig(full_path, dpi = 400)
+    plt.close()
+
+
+alpha_vec = [20, 50, 80, 10, 120, 150, 200, 300, 500, 1000]
+for alpha in alpha_vec:
+    N_iter = 100
+    initial = ig2D.allocate(0)
+    A = ProjectionOperator(ig2D,ag2D,device)
+    b = data2D
+    F = LeastSquares(A,b)
+    G = alpha*FGP_TV(device='gpu')
+    reconstructor = FISTA(f=F, g=G, initial=initial)
+    reconstructor.run(N_iter)
+    recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
+    A = np.arange(len(alpha_vec))
+    paths = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
+    tifffile.imwrite(paths[i], recon_slice_TV)
+
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Total time: Including cor correction and plotting: {elapsed_time:.2f} seconds")
+
+#####################################################
+#
+####           Save the reconstruction   ############
+#
+#####################################################
