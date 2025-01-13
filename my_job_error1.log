@@ -1,166 +1,525 @@
-multiprocessing.pool.RemoteTraceback: 
-"""
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 239, in FBP_batch_recon
-    roi = {'vertical':(batches[i],batches[i+1],skip)}
-NameError: name 'Slicer' is not defined
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 78, in <module>
+    pool.starmap(FBP_recon, [(i, i % num_gpus) for i in range(len(iter_data))])
+NameError: name 'iter_data' is not defined
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Error querying device
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: allocateGPUMemory malloc3d: CUDA error 46: all CUDA-capable devices are busy or unavailable.
+Error: Error allocating GPU memory
+Error: allocateGPUMemory malloc3d: CUDA error 46: all CUDA-capable devices are busy or unavailable.
+Error: Error allocating GPU memory
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Error querying device
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
+Warning: Unable to get available GPU memory. Defaulting to 1GB.
+Error: maxBlockDimension getDevice: CUDA error 100: no CUDA-capable device is detected.
+Warning: Error querying device
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 257, in <module>
-    
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-NameError: name 'Slicer' is not defined
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 242, in FBP_batch_recon
-    processor.set_input(data)
-NameError: name 'data' is not defined
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 262, in <module>
-    pool.map(FBP_batch_recon, range(len(batches)-1))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-NameError: name 'data' is not defined
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 245, in FBP_batch_recon
-    ag_batch = data_sliced.geometry
-NameError: name 'data_sliced' is not defined
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 262, in <module>
-    pool.map(FBP_batch_recon, range(len(batches)-1))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-NameError: name 'data_sliced' is not defined
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 257, in FBP_batch_recon
-    tifffile.imwrite(paths[j], recon_slice_FBP[j])
-IndexError: list index out of range
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 262, in <module>
-    pool.map(FBP_batch_recon, range(len(batches)-1))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-IndexError: list index out of range
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 263, in FBP_batch_recon
-    tifffile.imwrite(paths[j], recon_slice_FBP[j])
-IndexError: list index out of range
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 268, in <module>
-    pool.map(FBP_batch_recon, range(len(batches)-1))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-IndexError: list index out of range
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 260, in FBP_batch_recon
-    print(j)
-IndexError: list index out of range
-"""
-
-The above exception was the direct cause of the following exception:
-
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 265, in <module>
-    print(2)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-IndexError: list index out of range
-ROI for axis vertical has 'stop' out of bounds. Using axis length as stop value. Got stop index: 10000, using 1860
-multiprocessing.pool.RemoteTraceback: 
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
-    result = (True, func(*args, **kwds))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
-    return list(map(*args))
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 252, in FBP_batch_recon
-    recon_slice_FBP = fbp(data_batch).as_array().astype(np.float32)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/processors.py", line 170, in __call__
-    return self.get_output(out=out)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/FBP.py", line 102, in get_output
-    return self.processor.get_output(out=out)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/processors.py", line 119, in get_output
-    out = self.process(out=out)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/FDK_Flexible.py", line 103, in process
-    alg_id = astra.algorithm.create(cfg)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/algorithm.py", line 36, in create
-    return a.create(config)
-  File "astra/algorithm_c.pyx", line 68, in astra.algorithm_c.create
-Exception: Unable to initialize Algorithm.
-"""
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 8, in <module>
+    num_proc = int(os.getenv("NUM_PROC"))
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+Process ForkPoolWorker-1:
+Process ForkPoolWorker-25:
+Process ForkPoolWorker-24:
+Process ForkPoolWorker-21:
+Process ForkPoolWorker-23:
+Process ForkPoolWorker-26:
+Process ForkPoolWorker-20:
+Process ForkPoolWorker-28:
+Process ForkPoolWorker-29:
+Process ForkPoolWorker-30:
+Process ForkPoolWorker-27:
+Process ForkPoolWorker-22:
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+KeyboardInterrupt
 
-The above exception was the direct cause of the following exception:
+During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/reconstructor_NA_fbp.py", line 267, in <module>
-    pool.map(FBP_batch_recon, range(len(batches)-1))
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
-    raise self._value
-Exception: Unable to initialize Algorithm.
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+KeyboardInterrupt
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+KeyboardInterrupt
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 365, in get
+    res = self._reader.recv_bytes()
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/connection.py", line 216, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+KeyboardInterrupt
+KeyboardInterrupt
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/connection.py", line 414, in _recv_bytes
+    buf = self._recv(4)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/queues.py", line 364, in get
+    with self._rlock:
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/synchronize.py", line 95, in __enter__
+    return self._semlock.__enter__()
+KeyboardInterrupt
+Terminated
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 50, in <module>
+    image = tifffile.imread(read_path[0])
+NameError: name 'read_path' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+                                                                                                                                                                                                                                                                                               Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'base_size' is not defined. Did you mean: 'batch_size'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'remainder' is not defined. Did you mean: 'remainer'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'remainder' is not defined. Did you mean: 'remainer'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'remainder' is not defined. Did you mean: 'remainer'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 68, in <module>
+    end_idx = start_idx + base_size + (1 if i < remainder else 0)
+NameError: name 'remainder' is not defined. Did you mean: 'remainer'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 69, in <module>
+    split_arr.append(arr[start_idx:end_idx])
+NameError: name 'arr' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 69, in <module>
+    split_arr.append(arr[start_idx:end_idx])
+NameError: name 'arr' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 69, in <module>
+    split_arr.append(arr[start_idx:end_idx])
+NameError: name 'arr' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 69, in <module>
+    split_arr.append(arr[start_idx:end_idx])
+NameError: name 'arr' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 103, in recon_FBP_multi
+    data_batch = AcquisitionData(data_batch, geometry=ag_batch)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/acquisition_data.py", line 72, in __init__
+    raise ValueError('Shape mismatch got {} expected {}'.format(array.shape, geometry.shape))
+ValueError: Shape mismatch got (465, 1126, 1880) expected (1126, 465, 1880)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 97, in recon_FBP_multi
+    data_batch[i] = tifffile.imread(read_path[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1281, in imread
+    return tif.asarray(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4570, in asarray
+    result = self.filehandle.read_array(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15018, in read_array
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    n = self._fh.readinto(result)  # type: ignore[attr-defined]
+KeyboardInterrupt
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 97, in recon_FBP_multi
+    data_batch[i] = tifffile.imread(read_path[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1253, in imread
+    with TiffFile(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4327, in __init__
+    header = fh.read(4)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 14908, in read
+    return self._fh.read(size)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 125, in recon_FBP_multi
+    tifffile.imwrite(write_path_FBP[i], recon_slice_FBP[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1457, in imwrite
+    result = tif.write(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 3633, in write
+    fh.write_array(dataarray, datadtype)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15118, in write_array
+    data.tofile(self._fh)
+KeyboardInterrupt
+defined]
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 125, in recon_FBP_multi
+    tifffile.imwrite(write_path_FBP[i], recon_slice_FBP[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1457, in imwrite
+    result = tif.write(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 3633, in write
+    fh.write_array(dataarray, datadtype)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15118, in write_array
+    data.tofile(self._fh)
+KeyboardInterrupt
+/zhome/71/c/146676/main/reconstructor_NA.py:156: UserWarning: Note that the default behaviour now sets the nonnegativity constraint to False 
+  G = alpha*FGP_TV(device='gpu')
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:25,  3.89it/s, objective=3.96e+7]  2%|▏         | 2/100 [00:00<00:25,  3.86it/s, objective=3.45e+7]  3%|▎         | 3/100 [00:00<00:24,  3.96it/s, objective=3.02e+7]  4%|▍         | 4/100 [00:01<00:23,  4.04it/s, objective=2.68e+7]  5%|▌         | 5/100 [00:01<00:23,  4.08it/s, objective=2.45e+7]  6%|▌         | 6/100 [00:01<00:22,  4.11it/s, objective=2.28e+7]  7%|▋         | 7/100 [00:01<00:22,  4.10it/s, objective=2.17e+7]  8%|▊         | 8/100 [00:01<00:22,  4.09it/s, objective=2.09e+7]                                                                       9%|▉         | 9/100 [00:02<00:22,  4.10it/s, objective=2.04e+7] 10%|█         | 10/100 [00:02<00:21,  4.11it/s, objective=2e+7]   11%|█         | 11/100 [00:02<00:21,  4.13it/s, objective=1.98e+7] 12%|█▏        | 12/100 [00:02<00:21,  4.06it/s, objective=1.97e+7] 13%|█▎        | 13/100 [00:03<00:21,  4.10it/s, objective=1.96e+7] 14%|█▍        | 14/100 [00:03<00:20,  4.12it/s, objective=1.95e+7] 15%|█▌        | 15/100 [00:03<00:20,  4.13it/s, objective=1.94e+7] 16%|█▌        | 16/100 [00:03<00:20,  4.13it/s, objective=1.93e+7] 17%|█▋        | 17/100 [00:04<00:20,  4.14it/s, objective=1.93e+7] 18%|█▊        | 18/100 [00:04<00:19,  4.15it/s, objective=1.92e+7] 19%|█▉        | 19/100 [00:04<00:19,  4.15it/s, objective=1.92e+7] 20%|██        | 20/100 [00:04<00:19,  4.16it/s, objective=1.91e+7] 21%|██        | 21/100 [00:05<00:19,  4.14it/s, objective=1.91e+7] 22%|██▏       | 22/100 [00:05<00:18,  4.13it/s, objective=1.9e+7]  23%|██▎       | 23/100 [00:05<00:18,  4.14it/s, objective=1.9e+7] 24%|██▍       | 24/100 [00:05<00:18,  4.15it/s, objective=1.9e+7] 25%|██▌       | 25/100 [00:06<00:18,  4.16it/s, objective=1.9e+7] 26%|██▌       | 26/100 [00:06<00:17,  4.16it/s, objective=1.89e+7] 27%|██▋       | 27/100 [00:06<00:17,  4.16it/s, objective=1.89e+7] 28%|██▊       | 28/100 [00:06<00:17,  4.14it/s, objective=1.89e+7] 29%|██▉       | 29/100 [00:07<00:17,  4.12it/s, objective=1.89e+7] 30%|███       | 30/100 [00:07<00:16,  4.16it/s, objective=1.89e+7] 31%|███       | 31/100 [00:07<00:16,  4.17it/s, objective=1.88e+7] 32%|███▏      | 32/100 [00:07<00:16,  4.16it/s, objective=1.88e+7] 33%|███▎      | 33/100 [00:08<00:16,  4.15it/s, objective=1.88e+7] 34%|███▍      | 34/100 [00:08<00:15,  4.14it/s, objective=1.88e+7] 35%|███▌      | 35/100 [00:08<00:15,  4.16it/s, objective=1.88e+7] 36%|███▌      | 36/100 [00:08<00:15,  4.16it/s, objective=1.88e+7] 37%|███▋      | 37/100 [00:08<00:15,  4.16it/s, objective=1.88e+7] 38%|███▊      | 38/100 [00:09<00:14,  4.17it/s, objective=1.87e+7] 39%|███▉      | 39/100 [00:09<00:14,  4.20it/s, objective=1.87e+7] 40%|████      | 40/100 [00:09<00:14,  4.16it/s, objective=1.87e+7] 41%|████      | 41/100 [00:09<00:14,  4.17it/s, objective=1.87e+7] 42%|████▏     | 42/100 [00:10<00:13,  4.18it/s, objective=1.87e+7] 43%|████▎     | 43/100 [00:10<00:13,  4.16it/s, objective=1.87e+7] 44%|████▍     | 44/100 [00:10<00:13,  4.15it/s, objective=1.87e+7] 45%|████▌     | 45/100 [00:10<00:13,  4.19it/s, objective=1.87e+7] 46%|████▌     | 46/100 [00:11<00:12,  4.18it/s, objective=1.87e+7] 47%|████▋     | 47/100 [00:11<00:12,  4.17it/s, objective=1.87e+7] 48%|████▊     | 48/100 [00:11<00:12,  4.13it/s, objective=1.87e+7] 49%|████▉     | 49/100 [00:11<00:12,  4.13it/s, objective=1.87e+7] 50%|█████     | 50/100 [00:12<00:12,  4.12it/s, objective=1.86e+7] 51%|█████     | 51/100 [00:12<00:11,  4.14it/s, objective=1.86e+7] 52%|█████▏    | 52/100 [00:12<00:11,  4.15it/s, objective=ive=1.9e+7] 54%|█████▍    | 54/100 [00:13<00:11,  3.99it/s, objective=1.9e+7] 55%|█████▌    | 55/100 [00:14<00:11,  3.86it/s, objective=1.9e+7] 56%|█████▌    | 56/100 [00:14<00:11,  3.90it/s, objective=1.89e+7] 57%|█████▋    | 57/100 [00:14<00:10,  3.92it/s, objective=1.89e+7] 58%|█████▊    | 58/100 [00:14<00:10,  3.89it/s, objective=1.89e+7] 59%|█████▉    | 59/100 [00:15<00:10,  3.92it/s, objective=1.89e+7] 60%|██████    | 60/100 [00:15<00:10,  3.93it/s, objective=1.89e+7] 61%|██████    | 61/100 [00:15<00:09,  3.90it/s, objective=1.89e+7] 62%|██████▏   | 62/100 [00:15<00:09,  3.86it/s, objective=1.89e+7] 63%|██████▎   | 63/100 [00:16<00:09,  3.85it/s, objective=1.89e+7] 64%|██████▍   | 64/100 [00:16<00:09,  3.86it/s, objective=1.89e+7] 65%|██████▌   | 65/100 [00:16<00:09,  3.82it/s, objective=1.89e+7] 66%|██████▌   | 66/100 [00:16<00:08,  3.88it/s, objective=1.89e+7] 67%|██████▋   | 67/100 [00:17<00:08,  3.83it/s, objective=1.89e+7] 68%|██████▊   | 68/100 [00:17<00:08,  3.81it/s, objective=1.89e+7] 69%|██████▉   | 69/100 [00:17<00:08,  3.84it/s, objective=1.89e+7] 70%|███████   | 70/100 [00:17<00:07,  3.86it/s, objective=1.89e+7] 71%|███████   | 71/100 [00:18<00:07,  3.91it/s, objective=1.89e+7] 72%|███████▏  | 72/100 [00:18<00:07,  3.89it/s, objective=1.89e+7] 73%|███████▎  | 73/100 [00:18<00:06,  3.92it/s, objective=1.89e+7] 74%|███████▍  | 74/100 [00:18<00:06,  3.89it/s, objective=1.89e+7] 75%|███████▌  | 75/100 [00:19<00:06,  3.91it/s, objective=1.89e+7] 76%|███████▌  | 76/100 [00:19<00:06,  3.94it/s, objective=1.89e+7] 77%|███████▋  | 77/100 [00:19<00:05,  3.95it/s, objective=1.89e+7] 78%|███████▊  | 78/100 [00:19<00:05,  3.96it/s, objective=1.89e+7] 79%|███████▉  | 79/100 [00:20<00:05,  3.96it/s, objective=1.89e+7] 80%|████████  | 80/100 [00:20<00:05,  3.92it/s, objective=1.89e+7] 81%|████████  | 81/100 [00:20<00:04,  3.91it/s, objective=1.89e+7] 82%|████████▏ | 82/100 [00:20<00:04,  3.91it/s, objective=1.89e+7] 83%|████████▎ | 83/100 [00:21<00:04,  3.89it/s, objective=1.89e+7] 84%|████████▍ | 84/100 [00:21<00:04,  3.92it/s, objective=1.89e+7] 85%|████████▌ | 85/100 [00:21<00:03,  3.93it/s, objective=1.89e+7] 86%|████████▌ | 86/100 [00:21<00:03,  3.90it/s, objective=1.89e+7] 87%|████████▋ | 87/100 [00:22<00:03,  3.92it/s, objective=1.89e+7] 88%|████████▊ | 88/100 [00:22<00:03,  3.94it/s, objective=1.89e+7] 89%|████████▉ | 89/100 [00:22<00:02,  3.90it/s, objective=1.89e+7] 90%|█████████ | 90/100 [00:22<00:02,  3.89it/s, objective=1.89e+7] 91%|█████████ | 91/100 [00:23<00:02,  3.91it/s, objective=1.89e+7] 92%|█████████▏| 92/100 [00:23<00:02,  3.93it/s, objective=1.89e+7] 93%|█████████▎| 93/100 [00:23<00:01,  3.96it/s, objective=1.89e+7] 94%|█████████▍| 94/100 [00:23<00:01,  3.96it/s, objective=1.89e+7] 95%|█████████▌| 95/100 [00:24<00:01,  3.97it/s, objective=1.88e+7] 96%|█████████▌| 96/100 [00:24<00:01,  3.84it/s, objective=1.88e+7] 97%|█████████▋| 97/100 [00:24<00:00,  3.91it/s, objective=1.88e+7]████████▋| 97/100 [00:23<00:00,  4.14it/s, objective=1.85e+7] 98%|█████████▊| 98/100 [00:23<00:00,  4.12it/s, objective=1.85e+7] 99%|█████████▉| 99/100 [00:23<00:00,  4.12it/s, objective=1.85e+7]100%|██████████| 100/100 [00:24<00:00,  3.99it/s, objective=1.85e+7]100%|██████████| 100/100 [00:24<00:00,  4.13it/s, objective=1.85e+7]
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 160, in recon_TV_single
+    tifffile.imwrite(write_path_TV[i], recon_slice_TV)
+NameError: name 'write_path_TV' is not defined. Did you mean: 'write_path_FBP'?
+ 99%|█████████▉| 99/100 [00:25<00:00,  3.88it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.89it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.87it/s, objective=0]
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_NA.py", line 160, in recon_TV_single
+    tifffile.imwrite(write_path_TV[i], recon_slice_TV)
+NameError: name 'write_path_TV' is not defined. Did you mean: 'write_path_FBP'?
+th_TV[i], recon_slice_TV)
+NameError: name 'write_path_TV' is not defined. Did you mean: 'write_path_FBP'?
+/zhome/71/c/146676/main/reconstructor_NA.py:156: UserWarning: Note that the default behaviour now sets the nonnegativity constraint to False 
+  G = alpha*FGP_TV(device='gpu')
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:25,  3.89it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  3.96it/s, objective=0]  3%|▎         | 3/100 [00:00<00:24,  3.93it/s, objective=0]  4%|▍         | 4/100 [00:01<00:24,  3.94it/s, objective=0]  5%|▌         | 5/100 [00:01<00:23,  3.97it/s, objective=0]  6%|▌         | 6/100 [00:01<00:23,  3.92it/s, objective=0]  7%|▋         | 7/100 [00:01<00:23,  3.92it/s, objective=0]  8%|▊         | 8/100 [00:02<00:23,  3.89it/s, objective=0]  9%|▉         | 9/100 [00:02<00:23,  3.88it/s, objective=0] 10%|█         | 10/100 [00:02<00:23,  3.90it/s, objective=0] 11%|█         | 11/100 [00:02<00:22,  3.88it/s, objective=0] 12%|█▏        | 12/100 [00:03<00:22,  3.91it/s, objective=0] 13%|█▎        | 13/100 [00:03<00:22,  3.94it/s, objective=0] 14%|█▍        | 14/100 [00:03<00:21,  3.94it/s, objective=0] 15%|█▌        | 15/100 [00:03<00:21,  3.96it/s, objective=0] 16%|█▌        | 16/100 [00:04<00:21,  3.96it/s, objective=0] 17%|█▋        | 17/100 [00:04<00:20,  3.96it/s, objective=0] 18%|█▊        | 18/100 [00:04<00:20,  3.95it/s, objective=0] 19%|█▉        | 19/100 [00:04<00:20,  3.92it/s, objective=0] 20%|██        | 20/100 [00:05<00:20,  3.96it/s, objective=0] 21%|██        | 21/100 [00:05<00:20,  3.94it/s, objective=0] 22%|██▏       | 22/100 [00:05<00:19,  3.91it/s, objective=0] 23%|██▎       | 23/100 [00:05<00:19,  3.89it/s, objective=0] 24%|██▍       | 24/100 [00:06<00:19,  3.93it/s, objective=0] 25%|██▌       | 25/100 [00:06<00:19,  3.95it/s, objective=0] 26%|██▌       | 26/100 [00:06<00:18,  3.96it/s, objective=0] 27%|██▋       | 27/100 [00:06<00:18,  3.97it/s, objective=0] 28%|██▊       | 28/100 [00:07<00:18,  3.96it/s, objective=0] 29%|██▉       | 29/100 [00:07<00:17,  3.98it/s, objective=0] 30%|███       | 30/100 [00:07<00:17,  3.98it/s, objective=0] 31%|███       | 31/100 [00:07<00:17,  3.97it/s, objective=0] 32%|███▏      | 32/100 [00:08<00:17,  3.98it/s, objective=0] 33%|███▎      | 33/100 [00:08<00:17,  3.93it/s, objective=0] 34%|███▍      | 34/100 [00:08<00:16,  3.94it/s, objective=0] 35%|███▌      | 35/100 [00:08<00:16,  3.97it/s, objective=0]/100 [00:08<00:16,  4.01it/s, objective=1.98e+7]e=1.81e+7] 36%|███▌      | 36/100 [00:09<00:16,  3.96it/s, objective=0] 37%|███▋      | 37/100 [00:09<00:15,  3.98it/s, objective=0] 38%|███▊      | 38/100 [00:09<00:15,  3.93it/s, objective=0] 39%|███▉      | 39/100 [00:09<00:15,  3.94it/s, objective=0] 40%|████      | 40/100 [00:10<00:15,  3.91it/s, objective=0] 41%|████      | 41/100 [00:10<00:14,  3.97it/s, objective=0] 42%|████▏     | 42/100 [00:10<00:14,  3.99it/s, objective=0] 43%|████▎     | 43/100 [00:10<00:14,  3.92it/s, objective=0] 44%|████▍     | 44/100 [00:11<00:14,  3.95it/s, objective=0] 45%|████▌     | 45/100 [00:11<00:13,  3.96it/s, objective=0] 46%|████▌     | 46/100 [00:11<00:13,  3.96it/s, objective=0] 47%|████▋     | 47/100 [00:11<00:13,  3.96it/s, objective=0]                                                                   48%|████▊     | 48/100 [00:12<00:13,  3.97it/s, objective=0] 49%|████▉     | 49/100 [00:12<00:12,  3.98it/s, objective=0] 50%|█████     | 50/100 [00:12<00:12,  3.96it/s, objective=0] 51%|█████     | 51/100 [00:12<00:12,  3.93it/s, objective=0] 52%|█████▏    | 52/100 [00:13<00:12,  3.96it/s, objective=0] 53%|█████▎    | 53/100 [00:13<00:11,  3.95it/s, objective=0] 54%|█████▍    | 54/100 [00:13<00:11,  3.98it/s, objective=0] 55%|█████▌    | 55/100 [00:13<00:11,  4.01it/s, objective=0]                                    56%|█████▌    | 56/100 [00:14<00:11,  3.97it/s, objective=0] 57%|█████▋    | 57/100 [00:14<00:10,  3.96it/s, objective=0] 58%|█████▊    | 58/100 [00:14<00:10,  3.98it/s, objective=0] 59%|█████▉    | 59/100 [00:14<00:10,  3.96it/s, objective=0] 60%|██████    | 60/100 [00:15<00:10,  3.98it/s, objective=0] 61%|██████    | 61/100 [00:15<00:09,  3.96it/s, objective=0] 62%|██████▏   | 62/100 [00:15<00:09,  3.95it/s, objective=0] 63%|██████▎   | 63/100 [00:15<00:09,  3.96it/s, objective=0] 64%|██████▍   | 64/100 [00:16<00:09,  3.95it/s, objective=0] 65%|██████▌   | 65/100 [00:16<00:08,  3.98it/s, objective=0] 66%|██████▌   | 66/100 [00:16<00:08,  3.96it/s, objective=0] 67%|██████▋   | 67/100 [00:16<00:08,  3.98it/s, objective=0]                                                                          68%|██████▊   | 68/100 [00:17<00:08,  3.97it/s, objective=0] 69%|██████▉   | 69/100 [00:17<00:07,  3.99it/s, objective=0] 70%|███████   | 70/100 [00:17<00:07,  3.96it/s, objective=0] 71%|███████   | 71/100 [00:17<00:07,  3.93it/s, objective=0] 72%|███████▏  | 72/100 [00:18<00:07,  3.95it/s, objective=0] 73%|███████▎  | 73/100 [00:18<00:06,  4.00it/s, objective=0] 74%|███████▍  | 74/100 [00:18<00:06,  3.85it/s, objective=0] 75%|███████▌  | 75/100 [00:19<00:06,  3.89it/s, objective=0]                                                                                                                            76%|███████▌  | 76/100 [00:19<00:06,  3.95it/s, objective=0] 77%|███████▋  | 77/100 [00:19<00:05,  3.88it/s, objective=0] 78%|███████▊  | 78/100 [00:19<00:05,  3.91it/s, objective=0] 79%|███████▉  | 79/100 [00:20<00:05,  3.89it/s, objective=0] 80%|████████  | 80/100 [00:20<00:05,  3.86it/s, objective=0] 81%|████████  | 81/100 [00:20<00:04,  3.85it/s, objective=0] 82%|████████▏ | 82/100 [00:20<00:04,  3.84it/s, objective=0] 83%|████████▎ | 83/100 [00:21<00:04,  3.90it/s, objective=0] 84%|████████▍ | 84/100 [00:21<00:04,  3.93it/s, objective=0] 85%|████████▌ | 85/100 [00:21<00:03,  3.98it/s, objective=0] 86%|████████▌ | 86/100 [00:21<00:03,  3.93it/s, objective=0] 87%|████████▋ | 87/100 [00:22<00:03,  3.96it/s, objective=0] 88%|████████▊ | 88/100 [00:22<00:03,  3.99it/s, objective=0] 89%|████████▉ | 89/100 [00:22<00:02,  3.98it/s, objective=0] 90%|█████████ | 90/100 [00:22<00:02,  4.00it/s, objective=0] 91%|█████████ | 91/100 [00:23<00:02,  4.00it/s, objective=0] 92%|█████████▏| 92/100 [00:23<00:01,  4.01it/s, objective=0] 93%|█████████▎| 93/100 [00:23<00:01,  3.98it/s, objective=0] 94%|█████████▍| 94/100 [00:23<00:01,  3.98it/s, objective=0] 95%|█████████▌| 95/100 [00:24<00:01,  4.00it/s, objective=0] 96%|█████████▌| 96/100 [00:24<00:00,  4.00it/s, objective=0] 97%|█████████▋| 97/100 [00:24<00:00,  4.02it/s, objective=0]                                         98%|█████████▊| 98/100 [00:24<00:00,  4.01it/s, objective=0] 99%|█████████▉| 99/100 [00:25<00:00,  3.87it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.89it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.95it/s, objective=0]
+                                                                                                                                                                                                                                                                                                 0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.06it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  4.01it/s, objective=0]  3%|▎         | 3/100 [00:00<00:24,  4.04it/s, objective=0]  4%|▍         | 4/100 [00:00<00:23,  4.02it/s, objective=0]  5%|▌         | 5/100 [00:01<00:23,  4.01it/s, objective=0]  6%|▌         | 6/100 [00:01<00:23,  4.00it/s, objective=0]  7%|▋         | 7/100 [00:01<00:23,  4.03it/s, objective=0]  8%|▊         | 8/100 [00:01<00:22,  4.04it/s, objective=0]  9%|▉         | 9/100 [00:02<00:22,  4.08it/s, objective=0] 10%|█         | 10/100 [00:02<00:22,  4.08it/s, objective=0] 11%|█         | 11/100 [00:02<00:21,  4.10it/s, objective=0] 12%|█▏        | 12/100 [00:02<00:21,  4.05it/s, objective=0] 13%|█▎        | 13/100 [00:03<00:21,  4.05it/s, objective=0] 14%|█▍        | 14/100 [00:03<00:21,  4.05it/s, objective=0] 15%|█▌        | 15/100 [00:03<00:20,  4.05it/s, objective=0] 16%|█▌        | 16/100 [00:03<00:20,  4.05it/s, objective=0] 17%|█▋        | 17/100 [00:04<00:20,  4.00it/s, objective=0] 18%|█▊        | 18/100 [00:04<00:20,  4.01it/s, objective=0] 19%|█▉        | 19/100 [00:04<00:20,  4.03it/s, objective=0] 20%|██        | 20/100 [00:04<00:19,  4.03it/s, objective=0] 21%|██        | 21/100 [00:05<00:19,  4.04it/s, objective=0] 22%|██▏       | 22/100 [00:05<00:19,  4.03it/s, objective=0] 23%|██▎       | 23/100 [00:05<00:19,  4.01it/s, objective=0] 24%|██▍       | 24/100 [00:05<00:18,  4.03it/s, objective=0] 25%|██▌       | 25/100 [00:06<00:18,  4.06it/s, objective=0] 26%|██▌       | 26/100 [00:06<00:18,  4.03it/s, objective=0] 27%|██▋       | 27/100 [00:06<00:18,  4.05it/s, objective=0] 28%|██▊       | 28/100 [00:06<00:17,  4.04it/s, objective=0] 29%|██▉       | 29/100 [00:07<00:17,  3.99it/s, objective=0] 30%|███       | 30/100 [00:07<00:17,  3.95it/s, objective=0] 31%|███       | 31/100 [00:07<00:17,  3.97it/s, objective=0]                       32%|███▏      | 32/100 [00:07<00:17,  3.97it/s, objective=0] 33%|███▎      | 33/100 [00:08<00:16,  3.99it/s, objective=0] 34%|███▍      | 34/100 [00:08<00:16,  4.02it/s, objective=0] 35%|███▌      | 35/100 [00:08<00:16,  3.99it/s, objective=0] 36%|███▌      | 36/100 [00:08<00:15,  4.01it/s, objective=0] 37%|███▋      | 37/100 [00:09<00:15,  3.98it/s, objective=0] 38%|███▊      | 38/100 [00:09<00:15,  4.00it/s, objective=0] 39%|███▉      | 39/100 [00:09<00:16,  3.80it/s, objective=0] 40%|████      | 40/100 [00:10<00:15,  3.82it/s, objective=0]                                                                                                                       41%|████      | 41/100 [00:10<00:15,  3.87it/s, objective=0] 42%|████▏     | 42/100 [00:10<00:14,  3.91it/s, objective=0] 43%|████▎     | 43/100 [00:10<00:14,  3.94it/s, objective=0] 44%|████▍     | 44/100 [00:11<00:14,  3.95it/s, objective=0] 45%|████▌     | 45/100 [00:11<00:13,  3.95it/s, objective=0] 46%|████▌     | 46/100 [00:11<00:13,  3.96it/s, objective=0] 47%|████▋     | 47/100 [00:11<00:13,  3.95it/s, objective=0] 48%|████▊     | 48/100 [00:12<00:13,  3.96it/s, objective=0] 49%|████▉     | 49/100 [00:12<00:12,  3.97it/s, objective=0] 50%|█████     | 50/100 [00:12<00:12,  3.98it/s, objective=0] 51%|█████     | 51/100 [00:12<00:12,  3.97it/s, objective=0] 52%|█████▏    | 52/100 [00:13<00:12,  3.99it/s, objective=0] 53%|█████▎    | 53/100 [00:13<00:11,  3.98it/s, objective=0] 54%|█████▍    | 54/100 [00:13<00:11,  3.97it/s, objective=0] 55%|█████▌    | 55/100 [00:13<00:11,  3.99it/s, objective=0] 56%|█████▌    | 56/100 [00:14<00:11,  3.99it/s, objective=0] 57%|█████▋    | 57/100 [00:14<00:10,  3.98it/s, objective=0] 58%|█████▊    | 58/100 [00:14<00:10,  3.97it/s, objective=0] 59%|█████▉    | 59/100 [00:14<00:10,  3.98it/s, objective=0] 60%|██████    | 60/100 [00:15<00:10,  3.99it/s, objective=0] 61%|██████    | 61/100 [00:15<00:09,  3.99it/s, objective=0] 62%|██████▏   | 62/100 [00:15<00:09,  3.98it/s, objective=0] 63%|██████▎   | 63/100 [00:15<00:09,  3.97it/s, objective=0] 64%|██████▍   | 64/100 [00:16<00:09,  3.98it/s, objective=0] 65%|██████▌   | 65/100 [00:16<00:08,  3.97it/s, objective=0] 66%|██████▌   | 66/100 [00:16<00:08,  3.98it/s, objective=0] 67%|██████▋   | 67/100 [00:16<00:08,  4.00it/s, objective=0] 68%|██████▊   | 68/100 [00:17<00:08,  3.98it/s, objective=0] 69%|██████▉   | 69/100 [00:17<00:07,  4.00it/s, objective=0]                                                                                                                                                                                                                                                                                                                                                                                                             70%|███████   | 70/100 [00:17<00:07,  3.99it/s, objective=0] 71%|███████   | 71/100 [00:17<00:07,  3.99it/s, objective=0] 72%|███████▏  | 72/100 [00:18<00:06,  4.00it/s, objective=0] 73%|███████▎  | 73/100 [00:18<00:06,  4.01it/s, objective=0] 74%|███████▍  | 74/100 [00:18<00:06,  4.01it/s, objective=0] 75%|███████▌  | 75/100 [00:18<00:06,  3.99it/s, objective=0] 76%|███████▌  | 76/100 [00:19<00:06,  3.97it/s, objective=0] 77%|███████▋  | 77/100 [00:19<00:05,  3.96it/s, objective=0] 78%|███████▊  | 78/100 [00:19<00:05,  3.95it/s, objective=0] 79%|███████▉  | 79/100 [00:19<00:05,  3.96it/s, objective=0] 80%|████████  | 80/100 [00:20<00:05,  4.00it/s, objective=0] 81%|████████  | 81/100 [00:20<00:04,  4.00it/s, objective=0] 82%|████████▏ | 82/100 [00:20<00:04,  4.00it/s, objective=0] 83%|████████▎ | 83/100 [00:20<00:04,  3.97it/s, objective=0] 84%|████████▍ | 84/100 [00:21<00:04,  3.99it/s, objective=0] 85%|████████▌ | 85/100 [00:21<00:03,  3.96it/s, objective=0] 86%|████████▌ | 86/100 [00:21<00:03,  3.97it/s, objective=0] 87%|████████▋ | 87/100 [00:21<00:03,  3.96it/s, objective=0] 88%|████████▊ | 88/100 [00:22<00:03,  3.69it/s, objective=0] 89%|████████▉ | 89/100 [00:22<00:02,  3.73it/s, objective=0] 90%|█████████ | 90/100 [00:22<00:02,  3.80it/s, objective=0]                                                                                                      91%|█████████ | 91/100 [00:22<00:02,  3.83it/s, objective=0] 92%|█████████▏| 92/100 [00:23<00:02,  3.86it/s, objective=0] 93%|█████████▎| 93/100 [00:23<00:01,  3.94it/s, objective=0] 94%|█████████▍| 94/100 [00:23<00:01,  3.95it/s, objective=0] 95%|█████████▌| 95/100 [00:23<00:01,  3.95it/s, objective=0] 96%|█████████▌| 96/100 [00:24<00:01,  3.89it/s, objective=0] 97%|█████████▋| 97/100 [00:24<00:00,  3.88it/s, objective=0] 98%|█████████▊| 98/100 [00:24<00:00,  3.90it/s, objective=0] 99%|█████████▉| 99/100 [00:24<00:00,  3.91it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.94it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=0]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.01it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  4.03it/s, objective=0]  3%|▎         | 3/100 [00:00<00:23,  4.08it/s, objective=0]  4%|▍         | 4/100 [00:00<00:23,  4.01it/s, objective=0]  5%|▌         | 5/100 [00:01<00:24,  3.95it/s, objective=0]  6%|▌         | 6/100 [00:01<00:23,  3.92it/s, objective=0]  7%|▋         | 7/100 [00:01<00:23,  3.93it/s, objective=0]  8%|▊         | 8/100 [00:02<00:23,  3.89it/s, objective=0]  9%|▉         | 9/100 [00:02<00:23,  3.90it/s, objective=0] 10%|█         | 10/100 [00:02<00:23,  3.89it/s, objective=0] 11%|█         | 11/100 [00:02<00:22,  3.89it/s, objective=0] 12%|█▏        | 12/100 [00:03<00:22,  3.87it/s, objective=0] 13%|█▎        | 13/100 [00:03<00:22,  3.89it/s, objective=0] 14%|█▍        | 14/100 [00:03<00:21,  3.91it/s, objective=0] 15%|█▌        | 15/100 [00:03<00:21,  3.92it/s, objective=0] 16%|█▌        | 16/100 [00:04<00:21,  3.89it/s, objective=0] 17%|█▋        | 17/100 [00:04<00:21,  3.89it/s, objective=0] 18%|█▊        | 18/100 [00:04<00:20,  3.93it/s, objective=0] 19%|█▉        | 19/100 [00:04<00:20,  3.93it/s, objective=0] 20%|██        | 20/100 [00:05<00:20,  3.94it/s, objective=0] 21%|██        | 21/100 [00:05<00:19,  3.97it/s, objective=0] 22%|██▏       | 22/100 [00:05<00:19,  4.02it/s, objective=0] 23%|██▎       | 23/100 [00:05<00:19,  3.96it/s, objective=0] 24%|██▍       | 24/100 [00:06<00:19,  3.98it/s, objective=0] 25%|██▌       | 25/100 [00:06<00:18,  3.96it/s, objective=0] 26%|██▌       | 26/100 [00:06<00:18,  4.00it/s, objective=0] 27%|██▋       | 27/100 [00:06<00:18,  3.98it/s, objective=0] 28%|██▊       | 28/100 [00:07<00:18,  4.00it/s, objective=0] 29%|██▉       | 29/100 [00:07<00:17,  4.05it/s, objective=0] 30%|███       | 30/100 [00:07<00:17,  3.98it/s, objective=0] 31%|███       | 31/100 [00:07<00:17,  3.96it/s, objective=0] 32%|███▏      | 32/100 [00:08<00:17,  3.96it/s, objective=0] 33%|███▎      | 33/100 [00:08<00:16,  4.02it/s, objective=0] 34%|███▍      | 34/100 [00:08<00:16,  4.04it/s, objective=0] 35%|███▌      | 35/100 [00:08<00:16,  3.97it/s, objective=0] 36%|███▌      | 36/100 [00:09<00:16,  3.97it/s, objective=0] 37%|███▋      | 37/100 [00:09<00:15,  3.97it/s, objective=0] 38%|███▊      | 38/100 [00:09<00:15,  3.97it/s, objective=0] 39%|███▉      | 39/100 [00:09<00:15,  3.96it/s, objective=0] 40%|████      | 40/100 [00:10<00:15,  3.97it/s, objective=0] 41%|████      | 41/100 [00:10<00:14,  3.97it/s, objective=0] 42%|████▏     | 42/100 [00:10<00:14,  3.93it/s, objective=0] 43%|████▎     | 43/100 [00:10<00:14,  3.95it/s, objective=0] 44%|████▍     | 44/100 [00:11<00:14,  3.99it/s, objective=0] 45%|████▌     | 45/100 [00:11<00:13,  4.02it/s, objective=0] 46%|████▌     | 46/100 [00:11<00:13,  4.03it/s, objective=0] 47%|████▋     | 47/100 [00:11<00:13,  4.02it/s, objective=0],  4.08it/s, objective=1.65e+7] 43%|████▎     | 43/100 [00:10<00:13,  4.09it/s, objective=1.65e+7] 44%|████▍     | 44/100 [00:10<00:13,  4.05it/s, objective=1.65e+7] 45%|████▌     | 45/100 [00:11<00:13,  4.08it/s, objective=1.65e+7] 46%|████▌     | 46/100 [00:11<00:13,  4.05it/s, objective=1.65e+7] 47%|████▋     | 47/100 [00:11<00:13,  3.97it/s, objective=1.65e+7] 48%|████▊     | 48/100 [00:11<00:13,  3.98it/s, objective=1.65e+7] 49%|████▉     | 49/100 [00:12<00:12,  4.01it/s, objective=1.65e+7] 50%|█████     | 50/100 [00:12<00:12,  4.04it/s, objective=1.65e+7] 51%|█████     | 51/100 [00:12<00:12,  4.02it/s, objective=1.65e+7] 52%|█████▏    | 52/100 [00:12<00:11,  4.05it/s, objective=1.65e+7] 53%|█████▎    | 53/100 [00:12<00:11,  4.07it/s, objective=1.65e+7] 54%|█████▍    | 54/100 [00:13<00:11,  4.06it/s, objective=1.65e+7] 55%|█████▌    | 55/100 [00:13<00:11,  4.06it/s, objective=1.65e+7] 56%|█████▌    | 56/100 [00:13<00:10,  4.03it/s, objective=1.65e+7] 57%|█████▋    | 57/100 [00:13<00:10,  3.99it/s, objective=1.65e+7] 58%|█████▊    | 58/100 [00:14<00:10,  3.97it/s, objective=1.65e+7] 59%|█████▉    | 59/100 [00:14<00:10,  4.01it/s, objective=1.65e+7] 60%|██████    | 60/100 [00:14<00:09,  4.03it/s, objective=1.64e+7] 61%|██████    | 61/100 [00:14<00:09,  4.05it/s, objective=1.64e+7] 62%|██████▏   | 62/100 [00:15<00:09,  4.03it/s, objective=1.64e+7] 63%|██████▎   | 63/100 [00:15<00:09,  4.00it/s, objective=1.64e+7] 64%|██████▍   | 64/100 [00:15<00:09,  3.98it/s, objective=1.64e+7] 65%|██████▌   | 65/100 [00:15<00:08,  4.00it/s, objective=1.64e+7] 66%|██████▌   | 66/100 [00:16<00:08,  4.00it/s, objective=1.64e+7] 67%|██████▋   | 67/100 [00:16<00:08,  3.93it/s, objective=1.64e+7] 68%|██████▊   | 68/100 [00:16<00:08,  3.98it/s, objective=1.64e+7] 69%|██████▉   | 69/100 [00:16<00:07,  4.00it/s, objective=1.64e+7] 70%|███████   | 70/100 [00:17<00:07,  4.02it/s, objective=1.64e+7] 71%|███████   | 71/100 [00:17<00:07,  4.04it/s, objective=1.64e+7] 72%|███████▏  | 72/100 [00:17<00:06,  4.06it/s, objective=1.64e+7] 73%|███████▎  | 73/100 [00:17<00:06,  4.07it/s, objective=1.64e+7] 74%|███████▍  | 74/100 [00:18<00:06,  4.10it/s, objective=1.64e+7] 75%|███████▌  | 75/100 [00:18<00:06,  4.11it/s, objective=1.64e+7] 76%|███████▌  | 76/100 [00:18<00:05,  4.11it/s, objective=1.64e+7] 77%|███ 78%|███████▊  | 78/100 [00:19<00:05,  3.99it/s, objective=0] 79%|███████▉  | 79/100 [00:19<00:05,  4.01it/s, objective=0] 80%|████████  | 80/100 [00:20<00:05,  3.98it/s, objective=0] 81%|████████  | 81/100 [00:20<00:04,  3.99it/s, objective=0] 82%|████████▏ | 82/100 [00:20<00:04,  3.98it/s, objective=0] 83%|████████▎ | 83/100 [00:20<00:04,  3.92it/s, objective=0] 84%|████████▍ | 84/100 [00:21<00:04,  3.90it/s, objective=0] 85%|████████▌ | 85/100 [00:21<00:03,  3.84it/s, objective=0] 86%|████████▌ | 86/100 [00:21<00:03,  3.89it/s, objective=0] 87%|████████▋ | 87/100 [00:21<00:03,  3.92it/s, objective=0] 88%|████████▊ | 88/100 [00:22<00:03,  3.96it/s, objective=0] 89%|████████▉ | 89/100 [00:22<00:02,  3.96it/s, objective=0] 90%|█████████ | 90/100 [00:22<00:02,  3.97it/s, objective=0] 91%|█████████ | 91/100 [00:22<00:02,  4.02it/s, objective=0] 92%|█████████▏| 92/100 [00:23<00:01,  4.06it/s, objective=0] 93%|█████████▎| 93/100 [00:23<00:01,  4.03it/s, objective=0] 94%|█████████▍| 94/100 [00:23<00:01,  4.06it/s, objective=0] 95%|█████████▌| 95/100 [00:23<00:01,  4.07it/s, objective=0] 96%|█████████▌| 96/100 [00:24<00:00,  4.07it/s, objective=0] 97%|█████████▋| 97/100 [00:24<00:00,  4.04it/s, objective=0] 98%|█████████▊| 98/100 [00:24<00:00,  4.06it/s, objective=0] 99%|█████████▉| 99/100 [00:24<00:00,  4.05it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  4.07it/s, objective=0]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=0]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.11it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  4.03it/s, objective=0]  3%|▎         | 3/100 [00:00<00:23,  4.05it/s, objective=0]  4%|▍         | 4/100 [00:00<00:23,  4.07it/s, objective=0]  5%|▌         | 5/100 [00:01<00:23,  4.04it/s, objective=0]  6%|▌         | 6/100 [00:01<00:23,  3.99it/s, objective=0]  7%|▋         | 7/100 [00:01<00:23,  4.00it/s, objective=0]  8%|▊         | 8/100 [00:01<00:22,  4.00it/s, objective=0]  9%|▉         | 9/100 [00:02<00:22,  3.99it/s, objective=0] 10%|█         | 10/100 [00:02<00:22,  4.01it/s, objective=0] 11%|█         | 11/100 [00:02<00:22,  4.03it/s, objective=0] 12%|█▏        | 12/100 [00:02<00:21,  4.03it/s, objective=0] 13%|█▎        | 13/100 [00:03<00:21,  4.05it/s, objective=0]                                                                      14%|█▍        | 14/100 [00:03<00:21,  4.05it/s, objective=0] 15%|█▌        | 15/100 [00:03<00:21,  4.02it/s, objective=0] 16%|█▌        | 16/100 [00:03<00:20,  4.01it/s, objective=0] 17%|█▋        | 17/100 [00:04<00:20,  3.98it/s, objective=0] 18%|█▊        | 18/100 [00:04<00:20,  4.00it/s, objective=0] 19%|█▉        | 19/100 [00:04<00:20,  4.03it/s, objective=0] 20%|██        | 20/100 [00:04<00:19,  4.04it/s, objective=0] 21%|██        | 21/100 [00:05<00:19,  4.04it/s, objective=0] 22%|██▏       | 22/100 [00:05<00:19,  3.95it/s, objective=0] 23%|██▎       | 23/100 [00:05<00:19,  3.99it/s, objective=0] 24%|██▍       | 24/100 [00:05<00:18,  4.03it/s, objective=0] 25%|██▌       | 25/100 [00:06<00:18,  4.01it/s, objective=0] 26%|██▌       | 26/100 [00:06<00:18,  4.02it/s, objective=0] 27%|██▋       | 27/100 [00:06<00:18,  4.04it/s, objective=0] 28%|██▊       | 28/100 [00:06<00:17,  4.05it/s, objective=0] 29%|██▉       | 29/100 [00:07<00:17,  4.08it/s, objective=0] 30%|███       | 30/100 [00:07<00:17,  4.08it/s, objective=0] 31%|███       | 31/100 [00:07<00:17,  4.04it/s, objective=0] 32%|███▏      | 32/100 [00:07<00:16,  4.06it/s, objective=0] 33%|███▎      | 33/100 [00:08<00:16,  4.04it/s, objective=0] 34%|███▍      | 34/100 [00:08<00:16,  4.04it/s, objective=0] 35%|███▌      | 35/100 [00:08<00:16,  4.03it/s, objective=0] 36%|███▌      | 36/100 [00:08<00:15,  4.05it/s, objective=0] 37%|███▋      | 37/100 [00:09<00:15,  4.02it/s, objective=0] 38%|███▊      | 38/100 [00:09<00:15,  4.04it/s, objective=0] 39%|███▉      | 39/100 [00:09<00:15,  4.04it/s, objective=0] 40%|████      | 40/100 [00:09<00:14,  4.03it/s, objective=0] 41%|████      | 41/100 [00:10<00:14,  4.00it/s, objective=0] 42%|████▏     | 42/100 [00:10<00:14,  4.01it/s, objective=0] 43%|████▎     | 43/100 [00:10<00:14,  4.01it/s, objective=0] 44%|████▍     | 44/100 [00:10<00:13,  4.02it/s, objective=0] 45%|████▌     | 45/100 [00:11<00:13,  4.02it/s, objective=0] 46%|████▌     | 46/100 [00:11<00:13,  4.04it/s, objective=0]                                                                                                         47%|████▋     | 47/100 [00:11<00:13,  4.02it/s, objective=0] 48%|████▊     | 48/100 [00:11<00:13,  3.99it/s, objective=0] 49%|████▉     | 49/100 [00:12<00:12,  3.99it/s, objective=0] 50%|█████     | 50/100 [00:12<00:12,  3.98it/s, objective=0] 51%|█████     | 51/100 [00:12<00:12,  4.01it/s, objective=0] 52%|█████▏    | 52/100 [00:12<00:12,  3.97it/s, objective=0] 53%|█████▎    | 53/100 [00:13<00:11,  3.98it/s, objective=0] 54%|█████▍    | 54/100 [00:13<00:11,  3.97it/s, objective=0] 55%|█████▌    | 55/100 [00:13<00:11,  4.00it/s, objective=0] 56%|█████▌    | 56/100 [00:13<00:10,  4.02it/s, objective=0] 57%|█████▋    | 57/100 [00:14<00:10,  4.04it/s, objective=0] 58%|█████▊    | 58/100 [00:14<00:10,  4.02it/s, objective=0] 59%|█████▉    | 59/100 [00:14<00:10,  4.02it/s, objective=0] 60%|██████    | 60/100 [00:14<00:09,  4.06it/s, objective=0] 61%|██████    | 61/100 [00:15<00:09,  4.06it/s, objective=0] 62%|██████▏   | 62/100 [00:15<00:09,  4.08it/s, objective=0] 63%|██████▎   | 63/100 [00:15<00:09,  4.09it/s, objective=0] 64%|██████▍   | 64/100 [00:15<00:08,  4.09it/s, objective=0] 65%|██████▌   | 65/100 [00:16<00:08,  4.09it/s, objective=0] 66%|██████▌   | 66/100 [00:16<00:08,  4.07it/s, objective=0]                                                                                                                                                                                           67%|██████▋   | 67/100 [00:16<00:08,  4.05it/s, objective=0] 68%|██████▊   | 68/100 [00:16<00:07,  4.04it/s, objective=0] 69%|██████▉   | 69/100 [00:17<00:07,  4.04it/s, objective=0] 70%|███████   | 70/100 [00:17<00:07,  4.04it/s, objective=0] 71%|███████   | 71/100 [00:17<00:07,  4.04it/s, objective=0] 72%|███████▏  | 72/100 [00:17<00:06,  4.04it/s, objective=0] 73%|███████▎  | 73/100 [00:18<00:06,  4.00it/s, objective=0] 74%|███████▍  | 74/100 [00:18<00:06,  4.00it/s, objective=0] 75%|███████▌  | 75/100 [00:18<00:06,  4.04it/s, objective=0] 76%|███████▌  | 76/100 [00:18<00:05,  4.01it/s, objective=0] 77%|███████▋  | 77/100 [00:19<00:05,  4.04it/s, objective=0] 78%|███████▊  | 78/100 [00:19<00:05,  3.99it/s, objective=0] 79%|███████▉  | 79/100 [00:19<00:05,  4.01it/s, objective=0] 80%|████████  | 80/100 [00:19<00:04,  4.02it/s, objective=0] 81%|████████  | 81/100 [00:20<00:04,  4.02it/s, objective=0] 82%|████████▏ | 82/100 [00:20<00:04,  3.98it/s, objective=0] 83%|████████▎ | 83/100 [00:20<00:04,  4.02it/s, objective=0] 84%|████████▍ | 84/100 [00:20<00:03,  4.01it/s, objective=0]                                                                                                                                                                                                                                                                                                                                                                   85%|████████▌ | 85/100 [00:21<00:03,  3.97it/s, objective=0] 86%|████████▌ | 86/100 [00:21<00:03,  3.99it/s, objective=0] 87%|████████▋ | 87/100 [00:21<00:03,  4.01it/s, objective=0] 88%|████████▊ | 88/100 [00:21<00:03,  3.99it/s, objective=0] 89%|████████▉ | 89/100 [00:22<00:02,  4.01it/s, objective=0] 90%|█████████ | 90/100 [00:22<00:02,  4.05it/s, objective=0] 91%|█████████ | 91/100 [00:22<00:02,  3.98it/s, objective=0] 92%|█████████▏| 92/100 [00:22<00:01,  4.02it/s, objective=0] 93%|█████████▎| 93/100 [00:23<00:01,  4.01it/s, objective=0] 94%|█████████▍| 94/100 [00:23<00:01,  4.02it/s, objective=0] 95%|█████████▌| 95/100 [00:23<00:01,  3.95it/s, objective=0] 96%|█████████▌| 96/100 [00:23<00:01,  3.95it/s, objective=0] 97%|█████████▋| 97/100 [00:24<00:00,  3.97it/s, objective=0] 98%|█████████▊| 98/100 [00:24<00:00,  3.95it/s, objective=0] 99%|█████████▉| 99/100 [00:24<00:00,  3.93it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  3.93it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  4.02it/s, objective=0]
+                                                                                                        0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.01it/s, objective=5.04e+7]  2%|▏         | 2/100 [00:00<00:24,  4.03it/s, objective=3.52e+7]  3%|▎         | 3/100 [00:00<00:23,  4.04it/s, objective=2.44e+7]  4%|▍         | 4/100 [00:00<00:23,  4.06it/s, objective=1.78e+7]  5%|▌         | 5/100 [00:01<00:23,  4.01it/s, objective=1.44e+7]  6%|▌         | 6/100 [00:01<00:23,  3.95it/s, objective=1.27e+7]  7%|▋         | 7/100 [00:01<00:24,  3.86it/s, objective=1.18e+7]  8%|▊         | 8/100 [00:02<00:24,  3.81it/s, objective=1.12e+7]                                                                                                                                                                                                                                                                                                                                                                                                                                          9%|▉         | 9/100 [00:02<00:23,  3.86it/s, objective=1.08e+7] 10%|█         | 10/100 [00:02<00:23,  3.90it/s, objective=1.04e+7] 11%|█         | 11/100 [00:02<00:22,  3.96it/s, objective=1.02e+7] 12%|█▏        | 12/100 [00:03<00:21,  4.01it/s, objective=1.01e+7] 13%|█▎        | 13/100 [00:03<00:21,  4.00it/s, objective=9.98e+6] 14%|█▍        | 14/100 [00:03<00:21,  4.00it/s, objective=9.91e+6] 15%|█▌        | 15/100 [00:03<00:21,  3.94it/s, objective=9.86e+6] 16%|█▌        | 16/100 [00:04<00:21,  3.97it/s, objective=9.82e+6] 17%|█▋        | 17/100 [00:04<00:20,  3.96it/s, objective=9.79e+6] 18%|█▊        | 18/100 [00:04<00:20,  3.93it/s, objective=9.76e+6] 19%|█▉        | 19/100 [00:04<00:20,  3.94it/s, objective=9.74e+6] 20%|██        | 20/100 [00:05<00:20,  3.95it/s, objective=9.72e+6] 21%|██        | 21/100 [00:05<00:20,  3.92it/s, objective=9.7e+6]  22%|██▏       | 22/100 [00:05<00:19,  3.95it/s, objective=9.68e+6] 23%|██▎       | 23/100 [00:05<00:19,  3.95it/s, objective=9.66e+6] 24%|██▍       | 24/100 [00:06<00:19,  3.94it/s, objective=9.65e+6] 25%|██▌       | 25/100 [00:06<00:18,  3.96it/s, objective=9.63e+6] 26%|██▌       | 26/100 [00:06<00:18,  3.95it/s, objective=9.62e+6] 27%|██▋       | 27/100 [00:06<00:18,  3.90it/s, objective=9.61e+6] 28%|██▊       | 28/100 [00:07<00:18,  3.90it/s, objective=9.6e+6]  29%|██▉       | 29/100 [00:07<00:18,  3.87it/s, objective=9.59e+6] 30%|███       | 30/100 [00:07<00:17,  3.93it/s, objective=9.59e+6] 31%|███       | 31/100 [00:07<00:17,  3.89it/s, objective=9.58e+6] 32%|███▏      | 32/100 [00:08<00:17,  3.93it/s, objective=9.57e+6] 33%|███▎      | 33/100 [00:08<00:17,  3.93it/s, objective=9.57e+6] 34%|███▍      | 34/100 [00:08<00:16,  3.96it/s, objective=9.56e+6] 35%|███▌      | 35/100 [00:08<00:16,  3.94it/s, objective=9.56e+6] 36%|███▌      | 36/100 [00:09<00:16,  3.93it/s, objective=9.56e+6] 37%|███▋      | 37/100 [00:09<00:15,  3.97it/s, objective=9.55e+6] 38%|███▊      | 38/100 [00:09<00:15,  3.97it/s, objective=9.55e+6] 39%|███▉      | 39/100 [00:09<00:15,  3.99it/s, objective=9.54e+6] 40%|████      | 40/100 [00:10<00:15,  3.98it/s, objective=9.54e+6] 41%|████      | 41/100 [00:10<00:14,  3.99it/s, objective=9.54e+6] 42%|████▏     | 42/100 [00:10<00:14,  3.94it/s, objective=9.54e+6] 43%|████▎     | 43/100 [00:10<00:14,  3.89it/s, objective=9.53e+6] 44%|████▍     | 44/100 [00:11<00:14,  3.92it/s, objective=9.53e+6] 45%|████▌     | 45/100 [00:11<00:14,  3.91it/s, objective=9.53e+6] 46%|████▌     | 46/100 [00:11<00:13,  3.95it/s, objective=9.53e+6] 47%|████▋     | 47/100 [00:11<00:13,  3.90it/s, objective=9.52e+6] 48%|████▊     | 48/100 [00:12<00:13,  3.95it/s, objective=9.52e+6] 49%|████▉     | 49/100 [00:12<00:12,  3.96it/s, objective=9.52e+6] 50%|█████     | 50/100 [00:12<00:12,  3.96it/s, objective=9.52e+6] 51%|█████     | 51/100 [00:12<00:12,  3.94it/s, objective=9.52e+6] 52%|█████▏    | 52/100 [00:13<00:12,  3.94it/s, objective=9.52e+6] 53%|█████▎    | 53/100 [00:13<00:11,  3.99it/s, objective=9.51e+6] 54%|█████▍    | 54/100 [00:13<00:11,  3.95it/s, objective=9.51e+6] 55%|█████▌    | 55/100 [00:13<00:11,  3.95it/s, objective=9.51e+6] 56%|█████▌    | 56/100 [00:14<00:11,  3.94it/s, objective=9.51e+6] 57%|█████▋    | 57/100 [00:14<00:10,  3.95it/s, objective=9.51e+6]                                58%|█████▊    | 58/100 [00:14<00:10,  3.92it/s, objective=9.51e+6] 59%|█████▉    | 59/100 [00:14<00:10,  3.93it/s, objective=9.51e+6] 60%|██████    | 60/100 [00:15<00:10,  3.89it/s, objective=9.51e+6] 61%|██████    | 61/100 [00:15<00:09,  3.91it/s, objective=9.51e+6] 62%|██████▏   | 62/100 [00:15<00:09,  3.95it/s, objective=9.5e+6]  63%|██████▎   | 63/100 [00:15<00:09,  4.00it/s, objective=9.5e+6] 64%|██████▍   | 64/100 [00:16<00:09,  3.95it/s, objective=9.5e+6] 65%|██████▌   | 65/100 [00:16<00:08,  3.96it/s, objective=9.5e+6] 66%|██████▌   | 66/100 [00:16<00:08,  3.84it/s, objective=9.5e+6] 67%|██████▋   | 67/100 [00:17<00:08,  3.88it/s, objective=9.5e+6]                                                          68%|██████▊   | 68/100 [00:17<00:08,  3.91it/s, objective=9.5e+6] 69%|██████▉   | 69/100 [00:17<00:07,  3.92it/s, objective=9.5e+6] 70%|███████   | 70/100 [00:17<00:07,  3.90it/s, objective=9.5e+6] 71%|███████   | 71/100 [00:18<00:07,  3.92it/s, objective=9.5e+6] 72%|███████▏  | 72/100 [00:18<00:07,  3.97it/s, objective=9.5e+6] 73%|███████▎  | 73/100 [00:18<00:06,  3.96it/s, objective=9.5e+6] 74%|███████▍  | 74/100 [00:18<00:06,  3.94it/s, objective=9.5e+6] 75%|███████▌  | 75/100 [00:19<00:06,  3.95it/s, objective=9.5e+6]                                                                                                                                                                                                                             76%|███████▌  | 76/100 [00:19<00:06,  3.99it/s, objective=9.49e+6] 77%|███████▋  | 77/100 [00:19<00:05,  3.95it/s, objective=9.49e+6] 78%|███████▊  | 78/100 [00:19<00:05,  3.95it/s, objective=9.49e+6] 79%|███████▉  | 79/100 [00:20<00:05,  3.97it/s, objective=9.49e+6] 80%|████████  | 80/100 [00:20<00:05,  3.99it/s, objective=9.49e+6] 81%|████████  | 81/100 [00:20<00:04,  3.97it/s, objective=9.49e+6] 82%|████████▏ | 82/100 [00:20<00:04,  3.95it/s, objective=9.49e+6] 83%|████████▎ | 83/100 [00:21<00:04,  3.93it/s, objective=9.49e+6] 84%|████████▍ | 84/100 [00:21<00:04,  3.91it/s, objective=9.49e+6] 85%|████████▌ | 85/100 [00:21<00:03,  3.91it/s, objective=9.49e+6] 86%|████████▌ | 86/100 [00:21<00:03,  3.90it/s, objective=9.49e+6] 87%|████████▋ | 87/100 [00:22<00:03,  3.91it/s, objective=9.49e+6] 88%|████████▊ | 88/100 [00:22<00:03,  3.85it/s, objective=9.49e+6] 89%|████████▉ | 89/100 [00:22<00:02,  3.92it/s, objective=9.49e+6] 90%|█████████ | 90/100 [00:22<00:02,  3.91it/s, objective=9.49e+6] 91%|█████████ | 91/100 [00:23<00:02,  3.94it/s, objective=9.49e+6] 92%|█████████▏| 92/100 [00:23<00:02,  3.95it/s, objective=9.49e+6] 93%|█████████▎| 93/100 [00:23<00:01,  3.91it/s, objective=9.49e+6] 94%|█████████▍| 94/100 [00:23<00:01,  3.88it/s, objective=9.49e+6] 95%|█████████▌| 95/100 [00:24<00:01,  3.92it/s, objective=9.49e+6]                            96%|█████████▌| 96/100 [00:24<00:01,  3.90it/s, objective=9.49e+6] 97%|█████████▋| 97/100 [00:24<00:00,  3.91it/s, objective=9.49e+6] 98%|█████████▊| 98/100 [00:24<00:00,  3.94it/s, objective=9.49e+6] 99%|█████████▉| 99/100 [00:25<00:00,  3.96it/s, objective=9.49e+6]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=9.49e+6]100%|██████████| 100/100 [00:25<00:00,  3.94it/s, objective=9.49e+6]
+                                                                                                                                                                                                                                                                                                                                    0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.01it/s, objective=4.67e+7]  2%|▏         | 2/100 [00:00<00:24,  3.96it/s, objective=3.44e+7]  3%|▎         | 3/100 [00:00<00:24,  3.92it/s, objective=2.55e+7]  4%|▍         | 4/100 [00:01<00:24,  3.92it/s, objective=2.01e+7]  5%|▌         | 5/100 [00:01<00:24,  3.89it/s, objective=1.72e+7]  6%|▌         | 6/100 [00:01<00:23,  3.92it/s, objective=1.56e+7]  7%|▋         | 7/100 [00:01<00:23,  3.96it/s, objective=1.47e+7]  8%|▊         | 8/100 [00:02<00:22,  4.00it/s, objective=1.41e+7]  9%|▉         | 9/100 [00:02<00:22,  4.01it/s, objective=1.36e+7] 10%|█         | 10/100 [00:02<00:22,  3.99it/s, objective=1.33e+7] 11%|█         | 11/100 [00:02<00:22,  4.00it/s, objective=1.31e+7] 12%|█▏        | 12/100 [00:03<00:22,  3.95it/s, objective=1.29e+7] 13%|█▎        | 13/100 [00:03<00:22,  3.95it/s, objective=1.28e+7] 14%|█▍        | 14/100 [00:03<00:21,  3.97it/s, objective=1.28e+7] 15%|█▌        | 15/100 [00:03<00:21,  3.91it/s, objective=1.27e+7] 16%|█▌        | 16/100 [00:04<00:21,  3.82it/s, objective=1.27e+7] 17%|█▋        | 17/100 [00:04<00:21,  3.85it/s, objective=1.26e+7] 18%|█▊        | 18/100 [00:04<00:21,  3.89it/s, objective=1.26e+7] 19%|█▉        | 19/100 [00:04<00:20,  3.87it/s, objective=1.26e+7] 20%|██        | 20/100 [00:05<00:20,  3.89it/s, objective=1.26e+7] 21%|██        | 21/100 [00:05<00:20,  3.92it/s, objective=1.25e+7] 22%|██▏       | 22/100 [00:05<00:19,  3.95it/s, objective=1.25e+7] 23%|██▎       | 23/100 [00:05<00:19,  3.94it/s, objective=1.25e+7] 24%|██▍       | 24/100 [00:06<00:19,  3.96it/s, objective=1.25e+7] 25%|██▌       | 25/100 [00:06<00:18,  3.97it/s, objective=1.25e+7] 26%|██▌       | 26/100 [00:06<00:18,  3.96it/s, objective=1.25e+7] 27%|██▋       | 27/100 [00:06<00:18,  3.92it/s, objective=1.24e+7] 28%|██▊       | 28/100 [00:07<00:18,  3.95it/s, objective=1.24e+7] 29%|██▉       | 29/100 [00:07<00:18,  3.91it/s, objective=1.24e+7] 30%|███       | 30/100 [00:07<00:17,  3.92it/s, objective=1.24e+7] 31%|███       | 31/100 [00:07<00:17,  3.89it/s, objective=1.24e+7] 32%|███▏      | 32/100 [00:08<00:17,  3.91it/s, objective=1.24e+7] 33%|███▎      | 33/100 [00:08<00:17,  3.93it/s, objective=1.24e+7] 34%|███▍      | 34/100 [00:08<00:16,  3.96it/s, objective=1.24e+7] 35%|███▌      | 35/100 [00:08<00:16,  3.92it/s, objective=1.24e+7] 36%|███▌      | 36/100 [00:09<00:16,  3.96it/s, objective=1.24e+7] 37%|███▋      | 37/100 [00:09<00:16,  3.89it/s, objective=1.24e+7] 38%|███▊      | 38/100 [00:09<00:15,  3.92it/s, objective=1.24e+7] 39%|███▉      | 39/100 [00:09<00:15,  3.94it/s, objective=1.24e+7] 40%|████      | 40/100 [00:10<00:15,  3.96it/s, objective=1.24e+7] 41%|████      | 41/100 [00:10<00:14,  4.00it/s, objective=1.24e+7] 42%|████▏     | 42/100 [00:10<00:14,  3.98it/s, objective=1.24e+7] 43%|████▎     | 43/100 [00:10<00:14,  3.93it/s, objective=1.24e+7] 44%|████▍     | 44/100 [00:11<00:14,  3.93it/s, objective=1.24e+7] 45%|████▌     | 45/100 [00:11<00:13,  3.95it/s, objective=1.24e+7] 46%|████▌     | 46/100 [00:11<00:13,  4.00it/s, objective=1.23e+7] 47%|████▋     | 47/100 [00:11<00:13,  3.98it/s, objective=1.23e+7]                                  48%|████▊     | 48/100 [00:12<00:13,  3.95it/s, objective=1.23e+7] 49%|████▉     | 49/100 [00:12<00:12,  3.95it/s, objective=1.23e+7] 50%|█████     | 50/100 [00:12<00:12,  3.97it/s, objective=1.23e+7] 51%|█████     | 51/100 [00:12<00:12,  4.00it/s, objective=1.23e+7] 52%|█████▏    | 52/100 [00:13<00:11,  4.01it/s, objective=1.23e+7] 53%|█████▎    | 53/100 [00:13<00:11,  4.01it/s, objective=1.23e+7] 54%|█████▍    | 54/100 [00:13<00:11,  3.99it/s, objective=1.23e+7] 55%|█████▌    | 55/100 [00:13<00:11,  3.99it/s, objective=1.23e+7] 56%|█████▌    | 56/100 [00:14<00:11,  4.00it/s, objective=1.23e+7] 57%|█████▋    | 57/100 [00:14<00:10,  4.03it/s, objective=1.23e+7] 58%|█████▊    | 58/100 [00:14<00:10,  4.01it/s, objective=1.23e+7] 59%|█████▉    | 59/100 [00:14<00:10,  4.01it/s, objective=1.23e+7] 60%|██████    | 60/100 [00:15<00:10,  3.99it/s, objective=1.23e+7] 61%|██████    | 61/100 [00:15<00:09,  4.00it/s, objective=1.23e+7] 62%|██████▏   | 62/100 [00:15<00:09,  3.98it/s, objective=1.23e+7] 63%|██████▎   | 63/100 [00:15<00:09,  3.90it/s, objective=1.23e+7] 64%|██████▍   | 64/100 [00:16<00:09,  3.94it/s, objective=1.23e+7] 65%|██████▌   | 65/100 [00:16<00:08,  3.99it/s, objective=1.23e+7] 66%|██████▌   | 66/100 [00:16<00:08,  4.02it/s, objective=1.23e+7] 67%|██████▋   | 67/100 [00:16<00:08,  3.99it/s, objective=1.23e+7] 68%|██████▊   | 68/100 [00:17<00:07,  4.02it/s, objective=1.23e+7] 69%|██████▉   | 69/100 [00:17<00:07,  4.02it/s, objective=1.23e+7] 70%|███████   | 70/100 [00:17<00:07,  4.01it/s, objective=1.23e+7] 71%|███████   | 71/100 [00:17<00:07,  4.05it/s, objective=1.23e+7] 72%|███████▏  | 72/100 [00:18<00:06,  4.06it/s, objective=1.23e+7] 73%|███████▎  | 73/100 [00:18<00:06,  4.05it/s, objective=1.23e+7] 74%|███████▍  | 74/100 [00:18<00:06,  4.02it/s, objective=1.23e+7] 75%|███████▌  | 75/100 [00:18<00:06,  4.02it/s, objective=1.23e+7] 76%|███████▌  | 76/100 [00:19<00:05,  4.02it/s, objective=1.23e+7] 77%|███████▋  | 77/100 [00:19<00:05,  4.01it/s, objective=1.23e+7] 78%|███████▊  | 78/100 [00:19<00:05,  4.02it/s, objective=1.23e+7] 79%|███████▉  | 79/100 [00:19<00:05,  3.97it/s, objective=1.23e+7] 80%|████████  | 80/100 [00:20<00:05,  3.98it/s, objective=1.23e+7] 81%|████████  | 81/100 [00:20<00:04,  3.98it/s, objective=1.23e+7] 82%|████████▏ | 82/100 [00:20<00:04,  4.01it/s, objective=1.23e+7] 83%|████████▎ | 83/100 [00:20<00:04,  4.00it/s, objective=1.23e+7] 84%|████████▍ | 84/100 [00:21<00:03,  4.03it/s, objective=1.23e+7] 85%|████████▌ | 85/100 [00:21<00:03,  4.01it/s, objective=1.23e+7] 86%|████████▌ | 86/100 [00:21<00:03,  4.05it/s, objective=1.23e+7] 87%|████████▋ | 87/100 [00:21<00:03,  4.02it/s, objective=1.23e+7] 88%|████████▊ | 88/100 [00:22<00:02,  4.01it/s, objective=1.23e+7] 89%|████████▉ | 89/100 [00:22<00:02,  4.04it/s, objective=1.23e+7]                                                                             90%|█████████ | 90/100 [00:22<00:02,  4.01it/s, objective=1.23e+7] 91%|█████████ | 91/100 [00:22<00:02,  4.00it/s, objective=1.23e+7] 92%|█████████▏| 92/100 [00:23<00:01,  4.03it/s, objective=1.23e+7] 93%|█████████▎| 93/100 [00:23<00:01,  4.02it/s, objective=1.23e+7] 94%|█████████▍| 94/100 [00:23<00:01,  3.99it/s, objective=1.23e+7] 95%|█████████▌| 95/100 [00:23<00:01,  3.96it/s, objective=1.23e+7] 96%|█████████▌| 96/100 [00:24<00:01,  4.00it/s, objective=1.23e+7] 97%|█████████▋| 97/100 [00:24<00:00,  4.02it/s, objective=1.23e+7] 98%|█████████▊| 98/100 [00:24<00:00,  4.02it/s, objective=1.23e+7] 99%|█████████▉| 99/100 [00:24<00:00,  4.01it/s, objective=1.23e+7]100%|██████████| 100/100 [00:25<00:00,  3.99it/s, objective=1.23e+7]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=1.23e+7]
+                                              0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.11it/s, objective=4.65e+7]  2%|▏         | 2/100 [00:00<00:24,  3.98it/s, objective=3.55e+7]  3%|▎         | 3/100 [00:00<00:24,  4.02it/s, objective=2.74e+7]  4%|▍         | 4/100 [00:00<00:23,  4.03it/s, objective=2.21e+7]  5%|▌         | 5/100 [00:01<00:23,  3.97it/s, objective=1.91e+7]  6%|▌         | 6/100 [00:01<00:23,  4.01it/s, objective=1.73e+7]  7%|▋         | 7/100 [00:01<00:23,  3.98it/s, objective=1.63e+7]  8%|▊         | 8/100 [00:02<00:23,  3.99it/s, objective=1.55e+7]                                                                                                                                                                                                                                                                        9%|▉         | 9/100 [00:02<00:22,  3.98it/s, objective=1.5e+7]  10%|█         | 10/100 [00:02<00:22,  4.01it/s, objective=1.47e+7] 11%|█         | 11/100 [00:02<00:22,  4.03it/s, objective=1.45e+7] 12%|█▏        | 12/100 [00:02<00:21,  4.01it/s, objective=1.43e+7] 13%|█▎        | 13/100 [00:03<00:21,  4.01it/s, objective=1.42e+7] 14%|█▍        | 14/100 [00:03<00:21,  3.99it/s, objective=1.42e+7] 15%|█▌        | 15/100 [00:03<00:21,  4.00it/s, objective=1.41e+7] 16%|█▌        | 16/100 [00:04<00:21,  3.94it/s, objective=1.41e+7] 17%|█▋        | 17/100 [00:04<00:20,  3.99it/s, objective=1.4e+7]                                       18%|█▊        | 18/100 [00:04<00:20,  3.95it/s, objective=1.4e+7] 19%|█▉        | 19/100 [00:04<00:20,  3.97it/s, objective=1.4e+7] 20%|██        | 20/100 [00:05<00:20,  3.96it/s, objective=1.39e+7] 21%|██        | 21/100 [00:05<00:20,  3.95it/s, objective=1.39e+7] 22%|██▏       | 22/100 [00:05<00:19,  3.91it/s, objective=1.39e+7] 23%|██▎       | 23/100 [00:05<00:19,  3.94it/s, objective=1.39e+7] 24%|██▍       | 24/100 [00:06<00:19,  3.92it/s, objective=1.38e+7] 25%|██▌       | 25/100 [00:06<00:19,  3.89it/s, objective=1.38e+7] 26%|██▌       | 26/100 [00:06<00:18,  3.91it/s, objective=1.38e+7] 27%|██▋       | 27/100 [00:06<00:18,  3.98it/s, objective=1.38e+7] 28%|██▊       | 28/100 [00:07<00:18,  3.98it/s, objective=1.38e+7] 29%|██▉       | 29/100 [00:07<00:17,  4.01it/s, objective=1.38e+7] 30%|███       | 30/100 [00:07<00:17,  4.01it/s, objective=1.38e+7] 31%|███       | 31/100 [00:07<00:17,  3.99it/s, objective=1.38e+7] 32%|███▏      | 32/100 [00:08<00:17,  3.95it/s, objective=    | 46/100 [00:11<00:13,  4.13it/s, objective=1.01e+7] 47%|████▋     | 47/100 [00:11<00:12,  4.13it/s, objective=1.01e+7] 48%|████▊     | 48/100 [00:11<00:12,  4.15it/s, objective=1.01e+7] 49%|████▉     | 49/100 [00:11<00:12,  4.14it/s, objective=1.01e+7] 50%|█████     | 50/100 [00:12<00:12,  4.13it/s, objective=1.01e+7] 51%|█████     | 51/100 [00:12<00:11,  4.13it/s, objective=1.01e+7] 52%|█████▏    | 52/100 [00:12<00:11,  4.13it/s, objective=1.01e+7] 53%|█████▎    | 53/100 [00:12<00:11,  4.14it/s, objective=1.01e+7] 54%|█████▍    | 54/100 [00:13<00:11,  4.14it/s, objective=1.01e+7] 55%|█████▌    | 55/100 [00:13<00:10,  4.13it/s, objective=1.01e+7] 56%|█████▌    | 56/100 [00:13<00:10,  4.15it/s, objective=1.01e+7] 57%|█████▋    | 57/100 [00:13<00:10,  4.17it/s, objective=1.01e+7] 58%|█████▊    | 58/100 [00:14<00:10,  4.15it/s, objective=1.01e+7] 59%|█████▉    | 59/100 [00:14<00:09,  4.13it/s, objective=1.01e+7] 60%|██████    | 60/100 [00:14<00:09,  4.13it/s, objective=1.01e+7] 61%|██████    | 61/100 [00:14<00:09,  4.14it/s, objective=1.01e+7] 62%|██████▏   | 62/100 [00:15<00:09,  4.17it/s, objective=1.01e+7] 63%|██████▎   | 63/100 [00:15<00:08,  4.14it/s, objective=1.01e+7] 64%|██████▍   | 64/100 [00:15<00:09,  3.99it/s, objective=1.01e+7] 65%|██████▌   | 65/100 [00:15<00:08,  4.04it/s, objective=1.01e+7] 66%|██████▌   | 66/100 [00:16<00:08,  4.04it/s, objective=1.01e+7] 67%|██████▋   | 67/100 [00:16<00:08,  4.05it/s, objective=1.01e+7] 68%|██████▊   | 68/100 [00:16<00:07,  4.06it/s, objective=1.01e+7] 69%|██████▉   | 69/100 [00:16<00:07,  4.08it/s, objective=1.01e+7] 70%|███████   | 70/100 [00:17<00:07,  4.07it/s, objective=1.01e+7] 71%|███████   | 71/100 [00:17<00:07,  4.06it/s, objective=1.01e+7] 72%|███████▏  | 72/100 [00:17<00:06,  4.08it/s, objective=1.01e+7] 73%|███████▎  | 73/100 [00:17<00:06,  4.08it/s, objective=1.01e+7] 74%|███████▍  | 74/100 [00:17<00:06,  4.08it/s, objective=1.01e+7] 75%|███████▌  | 75/100 [00:18<00:06,  4.10it/s, objective=1.01e+7] 76%|███████▌  | 76/100 [00:18<00:05,  4.11it/s, objective=1.01e+7] 77%|███████▋  | 77/100 [00:18<00:05,  4.13it/s, objective=1.01e+7] 78%|███████▊  | 78/100 [00:18<00:05,  4.14it/s, objective=1.01e+7] 79%|███████▉  | 79/100 [00:19<00:05,  4.16it/s, objective=1.01e+7] 80%|████████  | 80/100 [00:19<00:04,  4.16it/s, objective=1.01e+7] 81%|████████  | 81/100 [00:19<00:04,  4.14it/s, objective=1.01e+7] 82%|████████▏ | 82/100 [00:19<00:04,  4.13it/s, objective=1.01e+7] 83%|████████▎ | 83/100 [00:20<00:04,  4.05it/s, objective=1.01e+7] 84%|████████▍ | 84/100 [00:20<00:03,  4.05it/s, objective=1.01e+7] 85%|████████▌ | 85/100 [00:20<00:03,  4.07it/s, objective=1.01e+7] 86%|████████▌ | 86/100 [00:20<00:03,  4.09it/s, objective=1.01e+7] 87%|████████▋ | 87/100 [00:21<00:03,  4.12it/s, objective=1.01e+7] 88%|████████▊ | 88/100 [00:21<00:02,  4.14it/s, objective=1.01e+7] 89%|████████▉ | 89/100 [00:21<00:02,  4.16it/s, objective=1.01e+7] 90%|█████████ | 90/100 [00:21<00:02,  4.11it/s, objective=1.01e+7] 91%|█████████ | 91/100 [00:22<00:02,  4.10it/s, objective=1.01e+7] 92%|█████████▏| 92/100 [00:22<00:01,  4.07it/s, objective=1.01e+7] 93%|█████████▎| 93/100 [00:22<00:01,  4.08it/s, objective=1.01e+7] 94%|█████████▍| 94/100 [00:22<00:01,  4.08it/s, objective=1.01e+7] 95%|█████████▌| 95/100 [00:23<00:01,  4.10it, objective=1.37e+7] 83%|████████▎ | 83/100 [00:20<00:04,  3.97it/s, objective=1.37e+7] 84%|████████▍ | 84/100 [00:21<00:03,  4.02it/s, objective=1.36e+7] 85%|████████▌ | 85/100 [00:21<00:03,  4.03it/s, objective=1.36e+7] 86%|████████▌ | 86/100 [00:21<00:03,  4.00it/s, objective=1.36e+7] 87%|████████▋ | 87/100 [00:21<00:03,  4.01it/s, objective=1.36e+7] 88%|████████▊ | 88/100 [00:22<00:03,  3.99it/s, objective=1.36e+7] 89%|████████▉ | 89/100 [00:22<00:02,  4.02it/s, objective=1.36e+7] 90%|█████████ | 90/100 [00:22<00:02,  4.00it/s, objective=1.36e+7] 91%|█████████ | 91/100 [00:22<00:02,  3.99it/s, objective=1.36e+7] 92%|█████████▏| 92/100 [00:23<00:02,  3.97it/s, objective=1.36e+7] 93%|█████████▎| 93/100 [00:23<00:01,  4.00it/s, objective=1.36e+7] 94%|█████████▍| 94/100 [00:23<00:01,  3.96it/s, objective=1.36e+7] 95%|█████████▌| 95/100 [00:23<00:01,  3.98it/s, objective=1.36e+7] 96%|█████████▌| 96/100 [00:24<00:01,  3.95it/s, objective=1.36e+7] 97%|█████████▋| 97/100 [00:24<00:00,  3.98it/s, objective=1.36e+7] 98%|█████████▊| 98/100 [00:24<00:00,  3.94it/s, objective=1.36e+7] 99%|█████████▉| 99/100 [00:24<00:00,  3.94it/s, objective=1.36e+7]100%|██████████| 100/100 [00:25<00:00,  3.93it/s, objective=1.36e+7]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=1.36e+7]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:25,  3.93it/s, objective=4.48e+7]  2%|▏         | 2/100 [00:00<00:24,  4.04it/s, objective=3.59e+7]  3%|▎         | 3/100 [00:00<00:23,  4.07it/s, objective=2.91e+7]  4%|▍         | 4/100 [00:00<00:23,  4.03it/s, objective=2.44e+7]  5%|▌         | 5/100 [00:01<00:23,  3.97it/s, objective=2.15e+7]  6%|▌         | 6/100 [00:01<00:23,  3.95it/s, objective=1.97e+7]  7%|▋         | 7/100 [00:01<00:23,  3.95it/s, objective=1.85e+7]  8%|▊         | 8/100 [00:02<00:23,  3.94it/s, objective=1.78e+7]  9%|▉         | 9/100 [00:02<00:22,  3.97it/s, objective=1.73e+7] 10%|█         | 10/100 [00:02<00:22,  3.94it/s, objective=1.69e+7] 11%|█         | 11/100 [00:02<00:22,  3.94it/s, objective=1.67e+7] 12%|█▏        | 12/100 [00:03<00:22,  3.94it/s, objective=1.66e+7] 13%|█▎        | 13/100 [00:03<00:21,  3.96it/s, objective=1.65e+7] 14%|█▍        | 14/100 [00:03<00:21,  3.94it/s, objective=1.64e+7] 15%|█▌        | 15/100 [00:03<00:21,  3.98it/s, objective=1.64e+7] 16%|█▌        | 16/100 [00:04<00:20,  4.00it/s, objective=1.63e+7] 17%|█▋        | 17/100 [00:04<00:20,  4.03it/s, objective=1.63e+7] 18%|█▊        | 18/100 [00:04<00:20,  4.05it/s, objective=1.62e+7] 19%|█▉        | 19/100 [00:04<00:20,  4.04it/s, objective=1.62e+7] 20%|██        | 20/100 [00:05<00:19,  4.01it/s, objective=1.61e+7] 21%|██        | 21/100 [00:05<00:19,  3.98it/s, objective=1.61e+7] 22%|██▏       | 22/100 [00:05<00:19,  4.00it/s, objective=1.61e+7] 23%|██▎       | 23/100 [00:05<00:19,  3.99it/s, objective=1.61e+7] 24%|██▍       | 24/100 [00:06<00:19,  3.97it/s, objective=1.6e+7]  25%|██▌       | 25/100 [00:06<00:19,  3.93it/s, objective=1.6e+7] 26%|██▌       | 26/100 [00:06<00:18,  3.94it/s, objective=1.6e+7] 27%|██▋       | 27/100 [00:06<00:18,  3.95it/s, objective=1.6e+7] 28%|██▊       | 28/100 [00:07<00:18,  3.96it/s, objective=1.6e+7] 29%|██▉       | 29/100 [00:07<00:17,  3.98it/s, objective=1.6e+7] 30%|███       | 30/100 [00:07<00:17,  3.97it/s, objective=1.59e+7] 31%|███       | 31/100 [00:07<00:17,  3.91it/s, objective=1.59e+7] 32%|███▏      | 32/100 [00:08<00:17,  3.96it/s, objective=1.59e+7] 33%|███▎      | 33/100 [00:08<00:16,  3.99it/s, objective=1.59e+7] 34%|███▍      | 34/100 [00:08<00:16,  3.96it/s, objective=1.59e+7] 35%|███▌      | 35/100 [00:08<00:16,  3.95it/s, objective=1.59e+7] 36%|███▌      | 36/100 [00:09<00:16,  3.94it/s, objective=1.59e+7] 37%|███▋      | 37/100 [00:09<00:15,  3.96it/s, objective=1.59e+7] 38%|███▊      | 38/100 [00:09<00:15,  3.97it/s, objective=1.59e+7] 39%|███▉      | 39/100 [00:09<00:15,  3.97it/s, objective=1.59e+7] 40%|████      | 40/100 [00:10<00:15,  3.98it/s, objective=1.59e+7] 41%|████      | 41/100 [00:10<00:14,  3.97it/s, objective=1.59e+7] 42%|████▏     | 42/100 [00:10<00:14,  3.94it/s, objective=1.59e+7] 43%|████▎     | 43/100 [00:10<00:14,  3.91it/s, objective=1.58e+7] 44%|████▍     | 44/100 [00:11<00:14,  3.92it/s, objective=1.58e+7] 45%|████▌     | 45/100 [00:11<00:14,  3.93it/s, objective=1.58e+7] 46%|████▌     | 46/100 [00:11<00:13,  3.93it/s, objective=1.58e+7] 47%|████▋     | 47/100 [00:11<00:13,  3.97it/s, objective=1.58e+7] 48%|████▊     | 48/100 [00:12<00:13,  3.98it/s, objective=1.58e+7] 49%|████▉     | 49/100 [00:12<00:12,  4.03it/s, objective=1.58e+7] 50%|█████     | 50/100 [00:12<00:12,  3.98it/s, objective=1.58e+7]                                                                                    51%|█████     | 51/100 [00:12<00:12,  3.92it/s, objective=1.58e+7] 52%|█████▏    | 52/100 [00:13<00:12,  3.90it/s, objective=1.58e+7] 53%|█████▎    | 53/100 [00:13<00:12,  3.87it/s, objective=1.58e+7] 54%|█████▍    | 54/100 [00:13<00:11,  3.93it/s, objective=1.58e+7] 55%|█████▌    | 55/100 [00:13<00:11,  3.90it/s, objective=1.58e+7] 56%|█████▌    | 56/100 [00:14<00:11,  3.95it/s, objective=1.58e+7] 57%|█████▋    | 57/100 [00:14<00:10,  3.98it/s, objective=1.58e+7] 58%|█████▊    | 58/100 [00:14<00:10,  3.96it/s, objective=1.58e+7] 59%|█████▉    | 59/100 [00:14<00:10,  3.96it/s, objective=1.58e+7] 60%|██████    | 60/100 [00:15<00:09,  4.00it/s, objective=1.58e+7] 61%|██████    | 61/100 [00:15<00:09,  3.98it/s, objective=1.58e+7] 62%|██████▏   | 62/100 [00:15<00:09,  3.94it/s, objective=1.58e+7] 63%|██████▎   | 63/100 [00:15<00:09,  3.95it/s, objective=1.58e+7] 64%|██████▍   | 64/100 [00:16<00:09,  3.98it/s, objective=1.58e+7] 65%|██████▌   | 65/100 [00:16<00:08,  4.04it/s, objective=1.58e+7] 66%|██████▌   | 66/100 [00:16<00:08,  4.05it/s, objective=1.58e+7] 67%|██████▋   | 67/100 [00:16<00:08,  4.03it/s, objective=1.58e+7]                                                                                                                                                                                                                                                                                                                                           68%|██████▊   | 68/100 [00:17<00:08,  3.95it/s, objective=1.58e+7] 69%|██████▉   | 69/100 [00:17<00:07,  3.99it/s, objective=1.58e+7] 70%|███████   | 70/100 [00:17<00:07,  4.02it/s, objective=1.58e+7] 71%|███████   | 71/100 [00:17<00:07,  4.03it/s, objective=1.58e+7] 72%|███████▏  | 72/100 [00:18<00:06,  4.03it/s, objective=1.58e+7] 73%|███████▎  | 73/100 [00:18<00:06,  4.01it/s, objective=1.58e+7] 74%|███████▍  | 74/100 [00:18<00:06,  3.99it/s, objective=1.58e+7] 75%|███████▌  | 75/100 [00:18<00:06,  3.98it/s, objective=1.58e+7] 76%|███████▌  | 76/100 [00:19<00:06,  3.98it/s, objective=1.58e+7] 77%|███████▋  | 77/100 [00:19<00:05,  3.96it/s, objective=1.58e+7] 78%|███████▊  | 78/100 [00:19<00:05,  3.93it/s, objective=1.58e+7] 79%|███████▉  | 79/100 [00:19<00:05,  3.92it/s, objective=1.58e+7] 80%|████████  | 80/100 [00:20<00:05,  3.96it/s, objective=1.58e+7] 81%|████████  | 81/100 [00:20<00:04,  4.00it/s, objective=1.58e+7] 82%|████████▏ | 82/100 [00:20<00:04,  4.01it/s, objective=1.58e+7] 83%|████████▎ | 83/100 [00:20<00:04,  4.02it/s, objective=1.58e+7] 84%|████████▍ | 84/100 [00:21<00:03,  4.03it/s, objective=1.58e+7] 85%|████████▌ | 85/100 [00:21<00:03,  4.05it/s, objective=1.58e+7] 86%|████████▌ | 86/100 [00:21<00:03,  4.03it/s, objective=1.58e+7] 87%|████████▋ | 87/100 [00:21<00:03,  4.02it/s, objective=1.58e+7] 88%|████████▊ | 88/100 [00:22<00:02,  4.01it/s, objective=1.58e+7] 89%|████████▉ | 89/100 [00:22<00:02,  4.01it/s, objective=1.58e+7] 90%|█████████ | 90/100 [00:22<00:02,  4.03it/s, objective=1.58e+7] 91%|█████████ | 91/100 [00:22<00:02,  4.01it/s, objective=1.58e+7] 92%|█████████▏| 92/100 [00:23<00:01,  4.03it/s, objective=1.58e+7] 93%|█████████▎| 93/100 [00:23<00:01,  4.04it/s, objective=1.58e+7] 94%|█████████▍| 94/100 [00:23<00:01,  4.05it/s, objective=1.58e+7] 95%|█████████▌| 95/100 [00:23<00:01,  4.05it/s, objective=1.58e+7] 96%|█████████▌| 96/100 [00:24<00:00,  4.03it/s, objective=1.58e+7] 97%|█████████▋| 97/100 [00:24<00:00,  4.02it/s, objective=1.58e+7] 98%|█████████▊| 98/100 [00:24<00:00,  4.04it/s, objective=1.58e+7] 99%|█████████▉| 99/100 [00:24<00:00,  4.02it/s, objective=1.58e+7]100%|██████████| 100/100 [00:25<00:00,  3.97it/s, objective=1.58e+7]100%|██████████| 100/100 [00:25<00:00,  3.98it/s, objective=1.58e+7]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  4.03it/s, objective=4.54e+7]  2%|▏         | 2/100 [00:00<00:24,  3.98it/s, objective=3.67e+7]  3%|▎         | 3/100 [00:00<00:23,  4.05it/s, objective=2.99e+7]  4%|▍         | 4/100 [00:00<00:23,  4.03it/s, objective=2.53e+7]                         5%|▌         | 5/100 [00:01<00:23,  4.04it/s, objective=2.23e+7]  6%|▌         | 6/100 [00:01<00:23,  4.03it/s, objective=2.04e+7]  7%|▋         | 7/100 [00:01<00:22,  4.06it/s, objective=1.92e+7]  8%|▊         | 8/100 [00:01<00:22,  4.03it/s, objective=1.84e+7]  9%|▉         | 9/100 [00:02<00:22,  4.04it/s, objective=1.79e+7] 10%|█         | 10/100 [00:02<00:22,  4.05it/s, objective=1.76e+7] 11%|█         | 11/100 [00:02<00:21,  4.09it/s, objective=1.74e+7] 12%|█▏        | 12/100 [00:02<00:21,  4.06it/s, objective=1.72e+7] 13%|█▎        | 13/100 [00:03<00:21,  4.06it/s, objective=1.71e+7] 14%|█▍        | 14/100 [00:03<00:21,  4.06it/s, objective=1.7e+7]  15%|█▌        | 15/100 [00:03<00:21,  4.03it/s, objective=1.7e+7] 16%|█▌        | 16/100 [00:03<00:20,  4.05it/s, objective=1.69e+7] 17%|█▋        | 17/100 [00:04<00:20,  4.04it/s, objective=1.68e+7] 18%|█▊        | 18/100 [00:04<00:20,  4.00it/s, objective=1.68e+7] 19%|█▉        | 19/100 [00:04<00:20,  4.01it/s, objective=1.68e+7] 20%|██        | 20/100 [00:04<00:20,  3.99it/s, objective=1.67e+7] 21%|██        | 21/100 [00:05<00:19,  4.01it/s, objective=1.67e+7] 22%|██▏       | 22/100 [00:05<00:19,  4.03it/s, objective=1.67e+7] 23%|██▎       | 23/100 [00:05<00:19,  4.01it/s, objective=1.66e+7] 24%|██▍       | 24/100 [00:05<00:18,  4.02it/s, objective=1.66e+7] 25%|██▌       | 25/100 [00:06<00:18,  4.01it/s, objective=1.66e+7] 26%|██▌       | 26/100 [00:06<00:18,  4.03it/s, objective=1.66e+7] 27%|██▋       | 27/100 [00:06<00:17,  4.06it/s, objective=1.66e+7] 28%|██▊       | 28/100 [00:06<00:17,  4.07it/s, objective=1.65e+7] 29%|██▉       | 29/100 [00:07<00:17,  4.03it/s, objective=1.65e+7] 30%|███       | 30/100 [00:07<00:17,  4.03it/s, objective=1.65e+7] 31%|███       | 31/100 [00:07<00:17,  4.04it/s, objective=1.65e+7] 32%|███▏      | 32/100 [00:07<00:16,  4.02it/s, objective=1.65e+7] 33%|███▎      | 33/100 [00:08<00:16,  4.04it/s, objective=1.65e+7] 34%|███▍      | 34/100 [00:08<00:16,  3.98it/s, objective=1.65e+7] 35%|███▌      | 35/100 [00:08<00:16,  3.98it/s, objective=1.65e+7] 36%|███▌      | 36/100 [00:08<00:16,  3.98it/s, objective=1.65e+7] 37%|███▋      | 37/100 [00:09<00:15,  4.00it/s, objective=1.64e+7] 38%|███▊      | 38/100 [00:09<00:15,  4.01it/s, objective=1.64e+7] 39%|███▉      | 39/100 [00:09<00:15,  4.00it/s, objective=1.64e+7] 40%|████      | 40/100 [00:09<00:15,  4.00it/s, objective=1.64e+7] 41%|████      | 41/100 [00:10<00:14,  3.99it/s, objective=1.64e+7] 42%|████▏     | 42/100 [00:10<00:14,  3.97it/s, objective=1.64e+7]                                                                                                                                                                                       43%|████▎     | 43/100 [00:10<00:14,  3.86it/s, objective=1.64e+7] 44%|████▍     | 44/100 [00:10<00:14,  3.93it/s, objective=1.64e+7] 45%|████▌     | 45/100 [00:11<00:13,  3.96it/s, objective=1.64e+7] 46%|████▌     | 46/100 [00:11<00:13,  3.97it/s, objective=1.64e+7] 47%|████▋     | 47/100 [00:11<00:13,  4.02it/s, objective=1.64e+7] 48%|████▊     | 48/100 [00:11<00:12,  4.01it/s, objective=1.64e+7] 49%|████▉     | 49/100 [00:12<00:12,  4.03it/s, objective=1.64e+7] 50%|█████     | 50/100 [00:12<00:12,  3.99it/s, objective=1.64e+7] 51%|█████     | 51/100 [00:12<00:12,  3.98it/s, objective=1.64e+7] 52%|█████▏    | 52/100 [00:12<00:12,  3.98it/s, objective=1.64e+7] 53%|█████▎    | 53/100 [00:13<00:11,  4.01it/s, objective=1.64e+7] 54%|█████▍    | 54/100 [00:13<00:11,  4.02it/s, objective=1.64e+7] 55%|█████▌    | 55/100 [00:13<00:11,  4.06it/s, objective=1.64e+7] 56%|█████▌    | 56/100 [00:13<00:10,  4.03it/s, objective=1.64e+7] 57%|█████▋    | 57/100 [00:14<00:10,  4.01it/s, objective=1.64e+7] 58%|█████▊    | 58/100 [00:14<00:10,  4.03it/s, objective=1.64e+7] 59%|█████▉    | 59/100 [00:14<00:10,  4.06it/s, objective=1.64e+7] 60%|██████    | 60/100 [00:14<00:09,  4.03it/s, objective=1.64e+7] 61%|██████    | 61/100 [00:15<00:09,  4.01it/s, objective=1.64e+7] 62%|██████▏   | 62/100 [00:15<00:09,  4.00it/s, objective=1.64e+7] 63%|██████▎   | 63/100 [00:15<00:09,  4.00it/s, objective=1.64e+7] 64%|██████▍   | 64/100 [00:15<00:09,  3.98it/s, objective=1.64e+7] 65%|██████▌   | 65/100 [00:16<00:08,  3.94it/s, objective=1.63e+7] 66%|██████▌   | 66/100 [00:16<00:08,  3.94it/s, objective=1.63e+7] 67%|██████▋   | 67/100 [00:16<00:08,  3.98it/s, objective=1.63e+7] 68%|██████▊   | 68/100 [00:16<00:08,  3.90it/s, objective=1.63e+7] 69%|██████▉   | 69/100 [00:17<00:07,  3.93it/s, objective=1.63e+7] 70%|███████   | 70/100 [00:17<00:07,  3.96it/s, objective=1.63e+7] 71%|███████   | 71/100 [00:17<00:07,  3.94it/s, objective=1.63e+7] ███▊| 98/100 [00:24<00:00,  4.01it/s, objective=0] 99%|█████████▉| 99/100 [00:24<00:00,  4.00it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  4.03it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  4.06it/s, objective=0]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:24,  3.98it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  4.02it/s, objective=0]  3%|▎         | 3/100 [00:00<00:23,  4.06it/s, objective=0]  4%|▍         | 4/100 [00:00<00:23,  4.05it/s, objective=0]  5%|▌         | 5/100 [00:01<00:23,  4.06it/s, objective=0]  6%|▌         | 6/100 [00:01<00:23,  4.06it/s, objective=0]  7%|▋         | 7/100 [00:01<00:22,  4.06it/s, objective=0]  8%|▊         | 8/100 [00:01<00:22,  4.10it/s, objective=0]  9%|▉         | 9/100 [00:02<00:22,  4.11it/s, objective=0] 10%|█         | 10/100 [00:02<00:21,  4.12it/s, objective=0] 11%|█         | 11/100 [00:02<00:21,  4.06it/s, objective=0] 12%|█▏        | 12/100 [00:02<00:21,  4.07it/s, objective=0] 13%|█▎        | 13/100 [00:03<00:21,  4.08it/s, objective=0] 14%|█▍        | 14/100 [00:03<00:21,  4.03it/s, objective=0] 15%|█▌        | 15/100 [00:03<00:21,  4.04it/s, objective=0] 16%|█▌        | 16/100 [00:03<00:20,  4.07it/s, objective=0] 17%|█▋        | 17/100 [00:04<00:20,  4.08it/s, objective=0] 18%|█▊        | 18/100 [00:04<00:20,  4.10it/s, objective=0]                                                                                                                                                   19%|█▉        | 19/100 [00:04<00:19,  4.10it/s, objective=0] 20%|██        | 20/100 [00:04<00:19,  4.08it/s, objective=0] 21%|██        | 21/100 [00:05<00:19,  4.06it/s, objective=0] 22%|██▏       | 22/100 [00:05<00:19,  4.07it/s, objective=0] 23%|██▎       | 23/100 [00:05<00:18,  4.09it/s, objective=0] 24%|██▍       | 24/100 [00:05<00:18,  4.08it/s, objective=0] 25%|██▌       | 25/100 [00:06<00:18,  4.06it/s, objective=0] 26%|██▌       | 26/100 [00:06<00:18,  4.04it/s, objective=0] 27%|██▋       | 27/100 [00:06<00:18,  4.05it/s, objective=0] 28%|██▊       | 28/100 [00:06<00:17,  4.07it/s, objective=0] 29%|██▉       | 29/100 [00:07<00:17,  4.05it/s, objective=0] 30%|███       | 30/100 [00:07<00:17,  4.06it/s, objective=0] 31%|███       | 31/100 [00:07<00:16,  4.08it/s, objective=0] 32%|███▏      | 32/100 [00:07<00:16,  4.10it/s, objective=0] 33%|███▎      | 33/100 [00:08<00:16,  4.13it/s, objective=0] 34%|███▍      | 34/100 [00:08<00:16,  4.10it/s, objective=0] 35%|███▌      | 35/100 [00:08<00:15,  4.10it/s, objective=0] 36%|███▌      | 36/100 [00:08<00:15,  4.13it/s, objective=0] 37%|███▋      | 37/100 [00:09<00:15,  4.14it/s, objective=0] 38%|███▊      | 38/100 [00:09<00:15,  4.13it/s, objective=0]                                39%|███▉      | 39/100 [00:09<00:14,  4.14it/s, objective=0] 40%|████      | 40/100 [00:09<00:14,  4.14it/s, objective=0] 41%|████      | 41/100 [00:10<00:14,  4.08it/s, objective=0] 42%|████▏     | 42/100 [00:10<00:14,  4.06it/s, objective=0] 43%|████▎     | 43/100 [00:10<00:13,  4.09it/s, objective=0] 44%|████▍     | 44/100 [00:10<00:13,  4.10it/s, objective=0] 45%|████▌     | 45/100 [00:11<00:13,  4.07it/s, objective=0] 46%|████▌     | 46/100 [00:11<00:13,  4.10it/s, objective=0] 47%|████▋     | 47/100 [00:11<00:12,  4.08it/s, objective=0] 48%|████▊     | 48/100 [00:11<00:12,  4.10it/s, objective=0] 49%|████▉     | 49/100 [00:12<00:12,  4.09it/s, objective=0] 50%|█████     | 50/100 [00:12<00:12,  4.08it/s, objective=0] 51%|█████     | 51/100 [00:12<00:11,  4.10it/s, objective=0] 52%|█████▏    | 52/100 [00:12<00:11,  4.08it/s, objective=0] 53%|█████▎    | 53/100 [00:12<00:11,  4.07it/s, objective=0] 54%|█████▍    | 54/100 [00:13<00:11,  4.06it/s, objective=0] 55%|█████▌    | 55/100 [00:13<00:11,  4.00it/s, objective=0] 56%|█████▌    | 56/100 [00:13<00:10,  4.03it/s, objective=0] 57%|█████▋    | 57/100 [00:13<00:10,  4.06it/s, objective=0] 58%|█████▊    | 58/100 [00:14<00:10,  4.08it/s, objective=0] 59%|█████▉    | 59/100 [00:14<00:09,  4.11it/s, objective=0] 60%|██████    | 60/100 [00:14<00:09,  4.09it/s, objective=0] 61%|██████    | 61/100 [00:14<00:09,  4.10it/s, objective=0] 62%|██████▏   | 62/100 [00:15<00:09,  4.07it/s, objective=0] 63%|██████▎   | 63/100 [00:15<00:09,  4.07it/s, objective=0] 64%|██████▍   | 64/100 [00:15<00:08,  4.07it/s, objective=0] 65%|██████▌   | 65/100 [00:15<00:08,  4.10it/s, objective=0] 66%|██████▌   | 66/100 [00:16<00:08,  4.10it/s, objective=0] 67%|██████▋   | 67/100 [00:16<00:08,  4.11it/s, objective=0] 68%|██████▊   | 68/100 [00:16<00:07,  4.05it/s, objective=0] 69%|██████▉   | 69/100 [00:16<00:07,  4.05it/s, objective=0] 70%|███████   | 70/100 [00:17<00:07,  4.00it/s, objective=0] 71%|███████   | 71/100 [00:17<00:07,  4.03it/s, objective=0] 72%|███████▏  | 72/100 [00:17<00:06,  4.03it/s, objective=0] 73%|███████▎  | 73/100 [00:17<00:06,  4.06it/s, objective=0] 74%|███████▍  | 74/100 [00:18<00:06,  4.06it/s, objective=0] 75%|███████▌  | 75/100 [00:18<00:06,  4.02it/s, objective=0] 76%|███████▌  | 76/100 [00:18<00:05,  4.03it/s, objective=0] 77%|███████▋  | 77/100 [00:18<00:05,  4.07it/s, objective=0] 78%|███████▊  | 78/100 [00:19<00:05,  4.06it/s, objective=0] 79%|███████▉  | 79/100 [00:19<00:05,  4.06it/s, objective=0] 80%|████████  | 80/100 [00:19<00:04,  4.09it/s, objective=0] 81%|████████  | 81/100 [00:19<00:04,  4.08it/s, objective=0] 82%|████████▏ | 82/100 [00:20<00:04,  4.10it/s, objective=0] 83%|████████▎ | 83/100 [00:20<00:04,  4.12it/s, objective=0] 84%|████████▍ | 84/100 [00:20<00:03,  4.10it/s, objective=0] 85%|████████▌ | 85/100 [00:20<00:03,  4.11it/s, objective=0] 86%|████████▌ | 86/100 [00:21<00:03,  4.13it/s, objective=0] 87%|████████▋ | 87/100 [00:21<00:03,  4.13it/s, objective=0] 88%|████████▊ | 88/100 [00:21<00:02,  4.12it/s, objective=0] 89%|████████▉ | 89/100 [00:21<00:02,  4.11it/s, objective=0] 90%|█████████ | 90/100 [00:22<00:02,  4.08it/s, objective=0] 91%|█████████ | 91/100 [00:22<00:02,  4.03it/s, objective=0] 92%|█████████▏| 92/100 [00:22<00:02,  3.99it/s, objective=0] 93%|█████████▎| 93/100 [00:22<00:01,  4.04it/s, objective=0] 94%|█████████▍| 94/100 [00:23<00:01,  4.06it/s, objective=0] 95%|█████████▌| 95/100 [00:23<00:01,  4.09it/s, objective=0] 96%|█████████▌| 96/100 [00:23<00:00,  4.06it/s, objective=0] 97%|█████████▋| 97/100 [00:23<00:00,  4.08it/s, objective=0] 98%|█████████▊| 98/100 [00:24<00:00,  4.10it/s, objective=0] 99%|█████████▉| 99/100 [00:24<00:00,  4.05it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  4.03it/s, objective=0]100%|██████████| 100/100 [00:24<00:00,  4.07it/s, objective=0]
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [00:00<00:25,  3.88it/s, objective=0]  2%|▏         | 2/100 [00:00<00:24,  3.93it/s, objective=0]

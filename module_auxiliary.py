@@ -3,6 +3,7 @@ import numpy as np
 from astropy.io import fits
 from scipy.ndimage import median_filter
 from scipy.optimize import minimize
+import re
 
 def generate_paths(path, A):
     # Extract the folder and filename pattern
@@ -255,3 +256,38 @@ def integrate_rings_in_sector(image, angle_min, angle_max):
     sector_ring_image = ring_means[ring_indices_clipped]
     
     return image - sector_ring_image, sector_mask
+
+
+def find_largest_number(file_pattern):
+    """
+    Finds the largest number in filenames matching the pattern folder/prefix_####.tiff.
+    
+    Args:
+        file_pattern (str): A file pattern on the form 'folder/prefix_####.tiff'.
+                            The folder and prefix are extracted from this string.
+    
+    Returns:
+        int: The largest number #### found in matching filenames, or None if no matches.
+    """
+    # Extract the folder and prefix from the file pattern
+    folder, file_template = os.path.split(file_pattern)
+    prefix, _ = file_template.split('_')
+    
+    # Regular expression to match filenames with the prefix and extract the number
+    pattern = rf"{re.escape(prefix)}_(\d+)\.tiff"
+    
+    # List all files in the folder
+    try:
+        files = os.listdir(folder)
+    except FileNotFoundError:
+        raise ValueError(f"The folder '{folder}' does not exist.")
+    
+    # Find the largest number in matching filenames
+    largest_number = None
+    for file in files:
+        match = re.match(pattern, file)
+        if match:
+            number = int(match.group(1))
+            largest_number = max(largest_number, number) if largest_number is not None else number
+    
+    return largest_number

@@ -16,7 +16,7 @@ wname = int(os.getenv("WNAME"))
 sigma = float(os.getenv("SIGMA"))
 alpha = float(os.getenv("ALPHA"))
 plot = False
-skip = 200
+skip = 100
 fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/A_rec_slice'
 save_folder_fbp ='/dtu-compute/msaca/output/fbp_recon/'
 save_folder_tv = '/dtu-compute/msaca/output/tv_recon/'
@@ -155,14 +155,15 @@ N_slices, N_angles, N_pixels = np.shape(Data)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Preprocess time: {elapsed_time:.2f} seconds")
-print(-1)
 ################################################################################
 #
 # Part II, Beam padding,  Cor estimation, tilt-correction and sinogram based preprocessing
 #
 #################################################################################
 # Add beam padding with gaussian blur
-subslices = np.arange(300, N_slices-300, skip)
+subslices = np.arange(100, N_slices-100, skip)
+
+
 angles = np.linspace(0, 360, N_angles, endpoint=True, dtype=np.float32)
 slices = np.arange(0, N_slices)
 ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
@@ -187,8 +188,6 @@ input_data = sinograms.data*100
 sinograms.data.reorder('astra')
 end_time = time.time()
 elapsed_time = end_time - start_time
-print(f"Time after Paganin filtering: {elapsed_time:.2f} seconds")
-
 
 
 ############## Now do the cor and tilt correction printing the result
@@ -217,12 +216,24 @@ sinograms.acquisition_data(geometry=ag)
 sinograms.set_subdata(subslices=subslices)
 sinograms.remove_ring(subdata = True, decNum = decNum, wname  = wname, sigma = sigma)
 
+data = sinograms.data.as_array()
+N_slices = np.shape(data)[0]
+A = np.arange(N_slices)
+path_cache_sino = '/dtu-compute/msaca/output/cache/sino_#####.tiff'
+temp_path = ma.generate_paths(path_cache_sino, A)
+def writer(i):
+    tifffile.imwrite(temp_path[i], data[i].astype(np.float32))
 
-reconstruction1 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
-reconstruction2 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
+with Pool() as pool:
+   pool.map(writer, A)
 
-A = np.arange(len(sinograms.subslices))
-fig_paths = ma.generate_paths(fig_path + '_##.png',A)
+
+#reconstruction1 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
+#reconstruction2 = np.empty((len(sinograms.subslices), N_pixels,N_pixels))
+
+#A = np.arange(len(sinograms.subslices))
+#fig_paths = ma.generate_paths(fig_path + '_##.png',A)
+
 
 ###########################
 #
@@ -230,6 +241,7 @@ fig_paths = ma.generate_paths(fig_path + '_##.png',A)
 #
 ##################
 
+"""
 print(0)
 batch_size = 3
 batches = subslices[::batch_size]
@@ -298,11 +310,12 @@ def TV_batch_recon(i):
 with Pool() as pool:
    pool.map(FBP_batch_recon, range(len(batches)-1))
 
+"""
 
-
-for i in range(len(sinograms.subslices)):
-
-
+"""
+A = np.arange(len(sinograms.subslices))
+paths_FBP = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',A)
+def FBP_recon(i):
     data2D = sinograms.subdata.get_slice(vertical=i)
     data2D.reorder('astra')
     ag2D = data2D.geometry
@@ -312,10 +325,19 @@ for i in range(len(sinograms.subslices)):
     fbp = FBP(ig2D,ag2D,device)
     recon_slice_FBP = fbp(data2D).as_array().astype(np.float32)
     A = np.arange(len(sinograms.subslices))
-    paths = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',A)
+    paths_FBP = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',A)
     tifffile.imwrite(paths[i], recon_slice_FBP)
+"""
 
-    
+"""
+A = np.arange(len(sinograms.subslices))
+paths_TV = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
+def TV_recon(i):
+    data2D = sinograms.subdata.get_slice(vertical=i)
+    data2D.reorder('astra')
+    ag2D = data2D.geometry
+    ag2D.set_angles(ag2D.angles, initial_angle=+20)
+    ig2D = ag2D.get_ImageGeometry()
     N_iter = 100
     initial = ig2D.allocate(0)
     A = ProjectionOperator(ig2D,ag2D,device)
@@ -325,11 +347,20 @@ for i in range(len(sinograms.subslices)):
     reconstructor = FISTA(f=F, g=G, initial=initial)
     reconstructor.run(N_iter)
     recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
-    A = np.arange(len(sinograms.subslices))
-    paths = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',A)
-    tifffile.imwrite(paths[i], recon_slice_TV)
+    tifffile.imwrite(paths_TV[i], recon_slice_TV)
+"""
+"""
+with Pool() as pool:
+   pool.map(FBP_recon, range(len(sinograms.subslices)))
 
-        
+
+with Pool() as pool:
+   pool.map(TV_recon, range(len(sinograms.subslices)))
+"""
+
+
+
+"""
 if plot:
     plt.figure(figsize=(10,10))
     plt.imshow(reconstruction1[3])
@@ -348,8 +379,8 @@ if plot:
     full_path = ma.generate_unique_filename(fig_paths[i])
     plt.savefig(full_path, dpi = 400)
     plt.close()
-
-
+"""
+"""
 alpha_vec = [20, 50, 80, 100, 120, 150, 200, 300, 500, 1000]
 for i in range(len(alpha_vec)):
     data2D = sinograms.subdata.get_slice(vertical=4)
@@ -370,7 +401,7 @@ for i in range(len(alpha_vec)):
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Total time: Including cor correction and plotting: {elapsed_time:.2f} seconds")
-
+"""
 #####################################################
 #
 ####           Save the reconstruction   ############
