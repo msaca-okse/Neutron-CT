@@ -275,7 +275,6 @@ def find_largest_number(file_pattern):
     
     # Regular expression to match filenames with the prefix and extract the number
     pattern = rf"{re.escape(prefix)}_(\d+)\.tiff"
-    
     # List all files in the folder
     try:
         files = os.listdir(folder)
