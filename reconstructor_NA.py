@@ -79,9 +79,12 @@ def recon_FBP_single(batch_id):
 
     for i in range(len(batch)):
         data2D = tifffile.imread(read_path[i])
-        ag2D = ag.get_slice(vertical=subslices[i])
+        ag2D = AcquisitionGeometry.create_Parallel2D(detector_position=[0,N_pixels//2])\
+                            .set_angles(angles)\
+                            .set_panel((N_pixels), pixel_size=(1))\
+                            .set_labels(labels=('angle','horizontal'))
         data2D = AcquisitionData(data2D, geometry=ag2D)
-        #data2D.reorder('astra')
+        data2D.reorder('astra')
         ag2D.set_angles(ag2D.angles, initial_angle=+10)
         ig2D = ag2D.get_ImageGeometry()
         device = 'gpu'
@@ -145,18 +148,21 @@ def recon_TV_single(batch_id):
     for i in range(len(batch)):
         start_time = time.time()
         data2D = tifffile.imread(read_path[i])
-        ag2D = ag.get_slice(vertical=subslices[i])
+        ag2D = AcquisitionGeometry.create_Parallel2D(detector_position=[0,N_pixels//2])\
+                            .set_angles(angles)\
+                            .set_panel((N_pixels), pixel_size=(1))\
+                            .set_labels(labels=('angle','horizontal'))
         data2D = AcquisitionData(data2D, geometry=ag2D)
         ag2D.set_angles(ag2D.angles, initial_angle=+10)
         ig2D = ag2D.get_ImageGeometry()
         device = 'gpu'
 
-        N_iter = 100
+        N_iter = 200
         initial = ig2D.allocate(0)
         A = ProjectionOperator(ig2D,ag2D,device)
         b = data2D
         F = LeastSquares(A,b)
-        G = alpha*FGP_TV(device='gpu')
+        G = alpha*FGP_TV(device='gpu', nonnegativity=True)
         reconstructor = FISTA(f=F, g=G, initial=initial)
         reconstructor.run(N_iter)
         recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
@@ -200,7 +206,7 @@ def recon_TV_multi(batch_id):
     A = ProjectionOperator(ig_batch,ag_batch,device)
     b = data_batch
     F = LeastSquares(A,b)
-    G = alpha*FGP_TV(device='gpu')
+    G = alpha*FGP_TV(device='gpu',nonnegativity=True)
     reconstructor = FISTA(f=F, g=G, initial=initial)
     reconstructor.run(N_iter)
     recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)

@@ -1,0 +1,38 @@
+/bin/bash: line 1: ./jobscript_preprocessor_XA.sh: Permission denied
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23744853: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Jan 15 11:18:50 2025
+Job was executed on host(s) <n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Jan 15 11:18:52 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Wed Jan 15 11:18:52 2025
+Terminated at Wed Jan 15 11:18:53 2025
+Results reported at Wed Jan 15 11:18:53 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+jobscript_preprocessor_XA.sh
+------------------------------------------------------------
+
+Exited with exit code 126.
+
+Resource usage summary:
+
+    CPU time :                                   0.86 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   33 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
