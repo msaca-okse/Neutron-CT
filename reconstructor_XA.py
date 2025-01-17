@@ -46,7 +46,7 @@ from cil.optimisation.operators import BlockOperator, GradientOperator,\
 from cil.processors import PaganinProcessor, Slicer
 
 
-folders = np.array([3,4])
+folders = np.array([1,2,3,4,5,6,7])
 
 generic_pc = '/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_###.'
 generic_pcs = ma.generate_paths(generic_pc,folders)

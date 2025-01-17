@@ -1961,3 +1961,233 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_003/sino_#####.tiff
+/dark/dark.tiff
+/compressed_XA_003_####.tiff
+Data reading time: 26.84 seconds
+Preprocess time: 26.46 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23782166: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan 17 14:22:30 2025
+Job was executed on host(s) <10*n-62-11-55>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan 17 14:22:30 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan 17 14:22:30 2025
+Terminated at Fri Jan 17 14:24:00 2025
+Results reported at Fri Jan 17 14:24:00 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 24000
+#BSUB -R "rusage[mem=24000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 10
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+STRIDE="10"
+export STRIDE
+
+ALPHA="0.2"
+export ALPHA
+
+python preprocessor_XA.py
+
+
+# ALPHA = ca. 0.2
+# TODO: Fix this jobscript to ALPHA=0.2. For testing, set the stride to 10 (this gives around 3 min for 800 sinograms or eqvltly 1 folder. Clean the folders (all). Make a combined jobscript of the preprocc, recon and cleaner
+# scripts, and test on the FBP single and multi scripts. Once thats working, create TV single and Multi scripts. Now compare the results in the notebook. 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   169.32 sec.
+    Max Memory :                                 1164 MB
+    Average Memory :                             1164.00 MB
+    Total Requested Memory :                     240000.00 MB
+    Delta Memory :                               238836.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                40
+    Run time :                                   127 sec.
+    Turnaround time :                            90 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23782167: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan 17 14:22:30 2025
+Job was executed on host(s) <n-62-31-21>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan 17 14:24:02 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan 17 14:24:02 2025
+Terminated at Fri Jan 17 14:24:06 2025
+Results reported at Fri Jan 17 14:24:06 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+  GNU nano 5.6.1                                                                                                                                    jobscript_preprocessor_XA.sh                                                                                                                                              
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 1
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# Export variables to make them available to the Python script
+
+python cleaner_XA.py
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1.45 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     2000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   8 sec.
+    Turnaround time :                            96 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_003/sino_#####.tiff
+/dark/dark.tiff
+/compressed_XA_003_####.tiff
+Data reading time: 18.79 seconds
+Preprocess time: 24.99 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23782176: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan 17 14:24:48 2025
+Job was executed on host(s) <10*n-62-11-55>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan 17 14:24:49 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan 17 14:24:49 2025
+Terminated at Fri Jan 17 14:26:09 2025
+Results reported at Fri Jan 17 14:26:09 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 24000
+#BSUB -R "rusage[mem=24000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 10
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+STRIDE="10"
+export STRIDE
+
+ALPHA="0.2"
+export ALPHA
+
+python preprocessor_XA.py
+
+
+# ALPHA = ca. 0.2
+# TODO: Fix this jobscript to ALPHA=0.2. For testing, set the stride to 10 (this gives around 3 min for 800 sinograms or eqvltly 1 folder. Clean the folders (all). Make a combined jobscript of the preprocc, recon and cleaner
+# scripts, and test on the FBP single and multi scripts. Once thats working, create TV single and Multi scripts. Now compare the results in the notebook. 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   166.40 sec.
+    Max Memory :                                 2538 MB
+    Average Memory :                             2538.00 MB
+    Total Requested Memory :                     240000.00 MB
+    Delta Memory :                               237462.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   117 sec.
+    Turnaround time :                            81 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

@@ -34,10 +34,10 @@ try:
 except:
     stride = 10
 
-output = True
+output = False
 Total_angles = 6000
 N_batches = 6
-folders = np.array([3])
+folders = np.array([1,2,3,4,5,6,7])
 
 generic_pp = '/dtu-compute/msaca/sliceA_xray_pc/compressed_XA_###_.'
 generic_pps = ma.generate_paths(generic_pp,folders)
