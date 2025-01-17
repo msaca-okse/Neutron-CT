@@ -11,7 +11,7 @@ except:
 try:
     stride = int(os.getenv("STRIDE"))
 except:
-    stride = 10
+    stride = 5
 
 try:
     num_proc = int(os.getenv("NUM_PROC"))
@@ -57,6 +57,9 @@ generic_f_fbps = ma.generate_paths(generic_f_fbp,folders)
 generic_f_tv = '/dtu-compute/msaca/sliceA_xray_pc/output/tv_recon/r_###.'
 generic_f_tvs = ma.generate_paths(generic_f_tv,folders)
 
+
+
+
 def recon_FBP_single(batch_id):
     for folder_idx in range(len(folders)):
 
@@ -64,21 +67,8 @@ def recon_FBP_single(batch_id):
         save_folder_fbp = generic_f_fbps[folder_idx][:-1]+'/'
         N_slices = ma.find_largest_number(path_cache_sino)
 
+
         subslices = np.arange(0,N_slices, stride)
-
-
-        read_path = ma.generate_paths(path_cache_sino, [0])
-        image = tifffile.imread(read_path[0])
-        N_angles,N_pixels = np.shape(image)
-
-
-
-        angles = np.linspace(0, 180, N_angles, endpoint=True, dtype=np.float32)
-        ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
-                                    .set_angles(angles)\
-                                    .set_panel((N_pixels,N_slices), pixel_size=(1,1))\
-                                    .set_labels(labels=('vertical','angle','horizontal'))
-
         base_size = len(subslices) // num_proc
         remainder = len(subslices) % num_proc
         # Split the array into num_proc parts
@@ -89,6 +79,15 @@ def recon_FBP_single(batch_id):
             end_idx = start_idx + base_size + (1 if i < remainder else 0)
             split_arr.append(subslices[start_idx:end_idx])
             start_idx = end_idx
+
+        read_path = ma.generate_paths(path_cache_sino, [0])
+        image = tifffile.imread(read_path[0])
+        N_angles,N_pixels = np.shape(image)
+
+
+        angles = np.linspace(0, 180, N_angles, endpoint=True, dtype=np.float32)
+
+        
 
         batch = split_arr[batch_id-1]
         read_path = ma.generate_paths(path_cache_sino, batch)
@@ -108,6 +107,68 @@ def recon_FBP_single(batch_id):
             fbp = FBP(ig2D,ag2D,device)
             recon_slice_FBP = fbp(data2D).as_array().astype(np.float32)
             tifffile.imwrite(write_path_FBP[i], recon_slice_FBP)
+
+def recon_FBP_multi(batch_id):
+    for folder_idx in range(len(folders)):
+
+        path_cache_sino = generic_pcs[folder_idx][:-1] + '/sino_#####.tiff'
+        save_folder_fbp = generic_f_fbps[folder_idx][:-1]+'/'
+        N_slices = ma.find_largest_number(path_cache_sino)
+
+        subslices = np.arange(0,N_slices, stride)
+        base_size = len(subslices) // num_proc
+        remainder = len(subslices) % num_proc
+        # Split the array into num_proc parts
+        split_arr = []
+        start_idx = 0
+        for i in range(num_proc):
+            # For the first N-1 parts, add an extra element if there's a remainder
+            end_idx = start_idx + base_size + (1 if i < remainder else 0)
+            split_arr.append(subslices[start_idx:end_idx])
+            start_idx = end_idx
+
+        read_path = ma.generate_paths(path_cache_sino, [0])
+        image = tifffile.imread(read_path[0])
+        N_angles,N_pixels = np.shape(image)
+        angles = np.linspace(0, 180, N_angles, endpoint=True, dtype=np.float32)
+
+        print('Initiating batch FBP reconstruction from saved sinograms')
+        batch = split_arr[batch_id-1]
+        read_path = ma.generate_paths(path_cache_sino, batch)
+        write_path_FBP = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',batch)
+        data_batch = np.empty((len(batch), N_angles, N_pixels), dtype = np.float32)
+
+        start_time = time.time()
+        for i in range(len(batch)):
+            data_batch[i] = tifffile.imread(read_path[i])
+        N_batch_slices = np.shape(data_batch)[0]
+
+
+        print(f"Data loading time: {(time.time()-start_time):.2f} seconds")
+        start_time = time.time()
+
+        ag_batch = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
+                                .set_angles(angles)\
+                                .set_panel((N_pixels,N_batch_slices), pixel_size=(1,1))\
+                                .set_labels(labels=('vertical','angle','horizontal'))
+        data_batch = AcquisitionData(data_batch, geometry=ag_batch)
+        data_batch.reorder('astra')
+
+        ag_batch.set_angles(ag_batch.angles, initial_angle=+10)
+        ig_batch = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_num_z=N_batch_slices, voxel_size_x=1, voxel_size_y=1, voxel_size_z=1)
+        device = 'gpu'
+        fbp = FBP(ig_batch,ag_batch,device)
+
+        recon_slice_FBP = fbp(data_batch).as_array().astype(np.float32)
+
+        print(f"Reconstruction time: {(time.time()-start_time):.2f} seconds")
+        start_time = time.time()
+
+        for i in range(len(batch)):
+            tifffile.imwrite(write_path_FBP[i], recon_slice_FBP[i])
+
+        print(f"Writing time: {(time.time()-start_time):.2f} seconds")
+
 
 """    
 

@@ -29,11 +29,15 @@ try:
 except:
     alpha = 0.1
 
-output = False
+try:
+    stride = int(os.getenv("STRIDE"))
+except:
+    stride = 10
+
+output = True
 Total_angles = 6000
 N_batches = 6
-stride = 20
-folders = np.array([3,4])
+folders = np.array([3])
 
 generic_pp = '/dtu-compute/msaca/sliceA_xray_pc/compressed_XA_###_.'
 generic_pps = ma.generate_paths(generic_pp,folders)
@@ -83,6 +87,8 @@ for folder_idx in range(len(folders)):
 
     split_row = int(N_angles/2)
     split_col = N_pixels-248
+
+
     data = ma.rearrange_3d_block_matrix(data, split_row, split_col).astype(np.float32)  
     N_angles, N_slices, N_pixels = np.shape(data)
 
@@ -95,19 +101,23 @@ for folder_idx in range(len(folders)):
 
     angle_indices = np.array_split(np.arange(N_angles),N_batches)
 
+
+
     def preprocess_projection(i):
         angle = angles_split[i]
-        ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
+        ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_slices,0])\
                                 .set_angles(angle)\
                                 .set_panel((N_pixels,N_slices), pixel_size=(1,1))\
                                 .set_labels(labels=('angle','vertical','horizontal'))
         data_batch = AcquisitionData(data[angle_indices[i]], geometry=ag)
         data_batch.reorder('cil')
         data_batch.geometry.config.units = 'mm'
-        processor = PaganinProcessor(full_retrieval=False)
+        processor = PaganinProcessor(full_retrieval=False,pad=100)
         processor.set_input(data_batch)
+
         data_batch = processor.get_output(override_filter={'alpha':alpha})
         return data_batch.as_array()
+
 
     with Pool() as pool:
         data =  pool.map(preprocess_projection, range(N_batches))
@@ -131,15 +141,15 @@ for folder_idx in range(len(folders)):
 
     if output:
         data2D = data[:,0]
+
         ag2D = AcquisitionGeometry.create_Parallel2D(detector_position=[0,N_pixels//2])\
                             .set_angles(angles)\
                             .set_panel((N_pixels), pixel_size=(1))\
                             .set_labels(labels=('angle','horizontal'))
         data2D = AcquisitionData(data2D, geometry=ag2D)
         data2D.reorder('astra')
-        ag2D.set_angles(ag2D.angles,initial_angle=+90)
-        ig2D = ag2D.get_ImageGeometry()
-        ig2D = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_size_x=1, voxel_size_y=1)
+        ag2D.set_angles(ag2D.angles,initial_angle=90)
+        ig2D = ImageGeometry(voxel_num_x=3000, voxel_num_y=3000, voxel_size_x=1, voxel_size_y=1)
         device = 'cpu'
         fbp = FBP(ig2D,ag2D,device)
         recon_slice_FBP = fbp(data2D).as_array().astype(np.float32)

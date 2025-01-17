@@ -12,21 +12,21 @@
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 1:00 
 # -- Number of cores requested -- 
-#BSUB -n 12
+#BSUB -n 10
 # -- Specify the distribution of the cores: on a separate nodes --
 #BSUB -R "span[hosts=1]" 
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
+STRIDE="10"
+export STRIDE
 
-for ALPHA in "0.1" "0.2" "0.5" "0.75"
-do
-
-# Export variables to make them available to the Python script
+ALPHA="0.2"
 export ALPHA
 
 python preprocessor_XA.py
 
 
-done
-
+# ALPHA = ca. 0.2
+# TODO: Fix this jobscript to ALPHA=0.2. For testing, set the stride to 10 (this gives around 3 min for 800 sinograms or eqvltly 1 folder. Clean the folders (all). Make a combined jobscript of the preprocc, recon and cleaner
+# scripts, and test on the FBP single and multi scripts. Once thats working, create TV single and Multi scripts. Now compare the results in the notebook. 

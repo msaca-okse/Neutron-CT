@@ -8,8 +8,8 @@
 #BSUB -gpu "num=1"
 #BSUB -e my_job_error1.log
 #BSUB -o my_job_output1.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 6000
+#BSUB -R "rusage[mem=6000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 2:00 
 # -- Number of cores requested -- 
@@ -31,8 +31,8 @@ STRIDE="10"
 export ALPHA
 export NUM_PROC
 
-python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
-# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
+#python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
+python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
 # python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
 # python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX)"
 
