@@ -4,7 +4,7 @@
 #BSUB -J Recon
 # -- choose queue --
 # For gpu write gpuv100
-#BSUB -q gpuv100
+#BSUB -q gpua10
 #BSUB -gpu "num=1"
 #BSUB -e my_job_error1.log
 #BSUB -o my_job_output1.log
@@ -13,18 +13,18 @@
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 2:00 
 # -- Number of cores requested -- 
-#BSUB -n 10
+#BSUB -n 4
 # -- Specify the distribution of the cores: on a separate nodes --
 #BSUB -R "span[hosts=1]"
 # Array job: N tasks, one per folder
-#BSUB -J folder_job[1-10]
+#BSUB -J folder_job[1-6]
 # -- end of LSF options -- 
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 
 ALPHA="0.75"
-NUM_PROC="10"
+NUM_PROC="6"
 STRIDE="10"
 
 # Export variables to make them available to the Python script

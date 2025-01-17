@@ -2191,3 +2191,6 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_001/sino_#####.tiff
+/dark/dark.tiff
+/compressed_XA_001_####.tiff
