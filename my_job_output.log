@@ -2194,3 +2194,87 @@ Read file <my_job_error.log> for stderr output of this job.
 /dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_001/sino_#####.tiff
 /dark/dark.tiff
 /compressed_XA_001_####.tiff
+Data reading time: 28.43 seconds
+Preprocess time: 25.51 seconds
+Data writing time: 129.90 seconds
+/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_002/sino_#####.tiff
+/dark/dark.tiff
+/compressed_XA_002_####.tiff
+Data reading time: 27.79 seconds
+Preprocess time: 25.46 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23782349: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Jan 17 15:00:43 2025
+Job was executed on host(s) <10*n-62-11-55>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Jan 17 15:00:43 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Fri Jan 17 15:00:43 2025
+Terminated at Fri Jan 17 15:05:10 2025
+Results reported at Fri Jan 17 15:05:10 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 24000
+#BSUB -R "rusage[mem=24000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 10
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+STRIDE="10"
+export STRIDE
+
+ALPHA="0.2"
+export ALPHA
+
+python preprocessor_XA.py
+
+
+# ALPHA = ca. 0.2
+# TODO: Fix this jobscript to ALPHA=0.2. For testing, set the stride to 10 (this gives around 3 min for 800 sinograms or eqvltly 1 folder. Clean the folders (all). Make a combined jobscript of the preprocc, recon and cleaner
+# scripts, and test on the FBP single and multi scripts. Once thats working, create TV single and Multi scripts. Now compare the results in the notebook. 
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   280.83 sec.
+    Max Memory :                                 3698 MB
+    Average Memory :                             3006.50 MB
+    Total Requested Memory :                     240000.00 MB
+    Delta Memory :                               236302.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                40
+    Run time :                                   331 sec.
+    Turnaround time :                            267 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
