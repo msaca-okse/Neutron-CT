@@ -27,7 +27,7 @@ from cil.processors import PaganinProcessor
 try:
     alpha = float(os.getenv("ALPHA"))
 except:
-    alpha = 0.1
+    alpha = 0.2
 
 try:
     stride = int(os.getenv("STRIDE"))
@@ -36,7 +36,7 @@ except:
 
 output = False
 Total_angles = 6000
-N_batches = 6
+N_batches = 10
 folders = np.array([1,2,3,4,5,6,7])
 
 generic_pp = '/dtu-compute/msaca/sliceA_xray_pc/compressed_XA_###_.'

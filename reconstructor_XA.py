@@ -6,17 +6,22 @@ import numpy as np
 try:
     alpha = float(os.getenv("ALPHA"))
 except:
-    alpha = 1
+    alpha = 150
 
 try:
     stride = int(os.getenv("STRIDE"))
 except:
-    stride = 5
+    stride = 200
 
 try:
     num_proc = int(os.getenv("NUM_PROC"))
 except:
     num_proc = 1
+
+try:
+    N_iter = int(os.getenv("N_ITER"))
+except:
+    N_iter = 200
 
 path_to_add = '/zhome/71/c/146676/Desktop/msaca/main/'
 sys.path.append(path_to_add)
@@ -101,7 +106,7 @@ def recon_FBP_single(batch_id):
                                 .set_labels(labels=('angle','horizontal'))
             data2D = AcquisitionData(data2D, geometry=ag2D)
             data2D.reorder('astra')
-            ag2D.set_angles(ag2D.angles, initial_angle=+90)
+            ag2D.set_angles(ag2D.angles, initial_angle=+270)
             ig2D = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_size_x=1, voxel_size_y=1)
             device = 'gpu'
             fbp = FBP(ig2D,ag2D,device)
@@ -154,7 +159,7 @@ def recon_FBP_multi(batch_id):
         data_batch = AcquisitionData(data_batch, geometry=ag_batch)
         data_batch.reorder('astra')
 
-        ag_batch.set_angles(ag_batch.angles, initial_angle=+90)
+        ag_batch.set_angles(ag_batch.angles, initial_angle=+270)
         ig_batch = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_num_z=N_batch_slices, voxel_size_x=1, voxel_size_y=1, voxel_size_z=1)
         device = 'gpu'
         fbp = FBP(ig_batch,ag_batch,device)
@@ -174,7 +179,7 @@ def recon_TV_single(batch_id):
     for folder_idx in range(len(folders)):
 
         path_cache_sino = generic_pcs[folder_idx][:-1] + '/sino_#####.tiff'
-        save_folder_fbp = generic_f_fbps[folder_idx][:-1]+'/'
+        save_folder_tv = generic_f_tvs[folder_idx][:-1]+'/'
         N_slices = ma.find_largest_number(path_cache_sino)
 
 
@@ -211,11 +216,10 @@ def recon_TV_single(batch_id):
                                 .set_labels(labels=('angle','horizontal'))
             data2D = AcquisitionData(data2D, geometry=ag2D)
             data2D.reorder('astra')
-            ag2D.set_angles(ag2D.angles, initial_angle=+90)
+            ag2D.set_angles(ag2D.angles, initial_angle=+270)
             ig2D = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_size_x=1, voxel_size_y=1)
             device = 'gpu'
 
-            N_iter = 200
             initial = ig2D.allocate(0)
             A = ProjectionOperator(ig2D,ag2D,device)
             b = data2D
@@ -230,10 +234,12 @@ def recon_TV_single(batch_id):
 
 def recon_TV_multi(batch_id):
     for folder_idx in range(len(folders)):
-
+        device='gpu'
         path_cache_sino = generic_pcs[folder_idx][:-1] + '/sino_#####.tiff'
         save_folder_tv = generic_f_tvs[folder_idx][:-1]+'/'
         N_slices = ma.find_largest_number(path_cache_sino)
+        print(path_cache_sino)
+        print('Nslices',N_slices)
 
         subslices = np.arange(0,N_slices, stride)
         base_size = len(subslices) // num_proc
@@ -263,6 +269,11 @@ def recon_TV_multi(batch_id):
             data_batch[i] = tifffile.imread(read_path[i])
         N_batch_slices = np.shape(data_batch)[0]
 
+        print('num_proc',num_proc)
+        print('batch',batch)
+        print('split_arr', split_arr)
+        print('len(batch)', len(batch))
+        print('N_btch_slices', N_batch_slices)
 
         print(f"Data loading time: {(time.time()-start_time):.2f} seconds")
         start_time = time.time()
@@ -274,11 +285,9 @@ def recon_TV_multi(batch_id):
         data_batch = AcquisitionData(data_batch, geometry=ag_batch)
         data_batch.reorder('astra')
 
-        ag_batch.set_angles(ag_batch.angles, initial_angle=+90)
+        ag_batch.set_angles(ag_batch.angles, initial_angle=+270)
         ig_batch = ImageGeometry(voxel_num_x=3000, voxel_num_y=750, voxel_num_z=N_batch_slices, voxel_size_x=1, voxel_size_y=1, voxel_size_z=1)
-        device = 'gpu'
 
-        N_iter = 200
         initial = ig_batch.allocate(0)
         A = ProjectionOperator(ig_batch,ag_batch,device)
         b = data_batch
@@ -293,6 +302,7 @@ def recon_TV_multi(batch_id):
         start_time = time.time()
 
         for i in range(len(batch)):
+            print('Write_path_TV', write_path_TV[i], recon_slice_TV[i])
             tifffile.imwrite(write_path_TV[i], recon_slice_TV[i])
 
         print(f"Writing time: {(time.time()-start_time):.2f} seconds")

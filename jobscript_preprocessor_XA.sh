@@ -10,7 +10,7 @@
 #BSUB -M 24000
 #BSUB -R "rusage[mem=24000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
+#BSUB -W 10:00 
 # -- Number of cores requested -- 
 #BSUB -n 10
 # -- Specify the distribution of the cores: on a separate nodes --
@@ -18,7 +18,7 @@
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
-STRIDE="10"
+STRIDE="1"
 export STRIDE
 
 ALPHA="0.2"

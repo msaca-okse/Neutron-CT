@@ -258,23 +258,27 @@ def integrate_rings_in_sector(image, angle_min, angle_max):
     return image - sector_ring_image, sector_mask
 
 
-def find_largest_number(file_pattern):
+def find_largest_number2(file_pattern):
     """
     Finds the largest number in filenames matching the pattern folder/prefix_####.tiff.
-    
+
     Args:
         file_pattern (str): A file pattern on the form 'folder/prefix_####.tiff'.
                             The folder and prefix are extracted from this string.
-    
+
     Returns:
         int: The largest number #### found in matching filenames, or None if no matches.
     """
-    # Extract the folder and prefix from the file pattern
+    # Extract the folder and filename template
     folder, file_template = os.path.split(file_pattern)
-    prefix, _ = file_template.split('_')
     
-    # Regular expression to match filenames with the prefix and extract the number
-    pattern = rf"{re.escape(prefix)}_(\d+)\.tiff"
+    # Escape the file template and replace the #### placeholder with a regex pattern for numbers
+    escaped_template = re.escape(file_template)
+    pattern = escaped_template.replace(r'\#\#\#\#', r'(\d+)')
+    
+    # Compile the regex pattern
+    regex = re.compile(pattern)
+    
     # List all files in the folder
     try:
         files = os.listdir(folder)
@@ -284,7 +288,7 @@ def find_largest_number(file_pattern):
     # Find the largest number in matching filenames
     largest_number = None
     for file in files:
-        match = re.match(pattern, file)
+        match = regex.fullmatch(file)
         if match:
             number = int(match.group(1))
             largest_number = max(largest_number, number) if largest_number is not None else number
@@ -322,3 +326,37 @@ def rearrange_3d_block_matrix(A, split_row, split_col):
     rearranged_matrix = np.concatenate((A11, mean_block, A21_flipped), axis=2)
 
     return rearranged_matrix
+
+
+def find_largest_number(file_pattern):
+    """
+    Finds the largest number in filenames matching the pattern folder/prefix_####.tiff.
+    
+    Args:
+        file_pattern (str): A file pattern on the form 'folder/prefix_####.tiff'.
+                            The folder and prefix are extracted from this string.
+    
+    Returns:
+        int: The largest number #### found in matching filenames, or None if no matches.
+    """
+    # Extract the folder and prefix from the file pattern
+    folder, file_template = os.path.split(file_pattern)
+    prefix, _ = file_template.split('_')
+    
+    # Regular expression to match filenames with the prefix and extract the number
+    pattern = rf"{re.escape(prefix)}_(\d+)\.tiff"
+    # List all files in the folder
+    try:
+        files = os.listdir(folder)
+    except FileNotFoundError:
+        raise ValueError(f"The folder '{folder}' does not exist.")
+    
+    # Find the largest number in matching filenames
+    largest_number = None
+    for file in files:
+        match = re.match(pattern, file)
+        if match:
+            number = int(match.group(1))
+            largest_number = max(largest_number, number) if largest_number is not None else number
+    
+    return largest_number
