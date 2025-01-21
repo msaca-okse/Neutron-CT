@@ -201,7 +201,7 @@ def recon_TV_multi(batch_id):
     ig_batch = ag_batch.get_ImageGeometry()
     device = 'gpu'
 
-    N_iter = 200
+    N_iter = 120
     initial = ig_batch.allocate(0)
     A = ProjectionOperator(ig_batch,ag_batch,device)
     b = data_batch
