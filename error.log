@@ -1,0 +1,114 @@
+Loaded module: cuda/11.8
+  0%|          | 0/200 [00:00<?, ?it/s]  0%|          | 1/200 [00:02<08:11,  2.47s/it, objective=1.35e+9]  1%|          | 2/200 [00:04<08:04,  2.45s/it, objective=1.3e+9]   2%|▏         | 3/200 [00:07<08:11,  2.49s/it, objective=1.26e+9]  2%|▏         | 4/200 [00:09<08:04,  2.47s/it, objective=1.23e+9]  2%|▎         | 5/200 [00:12<08:06,  2.49s/it, objective=1.22e+9]  3%|▎         | 6/200 [00:15<08:11,  2.53s/it, objective=1.21e+9]  4%|▎         | 7/200 [00:17<08:17,  2.58s/it, objective=1.2e+9]   4%|▍         | 8/200 [00:20<08:21,  2.61s/it, objective=1.2e+9]  4%|▍         | 9/200 [00:23<08:23,  2.64s/it, objective=1.19e+9]  5%|▌         | 10/200 [00:25<08:19,  2.63s/it, objective=1.19e+9]  6%|▌         | 11/200 [00:28<08:14,  2.62s/it, objective=1.19e+9]  6%|▌         | 12/200 [00:30<08:00,  2.56s/it, objective=1.18e+9]  6%|▋         | 13/200 [00:33<07:54,  2.54s/it, objective=1.18e+9]  7%|▋         | 14/200 [00:35<07:55,  2.55s/it, objective=1.18e+9]  8%|▊         | 15/200 [00:38<07:46,  2.52s/it, objective=1.18e+9]Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_XA.py", line 304, in recon_TV_multi
+    reconstructor.run(N_iter)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 270, in run
+    for _ in zip(iters, self):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 102, in __next__
+    self.update()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/FISTA.py", line 336, in update
+    self.f.gradient(self.y, out=self.gradient_update)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/functions/LeastSquares.py", line 103, in gradient
+    self.A.adjoint(tmp, out = out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/ProjectionOperator.py", line 179, in adjoint
+    return self.operator.adjoint(DATA, out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/AstraProjector3D.py", line 95, in adjoint
+    temp= self.bp.get_output(out = out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/processors.py", line 119, in get_output
+    out = self.process(out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/AstraBackProjector3D.py", line 108, in process
+    self.create_backprojection3d_gpu( data_temp, self.proj_geom, self.vol_geom, False, rec_id)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/AstraBackProjector3D.py", line 163, in create_backprojection3d_gpu
+    algorithm.run(alg_id)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/algorithm.py", line 47, in run
+    return a.run(i,iterations)
+KeyboardInterrupt
+  8%|▊         | 15/200 [00:39<08:02,  2.61s/it, objective=1.18e+9]
+Terminated
+Loaded module: cuda/11.8
+  0%|          | 0/200 [00:00<?, ?it/s]  0%|          | 1/200 [00:02<08:19,  2.51s/it, objective=1.35e+9]  1%|          | 2/200 [00:04<08:09,  2.47s/it, objective=1.3e+9]   2%|▏         | 3/200 [00:07<08:08,  2.48s/it, objective=1.26e+9]  2%|▏         | 4/200 [00:09<08:04,  2.47s/it, objective=1.23e+9]  2%|▎         | 5/200 [00:12<08:01,  2.47s/it, objective=1.22e+9]  3%|▎         | 6/200 [00:14<07:54,  2.45s/it, objective=1.21e+9]  4%|▎         | 7/200 [00:17<07:49,  2.43s/it, objective=1.2e+9]   4%|▍         | 8/200 [00:19<07:44,  2.42s/it, objective=1.2e+9]  4%|▍         | 9/200 [00:21<07:42,  2.42s/it, objective=1.19e+9]  5%|▌         | 10/200 [00:24<07:42,  2.43s/it, objective=1.19e+9]  6%|▌         | 11/200 [00:26<07:39,  2.43s/it, objective=1.19e+9]  6%|▌         | 12/200 [00:29<07:48,  2.49s/it, objective=1.18e+9]  6%|▋         | 13/200 [00:31<07:45,  2.49s/it, objective=1.18e+9]  7%|▋         | 14/200 [00:34<07:44,  2.50s/it, objective=1.18e+9]  8%|▊         | 15/200 [00:37<07:43,  2.51s/it, objective=1.18e+9]  8%|▊         | 16/200 [00:39<07:38,  2.49s/it, objective=1.18e+9]  8%|▊         | 17/200 [00:41<07:35,  2.49s/it, objective=1.18e+9]  9%|▉         | 18/200 [00:44<07:32,  2.49s/it, objective=1.18e+9] 10%|▉         | 19/200 [00:46<07:31,  2.49s/it, objective=1.18e+9] 10%|█         | 20/200 [00:49<07:26,  2.48s/it, objective=1.18e+9] 10%|█         | 21/200 [00:51<07:25,  2.49s/it, objective=1.18e+9] 11%|█         | 22/200 [00:54<07:22,  2.49s/it, objective=1.18e+9] 12%|█▏        | 23/200 [00:56<07:23,  2.51s/it, objective=1.18e+9] 12%|█▏        | 24/200 [00:59<07:26,  2.54s/it, objective=1.18e+9] 12%|█▎        | 25/200 [01:01<07:17,  2.50s/it, objective=1.17e+9] 13%|█▎        | 26/200 [01:04<07:09,  2.47s/it, objective=1.17e+9] 14%|█▎        | 27/200 [01:06<07:06,  2.46s/it, objective=1.17e+9] 14%|█▍        | 28/200 [01:09<07:00,  2.44s/it, objective=1.17e+9] 14%|█▍        | 29/200 [01:11<06:55,  2.43s/it, objective=1.17e+9] 15%|█▌        | 30/200 [01:14<06:52,  2.43s/it, objective=1.17e+9] 16%|█▌        | 31/200 [01:16<06:51,  2.43s/it, objective=1.17e+9] 16%|█▌        | 32/200 [01:18<06:47,  2.43s/it, objective=1.17e+9] 16%|█▋        | 33/200 [01:21<06:44,  2.42s/it, objective=1.17e+9] 17%|█▋        | 34/200 [01:23<06:41,  2.42s/it, objective=1.17e+9] 18%|█▊        | 35/200 [01:26<06:40,  2.43s/it, objective=1.17e+9] 18%|█▊        | 36/200 [01:28<06:37,  2.42s/it, objective=1.17e+9] 18%|█▊        | 37/200 [01:31<06:34,  2.42s/it, objective=1.17e+9] 19%|█▉        | 38/200 [01:33<06:33,  2.43s/it, objective=1.17e+9] 20%|█▉        | 39/200 [01:35<06:35,  2.46s/it, objective=1.17e+9] 20%|██        | 40/200 [01:38<06:35,  2.47s/it, objective=1.17e+9] 20%|██        | 41/200 [01:40<06:33,  2.47s/it, objective=1.17e+9] 21%|██        | 42/200 [01:43<06:29,  2.47s/it, objective=1.17e+9] 22%|██▏       | 43/200 [01:45<06:27,  2.47s/it, objective=1.17e+9] 22%|██▏       | 44/200 [01:48<06:24,  2.47s/it, objective=1.17e+9] 22%|██▎       | 45/200 [01:50<06:20,  2.46s/it, objective=1.17e+9] 23%|██▎       | 46/200 [01:53<06:18,  2.46s/it, objective=1.17e+9] 24%|██▎       | 47/200 [01:55<06:15,  2.45s/it, objective=1.17e+9] 24%|██▍       | 48/200 [01:58<06:12,  2.45s/it, objective=1.17e+9] 24%|██▍       | 49/200 [02:00<06:10,  2.45s/it, objective=1.17e+9] 25%|██▌       | 50/200 [02:03<06:06,  2.44s/it, objective=1.17e+9] 26%|██▌       | 51/200 [02:05<06:07,  2.47s/it, objective=1.17e+9] 26%|██▌       | 52/200 [02:08<06:05,  2.47s/it, objective=1.17e+9] 26%|██▋       | 53/200 [02:10<06:06,  2.49s/it, objective=1.17e+9] 27%|██▋       | 54/200 [02:12<06:01,  2.48s/it, objective=1.17e+9] 28%|██▊       | 55/200 [02:15<05:58,  2.47s/it, objective=1.17e+9] 28%|██▊       | 56/200 [02:18<06:00,  2.50s/it, objective=1.17e+9] 28%|██▊       | 57/200 [02:20<05:55,  2.49s/it, objective=1.17e+9] 29%|██▉       | 58/200 [02:22<05:52,  2.48s/it, objective=1.17e+9] 30%|██▉       | 59/200 [02:25<05:50,  2.49s/it, objective=1.17e+9] 30%|███       | 60/200 [02:28<05:53,  2.52s/it, objective=1.17e+9] 30%|███       | 61/200 [02:30<05:49,  2.51s/it, objective=1.17e+9] 31%|███       | 62/200 [02:33<05:47,  2.51s/it, objective=1.17e+9] 32%|███▏      | 63/200 [02:35<05:44,  2.51s/it, objective=1.17e+9] 32%|███▏      | 64/200 [02:38<05:41,  2.51s/it, objective=1.17e+9] 32%|███▎      | 65/200 [02:40<05:38,  2.51s/it, objective=1.17e+9] 33%|███▎      | 66/200 [02:43<05:33,  2.49s/it, objective=1.17e+9] 34%|███▎      | 67/200 [02:45<05:31,  2.49s/it, objective=1.17e+9] 34%|███▍      | 68/200 [02:48<05:32,  2.52s/it, objective=1.17e+9] 34%|███▍      | 69/200 [02:50<05:28,  2.51s/it, objective=1.17e+9] 35%|███▌      | 70/200 [02:53<05:26,  2.52s/it, objective=1.17e+9] 36%|███▌      | 71/200 [02:55<05:21,  2.49s/it, objective=1.17e+9] 36%|███▌      | 72/200 [02:58<05:22,  2.52s/it, objective=1.17e+9] 36%|███▋      | 73/200 [03:00<05:17,  2.50s/it, objective=1.17e+9] 37%|███▋      | 74/200 [03:03<05:12,  2.48s/it, objective=1.17e+9] 38%|███▊      | 75/200 [03:05<05:10,  2.49s/it, objective=1.17e+9] 38%|███▊      | 76/200 [03:08<05:07,  2.48s/it, objective=1.17e+9] 38%|███▊      | 77/200 [03:10<05:02,  2.46s/it, objective=1.17e+9] 39%|███▉      | 78/200 [03:12<05:00,  2.47s/it, objective=1.17e+9] 40%|███▉      | 79/200 [03:15<04:59,  2.48s/it, objective=1.17e+9] 40%|████      | 80/200 [03:17<05:01,  2.51s/it, objective=1.17e+9] 40%|████      | 81/200 [03:20<04:55,  2.48s/it, objective=1.17e+9] 41%|████      | 82/200 [03:22<04:54,  2.50s/it, objective=1.17e+9] 42%|████▏     | 83/200 [03:25<04:50,  2.48s/it, objective=1.17e+9] 42%|████▏     | 84/200 [03:28<04:57,  2.56s/it, objective=1.17e+9] 42%|████▎     | 85/200 [03:30<04:48,  2.51s/it, objective=1.17e+9] 43%|████▎     | 86/200 [03:32<04:44,  2.50s/it, objective=1.17e+9] 44%|████▎     | 87/200 [03:35<04:40,  2.48s/it, objective=1.17e+9] 44%|████▍     | 88/200 [03:37<04:39,  2.50s/it, objective=1.17e+9] 44%|████▍     | 89/200 [03:40<04:36,  2.49s/it, objective=1.17e+9] 45%|████▌     | 90/200 [03:42<04:33,  2.48s/it, objective=1.17e+9] 46%|████▌     | 91/200 [03:45<04:30,  2.48s/it, objective=1.17e+9] 46%|████▌     | 92/200 [03:47<04:31,  2.52s/it, objective=1.17e+9] 46%|████▋     | 93/200 [03:50<04:30,  2.52s/it, objective=1.17e+9]Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_XA.py", line 304, in recon_TV_multi
+    reconstructor.run(N_iter)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 270, in run
+    for _ in zip(iters, self):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 111, in __next__
+    self.update_objective()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/FISTA.py", line 216, in update_objective
+    self.loss.append(self.calculate_objective_function_at_point(self.x_old))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/FISTA.py", line 228, in calculate_objective_function_at_point
+    return self.f(x) + self.g(x)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/functions/LeastSquares.py", line 74, in __call__
+    y = self.A.direct(x)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/ProjectionOperator.py", line 161, in direct
+    return self.operator.direct(IM, out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/AstraProjector3D.py", line 73, in direct
+    temp= self.fp.get_output(out = out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/processors.py", line 119, in get_output
+    out = self.process(out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/AstraForwardProjector3D.py", line 101, in process
+    sinogram_id, arr_out = astra.create_sino3d_gpu(data_temp,
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/creators.py", line 445, in create_sino3d_gpu
+    algorithm.run(alg_id)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/algorithm.py", line 47, in run
+    return a.run(i,iterations)
+KeyboardInterrupt
+ 46%|████▋     | 93/200 [03:53<04:28,  2.51s/it, objective=1.17e+9]
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/bin/conda", line 12, in <module>
+    from conda.cli import main
+  File "/zhome/71/c/146676/miniconda3/lib/python3.12/site-packages/conda/cli/__init__.py", line 3, in <module>
+    from .main import main  # NOQA
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/71/c/146676/miniconda3/lib/python3.12/site-packages/conda/cli/main.py", line 7, in <module>
+    from ..deprecations import deprecated
+  File "/zhome/71/c/146676/miniconda3/lib/python3.12/site-packages/conda/deprecations.py", line 9, in <module>
+    from argparse import Action
+  File "/zhome/71/c/146676/miniconda3/lib/python3.12/argparse.py", line 1742, in <module>
+    class ArgumentParser(_AttributeHolder, _ActionsContainer):
+KeyboardInterrupt
+Loaded module: cuda/11.8
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [01:28<1:11:59, 88.15s/it, objective=8.32e+10]  4%|▍         | 2/50 [02:56<1:10:42, 88.38s/it, objective=7.56e+10]  6%|▌         | 3/50 [04:25<1:09:16, 88.44s/it, objective=7.11e+10]  8%|▊         | 4/50 [05:53<1:07:48, 88.44s/it, objective=6.86e+10] 10%|█         | 5/50 [07:21<1:06:12, 88.27s/it, objective=6.72e+10] 12%|█▏        | 6/50 [08:50<1:04:46, 88.32s/it, objective=6.64e+10]Terminated
+Loaded module: cuda/11.8
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_XA.py", line 280, in recon_TV_multi
+    data_batch[i] = tifffile.imread(read_path[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1281, in imread
+    return tif.asarray(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4570, in asarray
+    result = self.filehandle.read_array(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15018, in read_array
+    n = self._fh.readinto(result)  # type: ignore[attr-defined]
+KeyboardInterrupt
+/zhome/71/c/146676/.lsbatch/1737552273.23814694.1.shell: line 4: N_batches: command not found
+Loaded module: cuda/11.8
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:46<38:07, 46.69s/it, objective=4.51e+10]  4%|▍         | 2/50 [01:33<37:21, 46.69s/it, objective=4.06e+10]Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_XA.py", line 308, in recon_TV_multi
+    reconstructor.run(N_iter)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 270, in run
+    for _ in zip(iters, self):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/Algorithm.py", line 102, in __next__
+    self.update()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/algorithms/FISTA.py", line 336, in update
+    self.f.gradient(self.y, out=self.gradient_update)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/optimisation/functions/LeastSquares.py", line 99, in gradient
+    tmp = self.A.direct(x)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/ProjectionOperator.py", line 161, in direct
+    return self.operator.direct(IM, out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/operators/AstraProjector3D.py", line 73, in direct
+    temp= self.fp.get_output(out = out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/processors.py", line 119, in get_output
+    out = self.process(out=out)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/astra/processors/AstraForwardProjector3D.py", line 101, in process
+    sinogram_id, arr_out = astra.create_sino3d_gpu(data_temp,
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/creators.py", line 445, in create_sino3d_gpu
+    algorithm.run(alg_id)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/astra/algorithm.py", line 47, in run
+    return a.run(i,iterations)
+KeyboardInterrupt
+  4%|▍         | 2/50 [01:40<40:23, 50.48s/it, objective=4.06e+10]
+Loaded module: cuda/11.8
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [01:49<1:29:09, 109.17s/it, objective=1e+11]  4%|▍         | 2/50 [03:38<1:27:25, 109.28s/it, objective=9.16e+10]  6%|▌         | 3/50 [05:28<1:25:41, 109.40s/it, objective=8.63e+10]  8%|▊         | 4/50 [07:17<1:23:49, 109.35s/it, objective=8.34e+10] 10%|█         | 5/50 [09:06<1:21:50, 109.12s/it, objective=8.17e+10] 12%|█▏        | 6/50 [10:54<1:19:58, 109.05s/it, objective=8.07e+10] 14%|█▍        | 7/50 [12:43<1:18:08, 109.04s/it, objective=8e+10]    16%|█▌        | 8/50 [14:33<1:16:31, 109.33s/it, objective=7.95e+10] 18%|█▊        | 9/50 [16:23<1:14:47, 109.46s/it, objective=7.91e+10] 20%|██        | 10/50 [18:13<1:13:01, 109.54s/it, objective=7.88e+10] 22%|██▏       | 11/50 [20:03<1:11:12, 109.56s/it, objective=7.86e+10] 24%|██▍       | 12/50 [21:52<1:09:19, 109.47s/it, objective=7.84e+10] 26%|██▌       | 13/50 [23:41<1:07:26, 109.35s/it, objective=7.83e+10] 28%|██▊       | 14/50 [25:30<1:05:38, 109.39s/it, objective=7.81e+10] 30%|███       | 15/50 [27:21<1:04:02, 109.78s/it, objective=7.8e+10] 

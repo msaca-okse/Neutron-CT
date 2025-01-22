@@ -1,0 +1,128 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23815403: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Jan 22 15:01:51 2025
+Job was executed on host(s) <4*n-62-11-51>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Jan 22 15:01:52 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Wed Jan 22 15:01:52 2025
+Terminated at Wed Jan 22 15:01:57 2025
+Results reported at Wed Jan 22 15:01:57 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 32000
+#BSUB -R "rusage[mem=32000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 24:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrate_XA_NA.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.50 sec.
+    Max Memory :                                 1 MB
+    Average Memory :                             1.00 MB
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               127999.00 MB
+    Max Swap :                                   -
+    Max Processes :                              1
+    Max Threads :                                1
+    Run time :                                   84 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23816331: <Registration> in cluster <dcc> Exited
+
+Job <Registration> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Jan 22 15:03:06 2025
+Job was executed on host(s) <4*n-62-11-51>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Jan 22 15:03:07 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Wed Jan 22 15:03:07 2025
+Terminated at Wed Jan 22 15:03:12 2025
+Results reported at Wed Jan 22 15:03:12 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Registration
+# -- choose queue --
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 32000
+#BSUB -R "rusage[mem=32000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 24:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+python registrate_XA_NA.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.89 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     128000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   75 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

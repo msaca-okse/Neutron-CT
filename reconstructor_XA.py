@@ -6,22 +6,29 @@ import numpy as np
 try:
     alpha = float(os.getenv("ALPHA"))
 except:
+    print('Using default alpha!')
     alpha = 150
 
 try:
     stride = int(os.getenv("STRIDE"))
 except:
+    print('Using default stride')
     stride = 200
-
-try:
-    num_proc = int(os.getenv("NUM_PROC"))
-except:
-    num_proc = 1
 
 try:
     N_iter = int(os.getenv("N_ITER"))
 except:
+    print('Using default N_iter')
     N_iter = 200
+
+try:
+    print('Using default N_batches')
+    n_batches = int(os.getenv("N_batches"))
+except:
+    n_batches = 10
+
+
+folder  = [int(os.getenv("FOLDER"))]
 
 path_to_add = '/zhome/71/c/146676/Desktop/msaca/main/'
 sys.path.append(path_to_add)
@@ -74,12 +81,12 @@ def recon_FBP_single(batch_id):
 
 
         subslices = np.arange(0,N_slices, stride)
-        base_size = len(subslices) // num_proc
-        remainder = len(subslices) % num_proc
-        # Split the array into num_proc parts
+        base_size = len(subslices) // n_batches
+        remainder = len(subslices) % n_batches
+        # Split the array into n_batches parts
         split_arr = []
         start_idx = 0
-        for i in range(num_proc):
+        for i in range(n_batches):
             # For the first N-1 parts, add an extra element if there's a remainder
             end_idx = start_idx + base_size + (1 if i < remainder else 0)
             split_arr.append(subslices[start_idx:end_idx])
@@ -121,12 +128,12 @@ def recon_FBP_multi(batch_id):
         N_slices = ma.find_largest_number(path_cache_sino)
 
         subslices = np.arange(0,N_slices, stride)
-        base_size = len(subslices) // num_proc
-        remainder = len(subslices) % num_proc
-        # Split the array into num_proc parts
+        base_size = len(subslices) // n_batches
+        remainder = len(subslices) % n_batches
+        # Split the array into n_batches parts
         split_arr = []
         start_idx = 0
-        for i in range(num_proc):
+        for i in range(n_batches):
             # For the first N-1 parts, add an extra element if there's a remainder
             end_idx = start_idx + base_size + (1 if i < remainder else 0)
             split_arr.append(subslices[start_idx:end_idx])
@@ -184,12 +191,12 @@ def recon_TV_single(batch_id):
 
 
         subslices = np.arange(0,N_slices, stride)
-        base_size = len(subslices) // num_proc
-        remainder = len(subslices) % num_proc
-        # Split the array into num_proc parts
+        base_size = len(subslices) // n_batches
+        remainder = len(subslices) % n_batches
+        # Split the array into n_batches parts
         split_arr = []
         start_idx = 0
-        for i in range(num_proc):
+        for i in range(n_batches):
             # For the first N-1 parts, add an extra element if there's a remainder
             end_idx = start_idx + base_size + (1 if i < remainder else 0)
             split_arr.append(subslices[start_idx:end_idx])
@@ -242,16 +249,19 @@ def recon_TV_multi(batch_id):
         print('Nslices',N_slices)
 
         subslices = np.arange(0,N_slices, stride)
-        base_size = len(subslices) // num_proc
-        remainder = len(subslices) % num_proc
-        # Split the array into num_proc parts
+        base_size = len(subslices) // n_batches
+        remainder = len(subslices) % n_batches
+        # Split the array into n_batches parts
         split_arr = []
         start_idx = 0
-        for i in range(num_proc):
+        for i in range(n_batches):
             # For the first N-1 parts, add an extra element if there's a remainder
             end_idx = start_idx + base_size + (1 if i < remainder else 0)
-            split_arr.append(subslices[start_idx:end_idx])
+            cor_start_idx = max(0,start_idx-10)
+            cor_end_idx = min(end_idx + 10, N_slices)
+            split_arr.append(subslices[cor_start_idx:cor_end_idx])
             start_idx = end_idx
+
 
         read_path = ma.generate_paths(path_cache_sino, [0])
         image = tifffile.imread(read_path[0])
@@ -261,19 +271,22 @@ def recon_TV_multi(batch_id):
         print('Initiating batch TV reconstruction from saved sinograms')
         batch = split_arr[batch_id-1]
         read_path = ma.generate_paths(path_cache_sino, batch)
-        write_path_TV = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',batch)
+        in_path = save_folder_tv + 'slice_tv' + str(batch_id) + '_####.tiff'
+        write_path_TV = ma.generate_paths(in_path,batch)
         data_batch = np.empty((len(batch), N_angles, N_pixels), dtype = np.float32)
+
+
+        print('n_batches',n_batches)
+        print('batch',batch)
+        print('split_arr', split_arr)
+        print('len(batch)', len(batch))
 
         start_time = time.time()
         for i in range(len(batch)):
             data_batch[i] = tifffile.imread(read_path[i])
         N_batch_slices = np.shape(data_batch)[0]
 
-        print('num_proc',num_proc)
-        print('batch',batch)
-        print('split_arr', split_arr)
-        print('len(batch)', len(batch))
-        print('N_btch_slices', N_batch_slices)
+        print('N_batch_slices', N_batch_slices)
 
         print(f"Data loading time: {(time.time()-start_time):.2f} seconds")
         start_time = time.time()

@@ -1,47 +1,76 @@
 #!/bin/bash
-# embedded options to bsub - start with #BSUB
-# -- name ---
-#BSUB -J Recon
-# -- choose queue --
-# For gpu write gpuv100
-#BSUB -q gpua40
-#BSUB -e my_job_error2.log
-#BSUB -o my_job_output2.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
-# -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 24:00 
-# -- Number of cores requested -- 
-#BSUB -n 16
-# -- Specify the distribution of the cores: on a separate nodes --
-#BSUB -R "span[hosts=1]"
-# Array job: N tasks, one per folder
-#BSUB -J folder_job[37-100]
-# -- end of LSF options -- 
+
+#BSUB -q hpc          # Specify the queue
+#BSUB -e error.log  # Top-level error log
+#BSUB -o output.log # Top-level output log
+#BSUB -M 100           # Memory (16 GB)
+#BSUB -W 24:00           # Wall time (24 hours)
+#BSUB -n 1              # Number of CPU cores
+#BSUB -R "span[hosts=1]" # Run on a single host
+#BSUB -J "Submitter"
 
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
+# Define the list of folders (1 to 7)
+folders=(1 2 3 4 5 6 7)
 
-ALPHA="150"
-NUM_PROC="100"
-STRIDE="1"
-N_ITER="120"
+# Define the number of batches per folder
+# Change this to the desired number of batches
 
-# Export variables to make them available to the Python script
-export ALPHA
-export NUM_PROC
-export STRIDE
-export N_ITER
 
-# python -c "from reconstructor_XA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
-# python -c "from reconstructor_XA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
-# python -c "from reconstructor_XA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
-python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX)"
+N_batches=4
+# Loop over each folder
+for folder in "${folders[@]}"; do
+    bsub -q gpua40 \
+         -e error.log \
+         -o output.log \
+         -M 12000 \
+         -R "rusage[mem=12000]" \
+         -W 8:00 \
+         -n 8 \
+         -R "span[hosts=1]" \
+         -J "folder_job_${folder}[1-${N_batches}]" <<EOF
+
+        # Inside the job script: access the folder and batch index
+        FOLDER=${folder}
+	N_batches=4
+	export N_batches        
+       	export FOLDER
+        # Start GPU monitoring
+	echo "Starting GPU usage monitoring..."
+	nvidia-smi --query-gpu=memory.used,memory.total --format=csv,nounits --loop-ms=1000 > gpu_usage.log &
+
+	# Capture the PID of nvidia-smi for cleanup later
+	SMIPID=$!
+
+        # Perform the processing for the current folder and batch
+        echo "Processing folder \$folder, batch \$batch_index"
+	source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+        ALPHA="150"
+	STRIDE="1"
+	N_ITER="50"
+
+	export ALPHA
+	export STRIDE
+	export N_ITER
+
+	module load cuda
+
+
+	# python -c "from reconstructor_XA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
+        # python -c "from reconstructor_XA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
+        # python -c "from reconstructor_XA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
+        python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX)"
+	kill $SMIPID
+	echo "GPU monitoring stopped. Check gpu_usage.log for details."
+
+        # Add your actual batch processing logic here
+        # For example, you could call a script to process the folder and batch:
+        # ./process_folder.sh \$folder \$batch_index
+EOF
+done
+
+# -- end of LSF options -- 
 
 
 # Estimated completion time for 100 iterations for the whole volume is 48 hours
-
-
-
-
-
