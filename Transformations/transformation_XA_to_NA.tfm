@@ -1,0 +1,15 @@
+#Insight Transform File V1.0
+#Transform 0
+Transform: CompositeTransform_double_3_3
+#Transform 1
+Transform: AffineTransform_double_3_3
+Parameters: 1 0 0 0 1 0 0 0 -1 0 0 0
+FixedParameters: 0 0 0
+#Transform 2
+Transform: Similarity3DTransform_double_3_3
+Parameters: 0.023914532558317044 0.010934222239705237 0.0014780859783226257 -0.04989537198750797 0.007289581640500102 0.014753850807382864 0.9952750279430604
+FixedParameters: 0 0 0
+#Transform 3
+Transform: Similarity3DTransform_double_3_3
+Parameters: -0.000027812274973996298 0.00008163288209901626 -0.000090143121896616 0.00015407510775767962 0.000012078099742686007 -0.00010673778351454546 0.9999922556556341
+FixedParameters: 0 0 0

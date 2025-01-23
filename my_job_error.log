@@ -1,8 +1,33 @@
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/registrate_XA_NA.py", line 6, in <module>
-    os.chdir('/zhome/71/c/146676/Desktop/msaca/main/')  # Navigate into a subdirectory
-FileNotFoundError: [Errno 2] No such file or directory: '/zhome/71/c/146676/Desktop/msaca/main/'
+  File "/zhome/71/c/146676/main/registrator.py", line 419, in <lambda>
+    registration.AddCommand(sitk.sitkIterationEvent, lambda: self.registration_callback(
+  File "/zhome/71/c/146676/main/registrator.py", line 629, in registration_callback
+    if not iteration % every_N:
+ZeroDivisionError: integer division or modulo by zero
 Traceback (most recent call last):
-  File "/zhome/71/c/146676/main/registrate_XA_NA.py", line 8, in <module>
-    import plot_library as pl
-ModuleNotFoundError: No module named 'plot_library'
+  File "/zhome/71/c/146676/main/registrate_XA_NA.py", line 122, in <module>
+  File "/zhome/71/c/146676/main/registrator.py", line 424, in register
+    registration.Execute(fixed_d, moving_d)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/SimpleITK/SimpleITK.py", line 10948, in Execute
+    val = _SimpleITK.ImageRegistrationMethod_Execute(self, fixed, moving)
+RuntimeError: Exception thrown in SimpleITK ImageRegistrationMethod_Execute: /tmp/SimpleITK/Wrapping/Python/sitkPyCommand.cxx:131:
+sitk::ERROR: There was an error executing the Python Callable.
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/registrate_XA_to_NA.py", line 194, in <module>
+    with open(readme_name, "w") as readme:
+FileNotFoundError: [Errno 2] No such file or directory: "'/zhome/71/c/146676/main/Transformations/README_registrate_XA_to_NA.txt"
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/registrate_XA_to_NA.py", line 33, in <module>
+    recon_XA = pool.map(loader, paths_XA)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 768, in get
+    self.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 765, in wait
+    self._event.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 607, in wait
+    signaled = self._cond.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt
+/zhome/71/c/146676/.lsbatch/1737642765.23847527.shell: line 21: 1174666 Killed                  python registrate_XA_to_NA.py

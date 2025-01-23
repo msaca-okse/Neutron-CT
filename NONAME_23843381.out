@@ -1,0 +1,38 @@
+/bin/bash: line 1: ./jobscript_registrate.sh: Permission denied
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23843381: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Thu Jan 23 13:34:14 2025
+Job was executed on host(s) <n-62-21-99>, in queue <hpc>, as user <msaca> in cluster <dcc> at Thu Jan 23 13:34:15 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Thu Jan 23 13:34:15 2025
+Terminated at Thu Jan 23 13:34:16 2025
+Results reported at Thu Jan 23 13:34:16 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+jobscript_registrate.sh
+------------------------------------------------------------
+
+Exited with exit code 126.
+
+Resource usage summary:
+
+    CPU time :                                   0.78 sec.
+    Max Memory :                                 1 MB
+    Average Memory :                             1.00 MB
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               1023.00 MB
+    Max Swap :                                   -
+    Max Processes :                              1
+    Max Threads :                                1
+    Run time :                                   95 sec.
+    Turnaround time :                            2 sec.
+
+The output (if any) is above this job summary.
+

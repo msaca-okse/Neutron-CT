@@ -36,32 +36,30 @@ for folder in "${folders[@]}"; do
 	N_batches=4
 	export N_batches        
        	export FOLDER
+	export BATCH_ID=\$LSB_JOBINDEX
         # Start GPU monitoring
 	echo "Starting GPU usage monitoring..."
 	nvidia-smi --query-gpu=memory.used,memory.total --format=csv,nounits --loop-ms=1000 > gpu_usage.log &
-
-	# Capture the PID of nvidia-smi for cleanup later
-	SMIPID=$!
-
+	MONITOR_PID=\$!
         # Perform the processing for the current folder and batch
         echo "Processing folder \$folder, batch \$batch_index"
 	source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
-        ALPHA="150"
+        ALPHA="120"
 	STRIDE="1"
 	N_ITER="50"
 
 	export ALPHA
 	export STRIDE
 	export N_ITER
-
+	export LSB_JOBINDEX
 	module load cuda
 
 
 	# python -c "from reconstructor_XA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
         # python -c "from reconstructor_XA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
         # python -c "from reconstructor_XA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
-        python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX)"
-	kill $SMIPID
+        python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi()"
+	kill \$MONITOR_PID
 	echo "GPU monitoring stopped. Check gpu_usage.log for details."
 
         # Add your actual batch processing logic here
