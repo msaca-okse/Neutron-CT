@@ -68,7 +68,7 @@ def load_registered_data(compression = 1,dataset='tv'):
 
 
 
-def load_subset_of_registered_data(compression = 1, dataset='tv', xray_slices = None, neutron_slices = None, output_volume = None):
+def load_subset_of_registered_data(compression = 1, dataset='tv', h = 1, xray_slices = None, neutron_slices = None, output_volume = None):
     global compression_v 
     compression_v = compression
     # Load the images
@@ -91,8 +91,8 @@ def load_subset_of_registered_data(compression = 1, dataset='tv', xray_slices = 
     recon_XA_A = np.zeros((N_xray, ny_xray, nx_xray))
     recon_XA_A[xray_slices] = recon_XA_B
 
-    #path_NA = '/dtu-compute/msaca/output/tv_recon/slice_tv_####.tiff'
-    path_NA = '/dtu-compute/msaca/output/fbp_recon/slice_fbp_####.tiff'
+    path_NA = '/dtu-compute/msaca/output/tv_recon/slice_tv_####.tiff'
+    #path_NA = '/dtu-compute/msaca/output/fbp_recon/slice_fbp_####.tiff'
     A = np.arange(0, 1788)
     paths_NA = ma.generate_paths(path_NA, A)
     N_neutron = len(paths_NA)
@@ -111,6 +111,7 @@ def load_subset_of_registered_data(compression = 1, dataset='tv', xray_slices = 
     # Initialice the registrator class and set thresholds
     reg = registrator.Registrator()
     reg.load_images(fixed_array=recon_NA_A,moving_array=recon_XA_A)
+    reg.fixed = scale_volume(reg.fixed, h)
     path = 'transformation_XA_to_NA_compression' + '1' + '.tfm'
     transform = sitk.ReadTransform(path)
     reg.resample(transform,ignore_flag = True)
@@ -123,8 +124,8 @@ def load_subset_of_registered_data(compression = 1, dataset='tv', xray_slices = 
     if temp[2][0] is None:
         temp[2] = [0, nx_neutron]
 
-    start_index = [temp[2][0], temp[1][0], temp[0][0]]
-    end_index = [temp[2][1]-1, temp[1][1]-1, temp[0][1]-1]
+    start_index = [int(h*temp[2][0]), int(h*temp[1][0]), int(h*temp[0][0])]
+    end_index = [int(h*temp[2][1]), int(h*temp[1][1]), int(h*temp[0][1])]
     # Calculate the size for the RegionOfInterest filter
     size = [end - start for start, end in zip(start_index, end_index)]
     # Use the RegionOfInterest filter to extract the subimage
@@ -134,3 +135,51 @@ def load_subset_of_registered_data(compression = 1, dataset='tv', xray_slices = 
     reg.fixed = roi_filter.Execute(reg.fixed)
     reg.moving = roi_filter.Execute(reg.moving)
     return reg
+
+
+
+
+
+
+
+
+
+
+
+
+def scale_volume(image, h):
+    """
+    Scales a volume by a factor h using SimpleITK.
+    
+    Parameters:
+        image (sitk.Image): The input image to scale.
+        h (float): Scaling factor (h > 0).
+    
+    Returns:
+        sitk.Image: The scaled image.
+    """
+    assert h > 0, "Scaling factor h must be a positive number."
+
+    # Get original image metadata
+    original_size = image.GetSize()
+    original_spacing = image.GetSpacing()
+    original_origin = image.GetOrigin()
+    original_direction = image.GetDirection()
+
+    # Compute new size and spacing
+    new_size = [int(dim * h) for dim in original_size]
+    new_spacing = [sp / h for sp in original_spacing]
+
+    # Set up the resampler
+    resampler = sitk.ResampleImageFilter()
+    resampler.SetSize(new_size)
+    resampler.SetOutputSpacing(new_spacing)
+    resampler.SetOutputOrigin(original_origin)
+    resampler.SetOutputDirection(original_direction)
+    resampler.SetInterpolator(sitk.sitkLinear)  # Use linear interpolation (adjust as needed)
+    resampler.SetTransform(sitk.Transform())  # Identity transform
+
+    # Resample the image
+    scaled_image = resampler.Execute(image)
+    
+    return scaled_image
