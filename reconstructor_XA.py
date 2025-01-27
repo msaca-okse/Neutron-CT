@@ -10,6 +10,13 @@ except:
     alpha = 150
 
 try:
+    beta = float(os.getenv("BETA"))
+except:
+    print('Using default beta!')
+    beta = 1
+
+
+try:
     stride = int(os.getenv("STRIDE"))
 except:
     print('Using default stride')
@@ -55,7 +62,7 @@ from cil.optimisation.functions import IndicatorBox, MixedL21Norm, L2NormSquared
                                        OperatorCompositionFunction, TotalVariation, \
                                        ZeroFunction
 from cil.optimisation.operators import BlockOperator, GradientOperator,\
-                                       GradientOperator
+                                       GradientOperator, IdentityOperator
 from cil.processors import PaganinProcessor, Slicer
 
 ############
@@ -76,10 +83,10 @@ from cil.processors import PaganinProcessor, Slicer
 generic_pc = '/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_###.'
 generic_pcs = ma.generate_paths(generic_pc,[folder])
 
-generic_f_fbp ='/dtu-compute/msaca/sliceA_xray_pc/output/fbp_recon/r_###.'
+generic_f_fbp ='/dtu-compute/msaca/sliceA_xray_pc/output2/fbp_recon/r_###.'
 generic_f_fbps = ma.generate_paths(generic_f_fbp,[folder])
 
-generic_f_tv = '/dtu-compute/msaca/sliceA_xray_pc/output/tv_recon/r_###.'
+generic_f_tv = '/dtu-compute/msaca/sliceA_xray_pc/output2/tv_recon/r_###.'
 generic_f_tvs = ma.generate_paths(generic_f_tv,[folder])
 
 
@@ -244,7 +251,7 @@ def recon_TV_single(batch_id):
             A = ProjectionOperator(ig2D,ag2D,device)
             b = data2D
             F = LeastSquares(A,b)
-            G = alpha*FGP_TV(device='gpu', nonnegativity=True)
+            G = alpha*FGP_TV(device='gpu', nonnegativity=True) + beta*
             reconstructor = FISTA(f=F, g=G, initial=initial)
             reconstructor.run(N_iter)
             recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
@@ -315,7 +322,8 @@ def recon_TV_multi():
     A = ProjectionOperator(ig_batch,ag_batch,device)
     b = data_batch
     F = LeastSquares(A,b)
-    G = alpha*FGP_TV(device='gpu',nonnegativity=True)
+    L = IdentityOperator(ig_batch)
+    G = alpha*FGP_TV(device='gpu',nonnegativity=True) + beta*L
     reconstructor = FISTA(f=F, g=G, initial=initial)
     reconstructor.run(N_iter)
     recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
