@@ -251,7 +251,7 @@ def recon_TV_single(batch_id):
             A = ProjectionOperator(ig2D,ag2D,device)
             b = data2D
             F = LeastSquares(A,b)
-            G = alpha*FGP_TV(device='gpu', nonnegativity=True) + beta*
+            G = alpha*FGP_TV(device='gpu', nonnegativity=True)
             reconstructor = FISTA(f=F, g=G, initial=initial)
             reconstructor.run(N_iter)
             recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)

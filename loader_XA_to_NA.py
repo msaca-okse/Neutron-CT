@@ -23,14 +23,14 @@ def loader_XA(path):
 def loader_NA(path):
     return tifffile.imread(path)[:1600,:1600]
 
-def load_registered_data(compression = 1,dataset='tv'):
+def load_registered_data(compression = 1,dataset_XA='tv', dataset_NA = 'tv'):
     global compression_v 
     compression_v = compression
     # Load the images
-    if dataset == 'tv':
+    if dataset_XA == 'tv':
         paths_XA = stitcher_XA.generate_batch_stitched_paths(dataset = 'tv', folders = [1,2,3,4,5],
             start_indices = [300, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 788])
-    elif dataset == 'fbp':
+    elif dataset_XA == 'fbp':
         paths_XA = stitcher_XA.generate_stitched_paths(dataset = 'fbp', folders = [1,2,3,4,5],
             start_indices = [300, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 788])[::compression_v]
 
@@ -43,8 +43,11 @@ def load_registered_data(compression = 1,dataset='tv'):
     recon_XA = np.stack(recon_XA)
     recon_XA = np.clip(recon_XA, a_min = -0.1, a_max = 0.1)
 
-    #path_NA = '/dtu-compute/msaca/output/tv_recon/slice_tv_####.tiff'
-    path_NA = '/dtu-compute/msaca/output/fbp_recon/slice_fbp_####.tiff'
+    if dataset_NA == 'fbp':
+        path_NA = '/dtu-compute/msaca/output/fbp_recon/slice_fbp_####.tiff'
+    elif dataset_NA == 'tv':
+        path_NA = '/dtu-compute/msaca/output/tv_recon/slice_tv_####.tiff'
+
     A = np.arange(0, 1788)
     paths_NA = ma.generate_paths(path_NA, A)
 

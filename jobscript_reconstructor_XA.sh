@@ -12,13 +12,13 @@
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 # Define the list of folders (1 to 7)
-folders=(2)
+folders=(1 2 3 4 5 6 7)
 
 # Define the number of batches per folder
 # Change this to the desired number of batches
 
 
-N_batches=1
+N_batches=4
 # Loop over each folder
 for folder in "${folders[@]}"; do
     bsub -q gpua40 \
@@ -33,7 +33,7 @@ for folder in "${folders[@]}"; do
 
         # Inside the job script: access the folder and batch index
         FOLDER=${folder}
-	N_batches=20
+	N_batches=4
 	export N_batches        
        	export FOLDER
 	export BATCH_ID=\$LSB_JOBINDEX

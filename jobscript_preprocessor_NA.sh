@@ -10,7 +10,7 @@
 #BSUB -M 10000
 #BSUB -R "rusage[mem=10000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
-#BSUB -W 1:00 
+#BSUB -W 4:00 
 # -- Number of cores requested -- 
 #BSUB -n 12
 # -- Specify the distribution of the cores: on a separate nodes --
@@ -32,7 +32,7 @@ export DECNUM
 export WNAME
 export SIGMA
 
-python tiff_plotter.py
+python preprocessor_NA.py
 
 
 

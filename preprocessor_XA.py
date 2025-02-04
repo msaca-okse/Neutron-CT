@@ -56,9 +56,6 @@ for folder_idx in range(len(folders)):
     path_dark = '/dark/dark.tiff'
     path_obeam = '/obeam/refHST6000.tiff'
     path_postfix = generic_fns[folder_idx][:-1] + '_####.tiff'
-    print(path_cache)
-    print(path_dark)
-    print(path_postfix)
 
 
     start_time = time.time()

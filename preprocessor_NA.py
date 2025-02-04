@@ -9,11 +9,36 @@ import numpy as np
 from cil.processors import Slicer
 
 
-th = float(os.getenv("THRESHOLD"))
-size = int(os.getenv("SIZE"))
-decNum = int(os.getenv("DECNUM"))
-wname = int(os.getenv("WNAME"))
-sigma = float(os.getenv("SIGMA"))
+try:
+    th = float(os.getenv("THRESHOLD"))
+except:
+    print('Using default threshold!')
+    th = 0.5
+
+try:
+    size = float(os.getenv("SIZE"))
+except:
+    print('Using default size!')
+    size = 7
+
+try:
+    decNum = float(os.getenv("DECNUM"))
+except:
+    print('Using default decnum!')
+    decNum = 5
+
+try:
+    wname = float(os.getenv("WNAME"))
+except:
+    print('Using default wname!')
+    wname = 10
+
+try:
+    sigma = float(os.getenv("SIGMA"))
+except:
+    print('Using default sigma!')
+    sigma = 0.3
+
 plot = False
 skip = 100
 fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/A_rec_slice'
@@ -77,7 +102,8 @@ with Pool() as pool:
 # Convert list of arrays to a single array, assuming the arrays are of the same shape
 ob = np.stack(ob_data)
 ob = np.mean(ob, axis=0)
-ob = ob[50:1910,:2060]
+#ob = ob[50:1910,:2060]
+ob = ob[50:1910,90:1970]
 
 path = '/dtu-compute/msaca/sliceA_neutron_psi/DC/DC_#####.fits'
 A = range(1,31)
@@ -90,7 +116,8 @@ with Pool() as pool:
 # Convert list of arrays to a single array, assuming the arrays are of the same shape
 dc = np.stack(dc_data)
 dc = np.mean(dc, axis=0)
-dc = dc[50:1910,:2060]
+#dc = dc[50:1910,:2060]
+dc = dc[50:1910,90:1970]
 
 end_time = time.time()
 elapsed_time = end_time - start_time
@@ -121,14 +148,15 @@ def preprocess_projection(batch_idx):
         A = [3*i-2, 3*i-1, 3*i]
         data_paths = ma.generate_paths(path, A)
         data = ma.fits_loader(data_paths)
-        data = data[:,50:1910,:2060]
+        #data = data[:,50:1910,:2060]
+        data = data[:,50:1910,90:1970]
         data = np.median(data, axis=0)
         Data.append(data)
 
     Data = np.stack(Data)    
-    Data = (-np.log((np.abs(Data-dc[np.newaxis])+1)/(1+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
-    roi = [1700,1800,1000,1100] # [y_start, y_end, x_start, x_end]
-    Means = np.mean(Data, axis=(1,2))
+    Data = (-np.log((np.abs(Data-dc[np.newaxis])+0.0001)/(0.0001+np.abs(ob[np.newaxis]-dc[np.newaxis])))).astype(np.float32)
+    roi = [1600,1700,1000,1200] # [y_start, y_end, x_start, x_end]
+    Means = np.mean(Data[:,roi[0]:roi[1], roi[2]:roi[3]], axis=(1,2))
     Data = Data-Means[:,np.newaxis, np.newaxis]
     Data = iu.morph_spot_clean(Data,th_peaks=th,th_holes=th,method=0,size = size)
 
@@ -160,7 +188,7 @@ print(f"Preprocess time: {elapsed_time:.2f} seconds")
 #
 #################################################################################
 # Add beam padding with gaussian blur
-subslices = np.arange(100, N_slices-100, skip)
+#subslices = np.arange(100, N_slices-100, skip)
 
 
 angles = np.linspace(0, 360, N_angles, endpoint=True, dtype=np.float32)
@@ -197,8 +225,8 @@ corrector.set_angles(angles = angles)
 corrector.load_data(input_data)
 corrector.set_labels()
 
-angle = 0.325
-translation = -26
+angle = 0.325 # 0.325 gives the right rotation
+translation = -26 # -26 gives the right translation
 angle_radians = np.deg2rad(angle)
 rotation_matrix = [
                 [np.cos(angle_radians),0,  -np.sin(angle_radians)],
@@ -212,7 +240,7 @@ data2 = corrector.resample(data=corrector.data, transform=transform)
 
 sinograms.set_data(data2)
 sinograms.acquisition_data(geometry=ag)
-sinograms.set_subdata(subslices=subslices)
+#sinograms.set_subdata(subslices=subslices)
 sinograms.remove_ring(subdata = False, decNum = decNum, wname  = wname, sigma = sigma)
 
 data = sinograms.data.as_array()

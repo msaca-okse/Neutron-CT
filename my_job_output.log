@@ -3219,3 +3219,668 @@ PS:
 
 Read file <my_job_error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919289: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 16:19:06 2025
+Job was executed on host(s) <12*n-62-29-34>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 16:19:06 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 16:19:06 2025
+Terminated at Tue Jan 28 16:20:49 2025
+Results reported at Tue Jan 28 16:20:49 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python tiff_plotter.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   65.80 sec.
+    Max Memory :                                 953 MB
+    Average Memory :                             953.00 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               119047.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                28
+    Run time :                                   102 sec.
+    Turnaround time :                            103 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 8.01 seconds
+Preprocess time: 198.82 seconds
+Finish Ring Remover
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919426: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 16:42:06 2025
+Job was executed on host(s) <12*n-62-12-6>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 16:42:08 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 16:42:08 2025
+Terminated at Tue Jan 28 16:54:04 2025
+Results reported at Tue Jan 28 16:54:04 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   589.83 sec.
+    Max Memory :                                 91307 MB
+    Average Memory :                             65441.14 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               28693.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                40
+    Run time :                                   834 sec.
+    Turnaround time :                            718 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.18 seconds
+Preprocess time: 146.52 seconds
+Finish Ring Remover
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919482: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 17:00:52 2025
+Job was executed on host(s) <12*n-62-29-34>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 17:00:54 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 17:00:54 2025
+Terminated at Tue Jan 28 17:12:39 2025
+Results reported at Tue Jan 28 17:12:39 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   624.28 sec.
+    Max Memory :                                 91299 MB
+    Average Memory :                             59486.86 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               28701.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                28
+    Run time :                                   705 sec.
+    Turnaround time :                            707 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.23 seconds
+Preprocess time: 146.82 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919503: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 17:20:07 2025
+Job was executed on host(s) <12*n-62-29-34>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 17:20:09 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 17:20:09 2025
+Terminated at Tue Jan 28 17:24:32 2025
+Results reported at Tue Jan 28 17:24:32 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   307.47 sec.
+    Max Memory :                                 91249 MB
+    Average Memory :                             49537.50 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               28751.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                28
+    Run time :                                   263 sec.
+    Turnaround time :                            265 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919512: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 17:24:37 2025
+Job was executed on host(s) <12*n-62-12-6>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 17:24:39 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 17:24:39 2025
+Terminated at Tue Jan 28 17:24:40 2025
+Results reported at Tue Jan 28 17:24:40 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.17 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   96 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 5.11 seconds
+Preprocess time: 1315.60 seconds
+Finish Ring Remover
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919515: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 17:29:17 2025
+Job was executed on host(s) <12*n-62-29-34>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 17:29:18 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 17:29:18 2025
+Terminated at Tue Jan 28 18:01:48 2025
+Results reported at Tue Jan 28 18:01:48 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 1:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   14890.39 sec.
+    Max Memory :                                 103363 MB
+    Average Memory :                             44904.94 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               16637.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                28
+    Run time :                                   1950 sec.
+    Turnaround time :                            1951 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 3.24 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919648: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 18:29:17 2025
+Job was executed on host(s) <12*n-62-31-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 18:29:17 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 18:29:17 2025
+Terminated at Tue Jan 28 18:35:37 2025
+Results reported at Tue Jan 28 18:35:37 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   4299.94 sec.
+    Max Memory :                                 17784 MB
+    Average Memory :                             12562.75 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               102216.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                32
+    Run time :                                   415 sec.
+    Turnaround time :                            380 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Loading time: 2.45 seconds
+Preprocess time: 754.06 seconds
+Finish Ring Remover
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 23919660: <Recon> in cluster <dcc> Done
+
+Job <Recon> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Tue Jan 28 18:36:01 2025
+Job was executed on host(s) <12*n-62-31-17>, in queue <hpc>, as user <msaca> in cluster <dcc> at Tue Jan 28 18:36:02 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main> was used as the working directory.
+Started at Tue Jan 28 18:36:02 2025
+Terminated at Tue Jan 28 18:55:56 2025
+Results reported at Tue Jan 28 18:55:56 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+THRESHOLD="0.5"
+SIZE="7"
+DECNUM="5"
+WNAME="10"
+SIGMA="0.3"
+
+# Export variables to make them available to the Python script
+export THRESHOLD
+export SIZE
+export DECNUM
+export WNAME
+export SIGMA
+
+python preprocessor_NA.py
+
+
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   9137.80 sec.
+    Max Memory :                                 91380 MB
+    Average Memory :                             45626.91 MB
+    Total Requested Memory :                     120000.00 MB
+    Delta Memory :                               28620.00 MB
+    Max Swap :                                   -
+    Max Processes :                              28
+    Max Threads :                                32
+    Run time :                                   1305 sec.
+    Turnaround time :                            1195 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

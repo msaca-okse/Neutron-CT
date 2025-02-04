@@ -4,8 +4,19 @@ import time
 import numpy as np
 
 
-alpha = float(os.getenv("ALPHA"))
-num_proc = int(os.getenv("NUM_PROC"))
+try:
+    alpha = float(os.getenv("ALPHA"))
+except:
+    print('Using default alpha!')
+    alpha = 75.0
+
+try:
+    num_proc= float(os.getenv("NUM_PROC"))
+except:
+    print('Using default NUM_PROC!')
+    num_proc = 4
+
+
 plot = False
 skip = 1
 fig_path =  '/dtu-compute/msaca/output/tilt_cor_corrector_slices/A_rec_slice'
@@ -23,7 +34,8 @@ import matplotlib.pyplot as plt
 import image_utils as iu
 import extended_data as ed
 import CTcorrector as ctc
-from cil.plugins.astra import FBP
+#from cil.plugins.astra import FBP
+from cil.recon import FBP
 from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData, BlockDataContainer
 from cil.plugins.ccpi_regularisation.functions import FGP_TV
 from cil.optimisation.functions import L2NormSquared, L1Norm, BlockFunction, MixedL21Norm, IndicatorBox, TotalVariation, LeastSquares
@@ -94,7 +106,7 @@ def recon_FBP_single(batch_id):
 
 
 
-def recon_FBP_multi(batch_id):
+def recon_FBP_multi(batch_id, output = False):
     print('Initiating batch FBP reconstruction from saved sinograms')
     batch = split_arr[batch_id-1]
     read_path = ma.generate_paths(path_cache_sino, batch)
@@ -120,9 +132,11 @@ def recon_FBP_multi(batch_id):
     ag_batch.set_angles(ag_batch.angles, initial_angle=+10)
     ig_batch = ag_batch.get_ImageGeometry()
     device = 'gpu'
-    fbp = FBP(ig_batch,ag_batch,device)
+    recon_slice_FBP = FBP(data_batch, image_geometry = ig_batch, filter='cosine', backend='astra').run().as_array().astype(np.float32)
 
-    recon_slice_FBP = fbp(data_batch).as_array().astype(np.float32)
+    #recon_slice_FBP = fbp(data_batch).as_array().astype(np.float32)
+    if output:
+        return recon_slice_FBP, data_batch
 
     print(f"Reconstruction time: {(time.time()-start_time):.2f} seconds")
     start_time = time.time()
