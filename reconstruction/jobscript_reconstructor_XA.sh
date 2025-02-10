@@ -21,7 +21,7 @@ folders=(1 2 3 4 5 6 7)
 N_batches=4
 # Loop over each folder
 for folder in "${folders[@]}"; do
-    bsub -q gpua40 \
+    bsub -q gpua10 \
          -e error.log \
          -o output.log \
          -M 12000 \
@@ -34,12 +34,14 @@ for folder in "${folders[@]}"; do
         # Inside the job script: access the folder and batch index
         FOLDER=${folder}
 	N_batches=4
-	export N_batches        
+	export N_batches=4
        	export FOLDER
 	export BATCH_ID=\$LSB_JOBINDEX
         # Start GPU monitoring
 	echo "Starting GPU usage monitoring..."
-	nvidia-smi --query-gpu=memory.used,memory.total --format=csv,nounits --loop-ms=1000 > gpu_usage.log &
+
+	nvidia-smi --query-gpu=memory.used,memory.total --format=csv,nounits -l 1 > gpu_usage.log &
+
 	MONITOR_PID=\$!
         # Perform the processing for the current folder and batch
         echo "Processing folder \$folder, batch \$batch_index"
@@ -58,9 +60,9 @@ for folder in "${folders[@]}"; do
 
 
 	# python -c "from reconstructor_XA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
-        # python -c "from reconstructor_XA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
+        python -c "from reconstructor_XA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
         # python -c "from reconstructor_XA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
-        python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi()"
+        # python -c "from reconstructor_XA import recon_TV_multi; recon_TV_multi()"
 	kill \$MONITOR_PID
 	echo "GPU monitoring stopped. Check gpu_usage.log for details."
 

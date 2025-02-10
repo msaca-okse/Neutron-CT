@@ -23,28 +23,9 @@
 source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 
-THRESHOLD="0.5"
-SIZE="7"
-DECNUM="5"
-WNAME="10"
-SIGMA="0.3"
-ALPHA="75.0"
-NUM_PROC="4"
-BETA="1"
-
-# Export variables to make them available to the Python script
-export THRESHOLD
-export SIZE
-export DECNUM
-export WNAME
-export SIGMA
-export ALPHA
-export BETA
-export DELTA
-export NUM_PROC
-
-# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX)"
-python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX)"
-# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX)"
-# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX)"
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0, eta = 0.002)"
 

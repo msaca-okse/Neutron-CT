@@ -7,8 +7,8 @@
 #BSUB -q hpc
 #BSUB -e my_job_error.log
 #BSUB -o my_job_output.log
-#BSUB -M 24000
-#BSUB -R "rusage[mem=24000]"
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 10:00 
 # -- Number of cores requested -- 
@@ -28,5 +28,3 @@ python preprocessor_XA.py
 
 
 # ALPHA = ca. 0.2
-# TODO: Fix this jobscript to ALPHA=0.2. For testing, set the stride to 10 (this gives around 3 min for 800 sinograms or eqvltly 1 folder. Clean the folders (all). Make a combined jobscript of the preprocc, recon and cleaner
-# scripts, and test on the FBP single and multi scripts. Once thats working, create TV single and Multi scripts. Now compare the results in the notebook. 

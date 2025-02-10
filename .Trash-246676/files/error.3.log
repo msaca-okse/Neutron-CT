@@ -1,0 +1,24 @@
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Loaded module: cuda/11.8
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/reconstructor_XA.py", line 298, in recon_TV_multi
+    data_batch[i] = tifffile.imread(read_path[i])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1281, in imread
+    return tif.asarray(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4570, in asarray
+    result = self.filehandle.read_array(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15018, in read_array
+    n = self._fh.readinto(result)  # type: ignore[attr-defined]
+KeyboardInterrupt

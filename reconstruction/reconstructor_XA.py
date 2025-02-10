@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import numpy as np
+from datetime import datetime
 
 try:
     alpha = float(os.getenv("ALPHA"))
@@ -83,10 +84,10 @@ from cil.processors import PaganinProcessor, Slicer
 generic_pc = '/dtu-compute/msaca/sliceA_xray_pc/output/cache/sino_###.'
 generic_pcs = ma.generate_paths(generic_pc,[folder])
 
-generic_f_fbp ='/dtu-compute/msaca/sliceA_xray_pc/output2/fbp_recon/r_###.'
+generic_f_fbp ='/dtu-compute/msaca/sliceA_xray_pc/output/fbp_recon/r_###.'
 generic_f_fbps = ma.generate_paths(generic_f_fbp,[folder])
 
-generic_f_tv = '/dtu-compute/msaca/sliceA_xray_pc/output2/tv_recon/r_###.'
+generic_f_tv = '/dtu-compute/msaca/sliceA_xray_pc/output/tv_recon/r_###.'
 generic_f_tvs = ma.generate_paths(generic_f_tv,[folder])
 
 
@@ -251,7 +252,7 @@ def recon_TV_single(batch_id):
             A = ProjectionOperator(ig2D,ag2D,device)
             b = data2D
             F = LeastSquares(A,b)
-            G = alpha*FGP_TV(device='gpu', nonnegativity=True)
+            G = alpha*FGP_TV(device='gpu', nonnegativity=False)
             reconstructor = FISTA(f=F, g=G, initial=initial)
             reconstructor.run(N_iter)
             recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
@@ -292,18 +293,11 @@ def recon_TV_multi():
     write_path_TV = ma.generate_paths(in_path,batch)
     data_batch = np.empty((len(batch), N_angles, N_pixels), dtype = np.float32)
 
-    print('batch_id', batch_id)
-    print('n_batches',n_batches)
-    print('batch',batch)
-    print('split_arr', split_arr)
-    print('len(batch)', len(batch))
-
     start_time = time.time()
     for i in range(len(batch)):
         data_batch[i] = tifffile.imread(read_path[i])
     N_batch_slices = np.shape(data_batch)[0]
 
-    print('N_batch_slices', N_batch_slices)
 
     print(f"Data loading time: {(time.time()-start_time):.2f} seconds")
     start_time = time.time()
@@ -322,8 +316,7 @@ def recon_TV_multi():
     A = ProjectionOperator(ig_batch,ag_batch,device)
     b = data_batch
     F = LeastSquares(A,b)
-    L = IdentityOperator(ig_batch)
-    G = alpha*FGP_TV(device='gpu',nonnegativity=True) + beta*L
+    G = alpha*FGP_TV(device='gpu',nonnegativity=False)
     reconstructor = FISTA(f=F, g=G, initial=initial)
     reconstructor.run(N_iter)
     recon_slice_TV = reconstructor.solution.copy().as_array().astype(np.float32)
@@ -333,11 +326,7 @@ def recon_TV_multi():
     start_time = time.time()
 
     for i in range(len(batch)):
-        print('Write_path_TV', write_path_TV[i], recon_slice_TV[i])
         tifffile.imwrite(write_path_TV[i], recon_slice_TV[i])
 
     print(f"Writing time: {(time.time()-start_time):.2f} seconds")
-
-
-
-
+    print('The time is ', datetime.now())

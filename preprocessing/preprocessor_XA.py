@@ -81,7 +81,7 @@ for folder_idx in range(len(folders)):
     data = np.stack(data)
     N_slices, N_pixels = np.shape(data[0])
     data = np.array(-np.log((data - dark[np.newaxis,:,:])/(obeam[np.newaxis,:,:] - dark[np.newaxis,:,:])),dtype=np.float32)
-
+    data = data - np.mean(data[:,:,0:200], axis = (1,2))[:,np.newaxis, np.newaxis]
     split_row = int(N_angles/2)
     split_col = N_pixels-248
 
