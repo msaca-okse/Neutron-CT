@@ -2,7 +2,7 @@ import tifffile
 import importlib
 import sys, os
 import numpy as np
-import module_auxiliary as ma
+from helpers import module_auxiliary as ma
 
 
 

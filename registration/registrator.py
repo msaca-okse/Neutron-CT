@@ -4,7 +4,7 @@ import copy
 import matplotlib.pyplot as plt
 previous_metric_value = None
 import plotly.graph_objects as go
-import plot_library as pl
+from helpers import plot_library as pl
 import random
 import json
 

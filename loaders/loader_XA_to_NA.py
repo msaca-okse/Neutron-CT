@@ -2,15 +2,15 @@ import numpy as np
 import os
 os.chdir('/zhome/71/c/146676/main/')  # Navigate into a subdirectory
 import matplotlib.pyplot as plt
-import plot_library as pl
+from helpers import plot_library as pl
 import SimpleITK as sitk
-import registrator
+from registration import registrator
 import plotly.io as pio
 from cil.framework import ImageData, ImageGeometry
 import tifffile
-import stitcher_XA
+from loaders import stitcher_XA
 from multiprocessing import Pool
-import module_auxiliary as ma
+from helpers import module_auxiliary as ma
 
 def loader_XA(path):
     image = tifffile.imread(path)[::compression_v,::compression_v]
