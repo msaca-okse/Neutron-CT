@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import numpy as np
+os.chdir('/zhome/71/c/146676/main/')
 
 
 plot = False
@@ -15,13 +16,13 @@ sys.path.append(path_to_add)
 
 import SimpleITK as sitk
 from astropy.io import fits
-import module_auxiliary as ma
+from helpers import module_auxiliary as ma
 import tifffile
 from multiprocessing import Pool
 import matplotlib.pyplot as plt
-import image_utils as iu
-import extended_data as ed
-import CTcorrector as ctc
+from helpers import image_utils as iu
+from helpers import extended_data as ed
+from registration import CTcorrector as ctc
 #from cil.plugins.astra import FBP
 from cil.recon import FBP
 from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData, BlockDataContainer
@@ -37,7 +38,7 @@ from cil.optimisation.functions import IndicatorBox, MixedL21Norm, L2NormSquared
 from cil.optimisation.operators import BlockOperator, GradientOperator,\
                                        GradientOperator
 from cil.processors import PaganinProcessor, Slicer
-import loader_XA_to_NA
+from loaders import loader_XA_to_NA
 
 
 path_cache_sino = '/dtu-compute/msaca/sliceA_neutron_psi/output/cache/sino_#####.tiff'
@@ -58,7 +59,7 @@ ag = AcquisitionGeometry.create_Parallel3D(detector_position=[0,N_pixels//2,0])\
                             .set_panel((N_pixels,N_slices), pixel_size=(1/N_pixels,1/N_pixels))\
                             .set_labels(labels=('vertical','angle','horizontal'))
 
-def find_split_arr(num_proc):
+def find_split_arr(num_proc,subslices):
     base_size = len(subslices) // num_proc
     remainder = len(subslices) % num_proc
     # Split the array into num_proc parts
@@ -76,7 +77,7 @@ def crop(image):
     return image[820:1180,:]
 
 def recon_FBP_single(batch_id, num_proc = 4):
-    split_arr = find_split_arr(num_proc)
+    split_arr = find_split_arr(num_proc,subslices)
     batch = split_arr[batch_id-1]
     read_path = ma.generate_paths(path_cache_sino, batch)
     write_path_FBP = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',batch)
@@ -100,7 +101,7 @@ def recon_FBP_single(batch_id, num_proc = 4):
 
 def recon_FBP_multi(batch_id, num_proc = 4, output = False):
     print('Initiating batch FBP reconstruction from saved sinograms')
-    split_arr = find_split_arr(num_proc)
+    split_arr = find_split_arr(num_proc,subslices)
     batch = split_arr[batch_id-1]
     read_path = ma.generate_paths(path_cache_sino, batch)
     write_path_FBP = ma.generate_paths(save_folder_fbp + 'slice_fbp_####.tiff',batch)
@@ -151,7 +152,7 @@ def recon_FBP_multi(batch_id, num_proc = 4, output = False):
 
 def recon_TV_single(batch_id, num_proc = 4, N_iter = 50, alpha = 75.0):
     print('Initiating single slice TV reconstruction from saved sinograms')
-    split_arr = find_split_arr(num_proc)
+    split_arr = find_split_arr(num_proc, subslices)
     batch = split_arr[batch_id-1]
     read_path = ma.generate_paths(path_cache_sino, batch)
     write_path_TV = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',batch)
@@ -186,7 +187,7 @@ def recon_TV_single(batch_id, num_proc = 4, N_iter = 50, alpha = 75.0):
 
 def recon_TV_multi(batch_id, num_proc = 4, N_iter = 50, alpha = 75.0):
     print('Initiating batch TV reconstruction from saved sinograms')
-    split_arr = find_split_arr(num_proc)
+    split_arr = find_split_arr(num_proc, subslices)
     batch = split_arr[batch_id-1]
     read_path = ma.generate_paths(path_cache_sino, batch)
     write_path_TV = ma.generate_paths(save_folder_tv + 'slice_tv_####.tiff',batch)
@@ -242,7 +243,8 @@ def recon_TV_multi(batch_id, num_proc = 4, N_iter = 50, alpha = 75.0):
 
 def recon_dTV_multi(batch_id, num_proc = 4, xray_reference = 'tv', N_iter = 50, alpha = 75.0, eta = 0.01):
     ## 0. Load in neutron data for the batch
-    split_arr = find_split_arr(num_proc)
+    subslices = range(0,1788)
+    split_arr = find_split_arr(num_proc,subslices)
     batch = split_arr[batch_id-1]
     print('Batch id:'+ str(batch_id) + 'reconstructing slices:')
     print(batch)
@@ -274,8 +276,8 @@ def recon_dTV_multi(batch_id, num_proc = 4, xray_reference = 'tv', N_iter = 50, 
     processor.set_input(ig_batch_)
     ig_batch = processor.get_output()
     device = 'gpu'
-    xray_batch_start = int(max(-32/13*batch[0]+32/13*1500-150,0))
-    xray_batch_end = int(min(-32/13*batch[-1]+32/13*1500+150,3200))
+    xray_batch_start = int(max(2886-batch[0]*2886/1788-500,0))
+    xray_batch_end = int(min(2886 - batch[-1]*2886/1788+500,2887))
     xray_batch = range(xray_batch_start,xray_batch_end)
     output_volume = [[batch[0],batch[-1]+1],[None], [None]]
     reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 

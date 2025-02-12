@@ -1,6 +1,8 @@
+import os
+os.chdir('/zhome/71/c/146676/main/')
 import numpy as np
 from cil.io import TIFFStackReader
-import module_auxiliary as ma
+from helpers import module_auxiliary as ma
 from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData
 from cil.processors import Slicer, RingRemover, CentreOfRotationCorrector
 from numba import cuda

@@ -82,6 +82,7 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
         paths_XA = stitcher_XA.generate_stitched_paths(dataset = 'fbp', folders = [1,2,3,4,5],
             start_indices = [300, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 788])
 
+
     N_xray = len(paths_XA)
     paths_XA = [paths_XA[i] for i in xray_slices]
 
@@ -98,6 +99,8 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
         path_NA = '/dtu-compute/msaca/sliceA_neutron_psi/output/fbp_recon/slice_fbp_####.tiff'
     elif dataset_NA == 'tv':
         path_NA = '/dtu-compute/msaca/sliceA_neutron_psi/output/tv_recon/slice_tv_####.tiff'
+    elif dataset_NA == 'dtv':
+        path_NA = '/dtu-compute/msaca/sliceA_neutron_psi/output/dtv_recon/slice_dtv_####.tiff'
 
     A = np.arange(0, 1788)
     paths_NA = ma.generate_paths(path_NA, A)
