@@ -276,8 +276,8 @@ def recon_dTV_multi(batch_id, num_proc = 4, xray_reference = 'tv', N_iter = 50, 
     processor.set_input(ig_batch_)
     ig_batch = processor.get_output()
     device = 'gpu'
-    xray_batch_start = int(max(2886-batch[0]*2886/1788-500,0))
-    xray_batch_end = int(min(2886 - batch[-1]*2886/1788+500,2887))
+    xray_batch_start = int(max(2886-batch[-1]*2886/1788-300,0))
+    xray_batch_end = int(min(2886 - batch[0]*2886/1788+300,2887))
     xray_batch = range(xray_batch_start,xray_batch_end)
     output_volume = [[batch[0],batch[-1]+1],[None], [None]]
     reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 

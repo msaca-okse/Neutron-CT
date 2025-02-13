@@ -8,8 +8,8 @@
 #BSUB -gpu "num=1"
 #BSUB -e error.log
 #BSUB -o output.log
-#BSUB -M 12000
-#BSUB -R "rusage[mem=12000]"
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 15:00 
 # -- Number of cores requested -- 

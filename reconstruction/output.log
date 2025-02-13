@@ -1953,3 +1953,651 @@ PS:
 
 Read file <error.log> for stderr output of this job.
 
+Batch id:1reconstructing slices:
+range(0, 447)
+Loading data
+Neutron Data loading time: 71.00 seconds
+Batch id:2reconstructing slices:
+range(447, 894)
+Loading data
+Neutron Data loading time: 84.51 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029696[1]: <folder_job[1-4]> in cluster <dcc> Exited
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:10:49 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:10:51 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:10:51 2025
+Terminated at Wed Feb 12 13:14:14 2025
+Results reported at Wed Feb 12 13:14:14 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 12000
+#BSUB -R "rusage[mem=12000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   208.00 sec.
+    Max Memory :                                 96000 MB
+    Average Memory :                             51162.00 MB
+    Total Requested Memory :                     96000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   234 sec.
+    Turnaround time :                            205 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029696[2]: <folder_job[1-4]> in cluster <dcc> Exited
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:10:49 2025
+Job was executed on host(s) <8*n-62-12-20>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:10:51 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:10:51 2025
+Terminated at Wed Feb 12 13:15:01 2025
+Results reported at Wed Feb 12 13:15:01 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 12000
+#BSUB -R "rusage[mem=12000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   194.00 sec.
+    Max Memory :                                 96000 MB
+    Average Memory :                             50490.25 MB
+    Total Requested Memory :                     96000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   250 sec.
+    Turnaround time :                            252 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Batch id:3reconstructing slices:
+range(894, 1341)
+Loading data
+Neutron Data loading time: 82.65 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029696[3]: <folder_job[1-4]> in cluster <dcc> Exited
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:10:49 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:14:16 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:14:16 2025
+Terminated at Wed Feb 12 13:18:17 2025
+Results reported at Wed Feb 12 13:18:17 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 12000
+#BSUB -R "rusage[mem=12000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   246.00 sec.
+    Max Memory :                                 96000 MB
+    Average Memory :                             51547.25 MB
+    Total Requested Memory :                     96000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   243 sec.
+    Turnaround time :                            448 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Batch id:4reconstructing slices:
+range(1341, 1788)
+Loading data
+Neutron Data loading time: 185.27 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029696[4]: <folder_job[1-4]> in cluster <dcc> Exited
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:10:49 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:15:01 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:15:01 2025
+Terminated at Wed Feb 12 13:20:20 2025
+Results reported at Wed Feb 12 13:20:20 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 12000
+#BSUB -R "rusage[mem=12000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   205.00 sec.
+    Max Memory :                                 96000 MB
+    Average Memory :                             48993.50 MB
+    Total Requested Memory :                     96000.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   351 sec.
+    Turnaround time :                            571 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Batch id:1reconstructing slices:
+range(0, 447)
+Loading data
+Neutron Data loading time: 65.11 seconds
+Batch id:2reconstructing slices:
+range(447, 894)
+Loading data
+Neutron Data loading time: 151.79 seconds
+Resampling the transformation
+Resampling moving image
+Xray reference reconstruction loading time: 158.25 seconds
+Resampling the transformation
+Resampling moving image
+Xray reference reconstruction loading time: 128.97 seconds
+Reconstruction time: 1164.01 seconds
+Writing time: 104.04 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029821[1]: <folder_job[1-4]> in cluster <dcc> Done
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:28:43 2025
+Terminated at Wed Feb 12 13:53:46 2025
+Results reported at Wed Feb 12 13:53:46 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1572.00 sec.
+    Max Memory :                                 20908 MB
+    Average Memory :                             14731.08 MB
+    Total Requested Memory :                     160000.00 MB
+    Delta Memory :                               139092.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   1576 sec.
+    Turnaround time :                            1503 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Reconstruction time: 1179.83 seconds
+Writing time: 110.25 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029821[2]: <folder_job[1-4]> in cluster <dcc> Done
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:28:43 2025
+Terminated at Wed Feb 12 13:55:05 2025
+Results reported at Wed Feb 12 13:55:05 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1584.00 sec.
+    Max Memory :                                 20750 MB
+    Average Memory :                             15292.50 MB
+    Total Requested Memory :                     160000.00 MB
+    Delta Memory :                               139250.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   1655 sec.
+    Turnaround time :                            1582 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Batch id:3reconstructing slices:
+range(894, 1341)
+Loading data
+Neutron Data loading time: 85.30 seconds
+Batch id:4reconstructing slices:
+range(1341, 1788)
+Loading data
+Neutron Data loading time: 155.40 seconds
+Resampling the transformation
+Resampling moving image
+Xray reference reconstruction loading time: 156.91 seconds
+Resampling the transformation
+Resampling moving image
+Xray reference reconstruction loading time: 91.52 seconds
+Reconstruction time: 1165.80 seconds
+Writing time: 82.30 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029821[3]: <folder_job[1-4]> in cluster <dcc> Done
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:53:46 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:53:46 2025
+Terminated at Wed Feb 12 14:18:46 2025
+Results reported at Wed Feb 12 14:18:46 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1607.00 sec.
+    Max Memory :                                 20990 MB
+    Average Memory :                             15458.25 MB
+    Total Requested Memory :                     160000.00 MB
+    Delta Memory :                               139010.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   1500 sec.
+    Turnaround time :                            3003 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Reconstruction time: 1174.45 seconds
+Writing time: 84.14 seconds
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24029821[4]: <folder_job[1-4]> in cluster <dcc> Done
+
+Job <folder_job[1-4]> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Feb 12 13:28:43 2025
+Job was executed on host(s) <8*n-62-18-8>, in queue <gpua100>, as user <msaca> in cluster <dcc> at Wed Feb 12 13:55:05 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Feb 12 13:55:05 2025
+Terminated at Wed Feb 12 14:20:26 2025
+Results reported at Wed Feb 12 14:20:26 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q gpua100
+#BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 20000
+#BSUB -R "rusage[mem=20000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 8
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J folder_job[1-4]
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+# python -c "from reconstructor_NA import recon_FBP_single; recon_FBP_single($LSB_JOBINDEX, num_proc = 4)"
+# python -c "from reconstructor_NA import recon_FBP_multi; recon_FBP_multi($LSB_JOBINDEX, num_proc = 4, output = False)"
+# python -c "from reconstructor_NA import recon_TV_single; recon_TV_single($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+# python -c "from reconstructor_NA import recon_TV_multi; recon_TV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 75.0)"
+python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1535.00 sec.
+    Max Memory :                                 47420 MB
+    Average Memory :                             17918.00 MB
+    Total Requested Memory :                     160000.00 MB
+    Delta Memory :                               112580.00 MB
+    Max Swap :                                   -
+    Max Processes :                              36
+    Max Threads :                                42
+    Run time :                                   1521 sec.
+    Turnaround time :                            3103 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
