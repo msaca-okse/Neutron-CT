@@ -1,0 +1,408 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24091002: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 11:04:53 2025
+Job was executed on host(s) <2*n-62-30-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Feb 14 11:04:53 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 11:04:53 2025
+Terminated at Fri Feb 14 11:04:59 2025
+Results reported at Fri Feb 14 11:04:59 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   2.20 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   28 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24091020: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 11:06:09 2025
+Job was executed on host(s) <2*n-62-30-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Feb 14 11:06:11 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 11:06:11 2025
+Terminated at Fri Feb 14 11:06:13 2025
+Results reported at Fri Feb 14 11:06:13 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   1.40 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   74 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24091056: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 11:08:36 2025
+Job was executed on host(s) <2*n-62-30-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Feb 14 11:08:37 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 11:08:37 2025
+Terminated at Fri Feb 14 11:08:39 2025
+Results reported at Fri Feb 14 11:08:39 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   1.38 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   25 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24091070: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 11:09:21 2025
+Job was executed on host(s) <2*n-62-30-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Feb 14 11:09:23 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 11:09:23 2025
+Terminated at Fri Feb 14 11:09:25 2025
+Results reported at Fri Feb 14 11:09:25 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   1.40 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   25 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24091076: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 11:10:27 2025
+Job was executed on host(s) <2*n-62-30-23>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Feb 14 11:10:29 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 11:10:29 2025
+Terminated at Fri Feb 14 11:10:31 2025
+Results reported at Fri Feb 14 11:10:31 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q hpc
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   1.41 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   66 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24092863: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-21-100> by user <msaca> in cluster <dcc> at Fri Feb 14 12:09:07 2025
+Job was executed on host(s) <2*n-62-20-12>, in queue <gpuv100>, as user <msaca> in cluster <dcc> at Fri Feb 14 12:15:23 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Fri Feb 14 12:15:23 2025
+Terminated at Fri Feb 14 12:15:35 2025
+Results reported at Fri Feb 14 12:15:35 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100
+#BSUB -q gpuv100
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 10000
+#BSUB -R "rusage[mem=10000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 2
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+
+python vtk_example.py
+
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 139.
+
+Resource usage summary:
+
+    CPU time :                                   1.45 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     20000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   14 sec.
+    Turnaround time :                            388 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
