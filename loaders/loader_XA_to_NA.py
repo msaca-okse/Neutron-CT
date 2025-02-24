@@ -36,7 +36,7 @@ def load_registered_data(compression = 1,dataset_XA='tv', dataset_NA = 'tv'):
 
 
 
-
+    print('Loading xray data: Estimated time 3-4 minutes.')
     with Pool() as pool:
         recon_XA = pool.map(loader_XA, paths_XA)
 
@@ -53,7 +53,7 @@ def load_registered_data(compression = 1,dataset_XA='tv', dataset_NA = 'tv'):
     A = np.arange(0, 1788)
     paths_NA = ma.generate_paths(path_NA, A)
 
-
+    print('Loading neutron data: Estimated time 1 minute.')
     with Pool() as pool:
         recon_NA = pool.map(loader_NA, paths_NA)
 
@@ -88,6 +88,7 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
     N_xray = len(paths_XA)
     paths_XA = [paths_XA[i] for i in xray_slices]
 
+    print('Loading xray data')
     with Pool() as pool:
         recon_XA = pool.map(loader_XA, paths_XA)
 
@@ -109,7 +110,7 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
     N_neutron = len(paths_NA)
     paths_NA = [paths_NA[i] for i in neutron_slices]
 
-
+    print('Loading neutron data')
     with Pool() as pool:
         recon_NA = pool.map(loader_NA, paths_NA)
 

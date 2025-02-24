@@ -4,6 +4,9 @@ from astropy.io import fits
 from scipy.ndimage import median_filter
 from scipy.optimize import minimize
 import re
+from scipy.ndimage import median_filter # For extract edge function
+from cil.framework import ImageGeometry, ImageData # For extract edge function
+from cil.optimisation.operators import GradientOperator # For extract edge function
 
 def generate_paths(path, A):
     # Extract the folder and filename pattern
@@ -360,3 +363,47 @@ def find_largest_number(file_pattern):
             largest_number = max(largest_number, number) if largest_number is not None else number
     
     return largest_number
+
+
+
+def extract_edge(image_np, axis=1, XA=False):
+    nz, ny, nx = np.shape(image_np)
+    ig = ImageGeometry(voxel_num_x=nx, voxel_num_y=ny, voxel_num_z=nz)
+    image = ImageData(image_np, geometry=ig)
+    def xi_vector_field(image,eta):
+        G = GradientOperator(ig)
+        numerator = G.direct(image)
+        denominator = np.sqrt(eta**2 + numerator.get_item(0)**2 + numerator.get_item(1)**2)
+        xi = numerator/denominator
+
+        if axis == 0:
+            return xi.get_item(0)
+        if axis == 1:
+            return xi.get_item(1)
+        if axis == 2:
+            return xi.get_item(2)
+    grad_im = xi_vector_field(image, 0.005)
+
+    dims = [nx,ny,nz]
+    edge_bias = dims[axis]//20
+    grad = grad_im.as_array()
+    if axis == 0:
+        grad[0:edge_bias] = 100
+        grad[-edge_bias:-1] = 100
+        argmin_ = np.argmin(grad,axis=(0))
+    if axis == 1:
+        grad[:,0:5*edge_bias] = 100
+        grad[:,-edge_bias:-1] = 100
+        if XA:
+            grad[:,0:12*edge_bias] = 100
+            grad[:,-(5*edge_bias)//3:-1] = 100
+        argmin_ = np.argmin(grad,axis=(1))
+    if axis == 2:
+        grad[:,:,0:edge_bias] = 100
+        grad[:,:,-edge_bias:-1] = 100
+        argmin_ = np.argmin(grad,axis=(2))
+    f_argmin = np.clip(median_filter(argmin_, size=35),a_min = edge_bias*2, a_max = 18*edge_bias)
+    if XA:
+        f_argmin = np.clip(median_filter(argmin_, size=50),a_min = edge_bias*2, a_max = 18*edge_bias)
+
+    return f_argmin

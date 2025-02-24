@@ -7,12 +7,12 @@
 #BSUB -q hpc
 #BSUB -e error.log
 #BSUB -o output.log
-#BSUB -M 2000
-#BSUB -R "rusage[mem=2000]"
+#BSUB -M 5000
+#BSUB -R "rusage[mem=5000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 4:00 
 # -- Number of cores requested -- 
-#BSUB -n 4
+#BSUB -n 16
 # -- Specify the distribution of the cores: on a separate nodes --
 #BSUB -R "span[hosts=1]"
 # Array job: N tasks, one per folder
