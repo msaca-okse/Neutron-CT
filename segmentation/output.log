@@ -1,0 +1,421 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24177972: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:01:31 2025
+Job was executed on host(s) <4*n-62-28-36>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:01:32 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:01:32 2025
+Terminated at Mon Feb 24 11:01:34 2025
+Results reported at Mon Feb 24 11:01:34 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.91 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   28 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24177973: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:01:47 2025
+Job was executed on host(s) <4*n-62-28-36>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:01:48 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:01:48 2025
+Terminated at Mon Feb 24 11:01:49 2025
+Results reported at Mon Feb 24 11:01:49 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.84 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   1 sec.
+    Turnaround time :                            2 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24177979: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:02:51 2025
+Job was executed on host(s) <4*n-62-28-36>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:02:53 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:02:53 2025
+Terminated at Mon Feb 24 11:03:24 2025
+Results reported at Mon Feb 24 11:03:24 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   3.78 sec.
+    Max Memory :                                 820 MB
+    Average Memory :                             820.00 MB
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               7180.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   31 sec.
+    Turnaround time :                            33 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24177983: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:03:50 2025
+Job was executed on host(s) <4*n-62-31-13>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:03:51 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:03:51 2025
+Terminated at Mon Feb 24 11:04:08 2025
+Results reported at Mon Feb 24 11:04:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   6.60 sec.
+    Max Memory :                                 1839 MB
+    Average Memory :                             1839.00 MB
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               6161.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   20 sec.
+    Turnaround time :                            18 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Channel 0
+Channel 1
+Channel 2
+Channel 3
+Channel 4
+Channel 5
+Channel 6
+Channel 7
+Channel 8
+Channel 9
+Channel 10
+Channel 11
+Channel 12
+Channel 13
+Channel 14
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24177987: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:05:01 2025
+Job was executed on host(s) <4*n-62-31-13>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:05:02 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:05:02 2025
+Terminated at Mon Feb 24 11:06:51 2025
+Results reported at Mon Feb 24 11:06:51 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   110.23 sec.
+    Max Memory :                                 4357 MB
+    Average Memory :                             4357.00 MB
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               3643.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                16
+    Run time :                                   163 sec.
+    Turnaround time :                            110 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+Channel 0
+Channel 1
+Channel 2
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24178040: <Segment> in cluster <dcc> Exited
+
+Job <Segment> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Mon Feb 24 11:09:54 2025
+Job was executed on host(s) <4*n-62-31-13>, in queue <hpc>, as user <msaca> in cluster <dcc> at Mon Feb 24 11:09:55 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/segmentation> was used as the working directory.
+Started at Mon Feb 24 11:09:55 2025
+Terminated at Mon Feb 24 11:10:20 2025
+Results reported at Mon Feb 24 11:10:20 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Segment
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 2000
+#BSUB -R "rusage[mem=2000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 4:00 
+# -- Number of cores requested -- 
+#BSUB -n 4
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+#python s2_watershed_filter.py
+#python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
+python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   24.07 sec.
+    Max Memory :                                 4666 MB
+    Average Memory :                             4568.00 MB
+    Total Requested Memory :                     8000.00 MB
+    Delta Memory :                               3334.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                16
+    Run time :                                   144 sec.
+    Turnaround time :                            26 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+

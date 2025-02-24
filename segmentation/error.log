@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 105
+    for i in range(nc)
+                      ^
+SyntaxError: expected ':'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 106
+    image = 
+            ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 70, in place_mean_in_watersheds
+    nc, ny, nx = np.shape(image_s)
+NameError: name 'image_s' is not defined. Did you mean: 'Image'?
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 90, in place_mean_in_watersheds
+    weights = np.ones(len(names))
+NameError: name 'names' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 93, in place_mean_in_watersheds
+    edges_= sitk.GetImageFromArray(edges_subset)
+NameError: name 'edges_subset' is not defined
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 91, in place_mean_in_watersheds
+    edges = xi_vector_field(data_diffused,eta,weights)
+  File "/zhome/71/c/146676/main/segmentation/s3_watershed_eds.py", line 81, in xi_vector_field
+    denominator_ = np.sqrt(eta**2 + numerator_.get_item(0)**2 + numerator_.get_item(1)**2)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/data_container.py", line 303, in __pow__
+    return self.power(other)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/data_container.py", line 483, in power
+    return self.pixel_wise_binary(numpy.power, other, *args, **kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/framework/data_container.py", line 410, in pixel_wise_binary
+    out = pwop(self.as_array() , x2 , *args, **kwargs )
+KeyboardInterrupt
