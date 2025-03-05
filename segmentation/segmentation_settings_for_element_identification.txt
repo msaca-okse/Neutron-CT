@@ -1,0 +1,25 @@
+Optimizing the difference between
+segm = (XA<th1)*(NA<th2) (with binary flips)
+and 
+segm_x = EDS[element] < th_x (without binary flip)
+
+optimization done with dice loss over the variables (th1, th2, thx, b1 and b2), and with differential_evolution optimizer.
+
+Settings can be seen in n10 notebook.
+
+During optimization a mask is used to mask out stuff outside the stone. Mask is (XA>0.005)*(NA>0.0)
+
+The EDS thresholding parameter must be sceled by 1/1000, which can be done by: i_x = i_x/1000, where i_x is the EDS image.
+
+Settings must be added to the optimization of each element. For Al, the FOV of the loss function should exclude the region where the Al amount in really high (near the background plate)
+This is done by restricting the FOV to i_x = i_x[200:-600,200:-400]
+
+To avoid everything be classed as true, a penalty function is added to the dice loss. This penalizes the fraction of pixels, if the fraction is too extreme.
+The penalty function is:
+    p1 = np.mean(segm_in_mask)  # Fraction of pixels classified as True
+    penalty =  lam * (2*np.abs((p1 - center)))**power
+    
+for Al, a reasonable result was obtained by setting:
+lam=2.0
+center = 0.2
+power = 6

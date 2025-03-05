@@ -12,7 +12,7 @@
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 4:00 
 # -- Number of cores requested -- 
-#BSUB -n 16
+#BSUB -n 8
 # -- Specify the distribution of the cores: on a separate nodes --
 #BSUB -R "span[hosts=1]"
 # Array job: N tasks, one per folder
@@ -22,4 +22,6 @@ source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 #python s2_watershed_filter.py
 #python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
-python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+#python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+#python s4_threshold_finder.py
+python s5_threshold_with_predetermined_EDS.py

@@ -1,0 +1,60 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/segmentation/s4_threshold_finder.py", line 274, in analyze_element_segmentation
+    fig2.savefig('/home/msaca/dtu-compute/cache/plots/output_' + index_str+element + '_' + narrowness_str + '.png', dpi = 200)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/figure.py", line 3395, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2204, in print_figure
+    result = print_method(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2054, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 496, in print_png
+    self._print_pil(filename_or_obj, "png", pil_kwargs, metadata)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 445, in _print_pil
+    mpl.image.imsave(
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/matplotlib/image.py", line 1676, in imsave
+    image.save(fname, **pil_kwargs)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/PIL/Image.py", line 2600, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: '/home/msaca/dtu-compute/cache/plots/output_08Ni_00-70.png'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/segmentation/s4_threshold_finder.py", line 278, in <module>
+    pool.map(analyze_element_segmentation, element_array)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+FileNotFoundError: [Errno 2] No such file or directory: '/home/msaca/dtu-compute/cache/plots/output_08Ni_00-70.png'
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/zhome/71/c/146676/main/segmentation/s4_threshold_finder.py", line 245, in analyze_element_segmentation
+    fig, fig2= plot_segmentations(background[200:-500,200:-300], ground_truth_seg, test_seg = test_seg, class_labels = class_labels)
+  File "/zhome/71/c/146676/main/segmentation/s4_threshold_finder.py", line 114, in plot_segmentations
+    y_pos = (bounds[i] + bounds[i + 1]-1) / 2  # Center text at each color
+IndexError: index 3 is out of bounds for axis 0 with size 3
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/segmentation/s4_threshold_finder.py", line 278, in <module>
+    pool.map(analyze_element_segmentation, element_array)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+IndexError: index 3 is out of bounds for axis 0 with size 3

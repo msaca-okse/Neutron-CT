@@ -138,20 +138,23 @@ def get_segmentation_from_watersheds(thresholds = np.array([15, 15, 15, 10 , 20,
         f_segm = data_watershedded>thresholds[:,np.newaxis, np.newaxis]
 
     elem_segm = {}
+    elems = {}
     for i in range(nc):
         elem_segm[elements[i]] = f_segm[i].astype(bool)
+        elems[elements[i]] = data_watershedded[i].astype(np.float32)
 
     elem_segm['Mg_high'] = data_watershedded[6]>60
     full_seg = np.zeros((ny,nx))
     mask_feldspar_an_al = (elem_segm["Al"]*elem_segm["Na"]*np.logical_not(elem_segm['Mg'])).astype(bool)
     mask_feldspar_al_or = (np.logical_not(elem_segm['Mg'])*elem_segm['K']).astype(bool)
-    mask_pyroxene_cpx = elem_segm["Ca"].astype(bool)
-    mask_pyroxene_opx = elem_segm['Mg_high'].astype(bool)
+    mask_pyroxene_cpx = elem_segm["Ca"].astype(bool) # Not Al (check this)
+    mask_pyroxene_opx = elem_segm['Mg_high'].astype(bool) # Mg, Si, Fe...
     mask_apatite = (elem_segm['P']*elem_segm['Cl']*elem_segm['Ca']).astype(bool)
-    mask_chromite = elem_segm['Cr'].astype(bool)
-    mask_ilminite = elem_segm['Ti'].astype(bool)
-    mask_pyrite = elem_segm['S'].astype(bool)
+    mask_chromite = elem_segm['Cr'].astype(bool) # * Fe
+    mask_ilminite = elem_segm['Ti'].astype(bool) # * Fe
+    mask_pyrite = elem_segm['S'].astype(bool)    # * Fe
     mask_baddelyite = elem_segm['Zr'].astype(bool)
+    # Iron oxide: Meget jern, ikke meget andet (udover oxygen) Specifikt: Ikke silicium
     full_seg = np.zeros((ny,nx),dtype=np.uint8)
     full_seg[mask_feldspar_an_al] = 1
     full_seg[mask_feldspar_al_or] =2
@@ -176,7 +179,7 @@ def get_segmentation_from_watersheds(thresholds = np.array([15, 15, 15, 10 , 20,
     segmentation['pyrite'] = mask_pyrite
     segmentation['baddelyite'] = mask_baddelyite
     if output:
-        return full_seg, segmentation, elem_segm
+        return full_seg, segmentation, elem_segm, elems
 
 
 def transform_eds(eds):
@@ -238,4 +241,7 @@ def transform_eds(eds):
     path = 'Transformations/transformation_EDS_to_NA.tfm'
     transform = sitk.ReadTransform(path)
     moving_new = resampler(fixed, moving, transform)
-    return sitk.GetArrayFromImage(moving_new)
+    return sitk.GetArrayFromImage(moving_new).astype(np.uint8)
+
+
+    
