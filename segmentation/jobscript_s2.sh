@@ -7,8 +7,8 @@
 #BSUB -q hpc
 #BSUB -e error.log
 #BSUB -o output.log
-#BSUB -M 5000
-#BSUB -R "rusage[mem=5000]"
+#BSUB -M 16000
+#BSUB -R "rusage[mem=16000]"
 # -- estimated wall clock time (execution time): hh:mm -- 
 #BSUB -W 4:00 
 # -- Number of cores requested -- 
@@ -22,6 +22,6 @@ source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
 
 #python s2_watershed_filter.py
 #python -c "from s3_watershed_eds import run_diffusion; run_diffusion()"
-#python -c "from s3_watershed_eds import place_mean_in_watersheds; place_mean_in_watersheds()"
+python -c "from s3_watershed_eds import parallel_run_eds_segmentation; parallel_run_eds_segmentation()"
 #python s4_threshold_finder.py
-python s5_threshold_with_predetermined_EDS.py
+#python s5_threshold_with_predetermined_EDS.py
