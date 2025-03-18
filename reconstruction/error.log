@@ -1,137 +1,71 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
 Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 63, in DA_loader
+    dataset_ = file['entry']['instrument']['pilatus']['data'][Nx*batch_id + i]  # Replace 'your_dataset' with the actual name of the dataset
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/h5py/_hl/dataset.py", line 781, in __getitem__
+    return self._fast_reader.read(args)
+  File "h5py/_selector.pyx", line 376, in h5py._selector.Reader.read
+OSError: Can't synchronously read data (can't find plugin. Check either HDF5_VOL_CONNECTOR, HDF5_PLUGIN_PATH, default location, or path set by H5PLxxx functions)
+"""
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 18, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 18, in <module>
-    from helpers import module_auxiliary as ma
-    from helpers import module_auxiliary as ma
-ModuleNotFoundError: No module named 'helpers'
-ModuleNotFoundError: No module named 'helpers'
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 24, in <module>
-    from helpers import extended_data as ed
-  File "/zhome/71/c/146676/main/helpers/extended_data.py", line 3, in <module>
-    import module_auxiliary as ma
-ModuleNotFoundError: No module named 'module_auxiliary'
-rom helpers import extended_data as ed
-  File "/zhome/71/c/146676/main/helpers/extended_data.py", line 3, in <module>
-  File "/zhome/71/c/146676/main/helpers/extended_data.py", line 3, in <module>
-    import module_auxiliary as ma
-    import module_auxiliary as ma
-ModuleNotFoundError: No module named 'module_auxiliary'
-ModuleNotFoundError: No module named 'module_auxiliary'
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 25, in <module>
-    from helpers import CTcorrector as ctc
-ImportError: cannot import name 'CTcorrector' from 'helpers' (unknown location)
-constructor_NA.py", line 25, in <module>
-    from helpers import CTcorrector as ctc
-ImportError: cannot import name 'CTcorrector' from 'helpers' (unknown location)
-    from helpers import CTcorrector as ctc
-ImportError: cannot import name 'CTcorrector' from 'helpers' (unknown location)
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 257, in recon_dTV_multi
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-    data_batch[i] = tifffile.imread(read_path[i])
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1281, in imread
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 257, in recon_dTV_multi
-    data_batch[i] = tifffile.imread(read_path[i])
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 1253, in imread
-    with TiffFile(
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4327, in __init__
-    return tif.asarray(
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 4570, in asarray
-    header = fh.read(4)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 14908, in read
-    result = self.filehandle.read_array(
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/tifffile/tifffile.py", line 15018, in read_array
-    return self._fh.read(size)
-KeyboardInterrupt
-    n = self._fh.readinto(result)  # type: ignore[attr-defined]
-KeyboardInterrupt
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/zhome/71/c/146676/main/reconstruction/reconstructor_NA.py", line 282, in recon_dTV_multi
-    reg = loader_XA_to_NA.load_subset_of_registered_data(dataset_XA=xray_reference, 
-  File "/zhome/71/c/146676/main/loaders/loader_XA_to_NA.py", line 91, in load_subset_of_registered_data
-    recon_XA_B = np.stack(recon_XA)
-  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/core/shape_base.py", line 445, in stack
-    raise ValueError('need at least one array to stack')
-ValueError: need at least one array to stack
-/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:21<17:53, 21.91s/it, objective=nan]ages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:21<17:32, 21.47s/it, objective=nan]  4%|▍         | 2/50 [00:44<17:37, 22.03s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:23, 21.73s/it, objective=nan]  6%|▌         | 3/50 [01:06<17:19, 22.12s/it, objective=nan]  6%|▌         | 3/50 [01:04<16:57, 21.65s/it, objective=nan]  8%|▊         | 4/50 [01:28<17:00, 22.18s/it, objective=nan]  8%|▊         | 4/50 [01:26<16:34, 21.61s/it, objective=nan] 10%|█         | 5/50 [01:50<16:35, 22.13s/it, objective=nan]                                                                 12%|█▏        | 6/50 [02:12<16:09, 22.04s/it, objective=nan]                                                                   14%|█▍        | 7/50 [02:34<15:42, 21.92s/it, objective=nan]                                                                   16%|█▌        | 8/50 [02:55<15:18, 21.87s/it, objective=nan]                                                                   18%|█▊        | 9/50 [03:17<14:54, 21.82s/it, objective=nan]                                                                   20%|██        | 10/50 [03:39<14:31, 21.78s/it, objective=nan]                                                                    22%|██▏       | 11/50 [04:01<14:12, 21.85s/it, objective=nan]                                                                      24%|██▍       | 12/50 [04:22<13:48, 21.79s/it, objective=nan]                                                                      26%|██▌       | 13/50 [04:44<13:25, 21.77s/it, objective=nan]                                                                      28%|██▊       | 14/50 [05:06<13:01, 21.71s/it, objective=nan]                                                                      30%|███       | 15/50 [05:27<12:39, 21.71s/it, objective=nan]                                                                      32%|███▏      | 16/50 [05:49<12:18, 21.73s/it, objective=nan]                                                                        34%|███▍      | 17/50 [06:11<11:58, 21.77s/it, objective=nan]                                                                        36%|███▌      | 18/50 [06:33<11:38, 21.82s/it, objective=nan]                                                                        38%|███▊      | 19/50 [06:55<11:15, 21.78s/it, objective=nan]                                                                        40%|████      | 20/50 [07:16<10:51, 21.73s/it, objective=nan]                                                                        42%|████▏     | 21/50 [07:38<10:29, 21.72s/it, objective=nan]                                                                          44%|████▍     | 22/50 [08:00<10:06, 21.67s/it, objective=nan]                                                                          46%|████▌     | 23/50 [08:21<09:44, 21.66s/it, objective=nan]                                                                          48%|████▊     | 24/50 [08:43<09:22, 21.65s/it, objective=nan]                                                                          50%|█████     | 25/50 [09:05<09:02, 21.68s/it, objective=nan] 52%|█████▏    | 26/50 [09:26<08:41, 21.71s/it, objective=nan] 54%|█████▍    | 27/50 [09:49<08:23, 21.90s/it, objective=nan] 56%|█████▌    | 28/50 [10:11<08:01, 21.87s/it, objective=nan]                                                                            58%|█████▊    | 29/50 [10:32<07:38, 21.84s/it, objective=nan] 60%|██████    | 30/50 [10:54<07:16, 21.83s/it, objective=nan] 62%|██████▏   | 31/50 [11:16<06:53, 21.76s/it, objective=nan]                                                                              64%|██████▍   | 32/50 [11:38<06:32, 21.83s/it, objective=nan] 66%|██████▌   | 33/50 [11:59<06:10, 21.82s/it, objective=nan] 68%|██████▊   | 34/50 [12:21<05:48, 21.76s/it, objective=nan] 70%|███████   | 35/50 [12:43<05:25, 21.72s/it, objective=nan] 72%|███████▏  | 36/50 [13:04<05:03, 21.69s/it, objective=nan] 74%|███████▍  | 37/50 [13:26<04:41, 21.67s/it, objective=nan] 76%|███████▌  | 38/50 [13:48<04:19, 21.65s/it, objective=nan]                                                                                78%|███████▊  | 39/50 [14:09<03:57, 21.63s/it, objective=nan] 80%|████████  | 40/50 [14:31<03:36, 21.67s/it, objective=nan] 82%|████████▏ | 41/50 [14:53<03:15, 21.69s/it, objective=nan]                                                                                  84%|████████▍ | 42/50 [15:14<02:53, 21.69s/it, objective=nan] 86%|████████▌ | 43/50 [15:36<02:31, 21.69s/it, objective=nan] 88%|████████▊ | 44/50 [15:58<02:10, 21.72s/it, objective=nan] 90%|█████████ | 45/50 [16:19<01:48, 21.71s/it, objective=nan] 92%|█████████▏| 46/50 [16:41<01:26, 21.69s/it, objective=nan] 94%|█████████▍| 47/50 [17:03<01:05, 21.79s/it, objective=nan] 96%|█████████▌| 48/50 [17:25<00:43, 21.76s/it, objective=nan]                                                                                    98%|█████████▊| 49/50 [17:47<00:21, 21.75s/it, objective=nan]100%|██████████| 50/50 [18:08<00:00, 21.74s/it, objective=nan]100%|██████████| 50/50 [18:08<00:00, 21.78s/it, objective=nan]
-/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:21<17:53, 21.90s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:33, 21.95s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:29, 21.87s/it, objective=nan]  6%|▌         | 3/50 [01:05<17:06, 21.85s/it, objective=nan]  8%|▊         | 4/50 [01:27<16:45, 21.86s/it, objective=nan] 10%|█         | 5/50 [01:49<16:19, 21.76s/it, objective=nan] 10%|█         | 5/50 [01:49<16:25, 21.90s/it, objective=nan]n] 12%|█▏        | 6/50 [02:11<16:06, 21.97s/it, objective=nan] 14%|█▍        | 7/50 [02:33<15:45, 21.98s/it, objective=nan] 16%|█▌        | 8/50 [02:53<15:03, 21.51s/it, objective=nan] 16%|█▌        | 8/50 [02:55<15:21, 21.95s/it, objective=nan] 18%|█▊        | 9/50 [03:17<14:59, 21.94s/it, objective=nan]] 20%|██        | 10/50 [03:39<14:36, 21.91s/it, objective=nan]n] 22%|██▏       | 11/50 [04:00<14:13, 21.88s/it, objective=nan] 24%|██▍       | 12/50 [04:19<13:37, 21.52s/it, objective=nan] 24%|██▍       | 12/50 [04:22<13:49, 21.83s/it, objective=nan] 26%|██▌       | 13/50 [04:44<13:26, 21.79s/it, objective=nan] 28%|██▊       | 14/50 [05:06<13:03, 21.75s/it, objective=nan] 30%|███       | 15/50 [05:24<12:38, 21.68s/it, objective=nan] 30%|███       | 15/50 [05:27<12:40, 21.73s/it, objective=nan]n] 32%|███▏      | 16/50 [05:49<12:19, 21.74s/it, objective=nan] 34%|███▍      | 17/50 [06:11<11:56, 21.72s/it, objective=nan] 36%|███▌      | 18/50 [06:29<11:35, 21.72s/it, objective=nan] 36%|███▌      | 18/50 [06:32<11:35, 21.73s/it, objective=nan] 38%|███▊      | 19/50 [06:51<11:10, 21.63s/it, objective=nan] 38%|███▊      | 19/50 [06:54<11:16, 21.81s/it, objective=nan] 40%|████      | 20/50 [07:16<10:54, 21.81s/it, objective=nan]n] 42%|████▏     | 21/50 [07:38<10:34, 21.86s/it, objective=nan] 44%|████▍     | 22/50 [07:55<10:01, 21.48s/it, objective=nan] 44%|████▍     | 22/50 [08:00<10:12, 21.87s/it, objective=nan] 46%|████▌     | 23/50 [08:22<09:51, 21.90s/it, objective=nan] 48%|████▊     | 24/50 [08:44<09:31, 21.98s/it, objective=nan] 50%|█████     | 25/50 [09:01<09:04, 21.79s/it, objective=nan] 52%|█████▏    | 26/50 [09:22<08:40, 21.67s/it, objective=nan] 54%|█████▍    | 27/50 [09:44<08:16, 21.60s/it, objective=nan] 56%|█████▌    | 28/50 [10:05<07:54, 21.55s/it, objective=nan]                                                                            58%|█████▊    | 29/50 [10:27<07:33, 21.58s/it, objective=nan] 60%|██████    | 30/50 [10:48<07:12, 21.63s/it, objective=nan] 62%|██████▏   | 31/50 [11:10<06:51, 21.68s/it, objective=nan]                                                                              64%|██████▍   | 32/50 [11:32<06:30, 21.71s/it, objective=nan] 66%|██████▌   | 33/50 [11:53<06:07, 21.62s/it, objective=nan] 68%|██████▊   | 34/50 [12:15<05:45, 21.62s/it, objective=nan] 70%|███████   | 35/50 [12:37<05:25, 21.67s/it, objective=nan]                                                                              72%|███████▏  | 36/50 [12:59<05:03, 21.70s/it, objective=nan] 74%|███████▍  | 37/50 [13:20<04:42, 21.69s/it, objective=nan] 76%|███████▌  | 38/50 [13:42<04:20, 21.69s/it, objective=nan]                                                                                78%|███████▊  | 39/50 [14:04<03:58, 21.72s/it, objective=nan] 80%|████████  | 40/50 [14:25<03:36, 21.70s/it, objective=nan] 82%|████████▏ | 41/50 [14:47<03:14, 21.65s/it, objective=nan] 84%|████████▍ | 42/50 [15:09<02:53, 21.70s/it, objective=nan] 86%|████████▌ | 43/50 [15:30<02:31, 21.70s/it, objective=nan] 88%|████████▊ | 44/50 [15:52<02:10, 21.80s/it, objective=nan] 90%|█████████ | 45/50 [16:14<01:48, 21.71s/it, objective=nan]                                                                                  92%|█████████▏| 46/50 [16:35<01:26, 21.65s/it, objective=nan] 94%|█████████▍| 47/50 [16:57<01:04, 21.66s/it, objective=nan] 96%|█████████▌| 48/50 [17:19<00:43, 21.69s/it, objective=nan] 96%|█████████▌| 48/50 [17:29<00:43, 21.86s/it, objective=nan] 98%|█████████▊| 49/50 [17:51<00:21, 21.86s/it, objective=nan]100%|██████████| 50/50 [18:02<00:00, 21.66s/it, objective=nan]
-100%|██████████| 50/50 [18:13<00:00, 21.88s/it, objective=nan]100%|██████████| 50/50 [18:13<00:00, 21.87s/it, objective=nan]
-/zhome/71/c/146676/.lsbatch/1739362249.24029696.1.shell: line 30: 3782054 Killed                  python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
-/zhome/71/c/146676/.lsbatch/1739362249.24029696.2.shell: line 30: 2784157 Killed                  python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
-/zhome/71/c/146676/.lsbatch/1739362249.24029696.3.shell: line 30: 3782382 Killed                  python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
-/zhome/71/c/146676/.lsbatch/1739362249.24029696.4.shell: line 30: 3782594 Killed                  python -c "from reconstructor_NA import recon_dTV_multi; recon_dTV_multi($LSB_JOBINDEX, num_proc = 4, N_iter = 50, alpha = 300.0, eta = 0.0015)"
-/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:21<17:28, 21.39s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:13, 21.53s/it, objective=nan]/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  6%|▌         | 3/50 [01:04<16:59, 21.69s/it, objective=nan]  2%|▏         | 1/50 [00:21<17:54, 21.93s/it, objective=nan]  8%|▊         | 4/50 [01:26<16:41, 21.77s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:27, 21.83s/it, objective=nan] 10%|█         | 5/50 [01:48<16:17, 21.73s/it, objective=nan]  6%|▌         | 3/50 [01:05<17:08, 21.89s/it, objective=nan] 12%|█▏        | 6/50 [02:10<15:53, 21.67s/it, objective=nan]  8%|▊         | 4/50 [01:27<16:49, 21.94s/it, objective=nan] 14%|█▍        | 7/50 [02:31<15:29, 21.62s/it, objective=nan] 10%|█         | 5/50 [01:49<16:27, 21.94s/it, objective=nan] 16%|█▌        | 8/50 [02:53<15:06, 21.60s/it, objective=nan] 12%|█▏        | 6/50 [02:11<16:05, 21.94s/it, objective=nan] 18%|█▊        | 9/50 [03:14<14:45, 21.60s/it, objective=nan] 14%|█▍        | 7/50 [02:33<15:41, 21.90s/it, objective=nan] 20%|██        | 10/50 [03:36<14:21, 21.54s/it, objective=nan] 16%|█▌        | 8/50 [02:55<15:19, 21.90s/it, objective=nan] 22%|██▏       | 11/50 [03:57<14:03, 21.62s/it, objective=nan] 18%|█▊        | 9/50 [03:17<14:58, 21.92s/it, objective=nan] 24%|██▍       | 12/50 [04:19<13:39, 21.57s/it, objective=nan] 20%|██        | 10/50 [03:38<14:33, 21.83s/it, objective=nan] 26%|██▌       | 13/50 [04:40<13:16, 21.54s/it, objective=nan] 22%|██▏       | 11/50 [04:00<14:09, 21.78s/it, objective=nan] 28%|██▊       | 14/50 [05:02<12:52, 21.44s/it, objective=nan] 24%|██▍       | 12/50 [04:22<13:45, 21.73s/it, objective=nan] 30%|███       | 15/50 [05:23<12:29, 21.40s/it, objective=nan] 26%|██▌       | 13/50 [04:43<13:24, 21.73s/it, objective=nan] 32%|███▏      | 16/50 [05:44<12:09, 21.44s/it, objective=nan] 28%|██▊       | 14/50 [05:05<13:03, 21.76s/it, objective=nan] 34%|███▍      | 17/50 [06:06<11:47, 21.43s/it, objective=nan] 30%|███       | 15/50 [05:27<12:41, 21.75s/it, objective=nan] 36%|███▌      | 18/50 [06:27<11:27, 21.49s/it, objective=nan] 32%|███▏      | 16/50 [05:49<12:19, 21.75s/it, objective=nan] 38%|███▊      | 19/50 [06:49<11:04, 21.42s/it, objective=nan] 34%|███▍      | 17/50 [06:10<11:56, 21.73s/it, objective=nan] 40%|████      | 20/50 [07:10<10:42, 21.40s/it, objective=nan] 36%|███▌      | 18/50 [06:32<11:38, 21.83s/it, objective=nan] 42%|████▏     | 21/50 [07:31<10:20, 21.41s/it, objective=nan] 38%|███▊      | 19/50 [06:54<11:16, 21.82s/it, objective=nan] 44%|████▍     | 22/50 [07:53<10:00, 21.44s/it, objective=nan] 40%|████      | 20/50 [07:16<10:55, 21.83s/it, objective=nan] 46%|████▌     | 23/50 [08:15<09:40, 21.48s/it, objective=nan] 42%|████▏     | 21/50 [07:38<10:34, 21.88s/it, objective=nan] 48%|████▊     | 24/50 [08:36<09:18, 21.50s/it, objective=nan] 50%|█████     | 25/50 [08:58<08:59, 21.56s/it, objective=nan] 44%|████▍     | 22/50 [08:00<10:15, 21.98s/it, objective=nan] 52%|█████▏    | 26/50 [09:19<08:38, 21.59s/it, objective=nan] 46%|████▌     | 23/50 [08:22<09:53, 21.98s/it, objective=nan] 54%|█████▍    | 27/50 [09:41<08:16, 21.58s/it, objective=nan] 48%|████▊     | 24/50 [08:44<09:31, 22.00s/it, objective=nan] 56%|█████▌    | 28/50 [10:03<07:54, 21.56s/it, objective=nan] 50%|█████     | 25/50 [09:07<09:12, 22.10s/it, objective=nan] 58%|█████▊    | 29/50 [10:24<07:32, 21.54s/it, objective=nan] 52%|█████▏    | 26/50 [09:29<08:48, 22.04s/it, objective=nan] 60%|██████    | 30/50 [10:45<07:10, 21.53s/it, objective=nan] 54%|█████▍    | 27/50 [09:50<08:25, 21.96s/it, objective=nan] 62%|██████▏   | 31/50 [11:07<06:48, 21.49s/it, objective=nan] 56%|█████▌    | 28/50 [10:12<08:01, 21.90s/it, objective=nan] 64%|██████▍   | 32/50 [11:28<06:26, 21.46s/it, objective=nan] 58%|█████▊    | 29/50 [10:34<07:39, 21.86s/it, objective=nan] 66%|██████▌   | 33/50 [11:50<06:04, 21.43s/it, objective=nan] 60%|██████    | 30/50 [10:56<07:16, 21.84s/it, objective=nan] 68%|██████▊   | 34/50 [12:11<05:42, 21.41s/it, objective=nan] 62%|██████▏   | 31/50 [11:18<06:55, 21.86s/it, objective=nan] 70%|███████   | 35/50 [12:32<05:21, 21.40s/it, objective=nan] 64%|██████▍   | 32/50 [11:39<06:32, 21.82s/it, objective=nan] 72%|███████▏  | 36/50 [12:54<04:59, 21.38s/it, objective=nan] 66%|██████▌   | 33/50 [12:01<06:11, 21.87s/it, objective=nan] 74%|███████▍  | 37/50 [13:16<04:39, 21.51s/it, objective=nan] 68%|██████▊   | 34/50 [12:23<05:50, 21.89s/it, objective=nan] 76%|███████▌  | 38/50 [13:37<04:18, 21.54s/it, objective=nan] 70%|███████   | 35/50 [12:45<05:28, 21.91s/it, objective=nan] 78%|███████▊  | 39/50 [13:59<03:57, 21.56s/it, objective=nan] 72%|███████▏  | 36/50 [13:07<05:07, 21.93s/it, objective=nan] 80%|████████  | 40/50 [14:21<03:36, 21.69s/it, objective=nan] 74%|███████▍  | 37/50 [13:29<04:45, 21.95s/it, objective=nan] 82%|████████▏ | 41/50 [14:42<03:15, 21.69s/it, objective=nan] 76%|███████▌  | 38/50 [13:51<04:23, 21.95s/it, objective=nan] 84%|████████▍ | 42/50 [15:04<02:53, 21.74s/it, objective=nan] 78%|███████▊  | 39/50 [14:13<04:01, 21.98s/it, objective=nan] 86%|████████▌ | 43/50 [15:26<02:32, 21.77s/it, objective=nan] 80%|████████  | 40/50 [14:35<03:39, 21.95s/it, objective=nan] 88%|████████▊ | 44/50 [15:48<02:10, 21.69s/it, objective=nan] 82%|████████▏ | 41/50 [14:57<03:17, 21.94s/it, objective=nan] 90%|█████████ | 45/50 [16:09<01:48, 21.67s/it, objective=nan] 84%|████████▍ | 42/50 [15:19<02:55, 21.98s/it, objective=nan] 92%|█████████▏| 46/50 [16:31<01:26, 21.72s/it, objective=nan] 86%|████████▌ | 43/50 [15:41<02:33, 21.98s/it, objective=nan] 94%|█████████▍| 47/50 [16:53<01:05, 21.72s/it, objective=nan] 88%|████████▊ | 44/50 [16:03<02:12, 22.01s/it, objective=nan] 96%|█████████▌| 48/50 [17:15<00:43, 21.77s/it, objective=nan] 90%|█████████ | 45/50 [16:25<01:49, 21.94s/it, objective=nan] 98%|█████████▊| 49/50 [17:36<00:21, 21.73s/it, objective=nan] 92%|█████████▏| 46/50 [16:47<01:27, 21.93s/it, objective=nan]100%|██████████| 50/50 [17:58<00:00, 21.70s/it, objective=nan]100%|██████████| 50/50 [17:58<00:00, 21.57s/it, objective=nan]
- 94%|█████████▍| 47/50 [17:09<01:05, 21.89s/it, objective=nan] 96%|█████████▌| 48/50 [17:30<00:43, 21.87s/it, objective=nan] 98%|█████████▊| 49/50 [17:52<00:21, 21.82s/it, objective=nan]100%|██████████| 50/50 [18:14<00:00, 21.76s/it, objective=nan]100%|██████████| 50/50 [18:14<00:00, 21.88s/it, objective=nan]
-/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:21<17:42, 21.67s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:18, 21.64s/it, objective=nan]  6%|▌         | 3/50 [01:04<16:55, 21.60s/it, objective=nan]  8%|▊         | 4/50 [01:26<16:37, 21.68s/it, objective=nan]/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cil/plugins/ccpi_regularisation/functions/regularisers.py:412: UserWarning: FGP_dTV: the __call__ method is not implemented. Returning NaN.
-  warnings.warn("{}: the __call__ method is not implemented. Returning NaN.".format(self.__class__.__name__))
-  0%|          | 0/50 [00:00<?, ?it/s] 10%|█         | 5/50 [01:48<16:13, 21.63s/it, objective=nan]  2%|▏         | 1/50 [00:21<17:47, 21.79s/it, objective=nan] 12%|█▏        | 6/50 [02:09<15:48, 21.56s/it, objective=nan]  4%|▍         | 2/50 [00:43<17:29, 21.87s/it, objective=nan] 14%|█▍        | 7/50 [02:31<15:24, 21.50s/it, objective=nan]  6%|▌         | 3/50 [01:05<17:04, 21.81s/it, objective=nan] 16%|█▌        | 8/50 [02:52<15:02, 21.49s/it, objective=nan]  8%|▊         | 4/50 [01:27<16:41, 21.77s/it, objective=nan] 18%|█▊        | 9/50 [03:14<14:41, 21.51s/it, objective=nan] 10%|█         | 5/50 [01:48<16:16, 21.69s/it, objective=nan] 20%|██        | 10/50 [03:35<14:20, 21.51s/it, objective=nan] 12%|█▏        | 6/50 [02:10<15:53, 21.68s/it, objective=nan] 22%|██▏       | 11/50 [03:57<13:59, 21.52s/it, objective=nan] 14%|█▍        | 7/50 [02:31<15:29, 21.62s/it, objective=nan] 24%|██▍       | 12/50 [04:18<13:39, 21.56s/it, objective=nan] 16%|█▌        | 8/50 [02:53<15:06, 21.58s/it, objective=nan] 26%|██▌       | 13/50 [04:40<13:16, 21.52s/it, objective=nan] 18%|█▊        | 9/50 [03:14<14:45, 21.60s/it, objective=nan] 28%|██▊       | 14/50 [05:01<12:54, 21.51s/it, objective=nan] 20%|██        | 10/50 [03:36<14:24, 21.62s/it, objective=nan] 30%|███       | 15/50 [05:23<12:33, 21.52s/it, objective=nan] 22%|██▏       | 11/50 [03:58<14:04, 21.65s/it, objective=nan] 32%|███▏      | 16/50 [05:44<12:11, 21.52s/it, objective=nan] 24%|██▍       | 12/50 [04:20<13:42, 21.64s/it, objective=nan] 34%|███▍      | 17/50 [06:06<11:50, 21.53s/it, objective=nan] 26%|██▌       | 13/50 [04:42<13:25, 21.78s/it, objective=nan] 36%|███▌      | 18/50 [06:28<11:34, 21.70s/it, objective=nan] 28%|██▊       | 14/50 [05:03<13:03, 21.76s/it, objective=nan] 38%|███▊      | 19/50 [06:50<11:15, 21.78s/it, objective=nan] 30%|███       | 15/50 [05:25<12:40, 21.74s/it, objective=nan] 40%|████      | 20/50 [07:12<10:53, 21.78s/it, objective=nan] 32%|███▏      | 16/50 [05:47<12:20, 21.77s/it, objective=nan] 42%|████▏     | 21/50 [07:33<10:30, 21.74s/it, objective=nan] 34%|███▍      | 17/50 [06:09<11:57, 21.74s/it, objective=nan] 44%|████▍     | 22/50 [07:55<10:07, 21.70s/it, objective=nan] 36%|███▌      | 18/50 [06:30<11:34, 21.71s/it, objective=nan] 46%|████▌     | 23/50 [08:16<09:45, 21.67s/it, objective=nan] 38%|███▊      | 19/50 [06:52<11:12, 21.68s/it, objective=nan] 48%|████▊     | 24/50 [08:38<09:21, 21.60s/it, objective=nan] 40%|████      | 20/50 [07:13<10:50, 21.68s/it, objective=nan] 50%|█████     | 25/50 [08:59<08:59, 21.56s/it, objective=nan] 42%|████▏     | 21/50 [07:35<10:28, 21.67s/it, objective=nan] 52%|█████▏    | 26/50 [09:21<08:37, 21.57s/it, objective=nan] 44%|████▍     | 22/50 [07:57<10:10, 21.80s/it, objective=nan] 54%|█████▍    | 27/50 [09:43<08:16, 21.58s/it, objective=nan] 46%|████▌     | 23/50 [08:19<09:49, 21.82s/it, objective=nan] 56%|█████▌    | 28/50 [10:04<07:57, 21.69s/it, objective=nan] 48%|████▊     | 24/50 [08:41<09:27, 21.83s/it, objective=nan] 58%|█████▊    | 29/50 [10:27<07:38, 21.82s/it, objective=nan] 50%|█████     | 25/50 [09:03<09:05, 21.83s/it, objective=nan] 60%|██████    | 30/50 [10:48<07:15, 21.75s/it, objective=nan] 52%|█████▏    | 26/50 [09:25<08:44, 21.85s/it, objective=nan] 62%|██████▏   | 31/50 [11:10<06:52, 21.71s/it, objective=nan] 54%|█████▍    | 27/50 [09:46<08:22, 21.83s/it, objective=nan] 64%|██████▍   | 32/50 [11:31<06:29, 21.65s/it, objective=nan] 56%|█████▌    | 28/50 [10:08<08:00, 21.84s/it, objective=nan] 66%|██████▌   | 33/50 [11:53<06:07, 21.63s/it, objective=nan] 58%|█████▊    | 29/50 [10:30<07:38, 21.83s/it, objective=nan] 68%|██████▊   | 34/50 [12:15<05:45, 21.62s/it, objective=nan] 60%|██████    | 30/50 [10:52<07:16, 21.85s/it, objective=nan] 70%|███████   | 35/50 [12:36<05:24, 21.66s/it, objective=nan] 62%|██████▏   | 31/50 [11:14<06:54, 21.82s/it, objective=nan] 72%|███████▏  | 36/50 [12:58<05:03, 21.69s/it, objective=nan] 64%|██████▍   | 32/50 [11:36<06:33, 21.84s/it, objective=nan] 74%|███████▍  | 37/50 [13:20<04:42, 21.70s/it, objective=nan] 66%|██████▌   | 33/50 [11:57<06:11, 21.83s/it, objective=nan] 76%|███████▌  | 38/50 [13:41<04:20, 21.71s/it, objective=nan] 68%|██████▊   | 34/50 [12:19<05:49, 21.85s/it, objective=nan] 78%|███████▊  | 39/50 [14:03<03:58, 21.66s/it, objective=nan] 70%|███████   | 35/50 [12:41<05:27, 21.82s/it, objective=nan] 80%|████████  | 40/50 [14:25<03:36, 21.64s/it, objective=nan] 72%|███████▏  | 36/50 [13:03<05:05, 21.83s/it, objective=nan] 82%|████████▏ | 41/50 [14:46<03:14, 21.62s/it, objective=nan] 74%|███████▍  | 37/50 [13:25<04:43, 21.78s/it, objective=nan] 84%|████████▍ | 42/50 [15:08<02:52, 21.61s/it, objective=nan] 76%|███████▌  | 38/50 [13:46<04:21, 21.78s/it, objective=nan] 86%|████████▌ | 43/50 [15:29<02:31, 21.59s/it, objective=nan] 78%|███████▊  | 39/50 [14:08<03:59, 21.79s/it, objective=nan] 88%|████████▊ | 44/50 [15:51<02:09, 21.60s/it, objective=nan] 80%|████████  | 40/50 [14:30<03:37, 21.79s/it, objective=nan] 90%|█████████ | 45/50 [16:13<01:47, 21.59s/it, objective=nan] 82%|████████▏ | 41/50 [14:52<03:16, 21.81s/it, objective=nan] 92%|█████████▏| 46/50 [16:34<01:26, 21.55s/it, objective=nan] 84%|████████▍ | 42/50 [15:14<02:55, 21.96s/it, objective=nan] 94%|█████████▍| 47/50 [16:55<01:04, 21.53s/it, objective=nan] 86%|████████▌ | 43/50 [15:36<02:33, 21.91s/it, objective=nan] 96%|█████████▌| 48/50 [17:17<00:42, 21.50s/it, objective=nan] 88%|████████▊ | 44/50 [15:58<02:11, 21.88s/it, objective=nan] 98%|█████████▊| 49/50 [17:38<00:21, 21.48s/it, objective=nan] 90%|█████████ | 45/50 [16:20<01:49, 21.85s/it, objective=nan]100%|██████████| 50/50 [18:00<00:00, 21.47s/it, objective=nan]100%|██████████| 50/50 [18:00<00:00, 21.61s/it, objective=nan]
- 92%|█████████▏| 46/50 [16:41<01:27, 21.85s/it, objective=nan] 94%|█████████▍| 47/50 [17:03<01:05, 21.78s/it, objective=nan] 96%|█████████▌| 48/50 [17:25<00:43, 21.74s/it, objective=nan] 98%|█████████▊| 49/50 [17:46<00:21, 21.75s/it, objective=nan]100%|██████████| 50/50 [18:08<00:00, 21.74s/it, objective=nan]100%|██████████| 50/50 [18:08<00:00, 21.77s/it, objective=nan]
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 79, in <module>
+    results = pool.starmap(DA_loader, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+OSError: Can't synchronously read data (can't find plugin. Check either HDF5_VOL_CONNECTOR, HDF5_PLUGIN_PATH, default location, or path set by H5PLxxx functions)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
