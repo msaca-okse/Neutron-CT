@@ -1,0 +1,92 @@
+import: unable to open X server `' @ error/import.c/ImportImageCommand/346.
+import: unable to open X server `' @ error/import.c/ImportImageCommand/346.
+/zhome/71/c/146676/.lsbatch/1742377901.24466454.shell: line 3: syntax error near unexpected token `'/zhome/71/c/146676/main/''
+/zhome/71/c/146676/.lsbatch/1742377901.24466454.shell: line 3: `os.chdir('/zhome/71/c/146676/main/')'
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466454: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 10:51:41 2025
+Job was executed on host(s) <n-62-31-4>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 10:51:41 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 10:51:41 2025
+Terminated at Wed Mar 19 10:51:42 2025
+Results reported at Wed Mar 19 10:51:42 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+import sys
+import os
+os.chdir('/zhome/71/c/146676/main/')
+sys.path.append('/zhome/71/c/146676/main/')
+import time
+import SimpleITK as sitk
+import numpy as np
+from astropy.io import fits
+from helpers import module_auxiliary as ma
+import tifffile
+from multiprocessing import Pool
+import matplotlib.pyplot as plt
+from helpers import extended_data as ed
+from cil.recon import FBP
+#from cil.plugins.astra import FBP
+from cil.framework import AcquisitionGeometry, AcquisitionData, ImageGeometry, ImageData, BlockDataContainer
+from cil.plugins.ccpi_regularisation.functions import FGP_TV
+from cil.optimisation.functions import L2NormSquared, L1Norm, BlockFunction, MixedL21Norm, IndicatorBox, TotalVariation, LeastSquares
+from cil.optimisation.operators import BlockOperator, GradientOperator, IdentityOperator, FiniteDifferenceOperator
+from cil.optimisation.algorithms import CGLS, SIRT, GD, FISTA, ISTA, PDHG, SPDHG
+from cil.plugins.astra.operators import ProjectionOperator
+from cil.optimisation.functions import IndicatorBox, MixedL21Norm, L2NormSquared, \
+                                       BlockFunction, L1Norm, LeastSquares, \
+                                       OperatorCompositionFunction, TotalVariation, \
+                                       ZeroFunction
+from cil.optimisation.operators import BlockOperator, GradientOperator,\
+                                       GradientOperator
+import h5py
+import cv2
+import hdf5plugin
+from cil.utilities.display import show_geometry
+from scipy.ndimage import uniform_filter1d
+from cil.processors import Slicer
+import nibabel as nib
+import os
+
+
+
+def cartesian_to_polar_opencv(matrix,num_phi=360,num_rad = None):
+    rows, cols = matrix.shape
+    bias_col = 28
+    bias_row = 33
+    center = (cols // 2+bias_col, rows // 2+bias_row)  # Define center as origin
+    max_radius = (min(cols, rows) // 2)-132
+    if num_rad is None:
+        num_rad = max_radius
+    # Convert Cartesian to Polar using OpenCV's warpPolar
+    polar_matrix = cv2.warpPolar(
+        matrix, (num_rad, num_phi), center, max_radius,
+        cv2.WARP_POLAR_LINEAR + cv2.INTER_LINEAR
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 2.
+
+Resource usage summary:
+
+    CPU time :                                   0.76 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   1 sec.
+    Turnaround time :                            1 sec.
+
+The output (if any) is above this job summary.
+

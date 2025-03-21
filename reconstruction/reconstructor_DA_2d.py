@@ -41,7 +41,7 @@ def cartesian_to_polar_opencv(matrix,num_phi=360,num_rad = None):
     bias_col = 28
     bias_row = 33
     center = (cols // 2+bias_col, rows // 2+bias_row)  # Define center as origin
-    max_radius = (min(cols, rows) // 2)-150
+    max_radius = (min(cols, rows) // 2)-210
     if num_rad is None:
         num_rad = max_radius
     # Convert Cartesian to Polar using OpenCV's warpPolar
@@ -62,19 +62,33 @@ def DA_loader(batch_id,q_value=0.75):
         # Access a dataset or group (replace 'your_dataset' with the correct key)
         for i in range(Nx):
             dataset_ = file['entry']['instrument']['pilatus']['data'][Nx*batch_id + i]  # Replace 'your_dataset' with the actual name of the dataset
-            dataset = np.pad(dataset_, 300, mode='constant', constant_values=0)
+            dataset = np.pad(dataset_, 600, mode='constant', constant_values=0)
             dataset[dataset<0] = 0
-            polar_matrix = cartesian_to_polar_opencv(dataset.astype(np.float32),num_phi=360, num_rad=1000)
-            q_max = np.quantile(polar_matrix,q_value,axis=0)
-            q_min = np.quantile(polar_matrix,0,axis=0)
-            polar2 = np.clip(polar_matrix, q_min, q_max)
+            polar_matrix = cartesian_to_polar_opencv(dataset.astype(np.float32),num_phi=360, num_rad=2000)
+
+            polar_matrix_no_zeros = np.where(polar_matrix == 0, np.nan, polar_matrix)
+            polar_matrix_no_zeros[0] = 10000
+            q_max = np.nanquantile(polar_matrix_no_zeros, q_value, axis=0)
+
+            polar2 = np.clip(polar_matrix, 0 , q_max)
             polar3 = np.sum(polar2,axis=0)
+
+            angles = np.linspace(0.0145, 18.408,2001, endpoint=True)
+            r_nonunif = np.sin(np.radians(angles))
+            r_nonunif = np.linspace(r_nonunif[0], r_nonunif[-1],2001,endpoint=True)
+            r_unif = np.linspace(0,0.310,2030, endpoint=True)
+            r_unif = np.delete(r_unif, range(170,200))
+            interp_func = interp1d(r_unif, polar3, kind='linear', bounds_error=False, fill_value="extrapolate")
+            polar3 = interp_func(r_nonunif)
+            polar3_trimmed = polar3.reshape(-1, 3)  # Reshape into (667, 3)
+            polar3 = polar3_trimmed.mean(axis=1) 
+
             all_polar3.append(polar3)
         return np.stack(all_polar3)
 
 
 batch_ids = range(181)  # Generate batch_id values
-q_value = 0.6  # Constant q_value
+q_value = 0.75  # Constant q_value
 
 with Pool() as pool:
     results = pool.starmap(DA_loader, [(batch_id, q_value) for batch_id in batch_ids])

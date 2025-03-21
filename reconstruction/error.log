@@ -69,3 +69,113 @@ OSError: Can't synchronously read data (can't find plugin. Check either HDF5_VOL
   np.copyto(result, arr[-1, ...], where=slices_having_nans)
 /zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
   np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/numpy/lib/function_base.py:4850: RuntimeWarning: invalid value encountered in cast
+  np.copyto(result, arr[-1, ...], where=slices_having_nans)
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 73, in DA_loader
+    polar2 = np.clip(polar_matrix, q_min, q_max)
+NameError: name 'q_min' is not defined
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 92, in <module>
+    results = pool.starmap(DA_loader, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+NameError: name 'q_min' is not defined
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 73, in DA_loader
+    polar2 = np.clip(polar_matrix, q_min, q_max)
+NameError: name 'q_min' is not defined
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 94, in <module>
+    results = pool.starmap(DA_loader, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+NameError: name 'q_min' is not defined
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 81, in DA_loader
+    interp_func = interp1d(r_unif, polar3, kind='linear', bounds_error=False, fill_value="extrapolate")
+NameError: name 'interp1d' is not defined
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 94, in <module>
+    results = pool.starmap(DA_loader, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+NameError: name 'interp1d' is not defined

@@ -274,3 +274,624 @@ PS:
 
 Read file <error.log> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466301: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 10:33:46 2025
+Job was executed on host(s) <16*n-62-28-34>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 10:33:47 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 10:33:47 2025
+Terminated at Wed Mar 19 10:41:37 2025
+Results reported at Wed Mar 19 10:41:37 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   4147.95 sec.
+    Max Memory :                                 3159 MB
+    Average Memory :                             2302.20 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               12841.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                328
+    Run time :                                   470 sec.
+    Turnaround time :                            471 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466459: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 10:52:02 2025
+Job was executed on host(s) <16*n-62-29-12>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 10:52:04 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 10:52:04 2025
+Terminated at Wed Mar 19 11:00:08 2025
+Results reported at Wed Mar 19 11:00:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   5660.01 sec.
+    Max Memory :                                 3380 MB
+    Average Memory :                             2913.80 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               12620.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                328
+    Run time :                                   484 sec.
+    Turnaround time :                            486 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466658: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 11:05:12 2025
+Job was executed on host(s) <16*n-62-29-12>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 11:05:14 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 11:05:14 2025
+Terminated at Wed Mar 19 11:05:48 2025
+Results reported at Wed Mar 19 11:05:48 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   96.75 sec.
+    Max Memory :                                 527 MB
+    Average Memory :                             527.00 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               15473.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                73
+    Run time :                                   34 sec.
+    Turnaround time :                            36 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466669: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 11:06:41 2025
+Job was executed on host(s) <16*n-62-29-12>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 11:06:43 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 11:06:43 2025
+Terminated at Wed Mar 19 11:07:04 2025
+Results reported at Wed Mar 19 11:07:04 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   69.29 sec.
+    Max Memory :                                 496 MB
+    Average Memory :                             496.00 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               15504.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                73
+    Run time :                                   21 sec.
+    Turnaround time :                            23 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24466697: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Wed Mar 19 11:09:52 2025
+Job was executed on host(s) <16*n-62-29-12>, in queue <hpc>, as user <msaca> in cluster <dcc> at Wed Mar 19 11:09:52 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Wed Mar 19 11:09:52 2025
+Terminated at Wed Mar 19 11:16:27 2025
+Results reported at Wed Mar 19 11:16:27 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   4422.90 sec.
+    Max Memory :                                 3051 MB
+    Average Memory :                             2760.00 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               12949.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                328
+    Run time :                                   395 sec.
+    Turnaround time :                            395 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24472477: <dfrctn_prep> in cluster <dcc> Done
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Thu Mar 20 13:10:15 2025
+Job was executed on host(s) <16*n-62-29-26>, in queue <hpc>, as user <msaca> in cluster <dcc> at Thu Mar 20 13:10:17 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Thu Mar 20 13:10:17 2025
+Terminated at Thu Mar 20 13:18:08 2025
+Results reported at Thu Mar 20 13:18:08 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   4843.00 sec.
+    Max Memory :                                 3684 MB
+    Average Memory :                             2933.67 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               12316.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                328
+    Run time :                                   471 sec.
+    Turnaround time :                            473 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24489659: <dfrctn_prep> in cluster <dcc> Exited
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Mar 21 14:39:37 2025
+Job was executed on host(s) <16*n-62-31-7>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Mar 21 14:39:37 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Fri Mar 21 14:39:37 2025
+Terminated at Fri Mar 21 14:40:10 2025
+Results reported at Fri Mar 21 14:40:10 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   28.68 sec.
+    Max Memory :                                 76 MB
+    Average Memory :                             76.00 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               15924.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   134 sec.
+    Turnaround time :                            33 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24489729: <dfrctn_prep> in cluster <dcc> Exited
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Mar 21 15:00:20 2025
+Job was executed on host(s) <16*n-62-29-8>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Mar 21 15:00:20 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Fri Mar 21 15:00:20 2025
+Terminated at Fri Mar 21 15:00:34 2025
+Results reported at Fri Mar 21 15:00:34 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   20.25 sec.
+    Max Memory :                                 1325 MB
+    Average Memory :                             1325.00 MB
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               14675.00 MB
+    Max Swap :                                   -
+    Max Processes :                              24
+    Max Threads :                                313
+    Run time :                                   14 sec.
+    Turnaround time :                            14 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24489735: <dfrctn_prep> in cluster <dcc> Exited
+
+Job <dfrctn_prep> was submitted from host <gbarlogin1> by user <msaca> in cluster <dcc> at Fri Mar 21 15:01:29 2025
+Job was executed on host(s) <16*n-62-29-8>, in queue <hpc>, as user <msaca> in cluster <dcc> at Fri Mar 21 15:01:31 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/reconstruction> was used as the working directory.
+Started at Fri Mar 21 15:01:31 2025
+Terminated at Fri Mar 21 15:01:37 2025
+Results reported at Fri Mar 21 15:01:37 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpuv100, gpua100, gpua10, gpua40. Check availability by bqueues -l gpua100, eg
+#BSUB -q hpc
+#       #BSUB -gpu "num=1"
+#BSUB -e error.log
+#BSUB -o output.log
+#BSUB -M 1000
+#BSUB -R "rusage[mem=1000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 15:00 
+# -- Number of cores requested -- 
+#BSUB -n 16
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]"
+# Array job: N tasks, one per folder
+#BSUB -J dfrctn_prep
+# -- end of LSF options -- 
+
+source /zhome/71/c/146676/miniconda3/bin/activate && conda activate cil5
+
+python reconstructor_DA_2d.py
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   22.70 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   6 sec.
+    Turnaround time :                            8 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error.log> for stderr output of this job.
+
