@@ -179,3 +179,5 @@ Traceback (most recent call last):
   File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
     raise self._value
 NameError: name 'interp1d' is not defined
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found

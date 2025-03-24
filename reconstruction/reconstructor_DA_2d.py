@@ -33,6 +33,7 @@ from scipy.ndimage import uniform_filter1d
 from cil.processors import Slicer
 import nibabel as nib
 import os
+from scipy.interpolate import interp1d
 
 
 
