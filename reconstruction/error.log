@@ -181,3 +181,5 @@ Traceback (most recent call last):
 NameError: name 'interp1d' is not defined
 /zhome/71/c/146676/.bashrc: line 54: conda2: command not found
 /zhome/71/c/146676/.bashrc: line 55: conda: command not found
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
