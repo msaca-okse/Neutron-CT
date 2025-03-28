@@ -8,7 +8,6 @@ import hdf5plugin
 from cil.utilities.display import show_geometry
 from scipy.ndimage import uniform_filter1d
 import os
-from scipy.interpolate import interp1d
 import cupy as cp
 
 
@@ -64,10 +63,24 @@ def cartesian_to_polar_cupy(matrix, num_phi=360, num_rad=None,factor = 6):
     return polar_matrix
 
 
-def DA_loader_gpu(batch_id,file_path, q_value=0.75, Nx=362):
+def DA_loader_gpu(batch_id,file_path, Nx=362):
+
+    print(batch_id)
+    q_values = [60, 75, 80, 85, 90, 95, 98, 99, 100]
+    q_powder_strings = [f"powder_q-{q}" for q in q_values]
+    q_crystal_strings = [f"crystal_q-{q}" for q in q_values]
+    q_dict = {f"powder_q-{q}": [] for q in q_values}
+    q_dict.update({f"crystal_q-{q}": [] for q in q_values})
+
+
+
+    r_nonunif = cp.arcsin(cp.linspace(0,0.35,667))
+    r_unif = cp.linspace(0,1, 667)*0.35
+
+
+
     with h5py.File(file_path, 'r') as file:
-        all_polar3 = []
-        print(batch_id)
+
         for i in range(Nx):
             dataset_ = file['entry']['instrument']['pilatus']['data'][Nx*batch_id + i]
             dataset = cp.pad(cp.asarray(dataset_, dtype=cp.float32), 600, mode='constant', constant_values=0)
@@ -83,11 +96,58 @@ def DA_loader_gpu(batch_id,file_path, q_value=0.75, Nx=362):
             # Replace zero values with the computed column means
             polar_copy[zero_mask] = col_means_broadcasted[zero_mask]
 
-            q_max = cp.percentile(polar_copy, q=q_value*100, axis=0)
-            
-            polar2 = cp.clip(polar_matrix, 0, q_max)
-            polar3 = cp.sum(polar2, axis=0)
-            
-            all_polar3.append(polar3)
+            for i in range(len(q_values)):
+                q = q_values[i]
+                q_powder_key = q_powder_strings[i]
+                q_crystal_key = q_crystal_strings[i]
+
+                q_max = cp.percentile(polar_copy, q=q, axis=0)
+                
+                polar_powder = cp.clip(polar_matrix, 0, q_max)
+                polar_crystal = polar_matrix - polar_powder
+
+                integral_powder = cp.sum(polar_powder, axis=0)
+                integral_crystal = cp.sum(polar_crystal, axis=0)
+
+                integral_powder_corrected  = cp.interp(r_nonunif, r_unif, integral_powder).astype(cp.float32)
+                integral_crystal_corrected  = cp.interp(r_nonunif, r_unif, integral_crystal).astype(cp.float32)
+
+                q_dict[q_powder_key].append(integral_powder_corrected)
+                q_dict[q_crystal_key].append(integral_crystal_corrected)
         
-        return cp.asnumpy(cp.stack(all_polar3))
+
+    for i in range(len(q_values)):
+        q_powder_key = q_powder_strings[i]
+        q_crystal_key = q_crystal_strings[i]
+        array_powder = cp.asnumpy(cp.stack(q_dict[q_powder_key]))
+        array_crystal = cp.asnumpy(cp.stack(q_dict[q_crystal_key]))
+
+        q_dict[q_powder_key] = array_powder
+        q_dict[q_crystal_key] = array_crystal
+
+    return q_dict
+
+
+if __name__ == '__main__':
+    batch_ids = range(181)  # Generate batch_id values
+    file_path = '/dtu-compute/msaca/sliceA_diffraction/xrd_non_integrated/scan-0339_pilatus.h5'
+    output_file = 'integrated-0339.h5'
+    output_file = os.path.join('/work3/msaca/sliceA_DA_cache', output_file)
+    with Pool(processes=12) as pool:
+        results = pool.starmap(DA_loader_gpu, [(batch_id, file_path) for batch_id in batch_ids])
+
+    stacked_arrays = {key: [] for key in results[0].keys()}
+
+    for result in results:
+        for key in result:
+            stacked_arrays[key].append(result[key])
+
+    # Stack the arrays along axis=0
+    for key in stacked_arrays:
+        stacked_arrays[key] = np.stack(stacked_arrays[key], axis=0).astype(np.float32)
+
+
+
+    with h5py.File(output_file, "w") as f_out:
+        for key, array in stacked_arrays.items():
+            f_out.create_dataset(key, data=array)

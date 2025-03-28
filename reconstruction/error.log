@@ -183,3 +183,93 @@ NameError: name 'interp1d' is not defined
 /zhome/71/c/146676/.bashrc: line 55: conda: command not found
 /zhome/71/c/146676/.bashrc: line 54: conda2: command not found
 /zhome/71/c/146676/.bashrc: line 55: conda: command not found
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+Loaded module: cuda/12.2
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 167, in DA_loader_gpu
+    dataset = cp.pad(cp.asarray(dataset_, dtype=cp.float32), 600, mode='constant', constant_values=0)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cupy/_creation/from_data.py", line 88, in asarray
+    return _core.array(a, dtype, False, order, blocking=blocking)
+  File "cupy/_core/core.pyx", line 2455, in cupy._core.core.array
+  File "cupy/_core/core.pyx", line 2482, in cupy._core.core.array
+  File "cupy/_core/core.pyx", line 2625, in cupy._core.core._array_default
+  File "cupy/_core/core.pyx", line 151, in cupy._core.core.ndarray.__new__
+  File "cupy/_core/core.pyx", line 239, in cupy._core.core._ndarray_base._init
+  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc
+  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1445, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1116, in cupy.cuda.memory.SingleDeviceMemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1137, in cupy.cuda.memory.SingleDeviceMemoryPool._malloc
+  File "cupy/cuda/memory.pyx", line 1365, in cupy.cuda.memory.SingleDeviceMemoryPool._try_malloc
+  File "cupy/cuda/memory.pyx", line 1362, in cupy.cuda.memory.SingleDeviceMemoryPool._try_malloc
+  File "cupy/cuda/memory.pyx", line 1087, in cupy.cuda.memory.SingleDeviceMemoryPool._alloc
+  File "cupy/cuda/memory.pyx", line 633, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 634, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 101, in cupy.cuda.memory.Memory.__init__
+  File "cupy_backends/cuda/api/runtime.pyx", line 499, in cupy_backends.cuda.api.runtime.malloc
+  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status
+cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 196, in <module>
+    results = pool.starmap(DA_loader_gpu, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+/zhome/71/c/146676/.bashrc: line 54: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 55: conda: command not found
+Loaded module: cuda/12.2
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 51, in starmapstar
+    return list(itertools.starmap(args[0], args[1]))
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 167, in DA_loader_gpu
+    dataset = cp.pad(cp.asarray(dataset_, dtype=cp.float32), 600, mode='constant', constant_values=0)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/site-packages/cupy/_creation/from_data.py", line 88, in asarray
+    return _core.array(a, dtype, False, order, blocking=blocking)
+  File "cupy/_core/core.pyx", line 2455, in cupy._core.core.array
+  File "cupy/_core/core.pyx", line 2482, in cupy._core.core.array
+  File "cupy/_core/core.pyx", line 2625, in cupy._core.core._array_default
+  File "cupy/_core/core.pyx", line 151, in cupy._core.core.ndarray.__new__
+  File "cupy/_core/core.pyx", line 239, in cupy._core.core._ndarray_base._init
+  File "cupy/cuda/memory.pyx", line 738, in cupy.cuda.memory.alloc
+  File "cupy/cuda/memory.pyx", line 1424, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1445, in cupy.cuda.memory.MemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1116, in cupy.cuda.memory.SingleDeviceMemoryPool.malloc
+  File "cupy/cuda/memory.pyx", line 1137, in cupy.cuda.memory.SingleDeviceMemoryPool._malloc
+  File "cupy/cuda/memory.pyx", line 1365, in cupy.cuda.memory.SingleDeviceMemoryPool._try_malloc
+  File "cupy/cuda/memory.pyx", line 1362, in cupy.cuda.memory.SingleDeviceMemoryPool._try_malloc
+  File "cupy/cuda/memory.pyx", line 1087, in cupy.cuda.memory.SingleDeviceMemoryPool._alloc
+  File "cupy/cuda/memory.pyx", line 633, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 634, in cupy.cuda.memory._malloc
+  File "cupy/cuda/memory.pyx", line 101, in cupy.cuda.memory.Memory.__init__
+  File "cupy_backends/cuda/api/runtime.pyx", line 499, in cupy_backends.cuda.api.runtime.malloc
+  File "cupy_backends/cuda/api/runtime.pyx", line 146, in cupy_backends.cuda.api.runtime.check_status
+cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/reconstruction/reconstructor_DA_2d.py", line 196, in <module>
+    results = pool.starmap(DA_loader_gpu, [(batch_id, q_value) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+cupy_backends.cuda.api.runtime.CUDARuntimeError: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable

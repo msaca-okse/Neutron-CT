@@ -30,8 +30,6 @@ ANALYZED_FILES = set()
 output_path = 'integrated-####.h5'
 OUTPUT_FILES = generate_paths(output_path, A)
 batch_ids = range(181)  # Generate batch_id values
-q_value = 0.85  # Constant q_value
-
 
 
 def is_file_fully_written(file_path, wait_time=1):
@@ -68,6 +66,7 @@ def analyze_file(file_path):
         with Pool(processes=12) as pool:
             results = pool.starmap(DA_loader_gpu, [(batch_id, file_path, q_value) for batch_id in batch_ids])
 
+        stacked_arrays = {key: [] for key in results[0].keys()}
         for result in results:
             for key in result:
                 stacked_arrays[key].append(result[key])
