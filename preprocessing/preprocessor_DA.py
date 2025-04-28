@@ -2,8 +2,11 @@ import time
 import h5py
 import os
 import numpy as np
-import cupy as cp
-from integrator_2D import DA_loader_gpu
+
+from integrator_DA import DA_loader_gpu
+from multiprocessing import Pool
+
+
 
 
 def generate_paths(path, A):
@@ -24,12 +27,16 @@ def generate_paths(path, A):
 
 FOLDER_TO_WATCH = '/work3/msaca/sliceA_DA_cache'
 input_files = 'scan-####_pilatus.h5'
-A = np.arange(341, 345, 2)
+A1 = np.arange(339, 449+1, 2)
+A2 = np.arange(455, 471+1, 2)
+A3 = np.arange(475, 487+1, 2)
+A = np.concatenate([A1,A2,A3])
+
 FILES_TO_ANALYZE = generate_paths(input_files, A)
 ANALYZED_FILES = set()
-output_path = 'integrated-####.h5'
+output_path = '/dtu-compute/msaca/sliceA_diffraction/powder-crystal/integrated-####.h5'
 OUTPUT_FILES = generate_paths(output_path, A)
-batch_ids = range(181)  # Generate batch_id values
+batch_ids = range(181)  # Generate batch_id values 181
 
 
 def is_file_fully_written(file_path, wait_time=1):
@@ -43,28 +50,28 @@ def is_file_fully_written(file_path, wait_time=1):
 
 def analyze_file(file_path):
     """Read the h5 file, compute the sum, and save it to the specified output h5 file."""
-
+    file_name = os.path.basename(file_path)
+    ANALYZED_FILES.add(file_name)
     try:
-        file_name = os.path.basename(file_path)
+
 
         # Find the corresponding output filename
         if file_name in FILES_TO_ANALYZE:
             index = FILES_TO_ANALYZE.index(file_name)
-            output_file = os.path.join(FOLDER_TO_WATCH, OUTPUT_FILES[index])
+            output_file = OUTPUT_FILES[index]
         else:
             print(f"Warning: {file_name} not found in FILES_TO_ANALYZE. Skipping.")
             return
 
         print('Reading the file ', file_path)
 
-        #with h5py.File(file_path, "r") as f:
-            #dtc= f['entry/instrument/xspress3']
-            #data_att = dtc['window_counts'][:][:,0].reshape(181,362)
-            #total_sum = np.sum(data_att)
-
 
         with Pool(processes=12) as pool:
-            results = pool.starmap(DA_loader_gpu, [(batch_id, file_path, q_value) for batch_id in batch_ids])
+            results = pool.starmap(DA_loader_gpu, [(batch_id, file_path) for batch_id in batch_ids])
+
+        #results = []
+        #for batch_id in range(batch_ids):
+        #    results.append(DA_loader_gpu(batch_id, file_path))    
 
         stacked_arrays = {key: [] for key in results[0].keys()}
         for result in results:
@@ -81,8 +88,8 @@ def analyze_file(file_path):
                 f_out.create_dataset(key, data=array)
 
 
-        print(f"Analyzed {file_path}: sum = {total_sum} (saved to {output_file})")
-        ANALYZED_FILES.add(file_name)
+        print(f"Analyzed {file_path} saved to {output_file})")
+        
 
     except Exception as e:
         print(f"Error reading {file_path}: {e}")

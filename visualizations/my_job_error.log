@@ -1,6 +1,7 @@
-/zhome/71/c/146676/.lsbatch/1739527493.24091002.shell: line 22: 2982411 Segmentation fault      python vtk_example.py
-/zhome/71/c/146676/.lsbatch/1739527569.24091020.shell: line 22: 2982989 Segmentation fault      python vtk_example.py
-/zhome/71/c/146676/.lsbatch/1739527716.24091056.shell: line 22: 2983538 Segmentation fault      python vtk_example.py
-/zhome/71/c/146676/.lsbatch/1739527761.24091070.shell: line 22: 2983857 Segmentation fault      python vtk_example.py
-/zhome/71/c/146676/.lsbatch/1739527827.24091076.shell: line 22: 2984068 Segmentation fault      python vtk_example.py
-/zhome/71/c/146676/.lsbatch/1739531347.24092863.shell: line 22: 66518 Segmentation fault      python vtk_example.py
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+/zhome/71/c/146676/.lsbatch/1743687878.24567430.shell: line 23: 455734 Killed                  python v2_script.py
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2

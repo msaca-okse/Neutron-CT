@@ -1,0 +1,16 @@
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/visualizations/v2_script.py", line 3, in <module>
+    from helpers import module_auxiliary as ma
+ModuleNotFoundError: No module named 'helpers'
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/visualizations/v2_script.py", line 5, in <module>
+    from helpers import module_auxiliary as ma
+  File "/zhome/71/c/146676/main/helpers/module_auxiliary.py", line 3, in <module>
+    from astropy.io import fits
+ModuleNotFoundError: No module named 'astropy'

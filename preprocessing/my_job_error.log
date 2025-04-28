@@ -1,0 +1,98 @@
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 139, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 133, in main
+    time.sleep(30)  # Check every 30 seconds
+KeyboardInterrupt
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 139, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 133, in main
+    time.sleep(30)  # Check every 30 seconds
+KeyboardInterrupt
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Process ForkPoolWorker-3:
+Process ForkPoolWorker-6:
+Process ForkPoolWorker-1:
+Process ForkPoolWorker-12:
+Process ForkPoolWorker-2:
+Process ForkPoolWorker-9:
+Process ForkPoolWorker-11:
+Process ForkPoolWorker-5:
+Process ForkPoolWorker-4:
+Process ForkPoolWorker-7:
+Process ForkPoolWorker-8:
+Process ForkPoolWorker-10:
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 139, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 128, in main
+    check_existing_files()  # Process already existing files at startup
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 110, in check_existing_files
+    process_file(file_path)
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 101, in process_file
+    analyze_file(file_path)
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 70, in analyze_file
+    results = pool.starmap(DA_loader_gpu, [(batch_id, file_path) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 768, in get
+    self.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 765, in wait
+    self._event.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 607, in wait
+    signaled = self._cond.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 139, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 133, in main
+    time.sleep(30)  # Check every 30 seconds
+KeyboardInterrupt
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 139, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 128, in main
+    check_existing_files()  # Process already existing files at startup
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 110, in check_existing_files
+    process_file(file_path)
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 101, in process_file
+    analyze_file(file_path)
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 70, in analyze_file
+    results = pool.starmap(DA_loader_gpu, [(batch_id, file_path) for batch_id in batch_ids])
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 375, in starmap
+    return self._map_async(func, iterable, starmapstar, chunksize).get()
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 768, in get
+    self.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/multiprocessing/pool.py", line 765, in wait
+    self._event.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 607, in wait
+    signaled = self._cond.wait(timeout)
+  File "/zhome/71/c/146676/miniconda3/envs/cil5/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 143, in <module>
+    main()
+  File "/zhome/71/c/146676/main/preprocessing/preprocessor_DA.py", line 137, in main
+    time.sleep(30)  # Check every 30 seconds
+KeyboardInterrupt

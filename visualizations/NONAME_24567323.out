@@ -1,0 +1,44 @@
+/zhome/71/c/146676/.bashrc: line 55: conda2: command not found
+/zhome/71/c/146676/.bashrc: line 56: conda: command not found
+Loaded module: cuda/12.2
+Traceback (most recent call last):
+  File "/zhome/71/c/146676/main/visualizations/v2_script.py", line 3, in <module>
+    from helpers import module_auxiliary as ma
+ModuleNotFoundError: No module named 'helpers'
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24567323: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <n-62-11-20> by user <msaca> in cluster <dcc> at Thu Apr  3 15:34:16 2025
+Job was executed on host(s) <n-62-31-22>, in queue <hpc>, as user <msaca> in cluster <dcc> at Thu Apr  3 15:34:17 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Thu Apr  3 15:34:17 2025
+Terminated at Thu Apr  3 15:34:18 2025
+Results reported at Thu Apr  3 15:34:18 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python v2_script.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.55 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     50000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   4 sec.
+    Turnaround time :                            2 sec.
+
+The output (if any) is above this job summary.
+

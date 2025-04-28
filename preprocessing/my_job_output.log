@@ -1,0 +1,628 @@
+Mon Apr 28 14:04:40 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:B1:00.0 Off |                    0 |
+|  0%   31C    P8             20W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0339_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0339_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0339_pilatus.h5: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5: cudaErrorInitializationError: initialization error
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+{'scan-0339_pilatus.h5', 'scan-0341_pilatus.h5'}
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822580: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:04:37 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:04:37 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:04:37 2025
+Terminated at Mon Apr 28 14:13:14 2025
+Results reported at Mon Apr 28 14:13:14 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+#BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   39.67 sec.
+    Max Memory :                                 358 MB
+    Average Memory :                             212.17 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47642.00 MB
+    Max Swap :                                   -
+    Max Processes :                              16
+    Max Threads :                                34
+    Run time :                                   517 sec.
+    Turnaround time :                            517 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Mon Apr 28 14:13:55 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:4B:00.0 Off |                    0 |
+|  0%   29C    P8             15W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822604: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:13:50 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:13:52 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:13:52 2025
+Terminated at Mon Apr 28 14:16:56 2025
+Results reported at Mon Apr 28 14:16:56 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+#BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   38.53 sec.
+    Max Memory :                                 363 MB
+    Average Memory :                             226.25 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47637.00 MB
+    Max Swap :                                   -
+    Max Processes :                              16
+    Max Threads :                                34
+    Run time :                                   210 sec.
+    Turnaround time :                            186 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Mon Apr 28 14:17:41 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:4B:00.0 Off |                    0 |
+|  0%   30C    P8             15W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822617: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:17:36 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:17:38 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:17:38 2025
+Terminated at Mon Apr 28 14:18:19 2025
+Results reported at Mon Apr 28 14:18:19 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+# #BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   37.57 sec.
+    Max Memory :                                 434 MB
+    Average Memory :                             408.67 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47566.00 MB
+    Max Swap :                                   -
+    Max Processes :                              16
+    Max Threads :                                34
+    Run time :                                   70 sec.
+    Turnaround time :                            43 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Mon Apr 28 14:19:07 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:B1:00.0 Off |                    0 |
+|  0%   31C    P8             20W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5: cudaErrorDevicesUnavailable: CUDA-capable device(s) is/are busy or unavailable
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+{'scan-0341_pilatus.h5'}
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822623: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:19:04 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:19:04 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:19:04 2025
+Terminated at Mon Apr 28 14:21:53 2025
+Results reported at Mon Apr 28 14:21:53 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+# #BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   38.84 sec.
+    Max Memory :                                 360 MB
+    Average Memory :                             240.33 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47640.00 MB
+    Max Swap :                                   -
+    Max Processes :                              16
+    Max Threads :                                34
+    Run time :                                   202 sec.
+    Turnaround time :                            169 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Mon Apr 28 14:23:01 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:4B:00.0 Off |                    0 |
+|  0%   30C    P8             15W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822642: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:22:56 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:22:58 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:22:58 2025
+Terminated at Mon Apr 28 14:24:51 2025
+Results reported at Mon Apr 28 14:24:51 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+# #BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   107.33 sec.
+    Max Memory :                                 613 MB
+    Average Memory :                             499.67 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47387.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                11
+    Run time :                                   166 sec.
+    Turnaround time :                            115 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+
+Mon Apr 28 14:29:08 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.133.20             Driver Version: 570.133.20     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:4B:00.0 Off |                    0 |
+|  0%   31C    P8             15W /  150W |       0MiB /  23028MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking for existing files...
+Detected scan-0339_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0339_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0339_pilatus.h5: 'range' object cannot be interpreted as an integer
+Detected scan-0341_pilatus.h5, checking stability...
+Reading the file  /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5
+Error reading /work3/msaca/sliceA_DA_cache/scan-0341_pilatus.h5: 'range' object cannot be interpreted as an integer
+{'scan-0341_pilatus.h5', 'scan-0339_pilatus.h5'}
+{'scan-0341_pilatus.h5', 'scan-0339_pilatus.h5'}
+{'scan-0341_pilatus.h5', 'scan-0339_pilatus.h5'}
+{'scan-0341_pilatus.h5', 'scan-0339_pilatus.h5'}
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24822676: <Recon> in cluster <dcc> Exited
+
+Job <Recon> was submitted from host <n-62-20-9> by user <msaca> in cluster <dcc> at Mon Apr 28 14:29:05 2025
+Job was executed on host(s) <12*n-62-18-5>, in queue <gpua10>, as user <msaca> in cluster <dcc> at Mon Apr 28 14:29:05 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/preprocessing> was used as the working directory.
+Started at Mon Apr 28 14:29:05 2025
+Terminated at Mon Apr 28 14:31:07 2025
+Results reported at Mon Apr 28 14:31:07 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+# embedded options to bsub - start with #BSUB
+# -- name ---
+#BSUB -J Recon
+# -- choose queue --
+# For gpu write gpua40
+#BSUB -q gpua10
+# #BSUB -gpu "num=1"
+#BSUB -e my_job_error.log
+#BSUB -o my_job_output.log
+#BSUB -M 4000
+#BSUB -R "rusage[mem=4000]"
+# -- estimated wall clock time (execution time): hh:mm -- 
+#BSUB -W 14:00 
+# -- Number of cores requested -- 
+#BSUB -n 12
+# -- Specify the distribution of the cores: on a separate nodes --
+#BSUB -R "span[hosts=1]" 
+
+# source ~/.bashrc
+export PATH="/zhome/71/c/146676/miniconda3/bin:$PATH" && source /zhome/71/c/146676/miniconda3/etc/profile.d/conda.sh && conda activate
+conda activate cil5
+
+module load cuda/12.2
+#module load cudnn/v9.8.0.87-prod-cuda-12.X
+#module load hdf5/1.1
+nvidia-smi
+python preprocessor_DA.py
+
+
+
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   4.11 sec.
+    Max Memory :                                 174 MB
+    Average Memory :                             174.00 MB
+    Total Requested Memory :                     48000.00 MB
+    Delta Memory :                               47826.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   122 sec.
+    Turnaround time :                            122 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <my_job_error.log> for stderr output of this job.
+

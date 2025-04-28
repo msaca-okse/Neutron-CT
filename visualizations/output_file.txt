@@ -1,0 +1,86 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24567334: <my_job_name> in cluster <dcc> Exited
+
+Job <my_job_name> was submitted from host <n-62-11-20> by user <msaca> in cluster <dcc> at Thu Apr  3 15:35:03 2025
+Job was executed on host(s) <n-62-31-1>, in queue <hpc>, as user <msaca> in cluster <dcc> at Thu Apr  3 15:35:04 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Thu Apr  3 15:35:04 2025
+Terminated at Thu Apr  3 15:35:05 2025
+Results reported at Thu Apr  3 15:35:05 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python v2_script.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.51 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     50000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   8 sec.
+    Turnaround time :                            2 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error_file.txt> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24567367: <my_job_name> in cluster <dcc> Exited
+
+Job <my_job_name> was submitted from host <n-62-11-20> by user <msaca> in cluster <dcc> at Thu Apr  3 15:38:28 2025
+Job was executed on host(s) <n-62-31-3>, in queue <hpc>, as user <msaca> in cluster <dcc> at Thu Apr  3 15:38:29 2025
+</zhome/71/c/146676> was used as the home directory.
+</zhome/71/c/146676/main/visualizations> was used as the working directory.
+Started at Thu Apr  3 15:38:29 2025
+Terminated at Thu Apr  3 15:38:31 2025
+Results reported at Thu Apr  3 15:38:31 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python v2_script.py
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.85 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     50000.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   32 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <error_file.txt> for stderr output of this job.
+
