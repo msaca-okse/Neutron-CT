@@ -1,0 +1,218 @@
+import os
+import sys
+os.chdir('/zhome/71/c/146676/main/')
+sys.path.append('/zhome/71/c/146676/main/')
+from glob import glob
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+import tifffile
+import numpy as np
+from typing import Dict, Any
+from tqdm import tqdm  # for progress bars
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+from umap import UMAP
+import pandas as pd
+import re
+from torch.utils.data import TensorDataset
+from torch.utils.data import DataLoader, Dataset
+from sklearn.metrics import f1_score
+import h5py
+import importlib
+from torch.utils.tensorboard import SummaryWriter
+import torch.profiler
+
+
+import time
+from os.path import join
+
+
+
+# 1. Build list of (filename, j, k) entries
+data_dir = '/dtu-compute/msaca/sliceA_diffraction/powder-crystal'
+all_files = [os.path.join(data_dir, f) for f in os.listdir(data_dir) if f.startswith('recons-DA-') and f.endswith('.h5')]
+
+index_list = []
+
+for filename in all_files:
+    with h5py.File(filename, 'r') as f:
+        if not {'powder-recon', 'crystal-recon', 'crystal-mask'}.issubset(f.keys()):
+            continue  # skip files missing required keys
+        shape = f['powder-recon'].shape  # (channels, width, depth)
+        channels, width, depth = shape
+        print(f"Processing {filename} with shape {shape}")
+
+        for j in range(width):  # j iterates over width
+            for k in range(depth):  # k iterates over depth
+                index_list.append((filename, j, k))
+
+print(f"Total samples: {len(index_list)}")
+
+# 2. Train/test split
+train_indices, val_indices = train_test_split(index_list, test_size=0.2, random_state=42)
+
+# 3. Custom Dataset class
+class ThresholdedH5Dataset(Dataset):
+    def __init__(self, index_list, threshold=0.5, cache_size=1):
+        """
+        index_list: List of (filename, j, k) tuples
+        threshold: Threshold for crystal-mask
+        cache_size: How many files to keep in RAM (1 = keep current file only)
+        """
+        self.index_list = index_list
+        self.threshold = threshold
+        self.cache_size = cache_size
+        self.cache = {}  # filename -> loaded data
+
+    def __len__(self):
+        return len(self.index_list)
+
+    def _load_file(self, filename):
+        """Load an entire h5 file into cache."""
+        with h5py.File(filename, 'r') as f:
+            data = {
+                'powder-recon': f['powder-recon'][:],  # copy into memory
+                'crystal-recon': f['crystal-recon'][:],
+                'crystal-mask': f['crystal-mask'][:]
+            }
+        return data
+
+    def __getitem__(self, idx):
+        filename, j, k = self.index_list[idx]
+
+        # Load file into cache if needed
+        if filename not in self.cache:
+            if len(self.cache) >= self.cache_size:
+                self.cache.clear()  # simple cache clearing for now
+            self.cache[filename] = self._load_file(filename)
+
+        data = self.cache[filename]
+        powder = data['powder-recon'][:, j, k]
+        crystal = data['crystal-recon'][:, j, k]
+        mask_value = data['crystal-mask'][:,j, k]
+
+        combined = powder + crystal * (mask_value > self.threshold)
+        return combined.astype(np.float32)
+
+# 4. DataLoaders
+train_dataset = ThresholdedH5Dataset(train_indices, threshold=0.5)
+val_dataset = ThresholdedH5Dataset(val_indices, threshold=0.5)
+
+train_loader = DataLoader(train_dataset, batch_size=2048, shuffle=True, num_workers=4)
+val_loader = DataLoader(val_dataset, batch_size=2048, shuffle=False, num_workers=4)
+
+
+
+
+import neural_networks.convVAE_no_aug
+importlib.reload(neural_networks.convVAE_no_aug)
+from neural_networks.convVAE_no_aug import ConvVAE
+
+
+
+model = ConvVAE(input_channels=667, latent_dim=16, channels=[8, 16, 32]).to('cuda')
+
+
+
+
+def vae_loss(recon_x, x, mu, logvar, kl_weight=1.0):
+    # Reconstruction loss
+    recon_loss = F.mse_loss(recon_x, x, reduction='mean')
+
+    # KL divergence
+    kl_div = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp()) / x.size(0)
+
+    return recon_loss + kl_weight * kl_div, recon_loss.item(), kl_div.item()
+
+
+
+from time import perf_counter as time
+import datetime
+now = datetime.datetime.now()
+from os.path import join
+with open(__file__) as f:
+    file_content = f.read()
+
+
+
+num_epochs=3
+lr=1e-3
+device='cuda'
+kl_anneal_epochs=1
+prof_logdir='./prof'
+prof_dir_name = f'prof_{len(os.listdir(prof_logdir))+1:02}'
+print(prof_dir_name)
+
+model.to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
+
+train_losses = []
+val_losses = []
+kl_weights = []
+
+# Setup profiler
+wait, warmup, active, repeat = 1, 1, 3, 2
+
+prof = torch.profiler.profile(
+    schedule=torch.profiler.schedule(wait=wait, warmup=warmup, active=active, repeat=repeat),
+    on_trace_ready=torch.profiler.tensorboard_trace_handler(join(prof_logdir, prof_dir_name)),
+    record_shapes=True,
+    profile_memory=True,
+    with_stack=True
+)
+prof.start()
+prof_step = 0
+
+train_begin = time()
+for epoch in range(1, num_epochs + 1):
+    t0 = time()
+    model.train()
+    running_loss = 0.0
+    step = 0
+
+    kl_weight = min(1.0, epoch / kl_anneal_epochs)
+    kl_weights.append(kl_weight)
+
+    for batch in tqdm(train_loader, desc=f"Epoch {epoch}", leave=False):
+        torch.cuda.synchronize()
+        if prof_step >= (wait + warmup + active) * repeat:
+            break
+
+        torch.cuda.synchronize()
+        batch = batch.to(device)
+        optimizer.zero_grad()
+        recon, mu, logvar = model(batch)
+        torch.cuda.synchronize()
+
+        loss, recon_l, kl_l = vae_loss(recon, batch, mu, logvar, kl_weight)
+        torch.cuda.synchronize()
+
+        loss.backward()
+        torch.cuda.synchronize()
+        optimizer.step()
+        torch.cuda.synchronize()
+
+        running_loss += loss.item()
+        step += 1
+        prof_step += 1
+        prof.step()
+
+    avg_train_loss = running_loss / step
+    train_losses.append(avg_train_loss)
+
+
+    # Evaluation (after profiling window or once profiling ends)
+    if prof_step >= (wait + warmup + active) * repeat:
+        break
+
+
+
+prof.stop()
+with open('prof_' + now.strftime('%Y_%m_%d__%H_%M_%S') + '.txt', 'w') as f:
+    f.write('\n@@@@ FILE CONTENTS @@@@\n')
+    f.write('@@@@ ' + __file__ + ' @@@@\n')
+    f.write(file_content)
