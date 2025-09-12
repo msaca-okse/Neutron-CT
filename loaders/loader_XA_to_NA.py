@@ -2,10 +2,10 @@ import numpy as np
 import os
 os.chdir('/zhome/71/c/146676/main/')  # Navigate into a subdirectory
 import matplotlib.pyplot as plt
-from helpers import plot_library as pl
+#from helpers import plot_library as pl
 import SimpleITK as sitk
 from registration import registrator
-import plotly.io as pio
+#import plotly.io as pio
 from cil.framework import ImageData, ImageGeometry
 import tifffile
 from loaders import stitcher_XA
@@ -73,16 +73,16 @@ def load_registered_data(compression = 1,dataset_XA='tv', dataset_NA = 'tv'):
 
 
 
-def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA = 'tv', h = 1, xray_slices = None, neutron_slices = None, output_volume = None):
+def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA = 'tv', h = 1, xray_slices = None, neutron_slices = None, output_volume = None, padding = None):
     global compression_v 
     compression_v = compression
     # Load the images
     if dataset_XA == 'tv':
-        paths_XA = stitcher_XA.generate_batch_stitched_paths(dataset = 'tv', folders = [1,2,3,4,5],
-            start_indices = [300, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 788])
+        paths_XA = stitcher_XA.generate_batch_stitched_paths(dataset = 'tv', folders = [1,2,3,4,5,6,7],
+            start_indices = [300, 94, 94, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 694, 694, 788])
     elif dataset_XA == 'fbp':
         paths_XA = stitcher_XA.generate_stitched_paths(dataset = 'fbp', folders = [1,2,3,4,5],
-            start_indices = [300, 94, 94, 94, 94], end_indices = [693, 694, 694, 694, 788])
+            start_indices = [300, 94, 94, 94, 94, 94, 94], end_indices = [693, 694, 694, 694,694,694, 788])
 
 
     N_xray = len(paths_XA)
@@ -117,8 +117,24 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
     recon_NA_B = np.stack(recon_NA)
     recon_NA_B = np.clip(recon_NA, a_min = -0.1, a_max = 0.1)
     ny_neutron,nx_neutron = np.shape(recon_NA_B[0])
+
+
     recon_NA_A = np.zeros((N_neutron, ny_neutron, nx_neutron))
     recon_NA_A[neutron_slices] = recon_NA_B
+
+    temp = output_volume
+    # if temp[0][0] is not None:
+    #     if temp[0][0] < 0:
+    #         recon_NA_A = np.pad(recon_NA_A, ((-temp[0][0], 0), (0, 0), (0, 0)), mode='constant', constant_values=0)
+    #     if temp[0][1] > N_neutron:
+    #         recon_NA_A = np.pad(recon_NA_A, ((0, temp[0][1] - N_neutron), (0, 0), (0, 0)), mode='constant', constant_values=0)
+
+    # if temp[0][0] is not None:
+    #     N_neutron = recon_NA_A.shape[0]
+    #     if temp[0][0] < 0:
+    #         temp[0][0] = 0
+    #     if temp[0][1] > N_neutron:
+    #         temp[0][1] = N_neutron  
 
     # Initialice the registrator class and set thresholds
     reg = registrator.Registrator()
@@ -126,15 +142,18 @@ def load_subset_of_registered_data(compression = 1, dataset_XA='tv', dataset_NA 
     reg.fixed = scale_volume(reg.fixed, h)
     path = 'transformation_XA_to_NA_compression' + '1' + '.tfm'
     transform = sitk.ReadTransform(path)
-    reg.resample(transform,ignore_flag = True)
 
-    temp = output_volume
+    reg.resample(transform,ignore_flag = True, padding = padding)
+    if padding is not None:
+        reg.resample(None, ignore_flag = True, padding = padding, fixed = True)
+
     if temp[0][0] is None:
         temp[0] = [0, N_neutron]
     if temp[1][0] is None:
         temp[1] = [0, ny_neutron]
     if temp[2][0] is None:
         temp[2] = [0, nx_neutron]
+
 
     start_index = [int(h*temp[2][0]), int(h*temp[1][0]), int(h*temp[0][0])]
     end_index = [int(h*temp[2][1]), int(h*temp[1][1]), int(h*temp[0][1])]

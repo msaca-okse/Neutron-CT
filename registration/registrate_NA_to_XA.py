@@ -1,4 +1,4 @@
-### Registrator scripted:
+P### Registrator scripted:
 ## Registering full scale XA to NA
 
 import numpy as np

@@ -12,7 +12,7 @@ import numpy as np
 from typing import Dict, Any
 from tqdm import tqdm  # for progress bars
 import matplotlib.pyplot as plt
-
+from numba import njit
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader, Dataset
 from sklearn.metrics import f1_score
@@ -74,7 +74,9 @@ class GridrecH5Dataset(Dataset):
         return recon.astype(np.float32)
 
 class ThresholdedH5Dataset(Dataset):
-    def __init__(self, index_list, threshold=1.5, cache_size=1,scale_factor=100.0, use_derivative=False):
+    def __init__(self, index_list, threshold=1.5, cache_size=1,scale_factor=100.0,
+                 use_derivative=False, extra_filename=None, slice_index = None,
+                 N_splits = 1, split = [1,1,1], all_files = None):
         """
         index_list: List of (filename, j, k) tuples
         threshold: Threshold for crystal-mask
@@ -86,6 +88,33 @@ class ThresholdedH5Dataset(Dataset):
         self.cache = {}  # filename -> loaded data
         self.scale_factor = scale_factor
         self.use_derivative = use_derivative  # 🔥 new option!
+        self.extra_filename = extra_filename
+        self.slice_index = slice_index
+        self.N_splits = N_splits
+        self.split = split
+
+
+        if all_files is not None:
+            self.all_files = sorted(all_files)  # Ensure consistent order
+            self.file_to_z = {fname: i for i, fname in enumerate(self.all_files)}
+            print(self.file_to_z)
+        else:
+            self.file_to_z = None
+
+
+
+        if self.extra_filename is not None:
+            start, end = slice_index
+            with h5py.File(self.extra_filename, 'r') as f:
+                self.extra_data_XA = f['XA_x_5'][:][5*(start-1):5*(end-1)]  # Load into memory once
+                self.extra_data_NA = f['NA_x_5'][:][5*(start-1):5*(end-1)]  # Load into memory once
+        else:
+            self.extra_data_XA = None
+            self.extra_data_NA = None
+
+    def set_split(split = [1,1,1]):
+        self.split = [1,1,1]
+
 
     def __len__(self):
         return len(self.index_list)
@@ -116,8 +145,35 @@ class ThresholdedH5Dataset(Dataset):
 
         combined = powder + crystal * (mask_value > self.threshold)
         combined = combined * self.scale_factor
-        combined = combined.astype(np.float32)
-        combined = combined/np.sum(combined)*200
+        combined = np.clip(combined.astype(np.float32), 0, None)
+        #combined = combined/np.sum(combined)*200
+
+            # Append extra data if available
+        if self.extra_data_XA is not None:
+            # Scale coarse indices to fine
+            j_fine = j * 5
+            k_fine = k * 5
+            if self.file_to_z is not None:
+                z = self.file_to_z[filename]
+                z_fine = z * 5
+            else:
+                raise ValueError("slice_index is not set and file_to_z mapping is missing. Input all_files into dataset def")
+                
+            # We loop over all z (axis=0), so get 5x5x5 region for each z
+            extra_means = []
+            cube_XA = self.extra_data_XA[z_fine:z_fine+5, j_fine:j_fine+5, k_fine:k_fine+5]
+            cube_NA = self.extra_data_NA[z_fine:z_fine+5, j_fine:j_fine+5, k_fine:k_fine+5]
+            if self.N_splits == 1:
+                extra_means.append(100*np.mean(cube_XA))
+                extra_means.append(100*np.mean(cube_NA))
+            else:
+                data_XA = resample_voxel(cube_XA, self.N_splits, split = self.split)
+                data_NA = resample_voxel(cube_NA, self.N_splits, split = self.split)
+                extra_means.append(100*data_XA)
+                extra_means.append(100*data_NA)
+            extra_means = np.array(extra_means, dtype=np.float32)
+            combined = np.concatenate([combined, extra_means], axis=0)
+
         return combined
 
 
@@ -292,7 +348,13 @@ def als_baseline(y, lam=1e6, p=0.6, niter=20):
 
 
 
-def fit_all_pixels(dataset, A, alpha=0.1, box=None,background_filter_sigma = None, method = 'Lasso', w=None):
+def fit_all_pixels(dataset, A, alpha=0.1, box=None,
+    background_filter_sigma = None,
+    method = 'Lasso', 
+    w=None,
+    N_iter = 3000,
+    learning_rate = 100,
+    eps = 1e-8):
     """
     dataset: instance of ThresholdedH5Dataset
     A: (N_2theta, num_keys) resampled basis matrix
@@ -360,7 +422,7 @@ def fit_all_pixels(dataset, A, alpha=0.1, box=None,background_filter_sigma = Non
         W = np.sqrt(w)  # take square root of weights
         A_weighted = A * W[:, np.newaxis]  # each row of A scaled
         Y_weighted = Y * W                 # each element of B scaled
-        C = batch_solve_lasso(A_weighted, Y_weighted, lam=10*A.shape[0]*alpha, lr=1e-2, max_iter=1000, eps=1e-7, nonneg=True)
+        C = batch_solve_lasso(A_weighted, Y_weighted, alpha=alpha, lr=learning_rate, max_iter=N_iter, eps=eps, nonneg=True)
 
         for coeffs_vec, (j_local, k_local) in zip(C, index_map):
             coeffs[:, j_local, k_local] = coeffs_vec
@@ -426,7 +488,7 @@ def plot_pixel_fit(j_global, k_global, dataset, materials, A, box,filename, back
 
     # Plot
     plt.figure(figsize=(10, 5))
-    plt.plot(twotheta,observed, label='Observed', linewidth=2)
+    plt.plot(twotheta,observed, label='Observed', linewidth=4)
     plt.plot(twotheta, fitted, label='Fitted', linewidth=2)
     plt.title(f'Pixel ({j_global}, {k_global}) Spectrum vs Fit')
     plt.legend()
@@ -567,8 +629,9 @@ def get_index_list(data_dir, theta_reg = False,slice_index = 0):
 
     # Extract the numeric ID from filenames like 'recons-DA-0459.h5' and sort
     all_files.sort(key=lambda f: int(os.path.basename(f).split('-DA-')[1].split('.')[0]))
-    all_files = all_files[slice_index:slice_index+1]
-
+    if slice_index is not None:
+        start, stop = slice_index
+        all_files = all_files[start:stop]
     index_list = []
 
     for filename in all_files:
@@ -727,7 +790,7 @@ def solve_l1_l1(A_np, b_np, alpha=0.1, lr=1e-2, max_iter=500, eps=1e-4):
 
 
 
-def batch_solve_l1_l1(A_np, B_np, lam=0.1, lr=1e-2, max_iter=150, eps=1e-4):
+def batch_solve_l1_l1(A_np, B_np, alpha=0.1, lr=1e-2, max_iter=150, eps=1e-4):
     A = torch.tensor(A_np, dtype=torch.float32, device='cuda')  # (m, n)
     B = torch.tensor(B_np, dtype=torch.float32, device='cuda')  # (batch, m)
 
@@ -743,7 +806,7 @@ def batch_solve_l1_l1(A_np, B_np, lam=0.1, lr=1e-2, max_iter=150, eps=1e-4):
         AX = X @ A.T  # Correct batch matmul: (batch, n) @ (n, m) -> (batch, m)
         datafit = torch.sqrt((AX - B) ** 2 + eps).sum(dim=1)  # (batch,)
         reg = torch.sqrt(X ** 2 + eps).sum(dim=1)  # (batch,)
-        loss = datafit + lam * reg
+        loss = datafit + alpha * reg
         loss.sum().backward()
         optimizer.step()
 
@@ -753,7 +816,7 @@ def batch_solve_l1_l1(A_np, B_np, lam=0.1, lr=1e-2, max_iter=150, eps=1e-4):
     return X.detach().cpu().numpy()
 
 
-def batch_solve_lasso(A_np, B_np, lam=0.1, lr=1e-2, max_iter=150, eps=1e-4, nonneg=True):
+def batch_solve_lasso(A_np, B_np, alpha=0.1, lr=1e-2, max_iter=3000, eps=1e-4, nonneg=True):
     """
     Solves: min_x 0.5 * ||Ax - b||^2 + lambda * ||x||_1 (smooth L1)
     A_np: shape (m, n)
@@ -769,14 +832,16 @@ def batch_solve_lasso(A_np, B_np, lam=0.1, lr=1e-2, max_iter=150, eps=1e-4, nonn
 
     optimizer = torch.optim.Adam([X], lr=lr)
 
-    for _ in range(max_iter):
+    for i in range(max_iter):
         optimizer.zero_grad()
 
         AX = X @ A.T  # (batch, m)
         datafit = 0.5 * ((AX - B) ** 2).sum(dim=1)  # squared L2 loss
         reg = torch.sqrt(X ** 2 + eps).sum(dim=1)  # smooth L1
-        loss = datafit + lam * reg
-
+        loss = datafit + alpha * reg
+        if not i%100:
+            print(f"Iteration {i}, Loss: {loss.mean().item():.4f}, Data Fit: {datafit.mean().item():.4f}, Reg: {alpha*reg.mean().item():.4f}")
+        
         loss.sum().backward()
         optimizer.step()
 
@@ -956,11 +1021,11 @@ def background_plot(A, target_twotheta):
 
 
 
-def add_scalebar(ax, pixel_per_unit, length_in_units, label=None, 
+def add_scalebar(ax, pixel_per_unit, length_as_string, length_in_units, label=None, 
                  location='lower right', color='white', size_vertical=2, fontsize=10):
     length_pixels = length_in_units * pixel_per_unit
     if label is None:
-        label = f'{length_in_units} units'
+        label = length_as_string
 
     fontprops = fm.FontProperties(size=fontsize)
     scalebar = AnchoredSizeBar(ax.transData,
@@ -973,3 +1038,57 @@ def add_scalebar(ax, pixel_per_unit, length_in_units, label=None,
                                size_vertical=size_vertical,
                                fontproperties=fontprops)
     ax.add_artist(scalebar)
+    return ax
+
+
+
+
+
+
+@njit
+def resample_voxel(fine, k, split):
+    N = fine.shape[0]
+    i, j, l = split
+    dx_fine = 1.0 / N
+    dx_coarse = 1.0 / k
+
+    x0 = i * dx_coarse
+    x1 = (i + 1) * dx_coarse
+    y0 = j * dx_coarse
+    y1 = (j + 1) * dx_coarse
+    z0 = l * dx_coarse
+    z1 = (l + 1) * dx_coarse
+
+    fx_start = max(0, int(np.floor(x0 * N)))
+    fx_end   = min(N, int(np.ceil(x1 * N)))
+    fy_start = max(0, int(np.floor(y0 * N)))
+    fy_end   = min(N, int(np.ceil(y1 * N)))
+    fz_start = max(0, int(np.floor(z0 * N)))
+    fz_end   = min(N, int(np.ceil(z1 * N)))
+
+    value = 0.0
+    weight = 0.0
+
+    for fi in range(fx_start, fx_end):
+        fx0 = fi * dx_fine
+        fx1 = (fi + 1) * dx_fine
+        ix = min(x1, fx1) - max(x0, fx0)
+        if ix <= 0: continue
+
+        for fj in range(fy_start, fy_end):
+            fy0 = fj * dx_fine
+            fy1 = (fj + 1) * dx_fine
+            iy = min(y1, fy1) - max(y0, fy0)
+            if iy <= 0: continue
+
+            for fk in range(fz_start, fz_end):
+                fz0 = fk * dx_fine
+                fz1 = (fk + 1) * dx_fine
+                iz = min(z1, fz1) - max(z0, fz0)
+                if iz <= 0: continue
+
+                vol = ix * iy * iz
+                value += fine[fi, fj, fk] * vol
+                weight += vol
+
+    return value / weight if weight > 0 else 0.0

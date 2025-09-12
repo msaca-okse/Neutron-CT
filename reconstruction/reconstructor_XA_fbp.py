@@ -67,7 +67,6 @@ def file_loader(path):
     nz, nx = np.shape(dark)
     data = np.empty((6000,nz,nx))
     for i in range(6000):
-        end_path
         data[i] = tifffile.imread(path)
 
 

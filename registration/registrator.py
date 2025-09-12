@@ -3,8 +3,8 @@ import SimpleITK as sitk
 import copy
 import matplotlib.pyplot as plt
 previous_metric_value = None
-import plotly.graph_objects as go
-from helpers import plot_library as pl
+#import plotly.graph_objects as go
+#from helpers import plot_library as pl
 import random
 import json
 
@@ -484,7 +484,9 @@ class Registrator():
         resampler.SetOutputOrigin(self.fixed.GetOrigin())  # Preserve origin
         resampler.SetOutputDirection(self.fixed.GetDirection())
 
+        
         if padding is not None:
+            padding = [padding[2], padding[1], padding[0]]
             origin = self.fixed.GetOrigin()
             spacing = self.fixed.GetSpacing()
             direction = self.fixed.GetDirection()
