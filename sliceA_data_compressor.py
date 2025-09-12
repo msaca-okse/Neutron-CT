@@ -60,8 +60,6 @@ def folder_processor(i):
     image_dark = read_edf(edf_path_dark)
     image_obeam = read_edf(edf_path_obeam)
 
-    image_dark = compress(image_dark)
-    image_obeam = compress(image_obeam)
 
     image_dark = np.squeeze(image_dark)
     image_obeam = np.squeeze(image_obeam)
