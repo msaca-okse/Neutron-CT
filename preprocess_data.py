@@ -95,7 +95,7 @@ for i_batch in range(N_batches):
         projection_lognormalized = -(np.log(projection_mean) - np.log(OB_mean) + np.log(D0) - np.log(D[i_proj]))
 
         filtered_projection_lognormalized = iu.spotclean(projection_lognormalized, size=10)
-        %np.save(filter_filename, filtered_projection_lognormalized)
+        #np.save(filter_filename, filtered_projection_lognormalized)
         filtered_projection_lognormalized = filtered_projection_lognormalized[:,i_from:i_to]
 
 
